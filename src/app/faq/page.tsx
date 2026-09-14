@@ -8,6 +8,8 @@ import { SITE_ORIGIN, SITE_PHONE_TEL, SITE_PHONE_DISPLAY } from '@/lib/site';
 import { altPrefix, metaDescriptionBlock, TITLE_SUFFIX } from '@/lib/hyperlocal';
 import Link from 'next/link';
 import RealScoutListings from '@/../components/RealScoutListings';
+import PageHero from '@/../components/PageHero';
+import { mediaOpenGraph, mediaTwitterImages } from '@/lib/media';
 
 export const metadata: Metadata = {
   title: `Frequently Asked Questions | ${TITLE_SUFFIX}`,
@@ -25,20 +27,13 @@ export const metadata: Metadata = {
     siteName: TITLE_SUFFIX,
     locale: 'en_US',
     type: 'website',
-    images: [
-      {
-        url: `${SITE_ORIGIN}/images/amenities/resort-pool.jpeg`,
-        width: 1200,
-        height: 630,
-        alt: altPrefix('Resort-style pool'),
-      },
-    ],
+    images: [mediaOpenGraph('faq.hero')],
   },
   twitter: {
     card: 'summary_large_image',
     title: `Frequently Asked Questions | ${TITLE_SUFFIX}`,
     description: 'Find answers about Del Webb North Ranch 55+ community in North Las Vegas.',
-    images: [`${SITE_ORIGIN}/images/amenities/resort-pool.jpeg`],
+    images: mediaTwitterImages('faq.hero'),
   },
 };
 
@@ -82,26 +77,11 @@ export default function FAQPage() {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema).replace(/</g, '\\u003c') }}
         />
-        {/* Hero Section */}
-        <section className="relative bg-stone-100 py-16 md:py-24 overflow-hidden">
-          <div className="absolute inset-0 opacity-10">
-            <Image
-              src="/images/amenities/resort-pool.jpeg"
-              alt={altPrefix('Resort-style pool')}
-              fill
-              className="object-cover"
-              priority
-            />
-          </div>
-          <div className="relative max-w-4xl mx-auto px-4 text-center z-10">
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 font-playfair">
-              Frequently Asked Questions | Del Webb North Ranch 55+ Community
-            </h1>
-            <p className="text-xl text-gray-600">
-              Everything you need to know about Del Webb North Ranch
-            </p>
-          </div>
-        </section>
+        <PageHero
+          mediaKey="faq.hero"
+          title="Frequently Asked Questions | Del Webb North Ranch 55+ Community"
+          subtitle="Everything you need to know about Del Webb North Ranch"
+        />
 
         {/* Office RealScout widget - directly below hero */}
         <RealScoutListings h2Text="Homes for Sale at Del Webb North Ranch | North Las Vegas 55+ Listings" />

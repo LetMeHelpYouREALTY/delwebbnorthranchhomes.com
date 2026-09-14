@@ -4,10 +4,12 @@ import Link from "next/link";
 import { Button } from "@/../components/ui/button";
 import { Phone, Home, FileText, Calendar, Search, CheckCircle } from "lucide-react";
 import { SITE_ORIGIN, SITE_PHONE_TEL, SITE_PHONE_DISPLAY } from "@/lib/site";
-import { altPrefix, metaDescriptionBlock, TITLE_SUFFIX } from "@/lib/hyperlocal";
+import { metaDescriptionBlock, TITLE_SUFFIX } from "@/lib/hyperlocal";
+import { mediaOpenGraph, mediaTwitterImages } from "@/lib/media";
 import { buyerCtaCopy, buyerFaq, buyerValueProps } from "@/lib/hyperlocalBuyer";
 import { getCommunityInfo } from "@/lib/communityData";
 import RealScoutListings from "@/../components/RealScoutListings";
+import PageHero from "@/../components/PageHero";
 
 const buyerFaqSchema = {
   "@context": "https://schema.org",
@@ -32,14 +34,13 @@ export const metadata: Metadata = {
     siteName: TITLE_SUFFIX,
     locale: "en_US",
     type: "website",
-    images: [
-      { url: `${SITE_ORIGIN}/images/amenities/resort-pool.jpeg`, width: 1200, height: 630, alt: altPrefix("Resort pool") },
-    ],
+    images: [mediaOpenGraph("buyers.hero")],
   },
   twitter: {
     card: "summary_large_image",
     title: `For Buyers | ${TITLE_SUFFIX}`,
     description: buyerCtaCopy.metaHighlight,
+    images: mediaTwitterImages("buyers.hero"),
   },
 };
 
@@ -59,16 +60,11 @@ export default function BuyersPage() {
             { label: "For Buyers", href: "/buyers" },
           ]}
         />
-        {/* Hero - exactly one H1 */}
-        <section className="bg-primary text-white py-12 md:py-16 lg:py-20">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto text-center">
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 font-playfair">
-                For Buyers: 55+ Homes at Del Webb North Ranch | North Las Vegas
-              </h1>
-              <p className="text-lg md:text-xl text-gray-100 leading-relaxed mb-6">
-                {buyerCtaCopy.metaHighlight} Del Webb North Ranch offers single-story resale homes, a 10,000 sq ft clubhouse, and resort-style amenities—all in a gated 55+ community.
-              </p>
+        <PageHero
+          mediaKey="buyers.hero"
+          title="For Buyers: 55+ Homes at Del Webb North Ranch | North Las Vegas"
+          subtitle={`${buyerCtaCopy.metaHighlight} Del Webb North Ranch offers single-story resale homes, a 10,000 sq ft clubhouse, and resort-style amenities—all in a gated 55+ community.`}
+        >
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                 <Button asChild variant="accent" size="lg" className="bg-primary hover:bg-primary/90 text-white">
                   <Link href="/schedule">{buyerCtaCopy.primary}</Link>
@@ -76,14 +72,12 @@ export default function BuyersPage() {
                 <Button asChild variant="outline" size="lg" className="border-white text-white hover:bg-white/10">
                   <Link href="/homes-for-sale">{buyerCtaCopy.secondary}</Link>
                 </Button>
-                <a href={SITE_PHONE_TEL} className="flex items-center gap-2 text-lg font-semibold hover:text-primary transition-colors">
+                <a href={SITE_PHONE_TEL} className="flex min-h-[44px] items-center gap-2 text-lg font-semibold text-white underline-offset-4 hover:underline">
                   <Phone className="w-5 h-5" />
                   {SITE_PHONE_DISPLAY}
                 </a>
               </div>
-            </div>
-          </div>
-        </section>
+        </PageHero>
 
         {/* Office RealScout widget - below hero on every page */}
         <RealScoutListings h2Text="Homes for Sale at Del Webb North Ranch | North Las Vegas 55+ Listings" />

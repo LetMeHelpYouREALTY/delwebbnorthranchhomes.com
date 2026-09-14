@@ -9,6 +9,8 @@ import RealScoutListings from "@/../components/RealScoutListings";
 import { getDistances } from "@/lib/communityData";
 import { SITE_ORIGIN } from "@/lib/site";
 import { altPrefix, metaDescriptionBlock, TITLE_SUFFIX } from "@/lib/hyperlocal";
+import { mediaOpenGraph, mediaTwitterImages } from "@/lib/media";
+import PageHero from "@/../components/PageHero";
 import {
   Users,
   Calendar,
@@ -36,20 +38,13 @@ export const metadata: Metadata = {
     siteName: TITLE_SUFFIX,
     locale: "en_US",
     type: "website",
-    images: [
-      {
-        url: `${SITE_ORIGIN}/images/amenities/event-lawn-club.jpeg`,
-        width: 1200,
-        height: 630,
-        alt: altPrefix("Community lifestyle and events"),
-      },
-    ],
+    images: [mediaOpenGraph("lifestyle.hero")],
   },
   twitter: {
     card: "summary_large_image",
     title: `Active Adult Lifestyle | ${TITLE_SUFFIX}`,
     description: "Vibrant community life in North Las Vegas's premier 55+ community.",
-    images: [`${SITE_ORIGIN}/images/amenities/event-lawn-club.jpeg`],
+    images: mediaTwitterImages("lifestyle.hero"),
   },
 };
 
@@ -122,21 +117,11 @@ export default function LifestylePage() {
         ]}
       />
       <main>
-        {/* Hero Section */}
-        <section className="bg-primary text-white py-12 md:py-16 lg:py-20">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto text-center">
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 font-playfair">
-                Active Adult Lifestyle | Del Webb North Ranch 55+ Community
-              </h1>
-              <p className="text-lg md:text-xl text-gray-100 leading-relaxed">
-                Del Webb North Ranch isn't just a place to live—it's a vibrant
-                community where neighbors become friends and every day offers new
-                opportunities to connect, learn, and enjoy life.
-              </p>
-            </div>
-          </div>
-        </section>
+        <PageHero
+          mediaKey="lifestyle.hero"
+          title="Active Adult Lifestyle | Del Webb North Ranch 55+ Community"
+          subtitle="Del Webb North Ranch isn't just a place to live—it's a vibrant community where neighbors become friends and every day offers new opportunities to connect, learn, and enjoy life."
+        />
 
         {/* Office RealScout widget - directly below hero */}
         <RealScoutListings h2Text="View Available Homes in Del Webb North Ranch to Experience This Lifestyle" />

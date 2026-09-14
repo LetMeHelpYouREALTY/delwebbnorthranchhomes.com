@@ -4,9 +4,11 @@ import Link from "next/link";
 import { Button } from "@/../components/ui/button";
 import { Phone, TrendingUp, FileText, Calendar, Home, CheckCircle } from "lucide-react";
 import { SITE_ORIGIN, SITE_PHONE_TEL, SITE_PHONE_DISPLAY } from "@/lib/site";
-import { altPrefix, metaDescriptionBlock, TITLE_SUFFIX } from "@/lib/hyperlocal";
+import { metaDescriptionBlock, TITLE_SUFFIX } from "@/lib/hyperlocal";
+import { mediaOpenGraph, mediaTwitterImages } from "@/lib/media";
 import { sellerCtaCopy, sellerFaq, sellerValueProps } from "@/lib/hyperlocalSeller";
 import RealScoutListings from "@/../components/RealScoutListings";
+import PageHero from "@/../components/PageHero";
 
 const sellerFaqSchema = {
   "@context": "https://schema.org",
@@ -31,14 +33,13 @@ export const metadata: Metadata = {
     siteName: TITLE_SUFFIX,
     locale: "en_US",
     type: "website",
-    images: [
-      { url: `${SITE_ORIGIN}/images/amenities/resort-pool.jpeg`, width: 1200, height: 630, alt: altPrefix("Resort pool") },
-    ],
+    images: [mediaOpenGraph("sellers.hero")],
   },
   twitter: {
     card: "summary_large_image",
     title: `For Sellers | ${TITLE_SUFFIX}`,
     description: sellerCtaCopy.metaHighlight,
+    images: mediaTwitterImages("sellers.hero"),
   },
 };
 
@@ -56,16 +57,11 @@ export default function SellersPage() {
             { label: "For Sellers", href: "/sellers" },
           ]}
         />
-        {/* Hero - exactly one H1 */}
-        <section className="bg-primary text-white py-12 md:py-16 lg:py-20">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto text-center">
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 font-playfair">
-                For Sellers: Sell Your Del Webb North Ranch or North Las Vegas Home
-              </h1>
-              <p className="text-lg md:text-xl text-gray-100 leading-relaxed mb-6">
-                {sellerCtaCopy.metaHighlight} Get a free home value estimate and expert guidance for 55+ resale in North Las Vegas.
-              </p>
+        <PageHero
+          mediaKey="sellers.hero"
+          title="For Sellers: Sell Your Del Webb North Ranch or North Las Vegas Home"
+          subtitle={`${sellerCtaCopy.metaHighlight} Get a free home value estimate and expert guidance for 55+ resale in North Las Vegas.`}
+        >
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                 <Button asChild variant="accent" size="lg" className="bg-primary hover:bg-primary/90 text-white">
                   <Link href="/home-value">{sellerCtaCopy.primary}</Link>
@@ -73,14 +69,12 @@ export default function SellersPage() {
                 <Button asChild variant="outline" size="lg" className="border-white text-white hover:bg-white/10">
                   <Link href="/contact">{sellerCtaCopy.secondary}</Link>
                 </Button>
-                <a href={SITE_PHONE_TEL} className="flex items-center gap-2 text-lg font-semibold hover:text-primary transition-colors">
+                <a href={SITE_PHONE_TEL} className="flex min-h-[44px] items-center gap-2 text-lg font-semibold text-white underline-offset-4 hover:underline">
                   <Phone className="w-5 h-5" />
                   {SITE_PHONE_DISPLAY}
                 </a>
               </div>
-            </div>
-          </div>
-        </section>
+        </PageHero>
 
         {/* Office RealScout widget - below hero */}
         <RealScoutListings h2Text="Current Homes for Sale at Del Webb North Ranch | North Las Vegas Listings" />

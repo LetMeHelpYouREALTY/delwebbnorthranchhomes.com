@@ -3,12 +3,14 @@ import Breadcrumbs from "@/../components/Breadcrumbs";
 import Link from "next/link";
 import { MapPin, TreePine, Heart, Mountain } from "lucide-react";
 import { SITE_ORIGIN } from "@/lib/site";
-import { altPrefix, metaDescriptionBlock, TITLE_SUFFIX } from "@/lib/hyperlocal";
+import { metaDescriptionBlock, TITLE_SUFFIX } from "@/lib/hyperlocal";
 import { nearbyAreas, hyperlocalFaq } from "@/lib/hyperlocalData";
 import { HYPERLOCAL } from "@/lib/hyperlocal";
 import { getCommunityInfo } from "@/lib/communityData";
 import RealScoutListings from "@/../components/RealScoutListings";
 import LocalVisitSection from "@/../components/LocalVisitSection";
+import PageHero from "@/../components/PageHero";
+import { mediaOpenGraph, mediaTwitterImages } from "@/lib/media";
 
 const communityFaqSchema = {
   "@context": "https://schema.org",
@@ -33,14 +35,13 @@ export const metadata: Metadata = {
     siteName: TITLE_SUFFIX,
     locale: "en_US",
     type: "website",
-    images: [
-      { url: `${SITE_ORIGIN}/images/amenities/resort-pool.jpeg`, width: 1200, height: 630, alt: altPrefix("Resort pool") },
-    ],
+    images: [mediaOpenGraph("community.hero")],
   },
   twitter: {
     card: "summary_large_image",
     title: `Community & Area | North Las Vegas 55+ | ${TITLE_SUFFIX}`,
     description: "Explore North Las Vegas and the area around Del Webb North Ranch.",
+    images: mediaTwitterImages("community.hero"),
   },
 };
 
@@ -60,19 +61,11 @@ export default function CommunityPage() {
             { label: "Community & Area", href: "/community" },
           ]}
         />
-        {/* Hero - exactly one H1 */}
-        <section className="bg-primary text-white py-12 md:py-16 lg:py-20">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto text-center">
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 font-playfair">
-                Community & Area: Del Webb North Ranch | North Las Vegas 55+
-              </h1>
-              <p className="text-lg md:text-xl text-gray-100 leading-relaxed">
-                Del Webb North Ranch sits in North Las Vegas, NV 89086—with easy access to Aliante, Centennial Hills, Craig Ranch Regional Park, healthcare, and outdoor recreation. No state income tax and a 55+ active adult lifestyle.
-              </p>
-            </div>
-          </div>
-        </section>
+        <PageHero
+          mediaKey="community.hero"
+          title="Community & Area: Del Webb North Ranch | North Las Vegas 55+"
+          subtitle="Del Webb North Ranch sits in North Las Vegas, NV 89086—with easy access to Aliante, Centennial Hills, Craig Ranch Regional Park, healthcare, and outdoor recreation. No state income tax and a 55+ active adult lifestyle."
+        />
 
         {/* Office RealScout widget - below hero */}
         <RealScoutListings h2Text="Homes for Sale at Del Webb North Ranch | North Las Vegas 55+ Community Listings" />

@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import Breadcrumbs from "@/../components/Breadcrumbs";
 import Link from "next/link";
-import { TrendingUp } from "lucide-react";
 import { Button } from "@/../components/ui/button";
 import { SITE_ORIGIN, SITE_PHONE_TEL, SITE_PHONE_DISPLAY } from "@/lib/site";
-import { altPrefix, metaDescriptionBlock, TITLE_SUFFIX } from "@/lib/hyperlocal";
+import { metaDescriptionBlock, TITLE_SUFFIX } from "@/lib/hyperlocal";
+import { mediaOpenGraph, mediaTwitterImages } from "@/lib/media";
 import { sellerCtaCopy, sellerFaq, sellerValueProps } from "@/lib/hyperlocalSeller";
 import RealScoutListings from "@/../components/RealScoutListings";
+import PageHero from "@/../components/PageHero";
 
 const sellerFaqSchema = {
   "@context": "https://schema.org",
@@ -34,20 +35,13 @@ export const metadata: Metadata = {
     siteName: TITLE_SUFFIX,
     locale: "en_US",
     type: "website",
-    images: [
-      {
-        url: `${SITE_ORIGIN}/images/amenities/resort-pool.jpeg`,
-        width: 1200,
-        height: 630,
-        alt: altPrefix("Home value estimate"),
-      },
-    ],
+    images: [mediaOpenGraph("homeValue.hero")],
   },
   twitter: {
     card: "summary_large_image",
     title: `Free Home Value Estimate | ${TITLE_SUFFIX}`,
     description: "Get a free, instant home value estimate for your property.",
-    images: [`${SITE_ORIGIN}/images/amenities/resort-pool.jpeg`],
+    images: mediaTwitterImages("homeValue.hero"),
   },
 };
 
@@ -68,22 +62,11 @@ export default function HomeValuePage() {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(sellerFaqSchema) }}
         />
-        {/* Hero - exactly one H1 */}
-        <section className="bg-primary text-white py-12 md:py-16 lg:py-20">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto text-center">
-              <div className="flex items-center justify-center w-20 h-20 bg-white/10 rounded-full mb-6 mx-auto">
-                <TrendingUp className="w-10 h-10 text-white" aria-hidden />
-              </div>
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 font-playfair">
-                {sellerCtaCopy.primary}
-              </h1>
-              <p className="text-lg md:text-xl text-gray-100 leading-relaxed">
-                {sellerCtaCopy.metaHighlight} Get an instant estimate for Del Webb North Ranch or North Las Vegas area homes.
-              </p>
-            </div>
-          </div>
-        </section>
+        <PageHero
+          mediaKey="homeValue.hero"
+          title={sellerCtaCopy.primary}
+          subtitle={`${sellerCtaCopy.metaHighlight} Get an instant estimate for Del Webb North Ranch or North Las Vegas area homes.`}
+        />
 
         {/* Office RealScout widget - below hero */}
         <RealScoutListings h2Text="Homes for Sale at Del Webb North Ranch | North Las Vegas 55+ Listings" />

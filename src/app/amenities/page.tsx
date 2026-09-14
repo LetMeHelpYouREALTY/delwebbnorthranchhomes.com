@@ -7,8 +7,10 @@ import ScrollAnimation from "@/../components/scroll-animation";
 import { oldSiteData } from "@/lib/old-site-data";
 import { getAmenities, getCommunityInfo } from "@/lib/communityData";
 import RealScoutListings from "@/../components/RealScoutListings";
+import PageHero from "@/../components/PageHero";
 import { SITE_ORIGIN } from "@/lib/site";
 import { altPrefix, metaDescriptionBlock, TITLE_SUFFIX } from "@/lib/hyperlocal";
+import { mediaOpenGraph, mediaTwitterImages } from "@/lib/media";
 import {
   Activity,
   Users,
@@ -37,20 +39,13 @@ export const metadata: Metadata = {
     siteName: TITLE_SUFFIX,
     locale: "en_US",
     type: "website",
-    images: [
-      {
-        url: `${SITE_ORIGIN}/images/amenities/resort-pool.jpeg`,
-        width: 1200,
-        height: 630,
-        alt: altPrefix("Resort-style pool and amenities"),
-      },
-    ],
+    images: [mediaOpenGraph("amenities.hero")],
   },
   twitter: {
     card: "summary_large_image",
     title: `Resort-Style Amenities | ${TITLE_SUFFIX}`,
     description: "Resort-style amenities in North Las Vegas's premier 55+ community.",
-    images: [`${SITE_ORIGIN}/images/amenities/resort-pool.jpeg`],
+    images: mediaTwitterImages("amenities.hero"),
   },
 };
 
@@ -72,7 +67,7 @@ const amenities = [
       {
         name: "Fitness Center",
         description: "Modern equipment for your daily workout routine",
-        image: "/images/amenities/clubhouse.jpeg",
+        image: "/images/amenities/fitness-center.jpg",
       },
       {
         name: "Pickleball Courts",
@@ -187,21 +182,17 @@ export default function AmenitiesPage() {
         ]}
       />
       <main>
-        {/* Hero Section */}
-        <section className="bg-primary text-white py-12 md:py-16 lg:py-20">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto text-center">
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 font-playfair">
-                Resort-Style Amenities | Del Webb North Ranch 55+ Community
-              </h1>
-              <p className="text-lg md:text-xl text-gray-100 leading-relaxed">
+        <PageHero
+          mediaKey="amenities.hero"
+          title="Resort-Style Amenities | Del Webb North Ranch 55+ Community"
+          subtitle={
+            <>
                 Del Webb North Ranch offers resort-style amenities designed to
                 help you live your best life. Every amenity is fully built and
                 ready to enjoy. Explore <Link href="/floor-plans" className="text-white hover:text-gray-200 underline">homes with these amenities</Link> or view <Link href="/homes-for-sale" className="text-white hover:text-gray-200 underline">available homes for sale</Link>.
-              </p>
-            </div>
-          </div>
-        </section>
+            </>
+          }
+        />
 
         {/* Office RealScout widget - directly below hero */}
         <RealScoutListings h2Text="View Available Homes in Del Webb North Ranch with These Amazing Amenities" />

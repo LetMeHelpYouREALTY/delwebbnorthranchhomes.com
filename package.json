@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "optimize:check-cache": "node scripts/optimization/check-cache-headers.js https://www.delwebbnorthranchhomes.com"
+    "optimize:check-cache": "node scripts/optimization/check-cache-headers.js https://www.delwebbnorthranchhomes.com",
+    "images:upload": "node scripts/cloudflare/upload-images.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",

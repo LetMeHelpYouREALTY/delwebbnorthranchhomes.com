@@ -3,9 +3,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import Breadcrumbs from "@/../components/Breadcrumbs";
+import PageHero from "@/../components/PageHero";
 import { Button } from "@/../components/ui/button";
 import { Calendar, ArrowLeft, ArrowRight } from "lucide-react";
 import { SITE_ORIGIN, GBP_BUSINESS_NAME } from "@/lib/site";
+import { TITLE_SUFFIX } from "@/lib/hyperlocal";
 
 const blogPosts: Record<
   string,
@@ -178,8 +180,6 @@ export async function generateMetadata({
     };
   }
 
-  const { SITE_ORIGIN } = await import("@/lib/site");
-  const { TITLE_SUFFIX } = await import("@/lib/hyperlocal");
   const url = `${SITE_ORIGIN}/blog/${slug}`;
 
   return {
@@ -277,24 +277,21 @@ export default async function BlogPostPage({
             }).replace(/</g, "\\u003c"),
           }}
         />
-        {/* Hero Section */}
-        <section className="bg-primary text-white py-12 md:py-16">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
+        <PageHero
+          imageSrc={post.image}
+          imageAlt={`${post.title} at Del Webb North Ranch, North Las Vegas 55+ community`}
+          title={post.title}
+          subtitle={
+            <div className="flex flex-col items-center gap-4">
               <Link
                 href="/blog"
-                className="inline-flex items-center gap-2 text-gray-100 hover:underline transition-colors mb-6"
+                className="inline-flex min-h-[44px] items-center gap-2 text-gray-100 underline-offset-4 hover:underline"
               >
                 <ArrowLeft className="w-5 h-5" />
                 Back to Blog
               </Link>
-              <div className="inline-block bg-white/20 px-4 py-2 rounded-full mb-4">
-                <span className="text-sm font-semibold">{post.category}</span>
-              </div>
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 font-playfair">
-                {post.title}
-              </h1>
-              <div className="flex items-center gap-4 text-gray-100">
+              <span className="inline-block rounded-full bg-white/20 px-4 py-2 text-sm font-semibold">{post.category}</span>
+              <span className="flex items-center gap-2 text-gray-100">
                 <Calendar className="w-5 h-5" />
                 <time dateTime={post.date}>
                   {new Date(post.date).toLocaleDateString("en-US", {
@@ -303,10 +300,10 @@ export default async function BlogPostPage({
                     day: "numeric",
                   })}
                 </time>
-              </div>
+              </span>
             </div>
-          </div>
-        </section>
+          }
+        />
 
         {/* Featured Image */}
         <section className="py-8 bg-white">

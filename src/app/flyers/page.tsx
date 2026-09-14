@@ -7,6 +7,8 @@ import { getAllFlyers } from "@/lib/flyers";
 import { SITE_ORIGIN, SITE_PHONE_TEL, SITE_PHONE_DISPLAY } from "@/lib/site";
 import { metaDescriptionBlock, TITLE_SUFFIX } from "@/lib/hyperlocal";
 import RealScoutListings from "@/../components/RealScoutListings";
+import PageHero from "@/../components/PageHero";
+import { mediaOpenGraph, mediaTwitterImages } from "@/lib/media";
 
 export const metadata: Metadata = {
   title: `Community Flyers & Brochures | ${TITLE_SUFFIX}`,
@@ -24,6 +26,13 @@ export const metadata: Metadata = {
     siteName: TITLE_SUFFIX,
     locale: "en_US",
     type: "website",
+    images: [mediaOpenGraph("flyers.hero")],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `Community Flyers & Brochures | ${TITLE_SUFFIX}`,
+    description: "Download printable flyers and brochures about Del Webb North Ranch 55+ community.",
+    images: mediaTwitterImages("flyers.hero"),
   },
 };
 
@@ -38,19 +47,11 @@ export default function FlyersPage() {
         ]}
       />
       <main>
-        {/* Hero Section */}
-        <section className="bg-primary text-white py-12 md:py-16 lg:py-20">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto text-center">
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 font-playfair">
-                Community Flyers & Brochures
-              </h1>
-              <p className="text-lg md:text-xl text-gray-100 leading-relaxed">
-                Download printable flyers and brochures about Del Webb North Ranch. Share with friends and family or keep for your records.
-              </p>
-            </div>
-          </div>
-        </section>
+        <PageHero
+          mediaKey="flyers.hero"
+          title="Community Flyers & Brochures"
+          subtitle="Download printable flyers and brochures about Del Webb North Ranch. Share with friends and family or keep for your records."
+        />
 
         {/* Office RealScout widget - directly below hero */}
         <RealScoutListings h2Text="Homes for Sale at Del Webb North Ranch | North Las Vegas 55+ Listings" />

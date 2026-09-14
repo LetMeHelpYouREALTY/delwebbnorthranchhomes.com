@@ -6,8 +6,10 @@ import ProblemSection from "@/../components/sections/problem-section";
 import SolutionSection from "@/../components/sections/solution-section";
 import ValuePropsSection from "@/../components/sections/value-props";
 import RealScoutListings from "@/../components/RealScoutListings";
+import PageHero from "@/../components/PageHero";
 import { SITE_ORIGIN } from "@/lib/site";
 import { metaDescriptionBlock, TITLE_SUFFIX } from "@/lib/hyperlocal";
+import { mediaOpenGraph, mediaTwitterImages } from "@/lib/media";
 
 export const metadata: Metadata = {
   title: `Why Choose Del Webb North Ranch | ${TITLE_SUFFIX}`,
@@ -22,11 +24,13 @@ export const metadata: Metadata = {
     siteName: TITLE_SUFFIX,
     locale: "en_US",
     type: "website",
+    images: [mediaOpenGraph("whyChooseUs.hero")],
   },
   twitter: {
     card: "summary_large_image",
     title: `Why Choose Del Webb North Ranch | ${TITLE_SUFFIX}`,
     description: "Why active adults choose Del Webb North Ranch in North Las Vegas.",
+    images: mediaTwitterImages("whyChooseUs.hero"),
   },
 };
 
@@ -40,19 +44,11 @@ export default function WhyChooseUsPage() {
             { label: "Why Choose Us", href: "/why-choose-us" },
           ]}
         />
-        {/* Hero - exactly one H1 */}
-        <section className="bg-primary text-white py-12 md:py-16 lg:py-20">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto text-center">
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 font-playfair">
-                Why Choose Del Webb North Ranch?
-              </h1>
-              <p className="text-lg md:text-xl text-gray-100 leading-relaxed">
-                A 55+ gated community in North Las Vegas built for people who want to live, not just exist.
-              </p>
-            </div>
-          </div>
-        </section>
+        <PageHero
+          mediaKey="whyChooseUs.hero"
+          title="Why Choose Del Webb North Ranch?"
+          subtitle="A 55+ gated community in North Las Vegas built for people who want to live, not just exist."
+        />
 
         {/* Office RealScout widget - below hero */}
         <RealScoutListings h2Text="Homes for Sale at Del Webb North Ranch | North Las Vegas 55+ Listings" />
@@ -71,7 +67,7 @@ export default function WhyChooseUsPage() {
                 Single-Story Living at North Ranch
               </h3>
               <p className="mb-6">
-                Every home at Del Webb North Ranch is single-story. Floor plans span the Cottage, Classic, and Retreat series from about 1,285 to 2,015 square feet, with two or three bedrooms, open layouts, and attached two-car garages. No stairs means peace of mind now and later—and the North Ranch community is designed so you can age in place without worrying about steps or upkeep. The Del Webb North Ranch clubhouse and amenities are all built for active adults, so whether you&apos;re into pickleball, fitness, or social clubs, North Ranch has it. View current homes for sale at Del Webb North Ranch in the listings above.
+                Every home at Del Webb North Ranch is single-story. Floor plans span the Cottage, Classic, and Retreat series from about 1,285 to 2,015 square feet, with two or three bedrooms, open layouts, and attached two-car garages. No stairs means easier daily living now and later—and the North Ranch community is designed so you can age in place without worrying about steps or upkeep. The Del Webb North Ranch clubhouse and amenities are all built for active adults, so whether you&apos;re into pickleball, fitness, or social clubs, North Ranch has it. View current homes for sale at Del Webb North Ranch in the listings above.
               </p>
               <h2 className="text-2xl md:text-3xl font-bold text-primary mt-12 mb-6 font-playfair">
                 North Las Vegas and Del Webb North Ranch

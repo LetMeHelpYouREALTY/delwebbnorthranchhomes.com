@@ -7,6 +7,7 @@ import {
   SITE_EMAIL,
   gbpPostalAddressSchema,
 } from '@/lib/site';
+import { absoluteMediaUrl } from '@/lib/media';
 
 export default function SchemaMarkup() {
   const baseUrl = SITE_ORIGIN;
@@ -67,7 +68,6 @@ export default function SchemaMarkup() {
     name: 'Dr. Jan Duffy',
     jobTitle: 'REALTOR®',
     description: 'REALTOR® specializing in Del Webb North Ranch and North Las Vegas 55+ active adult communities. Licensed with Berkshire Hathaway HomeServices Nevada Properties (S.0197614.LLC).',
-    image: `${baseUrl}/images/about/dr-jan-duffy.jpg`,
     url: `${baseUrl}/about`,
     telephone: SITE_PHONE_SCHEMA,
     email: SITE_EMAIL,
@@ -105,7 +105,7 @@ export default function SchemaMarkup() {
     name: 'Dr. Jan Duffy',
     alternateName: 'Dr. Jan Duffy Real Estate',
     url: baseUrl,
-    image: `${baseUrl}/images/about/dr-jan-duffy.jpg`,
+    image: absoluteMediaUrl('place.primary'),
     telephone: SITE_PHONE_SCHEMA,
     email: SITE_EMAIL,
     address: gbpPostalAddressSchema(),

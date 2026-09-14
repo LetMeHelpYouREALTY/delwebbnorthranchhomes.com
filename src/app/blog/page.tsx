@@ -5,8 +5,10 @@ import Breadcrumbs from "@/../components/Breadcrumbs";
 import ScrollAnimation from "@/../components/scroll-animation";
 import { Calendar, ArrowRight } from "lucide-react";
 import { SITE_ORIGIN } from "@/lib/site";
-import { altPrefix, metaDescriptionBlock, TITLE_SUFFIX } from "@/lib/hyperlocal";
+import { metaDescriptionBlock, TITLE_SUFFIX } from "@/lib/hyperlocal";
+import { mediaOpenGraph, mediaTwitterImages } from "@/lib/media";
 import RealScoutListings from "@/../components/RealScoutListings";
+import PageHero from "@/../components/PageHero";
 
 export const metadata: Metadata = {
   title: `Blog | ${TITLE_SUFFIX}`,
@@ -24,20 +26,13 @@ export const metadata: Metadata = {
     siteName: TITLE_SUFFIX,
     locale: "en_US",
     type: "website",
-    images: [
-      {
-        url: `${SITE_ORIGIN}/images/blog/blog-01.jpg`,
-        width: 1200,
-        height: 630,
-        alt: altPrefix("Blog"),
-      },
-    ],
+    images: [mediaOpenGraph("blog.hero")],
   },
   twitter: {
     card: "summary_large_image",
     title: `Blog | ${TITLE_SUFFIX}`,
     description: "Community news and insights about North Las Vegas premier 55+ community.",
-    images: [`${SITE_ORIGIN}/images/blog/blog-01.jpg`],
+    images: mediaTwitterImages("blog.hero"),
   },
 };
 
@@ -170,20 +165,11 @@ export default function BlogPage() {
         ]}
       />
       <main>
-        {/* Hero Section */}
-        <section className="bg-primary text-white py-12 md:py-16 lg:py-20">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto text-center">
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 font-playfair">
-                Blog | Del Webb North Ranch 55+ Real Estate
-              </h1>
-              <p className="text-lg md:text-xl text-gray-100 leading-relaxed">
-                Stay informed about Del Webb North Ranch, 55+ living tips, and
-                life in North Las Vegas.
-              </p>
-            </div>
-          </div>
-        </section>
+        <PageHero
+          mediaKey="blog.hero"
+          title="Blog | Del Webb North Ranch 55+ Real Estate"
+          subtitle="Stay informed about Del Webb North Ranch, 55+ living tips, and life in North Las Vegas."
+        />
 
         {/* Office RealScout widget - directly below hero */}
         <RealScoutListings h2Text="Homes for Sale at Del Webb North Ranch | North Las Vegas 55+ Listings" />

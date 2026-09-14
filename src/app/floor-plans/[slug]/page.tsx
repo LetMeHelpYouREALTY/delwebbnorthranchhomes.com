@@ -14,6 +14,7 @@ import { getHomesitesByCollection } from '@/lib/communityData';
 import { getVirtualTourByModel, getVirtualTourSlug } from '@/lib/old-site-data';
 import { Bed, Bath, Square, Car, ArrowLeft, Phone, Play } from 'lucide-react';
 import ScheduleTour from '@/../components/ScheduleTour';
+import PageHero from '@/../components/PageHero';
 import { SITE_ORIGIN, SITE_PHONE_TEL, SITE_PHONE_DISPLAY } from '@/lib/site';
 import { TITLE_SUFFIX } from '@/lib/hyperlocal';
 
@@ -61,10 +62,10 @@ export async function generateMetadata({
           ]
         : [
             {
-              url: `${SITE_ORIGIN}/images/hero/hero-bg.jpg`,
+              url: `${SITE_ORIGIN}/images/homes/haven-exterior.jpg`,
               width: 1200,
               height: 630,
-              alt: 'Del Webb North Ranch',
+              alt: 'Single-story home at Del Webb North Ranch, North Las Vegas',
             },
           ],
     },
@@ -74,7 +75,7 @@ export async function generateMetadata({
       description: `${plan.sqft} sq ft ${plan.series} Series home in North Las Vegas 55+ community.`,
       images: plan.imageUrl
         ? [`${SITE_ORIGIN}${plan.imageUrl}`]
-        : [`${SITE_ORIGIN}/images/hero/hero-bg.jpg`],
+        : [`${SITE_ORIGIN}/images/homes/haven-exterior.jpg`],
     },
   };
 }
@@ -176,7 +177,7 @@ function VideoObjectSchema({
     '@type': 'VideoObject',
     name: `${plan.name} Virtual Tour | Del Webb North Ranch Model Home`,
     description: `${plan.name} ${plan.series} Series ${plan.sqft} sq ft model home virtual tour at Del Webb North Ranch 55+ community in North Las Vegas.`,
-    thumbnailUrl: plan.imageUrl ? `${SITE_ORIGIN}${plan.imageUrl}` : `${SITE_ORIGIN}/images/hero/hero-bg.jpg`,
+    thumbnailUrl: plan.imageUrl ? `${SITE_ORIGIN}${plan.imageUrl}` : `${SITE_ORIGIN}/images/homes/haven-exterior.jpg`,
     uploadDate: '2024-01-01',
     contentUrl: virtualTour.embedUrl,
     embedUrl: virtualTour.embedUrl,
@@ -259,29 +260,23 @@ export default async function FloorPlanPage({
       <main>
         <ProductSchema plan={plan} />
         <BreadcrumbSchema plan={plan} />
-        {/* Hero Section */}
-        <section className="bg-primary text-white py-12 md:py-16 lg:py-20">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
-              <Link
-                href="/floor-plans"
-                className="inline-flex items-center gap-2 text-gray-100 hover:underline transition-colors mb-6"
-              >
-                <ArrowLeft className="w-5 h-5" />
-                Back to All Floor Plans
-              </Link>
-              <div className="inline-block bg-white/20 px-4 py-2 rounded-full mb-4">
-                <span className="text-sm font-semibold">{plan.series} Series</span>
-              </div>
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 font-playfair">
-                {plan.name} Floor Plan | {plan.series} Series | Del Webb North Ranch
-              </h1>
-              <p className="text-lg md:text-xl text-gray-100 leading-relaxed mb-6">
-                {plan.description}
-              </p>
-            </div>
+        <PageHero
+          imageSrc={plan.imageUrl || '/images/homes/haven-exterior.jpg'}
+          imageAlt={`${plan.name} floor plan at Del Webb North Ranch, North Las Vegas 55+ community`}
+          title={`${plan.name} Floor Plan | ${plan.series} Series | Del Webb North Ranch`}
+          subtitle={plan.description}
+        >
+          <div className="flex flex-col items-center gap-4">
+            <Link
+              href="/floor-plans"
+              className="inline-flex min-h-[44px] items-center gap-2 text-gray-100 underline-offset-4 hover:underline"
+            >
+              <ArrowLeft className="w-5 h-5" />
+              Back to All Floor Plans
+            </Link>
+            <span className="inline-block rounded-full bg-white/20 px-4 py-2 text-sm font-semibold">{plan.series} Series</span>
           </div>
-        </section>
+        </PageHero>
 
         {/* Key Details */}
         <section className="py-12 md:py-16 bg-white">

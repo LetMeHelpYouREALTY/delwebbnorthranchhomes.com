@@ -3,10 +3,11 @@ import Breadcrumbs from "@/../components/Breadcrumbs";
 import Link from "next/link";
 import MortgageCalculator from "@/../components/MortgageCalculator";
 import RealScoutListings from "@/../components/RealScoutListings";
+import PageHero from "@/../components/PageHero";
 import { Button } from "@/../components/ui/button";
 import { SITE_ORIGIN } from "@/lib/site";
 import { metaDescriptionBlock, TITLE_SUFFIX } from "@/lib/hyperlocal";
-import { Calculator } from "lucide-react";
+import { mediaOpenGraph, mediaTwitterImages } from "@/lib/media";
 
 export const metadata: Metadata = {
   title: `Mortgage Calculator | ${TITLE_SUFFIX}`,
@@ -21,11 +22,13 @@ export const metadata: Metadata = {
     siteName: TITLE_SUFFIX,
     locale: "en_US",
     type: "website",
+    images: [mediaOpenGraph("mortgage.hero")],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: `Mortgage Calculator | ${TITLE_SUFFIX}`,
     description: "Estimate your monthly payment for a North Las Vegas 55+ home.",
+    images: mediaTwitterImages("mortgage.hero"),
   },
 };
 
@@ -39,20 +42,11 @@ export default function MortgageCalculatorPage() {
             { label: "Mortgage Calculator", href: "/mortgage-calculator" },
           ]}
         />
-        {/* Hero - exactly one H1 */}
-        <section className="bg-primary text-white py-12 md:py-16 lg:py-20">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto text-center">
-              <Calculator className="w-16 h-16 mx-auto mb-6 text-white" aria-hidden />
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 font-playfair">
-                Mortgage Calculator | Del Webb North Ranch & North Las Vegas
-              </h1>
-              <p className="text-lg md:text-xl text-gray-100 leading-relaxed">
-                Estimate your monthly payment for a home in Del Webb North Ranch. Includes principal, interest, taxes, insurance, and HOA.
-              </p>
-            </div>
-          </div>
-        </section>
+        <PageHero
+          mediaKey="mortgage.hero"
+          title="Mortgage Calculator | Del Webb North Ranch & North Las Vegas"
+          subtitle="Estimate your monthly payment for a home in Del Webb North Ranch. Includes principal, interest, taxes, insurance, and HOA."
+        />
 
         {/* Office RealScout widget - below hero */}
         <RealScoutListings h2Text="Homes for Sale at Del Webb North Ranch | North Las Vegas 55+ Listings" />

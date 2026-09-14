@@ -3,7 +3,9 @@ import Breadcrumbs from '@/../components/Breadcrumbs';
 import ScheduleTour from '@/../components/ScheduleTour';
 import RealScoutListings from '@/../components/RealScoutListings';
 import LocalVisitSection from '@/../components/LocalVisitSection';
-import { Phone, Calendar, Clock, MapPin } from 'lucide-react';
+import PageHero from '@/../components/PageHero';
+import { mediaOpenGraph, mediaTwitterImages } from '@/lib/media';
+import { Phone, Clock, MapPin } from 'lucide-react';
 import { oldSiteData } from '@/lib/fetchOldSiteData';
 import { SITE_ORIGIN, GOOGLE_MAPS_DIRECTIONS_URL, SITE_PHONE_TEL, SITE_PHONE_DISPLAY } from '@/lib/site';
 import { metaDescriptionBlock, TITLE_SUFFIX } from '@/lib/hyperlocal';
@@ -24,11 +26,13 @@ export const metadata: Metadata = {
     siteName: TITLE_SUFFIX,
     locale: 'en_US',
     type: 'website',
+    images: [mediaOpenGraph('schedule.hero')],
   },
   twitter: {
     card: 'summary_large_image',
     title: `Schedule a Tour | ${TITLE_SUFFIX}`,
     description: 'Book your private tour of Del Webb North Ranch community.',
+    images: mediaTwitterImages('schedule.hero'),
   },
 };
 
@@ -42,22 +46,11 @@ export default function SchedulePage() {
         ]}
       />
       <main>
-        {/* Hero - exactly one H1 */}
-        <section className="bg-primary text-white py-12 md:py-16 lg:py-20">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto text-center">
-              <Calendar className="w-16 h-16 mx-auto mb-6 text-white" aria-hidden />
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 font-playfair">
-                Schedule Your Private Tour | Del Webb North Ranch 55+ Community
-              </h1>
-              <p className="text-lg md:text-xl text-gray-100 leading-relaxed mb-6">
-                Experience Del Webb North Ranch in person. Walk the community,
-                explore the amenities, and step inside the homes. No pressure,
-                no obligation—just the information you need.
-              </p>
-            </div>
-          </div>
-        </section>
+        <PageHero
+          mediaKey="schedule.hero"
+          title="Schedule Your Private Tour | Del Webb North Ranch 55+ Community"
+          subtitle="Experience Del Webb North Ranch in person. Walk the community, explore the amenities, and step inside the homes. No pressure, no obligation—just the information you need."
+        />
 
         {/* Office RealScout widget - below hero */}
         <RealScoutListings h2Text="Homes for Sale at Del Webb North Ranch | North Las Vegas 55+ Listings" />

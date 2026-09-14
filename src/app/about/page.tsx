@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Breadcrumbs from "@/../components/Breadcrumbs";
 import { Button } from "@/../components/ui/button";
 import Link from "next/link";
@@ -11,8 +10,11 @@ import { Quote } from "lucide-react";
 import ScheduleTour from "@/../components/ScheduleTour";
 import RealScoutListings from "@/../components/RealScoutListings";
 import LocalVisitSection from "@/../components/LocalVisitSection";
+import PageHero from "@/../components/PageHero";
+import MediaImage from "@/../components/MediaImage";
 import { SITE_ORIGIN, SITE_PHONE_TEL, SITE_PHONE_DISPLAY, SITE_PHONE_SCHEMA } from "@/lib/site";
 import { metaDescriptionBlock, TITLE_SUFFIX } from "@/lib/hyperlocal";
+import { mediaOpenGraph, mediaTwitterImages } from "@/lib/media";
 
 export const metadata: Metadata = {
   title: `About Dr. Jan Duffy REALTOR® | ${TITLE_SUFFIX}`,
@@ -30,25 +32,15 @@ export const metadata: Metadata = {
     siteName: TITLE_SUFFIX,
     locale: "en_US",
     type: "website",
-    images: [
-      {
-        url: `${SITE_ORIGIN}/images/about/dr-jan-duffy.jpg`,
-        width: 1200,
-        height: 630,
-        alt: "Dr. Jan Duffy, REALTOR®",
-      },
-    ],
+    images: [mediaOpenGraph("about.hero")],
   },
   twitter: {
     card: "summary_large_image",
     title: `About Dr. Jan Duffy REALTOR® | ${TITLE_SUFFIX}`,
     description: "Your trusted REALTOR® specializing in Del Webb North Ranch 55+ community.",
-    images: [`${SITE_ORIGIN}/images/about/dr-jan-duffy.jpg`],
+    images: mediaTwitterImages("about.hero"),
   },
 };
-
-const blurDataURL =
-  "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWEREiMxUf/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q==";
 
 const specialties = [
   {
@@ -102,7 +94,6 @@ export default function AboutPage() {
                   name: "Dr. Jan Duffy",
                   jobTitle: "REALTOR®",
                   description: "REALTOR® specializing in Del Webb North Ranch and North Las Vegas 55+ communities. Licensed with Berkshire Hathaway HomeServices Nevada Properties.",
-                  image: `${SITE_ORIGIN}/images/about/dr-jan-duffy.jpg`,
                   url: `${SITE_ORIGIN}/about`,
                   telephone: SITE_PHONE_SCHEMA,
                   worksFor: { "@type": "Organization", name: "Berkshire Hathaway HomeServices Nevada Properties" },
@@ -116,20 +107,11 @@ export default function AboutPage() {
             }).replace(/</g, "\\u003c"),
           }}
         />
-        {/* Hero Section */}
-        <section className="bg-primary text-white py-12 md:py-16 lg:py-20">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto text-center">
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 font-playfair">
-                About Dr. Jan Duffy REALTOR® | Del Webb North Ranch 55+ Real Estate
-              </h1>
-              <p className="text-lg md:text-xl text-gray-100 leading-relaxed">
-                Your trusted REALTOR® specializing in Del Webb North Ranch and
-                North Las Vegas 55+ communities
-              </p>
-            </div>
-          </div>
-        </section>
+        <PageHero
+          mediaKey="about.hero"
+          title="About Dr. Jan Duffy REALTOR® | Del Webb North Ranch 55+ Real Estate"
+          subtitle="Your trusted REALTOR® specializing in Del Webb North Ranch and North Las Vegas 55+ communities"
+        />
 
         {/* Office RealScout widget - directly below hero */}
         <RealScoutListings h2Text="View Available Homes in Del Webb North Ranch | Work With Dr. Jan Duffy" />
@@ -142,13 +124,10 @@ export default function AboutPage() {
                 {/* Image */}
                 <ScrollAnimation>
                   <div className="relative aspect-square max-w-md mx-auto lg:mx-0">
-                    <Image
-                      src="/images/about/dr-jan-duffy.jpg"
-                      alt="Dr. Jan Duffy, REALTOR® specializing in Del Webb North Ranch"
+                    <MediaImage
+                      mediaKey="agent.office"
                       fill
                       className="object-cover rounded-lg shadow-three"
-                      placeholder="blur"
-                      blurDataURL={blurDataURL}
                       sizes="(max-width: 768px) 100vw, 50vw"
                     />
                   </div>

@@ -34,6 +34,14 @@ export async function generateMetadata({
       siteName: TITLE_SUFFIX,
       locale: "en_US",
       type: "video.other",
+      images: [
+        {
+          url: `${SITE_ORIGIN}/images/homes/haven-exterior.jpg`,
+          width: 1200,
+          height: 630,
+          alt: `${tour.model} model home at Del Webb North Ranch, North Las Vegas`,
+        },
+      ],
     },
     twitter: {
       card: "player",
@@ -56,7 +64,7 @@ function VideoObjectSchema({
     "@type": "VideoObject",
     name: `${tour.model} Virtual Tour | Del Webb North Ranch Model Home`,
     description: `${tour.model} ${tour.series} Series ${tour.sqft} sq ft model home virtual tour at Del Webb North Ranch 55+ community in North Las Vegas.`,
-    thumbnailUrl: `${SITE_ORIGIN}/images/hero/hero-bg.jpg`,
+    thumbnailUrl: `${SITE_ORIGIN}/images/homes/haven-exterior.jpg`,
     uploadDate: "2024-01-01",
     contentUrl: tour.embedUrl,
     embedUrl: tour.embedUrl,
@@ -66,7 +74,7 @@ function VideoObjectSchema({
       name: "Dr. Jan Duffy, Berkshire Hathaway HomeServices Nevada Properties",
       logo: {
         "@type": "ImageObject",
-        url: `${SITE_ORIGIN}/images/about/dr-jan-duffy.jpg`,
+        url: `${SITE_ORIGIN}/images/logo/logo.svg`,
       },
     },
   };

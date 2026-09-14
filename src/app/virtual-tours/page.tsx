@@ -3,10 +3,11 @@ import Breadcrumbs from "@/../components/Breadcrumbs";
 import Link from "next/link";
 import VirtualTours from "@/../components/VirtualTours";
 import RealScoutListings from "@/../components/RealScoutListings";
+import PageHero from "@/../components/PageHero";
 import { Button } from "@/../components/ui/button";
 import { SITE_ORIGIN } from "@/lib/site";
-import { altPrefix, metaDescriptionBlock, TITLE_SUFFIX } from "@/lib/hyperlocal";
-import { Play } from "lucide-react";
+import { metaDescriptionBlock, TITLE_SUFFIX } from "@/lib/hyperlocal";
+import { mediaOpenGraph, mediaTwitterImages } from "@/lib/media";
 
 export const metadata: Metadata = {
   title: `Virtual Tours | ${TITLE_SUFFIX}`,
@@ -21,11 +22,13 @@ export const metadata: Metadata = {
     siteName: TITLE_SUFFIX,
     locale: "en_US",
     type: "website",
+    images: [mediaOpenGraph("virtualTours.hero")],
   },
   twitter: {
     card: "summary_large_image",
     title: `Virtual Tours | ${TITLE_SUFFIX}`,
     description: "Virtual tours of Del Webb North Ranch model homes in North Las Vegas.",
+    images: mediaTwitterImages("virtualTours.hero"),
   },
 };
 
@@ -39,20 +42,11 @@ export default function VirtualToursPage() {
             { label: "Virtual Tours", href: "/virtual-tours" },
           ]}
         />
-        {/* Hero - exactly one H1 */}
-        <section className="bg-primary text-white py-12 md:py-16 lg:py-20">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto text-center">
-              <Play className="w-16 h-16 mx-auto mb-6 text-white" aria-hidden />
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 font-playfair">
-                Virtual Tours | Del Webb North Ranch Model Homes
-              </h1>
-              <p className="text-lg md:text-xl text-gray-100 leading-relaxed">
-                Explore our model homes from the comfort of your home. Take a 3D tour of single-story floor plans in North Las Vegas&apos;s premier 55+ community.
-              </p>
-            </div>
-          </div>
-        </section>
+        <PageHero
+          mediaKey="virtualTours.hero"
+          title="Virtual Tours | Del Webb North Ranch Model Homes"
+          subtitle="Explore Del Webb North Ranch model homes with 3D virtual tours from anywhere. Then schedule an in-person visit at 2290 Beauty Vista Avenue, North Las Vegas, NV 89086."
+        />
 
         {/* Office RealScout widget - below hero */}
         <RealScoutListings h2Text="Homes for Sale at Del Webb North Ranch | North Las Vegas 55+ Listings" />

@@ -1,28 +1,21 @@
 import Link from "next/link";
-import Image from "next/image";
+import MediaImage from "./MediaImage";
 import { Button } from "./ui/button";
 import { Phone } from "lucide-react";
 import ScheduleTour from "./ScheduleTour";
 import { SITE_PHONE_DISPLAY, SITE_PHONE_TEL } from "@/lib/site";
-
-// Placeholder blur data URL (1x1 transparent PNG)
-const blurDataURL =
-  "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWEREiMxUf/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q==";
 
 export default function Hero() {
   return (
     <section className="relative min-h-[500px] md:min-h-[600px] lg:min-h-[700px] flex items-center justify-center bg-gray-900 text-white overflow-hidden">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
-        <Image
-          src="/images/amenities/resort-pool.jpeg"
-          alt="Del Webb North Ranch resort-style pool area with beautiful landscaping and mountain views"
+        <MediaImage
+          mediaKey="home.hero"
           fill
           priority
           fetchPriority="high"
           className="object-cover"
-          placeholder="blur"
-          blurDataURL={blurDataURL}
           sizes="100vw"
           quality={72}
         />

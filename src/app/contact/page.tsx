@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import Breadcrumbs from "@/../components/Breadcrumbs";
 import ScrollAnimation from "@/../components/scroll-animation";
@@ -9,6 +8,8 @@ import ScheduleTour from "@/../components/ScheduleTour";
 import CalendlyInline from "@/../components/CalendlyInline";
 import RealScoutListings from "@/../components/RealScoutListings";
 import LocalVisitSection from "@/../components/LocalVisitSection";
+import PageHero from "@/../components/PageHero";
+import MediaImage from "@/../components/MediaImage";
 import {
   SITE_ORIGIN,
   GOOGLE_REVIEW_LINK,
@@ -24,6 +25,7 @@ import {
   gbpPostalAddressSchema,
 } from "@/lib/site";
 import { metaDescriptionBlock, TITLE_SUFFIX } from "@/lib/hyperlocal";
+import { mediaOpenGraph, mediaTwitterImages } from "@/lib/media";
 
 export const metadata: Metadata = {
   title: `Contact & Schedule a Tour | ${TITLE_SUFFIX}`,
@@ -41,20 +43,13 @@ export const metadata: Metadata = {
     siteName: TITLE_SUFFIX,
     locale: "en_US",
     type: "website",
-    images: [
-      {
-        url: `${SITE_ORIGIN}/images/about/dr-jan-duffy.jpg`,
-        width: 1200,
-        height: 630,
-        alt: "Dr. Jan Duffy, REALTOR®",
-      },
-    ],
+    images: [mediaOpenGraph("contact.hero")],
   },
   twitter: {
     card: "summary_large_image",
     title: `Contact & Schedule a Tour | ${TITLE_SUFFIX}`,
     description: "Schedule a tour of Del Webb North Ranch 55+ community in North Las Vegas.",
-    images: [`${SITE_ORIGIN}/images/about/dr-jan-duffy.jpg`],
+    images: mediaTwitterImages("contact.hero"),
   },
 };
 
@@ -88,21 +83,17 @@ export default function ContactPage() {
         ]}
       />
       <main>
-        {/* Hero - exactly one H1 */}
-        <section className="bg-primary text-white py-12 md:py-16 lg:py-20">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto text-center">
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 font-playfair">
-                Contact & Schedule a Tour | {GBP_BUSINESS_NAME}
-              </h1>
-              <p className="text-lg md:text-xl text-gray-100 leading-relaxed">
+        <PageHero
+          mediaKey="contact.hero"
+          title={`Contact & Schedule a Tour | ${GBP_BUSINESS_NAME}`}
+          subtitle={
+            <>
                 Ready to explore Del Webb North Ranch? Contact <Link href="/about" className="text-white hover:text-gray-200 underline">Dr. Jan Duffy</Link> to
                 schedule a private tour, ask questions, or learn more about
                 <Link href="/homes-for-sale" className="text-white hover:text-gray-200 underline"> available homes</Link>. Explore <Link href="/floor-plans" className="text-white hover:text-gray-200 underline">floor plans</Link> and <Link href="/amenities" className="text-white hover:text-gray-200 underline">amenities</Link>.
-              </p>
-            </div>
-          </div>
-        </section>
+            </>
+          }
+        />
 
         {/* Office RealScout widget - below hero */}
         <RealScoutListings h2Text="Homes for Sale at Del Webb North Ranch | North Las Vegas 55+ Listings" />
@@ -132,13 +123,10 @@ export default function ContactPage() {
                   <div>
                     {/* Image */}
                     <div className="relative aspect-square rounded-lg overflow-hidden shadow-three bg-bg-light mb-6">
-                      <Image
-                        src="/images/about/dr-jan-duffy.jpg"
-                        alt="Dr. Jan Duffy, REALTOR® specializing in Del Webb North Ranch"
+                      <MediaImage
+                        mediaKey="contact.hero"
                         fill
                         className="object-cover"
-                        placeholder="blur"
-                        blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWEREiMxUf/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
                         sizes="(max-width: 768px) 100vw, 50vw"
                       />
                     </div>
