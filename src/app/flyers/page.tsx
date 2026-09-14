@@ -8,6 +8,7 @@ import { SITE_ORIGIN, SITE_PHONE_TEL, SITE_PHONE_DISPLAY } from "@/lib/site";
 import { metaDescriptionBlock, TITLE_SUFFIX } from "@/lib/hyperlocal";
 import RealScoutListings from "@/../components/RealScoutListings";
 import PageHero from "@/../components/PageHero";
+import LocalVisitSection from "@/../components/LocalVisitSection";
 import { mediaOpenGraph, mediaTwitterImages } from "@/lib/media";
 
 export const metadata: Metadata = {
@@ -218,6 +219,7 @@ export default function FlyersPage() {
             </div>
           </div>
         </section>
+        <LocalVisitSection heading="Pick up community details at Del Webb North Ranch" />
       </main>
     </>
   );

@@ -8,6 +8,8 @@ import { oldSiteData } from "@/lib/old-site-data";
 import { getAmenities, getCommunityInfo } from "@/lib/communityData";
 import RealScoutListings from "@/../components/RealScoutListings";
 import PageHero from "@/../components/PageHero";
+import LocalVisitSection from "@/../components/LocalVisitSection";
+import SectionPhoto from "@/../components/SectionPhoto";
 import { SITE_ORIGIN } from "@/lib/site";
 import { altPrefix, metaDescriptionBlock, TITLE_SUFFIX } from "@/lib/hyperlocal";
 import { mediaOpenGraph, mediaTwitterImages } from "@/lib/media";
@@ -127,9 +129,9 @@ const amenities = [
         image: "/images/amenities/event-lawn-club.jpeg",
       },
       {
-        name: "Dog Park",
-        description: "Dedicated space for your furry friends to play",
-        image: "/images/amenities/dog-park.jpeg",
+        name: "Walking Paths & Courts",
+        description: "Paved walking paths, pickleball courts, and turf lawns around the amenities campus",
+        image: "/images/lifestyle/pickleball-aerial.jpg",
       },
     ],
   },
@@ -253,10 +255,12 @@ export default function AmenitiesPage() {
         {/* Complete Community Features List */}
         <section className="py-12 md:py-16 bg-white">
           <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
-              <h2 className="text-2xl md:text-3xl font-bold text-primary mb-6 text-center font-playfair">
-                Complete Community Features
-              </h2>
+            <div className="mx-auto max-w-6xl">
+              <SectionPhoto mediaKey="community.campusAerial" heading="Complete Community Features">
+                <p>
+                  Del Webb North Ranch amenities are fully built: resort pools, fitness, pickleball, bocce, walking trails, a dog park, and the 10,000 sq ft clubhouse at 2290 Beauty Vista Avenue in North Las Vegas.
+                </p>
+              </SectionPhoto>
               <div className="bg-bg-light rounded-lg shadow-two p-6 md:p-8">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {getAmenities().map((amenity, index) => (
@@ -303,6 +307,7 @@ export default function AmenitiesPage() {
             </div>
           </div>
         </section>
+        <LocalVisitSection heading="Tour the Del Webb North Ranch amenity campus" />
       </main>
     </>
   );

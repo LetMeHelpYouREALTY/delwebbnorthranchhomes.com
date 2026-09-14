@@ -9,7 +9,8 @@ import { altPrefix, metaDescriptionBlock, TITLE_SUFFIX } from '@/lib/hyperlocal'
 import Link from 'next/link';
 import RealScoutListings from '@/../components/RealScoutListings';
 import PageHero from '@/../components/PageHero';
-import { mediaOpenGraph, mediaTwitterImages } from '@/lib/media';
+import LocalVisitSection from '@/../components/LocalVisitSection';
+import { mediaOpenGraph, mediaTwitterImages, mediaSrc, mediaAlt } from '@/lib/media';
 
 export const metadata: Metadata = {
   title: `Frequently Asked Questions | ${TITLE_SUFFIX}`,
@@ -184,8 +185,8 @@ export default function FAQPage() {
                 {/* Community Sign */}
                 <div className="relative aspect-[4/3] rounded-lg overflow-hidden shadow-lg">
                   <Image
-                    src="/images/hero/community-sign.jpg"
-                    alt={altPrefix('Gated community entrance')}
+                    src={mediaSrc('place.primary')}
+                    alt={mediaAlt('place.primary')}
                     fill
                     className="object-cover"
                     sizes="(max-width: 1024px) 100vw, 33vw"
@@ -251,6 +252,7 @@ export default function FAQPage() {
             </div>
           </div>
         </section>
+        <LocalVisitSection heading="Get answers in person at Del Webb North Ranch" />
       </main>
     </>
   );

@@ -4,6 +4,7 @@ import Link from "next/link";
 import MortgageCalculator from "@/../components/MortgageCalculator";
 import RealScoutListings from "@/../components/RealScoutListings";
 import PageHero from "@/../components/PageHero";
+import LocalVisitSection from "@/../components/LocalVisitSection";
 import { Button } from "@/../components/ui/button";
 import { SITE_ORIGIN } from "@/lib/site";
 import { metaDescriptionBlock, TITLE_SUFFIX } from "@/lib/hyperlocal";
@@ -142,6 +143,7 @@ export default function MortgageCalculatorPage() {
             </div>
           </div>
         </section>
+        <LocalVisitSection heading="Talk through payments at Del Webb North Ranch" />
       </main>
     </>
   );

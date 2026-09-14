@@ -59,14 +59,14 @@ const exploreCards = [
     description: 'Meet your trusted REALTOR® and community expert',
     href: '/about',
     icon: Users,
-    image: '/images/clubhouse/interior-lounge.jpg',
+    image: '/images/clubhouse/great-room.jpg',
   },
   {
     title: 'FAQ',
     description: 'Get answers to common questions about the community',
     href: '/faq',
     icon: HelpCircle,
-    image: '/images/hero/community-sign.jpg',
+    image: '/images/hero/monument-sign-day.jpg',
   },
 ];
 

@@ -12,6 +12,8 @@ import { SITE_ORIGIN, SITE_PHONE_TEL, SITE_PHONE_DISPLAY } from "@/lib/site";
 import { metaDescriptionBlock, TITLE_SUFFIX } from "@/lib/hyperlocal";
 import { mediaImageObject, mediaOpenGraph, mediaTwitterImages } from "@/lib/media";
 import PageHero from "@/../components/PageHero";
+import LocalVisitSection from "@/../components/LocalVisitSection";
+import SectionPhoto from "@/../components/SectionPhoto";
 import { buyerCtaCopy, buyerFaq, buyerValueProps } from "@/lib/hyperlocalBuyer";
 // import HomesForSaleWidget from "@/../components/HomesForSaleWidget";
 
@@ -314,6 +316,7 @@ export default async function HomesForSalePage() {
             </div>
           </div>
         </section>
+        <LocalVisitSection heading="See current homes at Del Webb North Ranch in person" />
       </main>
     </>
   );

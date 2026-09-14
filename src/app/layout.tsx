@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
 import { CANONICAL_HOMEPAGE, SITE_ORIGIN, GOOGLE_MAPS_PLACE_URL, SITE_PHONE_SCHEMA, GBP_AGGREGATE_RATING, GBP_BUSINESS_NAME, GBP_DESCRIPTION, GBP_SHORT_DESCRIPTION, GBP_FOUNDING_DATE, GBP_SERVICE_AREA, GBP_SOCIAL_PROFILES, SITE_EMAIL, gbpPostalAddressSchema, gbpOpeningHoursSpecification } from "@/lib/site";
-import { absoluteMediaUrl } from "@/lib/media";
+import { absoluteMediaUrl, mediaOpenGraph, mediaTwitterImages } from "@/lib/media";
 import "./globals.css";
 import CalendlyButton from "@/../components/CalendlyButton";
 import CalendlyScript from "@/../components/CalendlyScript";
@@ -69,21 +69,13 @@ export const metadata: Metadata = {
     title: GBP_BUSINESS_NAME,
     description:
       "Single-story homes from $400K-$600K in a gated 55+ community. Resort pool, pickleball, fitness center—all fully built.",
-    images: [
-      {
-        url: "/images/hero/community-sign.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Del Webb North Ranch monument sign at the 55+ community entrance in North Las Vegas, NV 89086",
-        type: "image/jpeg",
-      },
-    ],
+    images: [mediaOpenGraph("place.primary")],
   },
   twitter: {
     card: "summary_large_image",
     title: GBP_BUSINESS_NAME,
     description: GBP_SHORT_DESCRIPTION,
-    images: ["/images/hero/community-sign.jpg"],
+    images: mediaTwitterImages("place.primary"),
     creator: "@DrDuffy",
   },
   robots: {
@@ -123,7 +115,9 @@ export default function RootLayout({
     description: GBP_DESCRIPTION,
     image: [
       absoluteMediaUrl("place.primary"),
-      absoluteMediaUrl("amenities.hero"),
+      absoluteMediaUrl("amenities.poolPalms"),
+      absoluteMediaUrl("community.campusAerial"),
+      absoluteMediaUrl("clubhouse.greatRoom"),
       absoluteMediaUrl("amenities.pickleball"),
       absoluteMediaUrl("homesForSale.hero"),
     ],
@@ -229,7 +223,13 @@ export default function RootLayout({
       longitude: "-115.0939",
     },
     url: SITE_ORIGIN,
-    image: absoluteMediaUrl("place.primary"),
+    image: [
+      absoluteMediaUrl("place.primary"),
+      absoluteMediaUrl("place.monument"),
+      absoluteMediaUrl("amenities.poolPalms"),
+      absoluteMediaUrl("community.campusAerial"),
+      absoluteMediaUrl("clubhouse.greatRoom"),
+    ],
   };
 
   return (

@@ -7,6 +7,7 @@ import { SITE_ORIGIN, GOOGLE_REVIEW_LINK, SITE_PHONE_TEL, SITE_PHONE_DISPLAY, GB
 import { metaDescriptionBlock, TITLE_SUFFIX } from '@/lib/hyperlocal';
 import RealScoutListings from '@/../components/RealScoutListings';
 import PageHero from '@/../components/PageHero';
+import LocalVisitSection from '@/../components/LocalVisitSection';
 import { mediaOpenGraph, mediaTwitterImages } from '@/lib/media';
 
 export const metadata: Metadata = {
@@ -213,6 +214,7 @@ export default function TestimonialsPage() {
             </div>
           </div>
         </section>
+        <LocalVisitSection heading="Leave a Google review after your Del Webb North Ranch visit" />
       </main>
     </>
   );

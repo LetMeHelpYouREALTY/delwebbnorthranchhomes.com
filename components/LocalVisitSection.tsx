@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Phone, MapPinned, Star, Calendar } from "lucide-react";
 import GoogleMapEmbed from "./GoogleMapEmbed";
+import MediaImage from "./MediaImage";
 import {
   SITE_PHONE_TEL,
   SITE_PHONE_DISPLAY,
@@ -25,6 +26,15 @@ export default function LocalVisitSection({
       <div className="container mx-auto px-4">
         <div className="mx-auto grid max-w-6xl grid-cols-1 items-start gap-8 lg:grid-cols-2">
           <div>
+            <div className="relative mb-6 aspect-[16/10] overflow-hidden rounded-lg shadow-three">
+              <MediaImage
+                mediaKey="place.primary"
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                quality={70}
+              />
+            </div>
             <h2
               id="local-visit-heading"
               className="mb-4 font-playfair text-2xl font-bold text-primary md:text-3xl"

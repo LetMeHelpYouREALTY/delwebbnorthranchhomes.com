@@ -1,9 +1,6 @@
 import ScrollAnimation from "../scroll-animation";
-import Image from "next/image";
+import MediaImage from "../MediaImage";
 import Link from "next/link";
-
-const blurDataURL =
-  "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWEREiMxUf/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q==";
 
 export default function SolutionSection() {
   return (
@@ -13,13 +10,10 @@ export default function SolutionSection() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             <ScrollAnimation>
               <div className="relative aspect-square rounded-lg overflow-hidden shadow-three bg-bg-light">
-                <Image
-                  src="/images/hero/community-sign.jpg"
-                  alt="Del Webb North Ranch community entrance sign"
+                <MediaImage
+                  mediaKey="place.primary"
                   fill
                   className="object-cover"
-                  placeholder="blur"
-                  blurDataURL={blurDataURL}
                   sizes="(max-width: 768px) 100vw, 50vw"
                   quality={70}
                 />

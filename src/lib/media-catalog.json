@@ -1,6 +1,6 @@
 {
   "home.hero": {
-    "localPath": "/images/hero/community-sign.jpg",
+    "localPath": "/images/hero/monument-sign-day.jpg",
     "cfId": "dwnr/home-hero",
     "alt": "Del Webb North Ranch monument sign at the 55+ community entrance in North Las Vegas, NV 89086"
   },
@@ -50,9 +50,9 @@
     "alt": "Pickleball courts and active adult recreation at Del Webb North Ranch in North Las Vegas"
   },
   "lifestyle.events": {
-    "localPath": "/images/amenities/event-lawn-club.jpeg",
+    "localPath": "/images/clubhouse/event-hall.jpg",
     "cfId": "dwnr/lifestyle-events",
-    "alt": "Event lawn and clubhouse gathering space at Del Webb North Ranch, North Las Vegas"
+    "alt": "Clubhouse event hall used for socials and gatherings at Del Webb North Ranch, North Las Vegas"
   },
   "community.hero": {
     "localPath": "/images/hero/clubhouse-aerial.jpg",
@@ -60,9 +60,9 @@
     "alt": "Aerial view of the Del Webb North Ranch clubhouse, pool, and pickleball courts in North Las Vegas"
   },
   "about.hero": {
-    "localPath": "/images/clubhouse/interior-lounge.jpg",
+    "localPath": "/images/clubhouse/great-room.jpg",
     "cfId": "dwnr/about-hero",
-    "alt": "Clubhouse lounge at Del Webb North Ranch in North Las Vegas, where Dr. Jan Duffy meets 55+ buyers and sellers"
+    "alt": "Clubhouse great room at Del Webb North Ranch in North Las Vegas, where Dr. Jan Duffy meets 55+ buyers and sellers"
   },
   "contact.hero": {
     "localPath": "/images/clubhouse/entrance.jpg",
@@ -75,12 +75,17 @@
     "alt": "Del Webb North Ranch clubhouse entrance in North Las Vegas, starting point for community tours"
   },
   "faq.hero": {
-    "localPath": "/images/hero/community-sign.jpg",
+    "localPath": "/images/hero/monument-sign-day.jpg",
     "cfId": "dwnr/faq-hero",
-    "alt": "Del Webb North Ranch community sign in North Las Vegas, NV 89086"
+    "alt": "Del Webb North Ranch monument sign in North Las Vegas, NV 89086"
+  },
+  "legal.hero": {
+    "localPath": "/images/hero/monument-sign-day.jpg",
+    "cfId": "dwnr/legal-hero",
+    "alt": "Del Webb North Ranch monument sign at 2290 Beauty Vista Avenue, North Las Vegas, NV 89086"
   },
   "homeValue.hero": {
-    "localPath": "/images/blog/taxes.jpg",
+    "localPath": "/images/homes/haven-exterior-alt.jpg",
     "cfId": "dwnr/home-value-hero",
     "alt": "Single-story home at Del Webb North Ranch in North Las Vegas, used for 55+ resale value estimates"
   },
@@ -90,9 +95,9 @@
     "alt": "Single-story home at Del Webb North Ranch in North Las Vegas for mortgage payment estimates"
   },
   "virtualTours.hero": {
-    "localPath": "/images/clubhouse/interior-lounge.jpg",
+    "localPath": "/images/clubhouse/great-room.jpg",
     "cfId": "dwnr/virtual-tours-hero",
-    "alt": "Interior living space at Del Webb North Ranch 55+ community in North Las Vegas"
+    "alt": "Clubhouse great room at Del Webb North Ranch 55+ community in North Las Vegas"
   },
   "testimonials.hero": {
     "localPath": "/images/amenities/social-room.jpeg",
@@ -115,13 +120,48 @@
     "alt": "Single-story home at Del Webb North Ranch featured in community flyers"
   },
   "place.primary": {
-    "localPath": "/images/hero/community-sign.jpg",
+    "localPath": "/images/hero/monument-sign-day.jpg",
     "cfId": "dwnr/place-primary",
     "alt": "Del Webb North Ranch 55+ community monument sign in North Las Vegas, NV 89086"
   },
+  "place.monument": {
+    "localPath": "/images/hero/community-sign.jpg",
+    "cfId": "dwnr/place-monument",
+    "alt": "Del Webb North Ranch entrance monument sign with desert landscaping in North Las Vegas"
+  },
+  "clubhouse.bistro": {
+    "localPath": "/images/clubhouse/bistro.jpg",
+    "cfId": "dwnr/clubhouse-bistro",
+    "alt": "Clubhouse bistro and hallway inside Del Webb North Ranch in North Las Vegas"
+  },
+  "clubhouse.greatRoom": {
+    "localPath": "/images/clubhouse/great-room.jpg",
+    "cfId": "dwnr/clubhouse-great-room",
+    "alt": "Clubhouse great room lounge at Del Webb North Ranch 55+ community in North Las Vegas"
+  },
+  "clubhouse.eventHall": {
+    "localPath": "/images/clubhouse/event-hall.jpg",
+    "cfId": "dwnr/clubhouse-event-hall",
+    "alt": "Clubhouse event hall at Del Webb North Ranch in North Las Vegas, NV 89086"
+  },
+  "amenities.poolPalms": {
+    "localPath": "/images/amenities/pool-palms.jpg",
+    "cfId": "dwnr/amenities-pool-palms",
+    "alt": "Resort pool with palms and mountain views at Del Webb North Ranch in North Las Vegas"
+  },
+  "community.campusAerial": {
+    "localPath": "/images/hero/campus-aerial.jpg",
+    "cfId": "dwnr/community-campus-aerial",
+    "alt": "Aerial of Del Webb North Ranch clubhouse, pools, pickleball, and single-story homes in North Las Vegas"
+  },
+  "lifestyle.pickleballAerial": {
+    "localPath": "/images/lifestyle/pickleball-aerial.jpg",
+    "cfId": "dwnr/lifestyle-pickleball-aerial",
+    "alt": "Aerial of pickleball courts, walking paths, and turf lawns at Del Webb North Ranch in North Las Vegas"
+  },
   "agent.office": {
-    "localPath": "/images/clubhouse/interior-lounge.jpg",
+    "localPath": "/images/clubhouse/great-room.jpg",
     "cfId": "dwnr/agent-office",
-    "alt": "Clubhouse lounge at Del Webb North Ranch in North Las Vegas, meeting place for tours with Dr. Jan Duffy"
+    "alt": "Clubhouse great room at Del Webb North Ranch in North Las Vegas, meeting place for tours with Dr. Jan Duffy"
   }
 }

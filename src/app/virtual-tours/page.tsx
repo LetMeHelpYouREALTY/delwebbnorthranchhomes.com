@@ -4,6 +4,7 @@ import Link from "next/link";
 import VirtualTours from "@/../components/VirtualTours";
 import RealScoutListings from "@/../components/RealScoutListings";
 import PageHero from "@/../components/PageHero";
+import LocalVisitSection from "@/../components/LocalVisitSection";
 import { Button } from "@/../components/ui/button";
 import { SITE_ORIGIN } from "@/lib/site";
 import { metaDescriptionBlock, TITLE_SUFFIX } from "@/lib/hyperlocal";
@@ -110,6 +111,7 @@ export default function VirtualToursPage() {
             </div>
           </div>
         </section>
+        <LocalVisitSection heading="See Del Webb North Ranch in person after your virtual tour" />
       </main>
     </>
   );

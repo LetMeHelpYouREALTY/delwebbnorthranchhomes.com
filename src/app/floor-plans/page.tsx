@@ -12,6 +12,7 @@ import MortgageCalculator from "@/../components/MortgageCalculator";
 import ScheduleTour from "@/../components/ScheduleTour";
 import RealScoutListings from "@/../components/RealScoutListings";
 import PageHero from "@/../components/PageHero";
+import LocalVisitSection from "@/../components/LocalVisitSection";
 import { SITE_ORIGIN } from "@/lib/site";
 import { metaDescriptionBlock, TITLE_SUFFIX } from "@/lib/hyperlocal";
 import { mediaOpenGraph, mediaTwitterImages } from "@/lib/media";
@@ -330,6 +331,7 @@ export default function FloorPlansPage() {
             </div>
           </div>
         </section>
+        <LocalVisitSection heading="Walk the floor plans at Del Webb North Ranch" />
       </main>
     </>
   );

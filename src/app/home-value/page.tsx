@@ -8,6 +8,7 @@ import { mediaOpenGraph, mediaTwitterImages } from "@/lib/media";
 import { sellerCtaCopy, sellerFaq, sellerValueProps } from "@/lib/hyperlocalSeller";
 import RealScoutListings from "@/../components/RealScoutListings";
 import PageHero from "@/../components/PageHero";
+import LocalVisitSection from "@/../components/LocalVisitSection";
 
 const sellerFaqSchema = {
   "@context": "https://schema.org",
@@ -253,6 +254,7 @@ export default function HomeValuePage() {
             </div>
           </div>
         </section>
+        <LocalVisitSection heading="Get a walkthrough valuation at Del Webb North Ranch" />
       </main>
     </>
   );

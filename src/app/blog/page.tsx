@@ -9,6 +9,7 @@ import { metaDescriptionBlock, TITLE_SUFFIX } from "@/lib/hyperlocal";
 import { mediaOpenGraph, mediaTwitterImages } from "@/lib/media";
 import RealScoutListings from "@/../components/RealScoutListings";
 import PageHero from "@/../components/PageHero";
+import LocalVisitSection from "@/../components/LocalVisitSection";
 
 export const metadata: Metadata = {
   title: `Blog | ${TITLE_SUFFIX}`,
@@ -285,6 +286,7 @@ export default function BlogPage() {
             </div>
           </div>
         </section>
+        <LocalVisitSection heading="Visit Del Webb North Ranch in North Las Vegas" />
       </main>
     </>
   );
