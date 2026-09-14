@@ -53,6 +53,12 @@ export default function ValuePropsSection() {
   return (
     <section className="py-16 md:py-20 lg:py-24 bg-white">
       <div className="container mx-auto px-4">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary text-center font-playfair mb-4">
+          Why Buyers Choose Del Webb North Ranch
+        </h2>
+        <p className="text-center text-base md:text-lg text-text-dark mb-10 md:mb-12 max-w-2xl mx-auto">
+          Single-story homes, a finished 10,000 sq ft clubhouse, and 55+ living in North Las Vegas.
+        </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
           {values.map((value, index) => (
             <ValueCard

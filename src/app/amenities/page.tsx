@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Navbar from "@/../components/navbar";
-import Footer from "@/../components/footer";
 import Breadcrumbs from "@/../components/Breadcrumbs";
 import { Button } from "@/../components/ui/button";
 import Link from "next/link";
@@ -182,14 +180,13 @@ function AmenityCard({
 export default function AmenitiesPage() {
   return (
     <>
-      <Navbar />
       <Breadcrumbs
         items={[
           { label: "Del Webb North Ranch", href: "/" },
           { label: "Amenities", href: "/amenities" },
         ]}
       />
-      <main className="pt-16 md:pt-20">
+      <main>
         {/* Hero Section */}
         <section className="bg-primary text-white py-12 md:py-16 lg:py-20">
           <div className="container mx-auto px-4">
@@ -316,7 +313,6 @@ export default function AmenitiesPage() {
           </div>
         </section>
       </main>
-      <Footer />
     </>
   );
 }

@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
-import Navbar from "@/../components/navbar";
-import Footer from "@/../components/footer";
 import Link from "next/link";
 import { FileText, Home, Search, Building, MapPin, Users, BookOpen, HelpCircle, Phone, Calendar, MessageSquare, Shield } from "lucide-react";
 import { SITE_ORIGIN } from "@/lib/site";
 import { TITLE_SUFFIX } from "@/lib/hyperlocal";
+import Breadcrumbs from "@/../components/Breadcrumbs";
 
 export const metadata: Metadata = {
   title: `Sitemap | ${TITLE_SUFFIX}`,
@@ -84,8 +83,13 @@ const sitePages = [
 export default function SitemapPage() {
   return (
     <>
-      <Navbar />
-      <main className="pt-16 md:pt-20 min-h-screen bg-white">
+      <Breadcrumbs
+        items={[
+          { label: "Del Webb North Ranch", href: "/" },
+          { label: "Sitemap", href: "/sitemap-page" },
+        ]}
+      />
+      <main className="min-h-screen bg-white">
         {/* Hero Section */}
         <section className="bg-stone-100 py-12 md:py-16 lg:py-20">
           <div className="container mx-auto px-4">
@@ -152,7 +156,7 @@ export default function SitemapPage() {
                       href="/sitemap.xml"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-primary hover:text-accent transition-colors font-medium"
+                      className="inline-flex items-center gap-2 text-primary hover:underline transition-colors font-medium"
                     >
                       <FileText className="w-4 h-4" />
                       {SITE_ORIGIN}/sitemap.xml
@@ -185,7 +189,6 @@ export default function SitemapPage() {
           </div>
         </section>
       </main>
-      <Footer />
     </>
   );
 }

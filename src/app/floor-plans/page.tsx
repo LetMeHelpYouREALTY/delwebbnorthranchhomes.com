@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Navbar from "@/../components/navbar";
-import Footer from "@/../components/footer";
 import Breadcrumbs from "@/../components/Breadcrumbs";
 import { Button } from "@/../components/ui/button";
 import Link from "next/link";
@@ -225,14 +223,13 @@ export default function FloorPlansPage() {
 
   return (
     <>
-      <Navbar />
       <Breadcrumbs
         items={[
           { label: "Del Webb North Ranch", href: "/" },
           { label: "Floor Plans", href: "/floor-plans" },
         ]}
       />
-      <main className="pt-16 md:pt-20">
+      <main>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
@@ -343,7 +340,6 @@ export default function FloorPlansPage() {
           </div>
         </section>
       </main>
-      <Footer />
     </>
   );
 }

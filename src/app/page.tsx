@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { CANONICAL_HOMEPAGE, SITE_ORIGIN, SITE_PHONE_DISPLAY } from "@/lib/site";
 import { TITLE_SUFFIX, altPrefix } from "@/lib/hyperlocal";
-import Navbar from "../../components/navbar";
 import Hero from "../../components/hero";
 import ProblemSection from "../../components/sections/problem-section";
 import SolutionSection from "../../components/sections/solution-section";
@@ -11,11 +10,13 @@ import AmenitiesPreviewSection from "../../components/sections/amenities-preview
 import HomeCollectionsSection from "../../components/sections/home-collections";
 import AboutAgentSection from "../../components/sections/about-agent";
 import FinalCTASection from "../../components/sections/final-cta";
-import Footer from "../../components/footer";
 import RealScoutListings from "../../components/RealScoutListings";
 import ExploreCommunitySection from "../../components/sections/explore-community";
 import Link from "next/link";
 import { Button } from "../../components/ui/button";
+import QuickFAQ from "../../components/QuickFAQ";
+import LocalVisitSection from "../../components/LocalVisitSection";
+import { faqData } from "@/lib/faqData";
 
 const HOMEPAGE_METADATA: Metadata = {
   title: TITLE_SUFFIX,
@@ -84,14 +85,44 @@ export default function Home() {
     },
   };
 
+  const homepageFaq = [
+    faqData
+      .find((cat) => cat.category === "Age Requirements & Residency")
+      ?.questions.find((q) => q.question.toLowerCase().includes("age requirements")),
+    faqData
+      .find((cat) => cat.category === "HOA & Fees")
+      ?.questions.find((q) => q.question.toLowerCase().includes("hoa fees")),
+    faqData
+      .find((cat) => cat.category === "Pets & Lifestyle")
+      ?.questions.find((q) => q.question.toLowerCase().includes("pets allowed")),
+    faqData
+      .find((cat) => cat.category === "About the Community")
+      ?.questions.find((q) => q.question.toLowerCase().includes("gated")),
+  ].filter(Boolean) as Array<{ question: string; answer: string }>;
+
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: homepageFaq.map((q) => ({
+      "@type": "Question" as const,
+      name: q.question,
+      acceptedAnswer: { "@type": "Answer" as const, text: q.answer },
+    })),
+  };
+
   return (
     <>
-      <Navbar />
-      <main id="main-content" className="pt-16 md:pt-20">
+      <main>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(webPageSchema).replace(/</g, "\\u003c"),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(faqSchema).replace(/</g, "\\u003c"),
           }}
         />
         <Hero />
@@ -135,9 +166,10 @@ export default function Home() {
           </div>
         </section>
         <AboutAgentSection />
+        <QuickFAQ />
+        <LocalVisitSection />
         <FinalCTASection />
       </main>
-      <Footer />
     </>
   );
 }

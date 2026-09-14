@@ -1,9 +1,8 @@
 import type { Metadata } from 'next';
-import Navbar from '@/../components/navbar';
-import Footer from '@/../components/footer';
 import Breadcrumbs from '@/../components/Breadcrumbs';
 import ScheduleTour from '@/../components/ScheduleTour';
 import RealScoutListings from '@/../components/RealScoutListings';
+import LocalVisitSection from '@/../components/LocalVisitSection';
 import { Phone, Calendar, Clock, MapPin } from 'lucide-react';
 import { oldSiteData } from '@/lib/fetchOldSiteData';
 import { SITE_ORIGIN, GOOGLE_MAPS_DIRECTIONS_URL, SITE_PHONE_TEL, SITE_PHONE_DISPLAY } from '@/lib/site';
@@ -36,19 +35,18 @@ export const metadata: Metadata = {
 export default function SchedulePage() {
   return (
     <>
-      <Navbar />
       <Breadcrumbs
         items={[
           { label: 'Del Webb North Ranch', href: '/' },
           { label: 'Schedule a Tour', href: '/schedule' },
         ]}
       />
-      <main className="pt-16 md:pt-20">
+      <main>
         {/* Hero - exactly one H1 */}
         <section className="bg-primary text-white py-12 md:py-16 lg:py-20">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center">
-              <Calendar className="w-16 h-16 mx-auto mb-6 text-accent" aria-hidden />
+              <Calendar className="w-16 h-16 mx-auto mb-6 text-white" aria-hidden />
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 font-playfair">
                 Schedule Your Private Tour | Del Webb North Ranch 55+ Community
               </h1>
@@ -172,7 +170,7 @@ export default function SchedulePage() {
                   <h3 className="font-semibold text-primary mb-2">Questions?</h3>
                   <a
                     href={SITE_PHONE_TEL}
-                    className="text-accent hover:text-primary transition-colors"
+                    className="text-primary hover:underline transition-colors"
                   >
                     {SITE_PHONE_DISPLAY}
                   </a>
@@ -224,8 +222,8 @@ export default function SchedulePage() {
             </div>
           </div>
         </section>
+        <LocalVisitSection heading="Plan Your Visit to Del Webb North Ranch" />
       </main>
-      <Footer />
     </>
   );
 }

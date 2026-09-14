@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import Navbar from "@/../components/navbar";
-import Footer from "@/../components/footer";
 import Breadcrumbs from "@/../components/Breadcrumbs";
 import { getVirtualTourBySlug, getVirtualToursWithEmbed } from "@/lib/old-site-data";
 import { SITE_ORIGIN } from "@/lib/site";
@@ -94,7 +92,6 @@ export default async function VirtualTourWatchPage({
   return (
     <>
       <VideoObjectSchema tour={tour} slug={slug} />
-      <Navbar />
       <Breadcrumbs
         items={[
           { label: "Del Webb North Ranch", href: "/" },
@@ -102,7 +99,7 @@ export default async function VirtualTourWatchPage({
           { label: `${tour.model} Tour`, href: `/virtual-tours/${slug}` },
         ]}
       />
-      <main className="pt-16 md:pt-20">
+      <main>
         {/* Watch page: video is primary content */}
         <section className="bg-white py-8 md:py-12">
           <div className="container mx-auto px-4">
@@ -147,7 +144,6 @@ export default async function VirtualTourWatchPage({
           </div>
         </section>
       </main>
-      <Footer />
     </>
   );
 }

@@ -1,6 +1,4 @@
 import type { Metadata } from "next";
-import Navbar from "@/../components/navbar";
-import Footer from "@/../components/footer";
 import Breadcrumbs from "@/../components/Breadcrumbs";
 import Link from "next/link";
 import { Button } from "@/../components/ui/button";
@@ -47,8 +45,7 @@ export const metadata: Metadata = {
 export default function SellersPage() {
   return (
     <>
-      <Navbar />
-      <main className="pt-16 md:pt-20">
+      <main>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(sellerFaqSchema) }}
@@ -157,7 +154,7 @@ export default function SellersPage() {
                   href="/home-value"
                   className="flex flex-col items-center text-center p-6 bg-white rounded-lg shadow-two hover:shadow-three transition-shadow group"
                 >
-                  <TrendingUp className="w-10 h-10 text-primary mb-3 group-hover:text-accent transition-colors" />
+                  <TrendingUp className="w-10 h-10 text-primary mb-3 group-hover:underline transition-colors" />
                   <h3 className="font-semibold text-primary mb-2">Get Your Home Value</h3>
                   <p className="text-text-dark text-sm">Free, instant estimate for your Del Webb North Ranch or North Las Vegas property</p>
                 </Link>
@@ -165,7 +162,7 @@ export default function SellersPage() {
                   href="/contact"
                   className="flex flex-col items-center text-center p-6 bg-white rounded-lg shadow-two hover:shadow-three transition-shadow group"
                 >
-                  <Calendar className="w-10 h-10 text-primary mb-3 group-hover:text-accent transition-colors" />
+                  <Calendar className="w-10 h-10 text-primary mb-3 group-hover:underline transition-colors" />
                   <h3 className="font-semibold text-primary mb-2">Schedule a Consultation</h3>
                   <p className="text-text-dark text-sm">Discuss pricing, marketing, and timeline with a local 55+ resale expert</p>
                 </Link>
@@ -173,7 +170,7 @@ export default function SellersPage() {
                   href="/homes-for-sale"
                   className="flex flex-col items-center text-center p-6 bg-white rounded-lg shadow-two hover:shadow-three transition-shadow group"
                 >
-                  <Home className="w-10 h-10 text-primary mb-3 group-hover:text-accent transition-colors" />
+                  <Home className="w-10 h-10 text-primary mb-3 group-hover:underline transition-colors" />
                   <h3 className="font-semibold text-primary mb-2">See Current Listings</h3>
                   <p className="text-text-dark text-sm">Compare your home to active listings in Del Webb North Ranch</p>
                 </Link>
@@ -218,7 +215,6 @@ export default function SellersPage() {
           </div>
         </section>
       </main>
-      <Footer />
     </>
   );
 }

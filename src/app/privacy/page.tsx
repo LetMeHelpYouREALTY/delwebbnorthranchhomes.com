@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
-import Navbar from "@/../components/navbar";
-import Footer from "@/../components/footer";
 import ScheduleTour from "@/../components/ScheduleTour";
+import Breadcrumbs from "@/../components/Breadcrumbs";
 import { SITE_ORIGIN, SITE_PHONE_TEL, SITE_PHONE_DISPLAY } from "@/lib/site";
 import { TITLE_SUFFIX } from "@/lib/hyperlocal";
 
@@ -31,8 +30,13 @@ export const metadata: Metadata = {
 export default function PrivacyPage() {
   return (
     <>
-      <Navbar />
-      <main className="pt-16 md:pt-20">
+      <Breadcrumbs
+        items={[
+          { label: "Del Webb North Ranch", href: "/" },
+          { label: "Privacy Policy", href: "/privacy" },
+        ]}
+      />
+      <main>
         <section className="py-12 md:py-16 lg:py-20 bg-white">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
@@ -143,7 +147,6 @@ export default function PrivacyPage() {
           </div>
         </section>
       </main>
-      <Footer />
     </>
   );
 }

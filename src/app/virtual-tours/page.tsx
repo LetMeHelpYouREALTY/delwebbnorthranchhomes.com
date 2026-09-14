@@ -1,6 +1,4 @@
 import type { Metadata } from "next";
-import Navbar from "@/../components/navbar";
-import Footer from "@/../components/footer";
 import Breadcrumbs from "@/../components/Breadcrumbs";
 import Link from "next/link";
 import VirtualTours from "@/../components/VirtualTours";
@@ -34,8 +32,7 @@ export const metadata: Metadata = {
 export default function VirtualToursPage() {
   return (
     <>
-      <Navbar />
-      <main className="pt-16 md:pt-20">
+      <main>
         <Breadcrumbs
           items={[
             { label: "Del Webb North Ranch", href: "/" },
@@ -46,7 +43,7 @@ export default function VirtualToursPage() {
         <section className="bg-primary text-white py-12 md:py-16 lg:py-20">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center">
-              <Play className="w-16 h-16 mx-auto mb-6 text-accent" aria-hidden />
+              <Play className="w-16 h-16 mx-auto mb-6 text-white" aria-hidden />
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 font-playfair">
                 Virtual Tours | Del Webb North Ranch Model Homes
               </h1>
@@ -120,7 +117,6 @@ export default function VirtualToursPage() {
           </div>
         </section>
       </main>
-      <Footer />
     </>
   );
 }

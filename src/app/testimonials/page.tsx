@@ -1,11 +1,9 @@
 import type { Metadata } from 'next';
-import Navbar from '@/../components/navbar';
-import Footer from '@/../components/footer';
 import Breadcrumbs from '@/../components/Breadcrumbs';
 import ScrollAnimation from '@/../components/scroll-animation';
 import { getAllTestimonials } from '@/lib/old-site-data';
 import { Quote, Star } from 'lucide-react';
-import { SITE_ORIGIN, GOOGLE_REVIEW_LINK, SITE_PHONE_TEL, SITE_PHONE_DISPLAY } from '@/lib/site';
+import { SITE_ORIGIN, GOOGLE_REVIEW_LINK, SITE_PHONE_TEL, SITE_PHONE_DISPLAY, GBP_AGGREGATE_RATING, GBP_BUSINESS_NAME } from '@/lib/site';
 import { metaDescriptionBlock, TITLE_SUFFIX } from '@/lib/hyperlocal';
 import RealScoutListings from '@/../components/RealScoutListings';
 
@@ -44,17 +42,38 @@ export const metadata: Metadata = {
 
 export default function TestimonialsPage() {
   const testimonials = getAllTestimonials();
+  const reviewSchema = {
+    "@context": "https://schema.org",
+    "@type": "RealEstateAgent",
+    name: GBP_BUSINESS_NAME,
+    url: `${SITE_ORIGIN}/testimonials`,
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: GBP_AGGREGATE_RATING.ratingValue,
+      reviewCount: GBP_AGGREGATE_RATING.reviewCount,
+    },
+    review: testimonials.map((t) => ({
+      "@type": "Review" as const,
+      author: { "@type": "Person" as const, name: t.name },
+      reviewBody: t.text,
+    })),
+  };
 
   return (
     <>
-      <Navbar />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(reviewSchema).replace(/</g, "\\u003c"),
+        }}
+      />
       <Breadcrumbs
         items={[
           { label: "Del Webb North Ranch", href: "/" },
           { label: "Testimonials", href: "/testimonials" },
         ]}
       />
-      <main className="pt-16 md:pt-20">
+      <main>
         {/* Hero Section */}
         <section className="bg-primary text-white py-12 md:py-16 lg:py-20">
           <div className="container mx-auto px-4">
@@ -194,7 +213,7 @@ export default function TestimonialsPage() {
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a
                   href="/contact"
-                  className="inline-flex items-center justify-center px-8 py-4 bg-primary hover:bg-primary/90 text-white rounded-md font-semibold transition-colors"
+                  className="inline-flex items-center justify-center min-h-[48px] px-8 py-4 bg-white text-primary rounded-md font-semibold hover:bg-gray-100 transition-colors"
                 >
                   Schedule a Tour
                 </a>
@@ -209,7 +228,6 @@ export default function TestimonialsPage() {
           </div>
         </section>
       </main>
-      <Footer />
     </>
   );
 }

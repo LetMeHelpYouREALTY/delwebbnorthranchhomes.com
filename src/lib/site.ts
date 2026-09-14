@@ -84,6 +84,17 @@ export const GOOGLE_REVIEW_LINK = "https://g.page/r/CTX_3qPVOeEqEBI/review";
 export const GOOGLE_MAPS_DIRECTIONS_URL =
   "https://www.google.com/maps/dir//2290+Beauty+Vista+Avenue,+North+Las+Vegas,+NV+89086";
 
+/** Google Maps place URL for schema hasMap and “View on Google Maps”. */
+export const GOOGLE_MAPS_PLACE_URL =
+  "https://www.google.com/maps/search/?api=1&query=2290+Beauty+Vista+Avenue,+North+Las+Vegas,+NV+89086";
+
+/** Google Maps embed (no API key) – pin at the GBP business address. */
+export const GOOGLE_MAPS_EMBED_URL =
+  "https://maps.google.com/maps?q=2290%20Beauty%20Vista%20Avenue%2C%20North%20Las%20Vegas%2C%20NV%2089086&z=16&output=embed";
+
+/** Public Google reviews listing for the GBP. */
+export const GOOGLE_REVIEWS_URL = "https://g.page/r/CTX_3qPVOeEqEBI";
+
 /**
  * Aggregate rating for LocalBusiness schema. Update to match your Google Business Profile
  * so star ratings in search stay accurate. Check GBP periodically and update here.

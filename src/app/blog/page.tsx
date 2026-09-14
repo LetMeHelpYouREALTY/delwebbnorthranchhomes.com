@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import Navbar from "@/../components/navbar";
-import Footer from "@/../components/footer";
 import Breadcrumbs from "@/../components/Breadcrumbs";
 import ScrollAnimation from "@/../components/scroll-animation";
 import { Calendar, ArrowRight } from "lucide-react";
@@ -142,7 +140,7 @@ function BlogCard({
             </time>
           </div>
           <Link href={`/blog/${post.slug}`}>
-            <h3 className="text-xl font-bold text-primary mb-3 font-playfair hover:text-accent transition-colors">
+            <h3 className="text-xl font-bold text-primary mb-3 font-playfair hover:underline transition-colors">
               {post.title}
             </h3>
           </Link>
@@ -151,7 +149,7 @@ function BlogCard({
           </p>
           <Link
             href={`/blog/${post.slug}`}
-            className="inline-flex items-center gap-2 text-primary font-semibold hover:text-accent transition-colors"
+            className="inline-flex items-center gap-2 text-primary font-semibold hover:underline transition-colors"
           >
             Read More
             <ArrowRight className="w-4 h-4" />
@@ -165,14 +163,13 @@ function BlogCard({
 export default function BlogPage() {
   return (
     <>
-      <Navbar />
       <Breadcrumbs
         items={[
           { label: "Del Webb North Ranch", href: "/" },
           { label: "Blog", href: "/blog" },
         ]}
       />
-      <main className="pt-16 md:pt-20">
+      <main>
         {/* Hero Section */}
         <section className="bg-primary text-white py-12 md:py-16 lg:py-20">
           <div className="container mx-auto px-4">
@@ -268,15 +265,15 @@ export default function BlogPage() {
                 Explore Del Webb North Ranch
               </h2>
               <p className="text-text-dark mb-6">
-                <Link href="/buyers" className="text-primary hover:text-accent font-medium">For Buyers</Link>
+                <Link href="/buyers" className="text-primary hover:underline font-medium">For Buyers</Link>
                 {" · "}
-                <Link href="/sellers" className="text-primary hover:text-accent font-medium">For Sellers</Link>
+                <Link href="/sellers" className="text-primary hover:underline font-medium">For Sellers</Link>
                 {" · "}
-                <Link href="/community" className="text-primary hover:text-accent font-medium">Community & Area</Link>
+                <Link href="/community" className="text-primary hover:underline font-medium">Community & Area</Link>
                 {" · "}
-                <Link href="/homes-for-sale" className="text-primary hover:text-accent font-medium">Homes for Sale</Link>
+                <Link href="/homes-for-sale" className="text-primary hover:underline font-medium">Homes for Sale</Link>
                 {" · "}
-                <Link href="/schedule" className="text-primary hover:text-accent font-medium">Schedule a Tour</Link>
+                <Link href="/schedule" className="text-primary hover:underline font-medium">Schedule a Tour</Link>
               </p>
             </div>
           </div>
@@ -303,7 +300,6 @@ export default function BlogPage() {
           </div>
         </section>
       </main>
-      <Footer />
     </>
   );
 }

@@ -34,6 +34,7 @@ const dropdownMenus = [
       { href: "/flyers", label: "Flyers & Brochures" },
       { href: "/blog", label: "Blog" },
       { href: "/faq", label: "FAQ" },
+      { href: "/testimonials", label: "Testimonials" },
     ],
   },
 ];
@@ -56,6 +57,7 @@ const allNavLinks = [
   { href: "/about", label: "About" },
   { href: "/blog", label: "Blog" },
   { href: "/faq", label: "FAQ" },
+  { href: "/testimonials", label: "Testimonials" },
   { href: "/contact", label: "Contact" },
 ];
 
@@ -74,11 +76,35 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close mobile menu when route changes
   useEffect(() => {
     setIsOpen(false);
     setOpenDropdown(null);
   }, [pathname]);
+
+  useEffect(() => {
+    if (!openDropdown && !isOpen) return undefined;
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setOpenDropdown(null);
+        setIsOpen(false);
+      }
+    };
+    const onPointerDown = (event: MouseEvent) => {
+      const target = event.target as HTMLElement | null;
+      if (target?.closest("[data-nav-dropdown]") || target?.closest("[data-mobile-nav]")) {
+        return;
+      }
+      setOpenDropdown(null);
+    };
+
+    document.addEventListener("keydown", onKeyDown);
+    document.addEventListener("mousedown", onPointerDown);
+    return () => {
+      document.removeEventListener("keydown", onKeyDown);
+      document.removeEventListener("mousedown", onPointerDown);
+    };
+  }, [openDropdown, isOpen]);
 
   // Check if a link is active
   const isActive = (href: string) => {
@@ -125,7 +151,7 @@ export default function Navbar() {
                 key={link.href}
                 href={link.href}
                 className={cn(
-                  "text-sm xl:text-base font-medium transition-colors relative",
+                  "text-sm xl:text-base font-medium transition-colors relative min-h-[44px] inline-flex items-center",
                   isActive(link.href)
                     ? "text-primary"
                     : "text-text-dark hover:text-primary"
@@ -144,15 +170,19 @@ export default function Navbar() {
               const isOpenMenu = openDropdown === menu.label;
 
               return (
-                <div key={menu.label} className="relative">
+                <div key={menu.label} className="relative" data-nav-dropdown>
                   <button
+                    type="button"
                     onClick={() => toggleDropdown(menu.label)}
                     className={cn(
-                      "flex items-center gap-1 text-sm xl:text-base font-medium transition-colors relative",
+                      "flex items-center gap-1 text-sm xl:text-base font-medium transition-colors relative min-h-[44px]",
                       isActiveMenu
                         ? "text-primary"
                         : "text-text-dark hover:text-primary"
                     )}
+                    aria-expanded={isOpenMenu ? "true" : "false"}
+                    aria-haspopup="true"
+                    aria-controls={`nav-dropdown-${menu.label}`}
                   >
                     {menu.label}
                     <ChevronDown
@@ -168,13 +198,16 @@ export default function Navbar() {
 
                   {/* Dropdown Content */}
                   {isOpenMenu && (
-                    <div className="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50">
+                    <div
+                      id={`nav-dropdown-${menu.label}`}
+                      className="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50"
+                    >
                       {menu.items.map((item) => (
                         <Link
                           key={item.href}
                           href={item.href}
                           className={cn(
-                            "block px-4 py-2 text-sm transition-colors",
+                            "block px-4 py-2 text-sm transition-colors min-h-[44px] flex items-center",
                             isActive(item.href)
                               ? "text-primary bg-primary/5 font-medium"
                               : "text-text-dark hover:text-primary hover:bg-gray-50"
@@ -194,7 +227,7 @@ export default function Navbar() {
           <div className="hidden lg:flex items-center gap-3 xl:gap-4">
             <a
               href={SITE_PHONE_TEL}
-              className="flex items-center gap-2 text-sm xl:text-base text-text-dark hover:text-primary transition-colors"
+              className="flex items-center gap-2 text-sm xl:text-base text-text-dark hover:text-primary transition-colors min-h-[44px] min-w-[44px]"
               aria-label={`Call ${SITE_PHONE_DISPLAY}`}
             >
               <Phone className="w-4 h-4" />
@@ -214,8 +247,9 @@ export default function Navbar() {
           <button
             onClick={() => setIsOpen(!isOpen)}
             className="lg:hidden p-2 text-text-dark hover:text-primary transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center"
-            aria-label="Toggle menu"
-            aria-expanded={isOpen}
+            aria-label={isOpen ? "Close menu" : "Open menu"}
+            aria-expanded={isOpen ? "true" : "false"}
+            aria-controls="mobile-navigation"
           >
             {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
@@ -227,6 +261,9 @@ export default function Navbar() {
             "lg:hidden overflow-hidden transition-all duration-300 ease-in-out",
             isOpen ? "max-h-[800px] opacity-100" : "max-h-0 opacity-0"
           )}
+          id="mobile-navigation"
+          data-mobile-nav
+          aria-hidden={isOpen ? "false" : "true"}
         >
           <div className="mt-4 pb-4 border-t border-gray-200 pt-4">
             <div className="flex flex-col gap-1">

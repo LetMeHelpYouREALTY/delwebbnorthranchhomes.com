@@ -1,79 +1,71 @@
-"use client";
-
+import type { Metadata } from "next";
 import Link from "next/link";
-import Navbar from "@/../components/navbar";
-import Footer from "@/../components/footer";
 import { Button } from "@/../components/ui/button";
-import { Home, RefreshCw, Phone, Search, FileText } from "lucide-react";
-import { SITE_PHONE_TEL, SITE_PHONE_DISPLAY } from "@/lib/site";
+import { Home, Phone, Search, FileText } from "lucide-react";
+import { SITE_ORIGIN, SITE_PHONE_TEL, SITE_PHONE_DISPLAY } from "@/lib/site";
+import { TITLE_SUFFIX } from "@/lib/hyperlocal";
 
-export default function ErrorPage({
-  error,
-  reset,
-}: {
-  error: Error & { digest?: string };
-  reset: () => void;
-}) {
+export const metadata: Metadata = {
+  title: `Something Went Wrong | ${TITLE_SUFFIX}`,
+  description:
+    "This Del Webb North Ranch page could not load. Call Dr. Jan Duffy or return home to browse 55+ homes in North Las Vegas.",
+  robots: { index: false, follow: true },
+  alternates: { canonical: `${SITE_ORIGIN}/error` },
+};
+
+export default function ErrorPage() {
   return (
-    <>
-      <Navbar />
-      <main className="pt-16 md:pt-20 min-h-screen flex items-center justify-center bg-white">
-        <div className="container mx-auto px-4 text-center py-16">
-          <div className="max-w-2xl mx-auto">
-            <h1 className="text-3xl md:text-4xl font-bold text-primary mb-4 font-playfair">
-              Something went wrong
-            </h1>
-            <p className="text-lg text-gray-600 mb-8">
-              We couldn’t load this page. Please try again or use the links below to get back on track.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-              <Button onClick={reset} variant="default" size="lg" className="min-h-[48px]">
-                <RefreshCw className="w-5 h-5 mr-2" />
-                Try again
-              </Button>
-              <Button asChild variant="outline" size="lg" className="min-h-[48px]">
-                <Link href="/">
-                  <Home className="w-5 h-5 mr-2" />
-                  Homepage
+    <main className="flex min-h-screen items-center justify-center bg-white">
+      <div className="container mx-auto px-4 py-16 text-center">
+        <div className="mx-auto max-w-2xl">
+          <h1 className="mb-4 font-playfair text-3xl font-bold text-primary md:text-4xl">
+            Something went wrong
+          </h1>
+          <p className="mb-8 text-lg text-gray-600">
+            We couldn&apos;t load this page. Use the links below, or call Dr. Jan Duffy at{" "}
+            {SITE_PHONE_DISPLAY} about Del Webb North Ranch 55+ homes in North Las Vegas.
+          </p>
+          <div className="mb-12 flex flex-col justify-center gap-4 sm:flex-row">
+            <Button asChild variant="default" size="lg" className="min-h-[48px]">
+              <Link href="/">
+                <Home className="mr-2 h-5 w-5" />
+                Homepage
+              </Link>
+            </Button>
+            <Button asChild variant="outline" size="lg" className="min-h-[48px]">
+              <a href={SITE_PHONE_TEL} aria-label={`Call ${SITE_PHONE_DISPLAY}`}>
+                <Phone className="mr-2 h-5 w-5" />
+                Call {SITE_PHONE_DISPLAY}
+              </a>
+            </Button>
+          </div>
+          <div className="rounded-lg bg-stone-50 p-6 text-left">
+            <h2 className="mb-4 font-playfair text-xl font-bold text-gray-900">Quick links</h2>
+            <ul className="space-y-2">
+              <li>
+                <Link href="/buyers" className="flex min-h-[44px] items-center gap-2 text-primary hover:underline">
+                  <FileText className="h-4 w-4" /> For Buyers
                 </Link>
-              </Button>
-            </div>
-            <div className="bg-stone-50 rounded-lg p-6 text-left">
-              <h2 className="text-xl font-bold text-gray-900 mb-4 font-playfair">
-                Quick links
-              </h2>
-              <ul className="space-y-2">
-                <li>
-                  <Link href="/buyers" className="text-primary hover:text-accent transition-colors flex items-center gap-2">
-                    <FileText className="w-4 h-4" /> For Buyers
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/sellers" className="text-primary hover:text-accent transition-colors flex items-center gap-2">
-                    <FileText className="w-4 h-4" /> For Sellers
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/homes-for-sale" className="text-primary hover:text-accent transition-colors flex items-center gap-2">
-                    <Search className="w-4 h-4" /> Homes for Sale
-                  </Link>
-                </li>
-                <li>
-                  <a href={SITE_PHONE_TEL} className="text-primary hover:text-accent transition-colors flex items-center gap-2">
-                    <Phone className="w-4 h-4" /> Call {SITE_PHONE_DISPLAY}
-                  </a>
-                </li>
-                <li>
-                  <Link href="/contact" className="text-primary hover:text-accent transition-colors">
-                    Contact
-                  </Link>
-                </li>
-              </ul>
-            </div>
+              </li>
+              <li>
+                <Link href="/sellers" className="flex min-h-[44px] items-center gap-2 text-primary hover:underline">
+                  <FileText className="h-4 w-4" /> For Sellers
+                </Link>
+              </li>
+              <li>
+                <Link href="/homes-for-sale" className="flex min-h-[44px] items-center gap-2 text-primary hover:underline">
+                  <Search className="h-4 w-4" /> Homes for Sale
+                </Link>
+              </li>
+              <li>
+                <Link href="/contact" className="flex min-h-[44px] items-center text-primary hover:underline">
+                  Contact
+                </Link>
+              </li>
+            </ul>
           </div>
         </div>
-      </main>
-      <Footer />
-    </>
+      </div>
+    </main>
   );
 }

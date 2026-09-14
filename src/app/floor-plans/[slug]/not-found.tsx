@@ -1,13 +1,10 @@
 import Link from 'next/link';
 import { Button } from '@/../components/ui/button';
-import Navbar from '@/../components/navbar';
-import Footer from '@/../components/footer';
 
 export default function NotFound() {
   return (
     <>
-      <Navbar />
-      <main className="pt-16 md:pt-20 min-h-screen flex items-center justify-center">
+      <main className="min-h-screen flex items-center justify-center">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-4xl md:text-5xl font-bold text-primary mb-4 font-playfair">
             Floor Plan Not Found
@@ -25,7 +22,6 @@ export default function NotFound() {
           </div>
         </div>
       </main>
-      <Footer />
     </>
   );
 }

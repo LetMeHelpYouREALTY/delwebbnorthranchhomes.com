@@ -7,6 +7,9 @@ export default function ProblemSection() {
         <div className="max-w-4xl mx-auto">
           <ScrollAnimation>
             <div className="prose prose-lg max-w-none text-center">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary font-playfair mb-4 md:mb-6">
+                Ready for a Simpler Next Chapter?
+              </h2>
               <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-text-dark leading-relaxed px-2">
                 You've worked hard to get here. Maybe you're done with
                 California's traffic and taxes. Maybe the house feels too big

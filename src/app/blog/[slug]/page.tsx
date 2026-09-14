@@ -2,8 +2,6 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import Navbar from "@/../components/navbar";
-import Footer from "@/../components/footer";
 import Breadcrumbs from "@/../components/Breadcrumbs";
 import { Button } from "@/../components/ui/button";
 import { Calendar, ArrowLeft, ArrowRight } from "lucide-react";
@@ -239,7 +237,6 @@ export default async function BlogPostPage({
 
   return (
     <>
-      <Navbar />
       <Breadcrumbs
         items={[
           { label: "Del Webb North Ranch", href: "/" },
@@ -247,7 +244,7 @@ export default async function BlogPostPage({
           { label: post.title, href: `/blog/${slug}` },
         ]}
       />
-      <main className="pt-16 md:pt-20">
+      <main>
         {/* BlogPosting schema for E-E-A-T and rich results (2026 realtor SEO) */}
         <script
           type="application/ld+json"
@@ -286,7 +283,7 @@ export default async function BlogPostPage({
             <div className="max-w-4xl mx-auto">
               <Link
                 href="/blog"
-                className="inline-flex items-center gap-2 text-gray-100 hover:text-accent transition-colors mb-6"
+                className="inline-flex items-center gap-2 text-gray-100 hover:underline transition-colors mb-6"
               >
                 <ArrowLeft className="w-5 h-5" />
                 Back to Blog
@@ -406,7 +403,6 @@ export default async function BlogPostPage({
           </div>
         </section>
       </main>
-      <Footer />
     </>
   );
 }

@@ -1,6 +1,4 @@
 import type { Metadata } from "next";
-import Navbar from "@/../components/navbar";
-import Footer from "@/../components/footer";
 import Breadcrumbs from "@/../components/Breadcrumbs";
 import Link from "next/link";
 import { TrendingUp } from "lucide-react";
@@ -59,14 +57,13 @@ export default function HomeValuePage() {
 
   return (
     <>
-      <Navbar />
       <Breadcrumbs
         items={[
           { label: "Del Webb North Ranch", href: "/" },
           { label: "Home Value", href: "/home-value" },
         ]}
       />
-      <main className="pt-16 md:pt-20">
+      <main>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(sellerFaqSchema) }}
@@ -170,7 +167,7 @@ export default function HomeValuePage() {
                       Connect with Dr. Jan Duffy
                     </h3>
                     <p className="text-text-dark">
-                      Schedule a consultation to discuss your home value, explore <Link href="/homes-for-sale" className="text-primary hover:text-accent underline">homes for sale</Link> in Del Webb North Ranch, or learn more about the <Link href="/floor-plans" className="text-primary hover:text-accent underline">floor plans</Link> available.
+                      Schedule a consultation to discuss your home value, explore <Link href="/homes-for-sale" className="text-primary hover:underline underline">homes for sale</Link> in Del Webb North Ranch, or learn more about the <Link href="/floor-plans" className="text-primary hover:underline underline">floor plans</Link> available.
                     </p>
                   </div>
                 </div>
@@ -274,7 +271,6 @@ export default function HomeValuePage() {
           </div>
         </section>
       </main>
-      <Footer />
     </>
   );
 }

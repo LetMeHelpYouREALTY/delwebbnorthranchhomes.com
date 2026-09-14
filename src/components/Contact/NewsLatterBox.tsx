@@ -18,7 +18,7 @@ const NewsLatterBox = () => {
       <div>
         <ScheduleTour variant="accent" size="lg" className="mb-5 w-full" text="Schedule a Tour" />
         <p className="text-body-color dark:text-body-color-dark text-center text-base leading-relaxed mt-4">
-          Or call <a href={SITE_PHONE_TEL} className="text-primary hover:text-accent font-medium">{SITE_PHONE_DISPLAY}</a> to speak with Dr. Jan Duffy.
+          Or call <a href={SITE_PHONE_TEL} className="text-primary hover:underline font-medium">{SITE_PHONE_DISPLAY}</a> to speak with Dr. Jan Duffy.
         </p>
       </div>
 

@@ -1,6 +1,4 @@
 import type { Metadata } from "next";
-import Navbar from "@/../components/navbar";
-import Footer from "@/../components/footer";
 import Breadcrumbs from "@/../components/Breadcrumbs";
 import Link from "next/link";
 import { Button } from "@/../components/ui/button";
@@ -35,8 +33,7 @@ export const metadata: Metadata = {
 export default function WhyChooseUsPage() {
   return (
     <>
-      <Navbar />
-      <main className="pt-16 md:pt-20">
+      <main>
         <Breadcrumbs
           items={[
             { label: "Del Webb North Ranch", href: "/" },
@@ -110,7 +107,6 @@ export default function WhyChooseUsPage() {
           </div>
         </section>
       </main>
-      <Footer />
     </>
   );
 }

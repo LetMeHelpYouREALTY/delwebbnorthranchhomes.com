@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Navbar from "@/../components/navbar";
-import Footer from "@/../components/footer";
 import { Button } from "@/../components/ui/button";
 import { Home, Search } from "lucide-react";
 import { TITLE_SUFFIX } from "@/lib/hyperlocal";
@@ -19,8 +17,7 @@ export const metadata: Metadata = {
 export default function NotFound() {
   return (
     <>
-      <Navbar />
-      <main className="pt-16 md:pt-20 min-h-screen flex items-center justify-center bg-white">
+      <main className="min-h-screen flex items-center justify-center bg-white">
         <div className="container mx-auto px-4 text-center py-16">
           <div className="max-w-2xl mx-auto">
             <div className="mb-8">
@@ -56,52 +53,52 @@ export default function NotFound() {
               </h3>
               <ul className="space-y-2">
                 <li>
-                  <Link href="/buyers" className="text-primary hover:text-accent transition-colors">
+                  <Link href="/buyers" className="text-primary hover:underline transition-colors">
                     For Buyers
                   </Link>
                 </li>
                 <li>
-                  <Link href="/sellers" className="text-primary hover:text-accent transition-colors">
+                  <Link href="/sellers" className="text-primary hover:underline transition-colors">
                     For Sellers
                   </Link>
                 </li>
                 <li>
-                  <Link href="/homes-for-sale" className="text-primary hover:text-accent transition-colors">
+                  <Link href="/homes-for-sale" className="text-primary hover:underline transition-colors">
                     Homes for Sale
                   </Link>
                 </li>
                 <li>
-                  <Link href="/schedule" className="text-primary hover:text-accent transition-colors">
+                  <Link href="/schedule" className="text-primary hover:underline transition-colors">
                     Schedule a Tour
                   </Link>
                 </li>
                 <li>
-                  <Link href="/home-value" className="text-primary hover:text-accent transition-colors">
+                  <Link href="/home-value" className="text-primary hover:underline transition-colors">
                     Home Value
                   </Link>
                 </li>
                 <li>
-                  <Link href="/community" className="text-primary hover:text-accent transition-colors">
+                  <Link href="/community" className="text-primary hover:underline transition-colors">
                     Community & Area
                   </Link>
                 </li>
                 <li>
-                  <Link href="/floor-plans" className="text-primary hover:text-accent transition-colors">
+                  <Link href="/floor-plans" className="text-primary hover:underline transition-colors">
                     Floor Plans
                   </Link>
                 </li>
                 <li>
-                  <Link href="/amenities" className="text-primary hover:text-accent transition-colors">
+                  <Link href="/amenities" className="text-primary hover:underline transition-colors">
                     Amenities
                   </Link>
                 </li>
                 <li>
-                  <Link href="/about" className="text-primary hover:text-accent transition-colors">
+                  <Link href="/about" className="text-primary hover:underline transition-colors">
                     About Dr. Jan Duffy
                   </Link>
                 </li>
                 <li>
-                  <Link href="/contact" className="text-primary hover:text-accent transition-colors">
+                  <Link href="/contact" className="text-primary hover:underline transition-colors">
                     Contact
                   </Link>
                 </li>
@@ -110,7 +107,6 @@ export default function NotFound() {
           </div>
         </div>
       </main>
-      <Footer />
     </>
   );
 }

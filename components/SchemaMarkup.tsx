@@ -92,7 +92,7 @@ export default function SchemaMarkup() {
       'Del Webb North Ranch',
       '55+ active adult communities',
       'North Las Vegas real estate',
-      'Senior living and retirement homes',
+      '55+ housing in North Las Vegas',
       'Single-story homes',
     ],
   };
@@ -117,7 +117,7 @@ export default function SchemaMarkup() {
       'Del Webb North Ranch',
       '55+ active adult communities',
       'North Las Vegas real estate',
-      'Senior living and retirement homes',
+      '55+ housing in North Las Vegas',
       'Single-story homes',
       'Resort-style amenities',
       'Gated 55+ community',

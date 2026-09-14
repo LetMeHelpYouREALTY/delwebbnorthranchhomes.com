@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
-import Navbar from "@/../components/navbar";
-import Footer from "@/../components/footer";
 import Link from "next/link";
 import ScheduleTour from "@/../components/ScheduleTour";
+import Breadcrumbs from "@/../components/Breadcrumbs";
 import { FileText, Calendar } from "lucide-react";
 import { SITE_ORIGIN, SITE_PHONE_TEL, SITE_PHONE_DISPLAY } from "@/lib/site";
 import { TITLE_SUFFIX } from "@/lib/hyperlocal";
@@ -36,8 +35,13 @@ export const metadata: Metadata = {
 export default function TermsPage() {
   return (
     <>
-      <Navbar />
-      <main className="pt-16 md:pt-20 min-h-screen bg-white">
+      <Breadcrumbs
+        items={[
+          { label: "Del Webb North Ranch", href: "/" },
+          { label: "Terms of Service", href: "/terms" },
+        ]}
+      />
+      <main className="min-h-screen bg-white">
         {/* Hero Section */}
         <section className="bg-stone-100 py-12 md:py-16 lg:py-20">
           <div className="container mx-auto px-4">
@@ -215,7 +219,7 @@ export default function TermsPage() {
                   <p className="text-text-dark mb-2">2290 Beauty Vista Avenue</p>
                   <p className="text-text-dark mb-2">North Las Vegas, NV 89086</p>
                   <p className="text-text-dark mb-4">
-                    Phone: <a href={SITE_PHONE_TEL} className="text-primary hover:text-accent">{SITE_PHONE_DISPLAY}</a>
+                    Phone: <a href={SITE_PHONE_TEL} className="text-primary hover:underline">{SITE_PHONE_DISPLAY}</a>
                   </p>
                   <ScheduleTour variant="outline" size="default" />
                 </div>
@@ -255,14 +259,14 @@ export default function TermsPage() {
                 <div className="flex flex-col sm:flex-row gap-4">
                   <Link
                     href="/privacy"
-                    className="inline-flex items-center gap-2 text-primary hover:text-accent transition-colors"
+                    className="inline-flex items-center gap-2 text-primary hover:underline transition-colors"
                   >
                     <FileText className="w-4 h-4" />
                     Privacy Policy
                   </Link>
                   <Link
                     href="/accessibility"
-                    className="inline-flex items-center gap-2 text-primary hover:text-accent transition-colors"
+                    className="inline-flex items-center gap-2 text-primary hover:underline transition-colors"
                   >
                     <FileText className="w-4 h-4" />
                     Accessibility Statement
@@ -273,7 +277,6 @@ export default function TermsPage() {
           </div>
         </section>
       </main>
-      <Footer />
     </>
   );
 }

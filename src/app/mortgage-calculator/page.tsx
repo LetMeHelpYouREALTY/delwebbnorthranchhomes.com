@@ -1,6 +1,4 @@
 import type { Metadata } from "next";
-import Navbar from "@/../components/navbar";
-import Footer from "@/../components/footer";
 import Breadcrumbs from "@/../components/Breadcrumbs";
 import Link from "next/link";
 import MortgageCalculator from "@/../components/MortgageCalculator";
@@ -34,8 +32,7 @@ export const metadata: Metadata = {
 export default function MortgageCalculatorPage() {
   return (
     <>
-      <Navbar />
-      <main className="pt-16 md:pt-20">
+      <main>
         <Breadcrumbs
           items={[
             { label: "Del Webb North Ranch", href: "/" },
@@ -46,7 +43,7 @@ export default function MortgageCalculatorPage() {
         <section className="bg-primary text-white py-12 md:py-16 lg:py-20">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center">
-              <Calculator className="w-16 h-16 mx-auto mb-6 text-accent" aria-hidden />
+              <Calculator className="w-16 h-16 mx-auto mb-6 text-white" aria-hidden />
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 font-playfair">
                 Mortgage Calculator | Del Webb North Ranch & North Las Vegas
               </h1>
@@ -152,7 +149,6 @@ export default function MortgageCalculatorPage() {
           </div>
         </section>
       </main>
-      <Footer />
     </>
   );
 }

@@ -1,6 +1,4 @@
 import type { Metadata } from "next";
-import Navbar from "@/../components/navbar";
-import Footer from "@/../components/footer";
 import Breadcrumbs from "@/../components/Breadcrumbs";
 import { Phone } from "lucide-react";
 import { Button } from "@/../components/ui/button";
@@ -64,14 +62,13 @@ export default async function HomesForSalePage() {
 
   return (
     <>
-      <Navbar />
       <Breadcrumbs
         items={[
           { label: "Del Webb North Ranch", href: "/" },
           { label: "Homes for Sale", href: "/homes-for-sale" },
         ]}
       />
-      <main className="pt-16 md:pt-20">
+      <main>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(buyerFaqSchema).replace(/</g, '\\u003c') }}
@@ -148,7 +145,7 @@ export default async function HomesForSalePage() {
                   rel="noopener noreferrer"
                   className="bg-white rounded-lg shadow-lg p-8 text-center hover:shadow-xl transition-shadow group"
                 >
-                  <h3 className="text-2xl font-bold text-primary mb-4 font-playfair group-hover:text-accent transition-colors">
+                  <h3 className="text-2xl font-bold text-primary mb-4 font-playfair group-hover:underline transition-colors">
                     Search All Homes
                   </h3>
                   <p className="text-text-dark mb-6">
@@ -164,7 +161,7 @@ export default async function HomesForSalePage() {
                   rel="noopener noreferrer"
                   className="bg-white rounded-lg shadow-lg p-8 text-center hover:shadow-xl transition-shadow group"
                 >
-                  <h3 className="text-2xl font-bold text-primary mb-4 font-playfair group-hover:text-accent transition-colors">
+                  <h3 className="text-2xl font-bold text-primary mb-4 font-playfair group-hover:underline transition-colors">
                     Get New Listing Alerts
                   </h3>
                   <p className="text-text-dark mb-6">
@@ -292,7 +289,7 @@ export default async function HomesForSalePage() {
                 Why Choose Del Webb North Ranch?
               </h2>
               <p className="text-center text-text-dark mb-6 max-w-2xl mx-auto">
-                Discover the <Link href="/amenities" className="text-primary hover:text-accent underline">resort-style amenities</Link> and <Link href="/lifestyle" className="text-primary hover:text-accent underline">active adult lifestyle</Link> that make this community special.
+                Discover the <Link href="/amenities" className="text-primary hover:underline underline">resort-style amenities</Link> and <Link href="/lifestyle" className="text-primary hover:underline underline">active adult lifestyle</Link> that make this community special.
               </p>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div className="bg-white p-6 rounded-lg shadow-two text-center">
@@ -329,7 +326,6 @@ export default async function HomesForSalePage() {
           </div>
         </section>
       </main>
-      <Footer />
     </>
   );
 }

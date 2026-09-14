@@ -2,8 +2,6 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import Navbar from '@/../components/navbar';
-import Footer from '@/../components/footer';
 import Breadcrumbs from '@/../components/Breadcrumbs';
 import { Button } from '@/../components/ui/button';
 import ScrollAnimation from '@/../components/scroll-animation';
@@ -251,7 +249,6 @@ export default async function FloorPlanPage({
       {hasVideo && virtualTour && (
         <VideoObjectSchema plan={plan} virtualTour={virtualTour as typeof virtualTour & { embedUrl: string }} />
       )}
-      <Navbar />
       <Breadcrumbs
         items={[
           { label: "Del Webb North Ranch", href: "/" },
@@ -259,7 +256,7 @@ export default async function FloorPlanPage({
           { label: `${plan.name} - ${plan.series} Series`, href: `/floor-plans/${slug}` },
         ]}
       />
-      <main className="pt-16 md:pt-20">
+      <main>
         <ProductSchema plan={plan} />
         <BreadcrumbSchema plan={plan} />
         {/* Hero Section */}
@@ -268,7 +265,7 @@ export default async function FloorPlanPage({
             <div className="max-w-4xl mx-auto">
               <Link
                 href="/floor-plans"
-                className="inline-flex items-center gap-2 text-gray-100 hover:text-accent transition-colors mb-6"
+                className="inline-flex items-center gap-2 text-gray-100 hover:underline transition-colors mb-6"
               >
                 <ArrowLeft className="w-5 h-5" />
                 Back to All Floor Plans
@@ -381,7 +378,7 @@ export default async function FloorPlanPage({
                 <p className="text-center mt-4 text-text-dark">
                   <Link
                     href={`/virtual-tours/${getVirtualTourSlug(virtualTour)}`}
-                    className="text-primary hover:text-accent font-medium"
+                    className="text-primary hover:underline font-medium"
                   >
                     Watch on dedicated video page →
                   </Link>
@@ -445,7 +442,6 @@ export default async function FloorPlanPage({
           </div>
         </section>
       </main>
-      <Footer />
     </>
   );
 }

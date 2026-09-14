@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Navbar from "@/../components/navbar";
-import Footer from "@/../components/footer";
 import Breadcrumbs from "@/../components/Breadcrumbs";
 import { Button } from "@/../components/ui/button";
 import Link from "next/link";
@@ -117,14 +115,13 @@ const blurDataURL =
 export default function LifestylePage() {
   return (
     <>
-      <Navbar />
       <Breadcrumbs
         items={[
           { label: "Del Webb North Ranch", href: "/" },
           { label: "Lifestyle", href: "/lifestyle" },
         ]}
       />
-      <main className="pt-16 md:pt-20">
+      <main>
         {/* Hero Section */}
         <section className="bg-primary text-white py-12 md:py-16 lg:py-20">
           <div className="container mx-auto px-4">
@@ -174,7 +171,7 @@ export default function LifestylePage() {
                         here to live fully, not just exist.
                       </p>
                       <p className="text-base md:text-lg text-text-dark leading-relaxed">
-                        Whether you're joining a morning pickleball game at the <Link href="/amenities" className="text-primary hover:text-accent underline">community amenities</Link>, attending
+                        Whether you're joining a morning pickleball game at the <Link href="/amenities" className="text-primary hover:underline underline">community amenities</Link>, attending
                         a club meeting, or simply chatting with neighbors on a
                         walk, you'll discover that making friends comes naturally
                         here.
@@ -356,7 +353,6 @@ export default function LifestylePage() {
           </div>
         </section>
       </main>
-      <Footer />
     </>
   );
 }

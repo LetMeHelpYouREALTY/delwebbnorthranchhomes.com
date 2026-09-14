@@ -23,11 +23,12 @@ function CollectionCard({
 }: CollectionCardProps) {
   return (
     <ScrollAnimation delay={delay}>
+      <Link href="/floor-plans" className="block h-full rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
       <div className="bg-white p-6 md:p-8 rounded-lg shadow-two hover:shadow-three transition-shadow h-full flex flex-col">
         <div className="relative h-48 md:h-56 rounded-lg mb-4 md:mb-6 overflow-hidden bg-bg-light">
           <Image
             src={imagePath}
-            alt={`${title} home exterior`}
+            alt={`${title} single-story home at Del Webb North Ranch in North Las Vegas`}
             fill
             className="object-cover"
             placeholder="blur"
@@ -45,7 +46,9 @@ function CollectionCard({
         <p className="text-sm md:text-base text-text-dark leading-relaxed flex-grow">
           {description}
         </p>
+        <span className="mt-4 text-sm font-semibold text-primary">View floor plans →</span>
       </div>
+      </Link>
     </ScrollAnimation>
   );
 }

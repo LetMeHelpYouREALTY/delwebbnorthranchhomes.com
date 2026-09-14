@@ -49,6 +49,32 @@ const nextConfig = {
         destination: '/',
         permanent: true,
       },
+      // Startup template leftovers → canonical pages (avoid thin/duplicate indexation)
+      {
+        source: '/signin',
+        destination: '/contact',
+        permanent: true,
+      },
+      {
+        source: '/signup',
+        destination: '/contact',
+        permanent: true,
+      },
+      {
+        source: '/blog-details',
+        destination: '/blog',
+        permanent: true,
+      },
+      {
+        source: '/blog-sidebar',
+        destination: '/blog',
+        permanent: true,
+      },
+      {
+        source: '/floor-plans-simple',
+        destination: '/floor-plans',
+        permanent: true,
+      },
       // Apex (non-www) → canonical www host (GSC: permanent redirect, not 307)
       {
         source: '/:path*',
@@ -90,7 +116,7 @@ const nextConfig = {
               "style-src 'self' 'unsafe-inline' https://assets.calendly.com https://fonts.googleapis.com",
               "font-src 'self' data: https://fonts.gstatic.com",
               "img-src 'self' data: https:",
-              "frame-src 'self' https://em.realscout.com https://www.realscout.com https://calendly.com https://*.calendly.com https://www.youtube.com https://youtube.com https://my.matterport.com",
+              "frame-src 'self' https://em.realscout.com https://www.realscout.com https://calendly.com https://*.calendly.com https://www.youtube.com https://youtube.com https://my.matterport.com https://www.google.com https://maps.google.com https://www.google.com/maps",
             ].join('; '),
           },
           // Explicitly deny payment in this document and in iframes (Calendly may request it; we don't use it)

@@ -1,6 +1,4 @@
 import type { Metadata } from "next";
-import Navbar from "@/../components/navbar";
-import Footer from "@/../components/footer";
 import Breadcrumbs from "@/../components/Breadcrumbs";
 import Link from "next/link";
 import { MapPin, TreePine, Heart, Mountain } from "lucide-react";
@@ -10,6 +8,7 @@ import { nearbyAreas, hyperlocalFaq } from "@/lib/hyperlocalData";
 import { HYPERLOCAL } from "@/lib/hyperlocal";
 import { getCommunityInfo } from "@/lib/communityData";
 import RealScoutListings from "@/../components/RealScoutListings";
+import LocalVisitSection from "@/../components/LocalVisitSection";
 
 const communityFaqSchema = {
   "@context": "https://schema.org",
@@ -50,8 +49,7 @@ export default function CommunityPage() {
 
   return (
     <>
-      <Navbar />
-      <main className="pt-16 md:pt-20">
+      <main>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(communityFaqSchema).replace(/</g, '\\u003c') }}
@@ -93,7 +91,7 @@ export default function CommunityPage() {
                 Where Is Del Webb North Ranch?
               </h3>
               <p className="mb-6">
-                Del Webb North Ranch is located at 2290 Beauty Vista Avenue in North Las Vegas, zip code 89086. The North Ranch community is in the northern part of the Las Vegas Valley, with easy access to Aliante, Centennial Hills, Craig Ranch Regional Park, and VA Southern Nevada Hospital. McCarran International Airport and the Las Vegas Strip are within a short drive. North Las Vegas offers no state income tax, strong healthcare, and outdoor recreation—and Del Webb North Ranch sits right in the middle of it. The community is gated with virtual concierge and roving security, so residents enjoy both convenience and peace of mind.
+                Del Webb North Ranch is located at 2290 Beauty Vista Avenue in North Las Vegas, zip code 89086. The North Ranch community is in the northern part of the Las Vegas Valley, with easy access to Aliante, Centennial Hills, Craig Ranch Regional Park, and VA Southern Nevada Hospital. McCarran International Airport and the Las Vegas Strip are within a short drive. North Las Vegas offers no state income tax, strong healthcare, and outdoor recreation—and Del Webb North Ranch sits right in the middle of it. The community is gated with virtual concierge and roving security.
               </p>
               <h2 className="text-2xl md:text-3xl font-bold text-primary mt-12 mb-6 font-playfair">
                 Why North Las Vegas for Del Webb North Ranch Buyers
@@ -128,7 +126,7 @@ export default function CommunityPage() {
                       <h3 className="font-semibold text-primary mb-1 font-playfair">{area.name}</h3>
                       <p className="text-text-dark text-sm mb-2">{area.description}</p>
                       {area.relatedPath && (
-                        <Link href={area.relatedPath} className="text-primary hover:text-accent text-sm font-medium">
+                        <Link href={area.relatedPath} className="text-primary hover:underline text-sm font-medium">
                           Learn more →
                         </Link>
                       )}
@@ -184,11 +182,11 @@ export default function CommunityPage() {
                 <li><strong>Clubhouse:</strong> {communityInfo.clubhouseSize} clubhouse</li>
               </ul>
               <p className="mt-6 text-center">
-                <Link href="/amenities" className="text-primary hover:text-accent font-medium">
+                <Link href="/amenities" className="text-primary hover:underline font-medium">
                   Explore resort-style amenities →
                 </Link>
                 {" · "}
-                <Link href="/lifestyle" className="text-primary hover:text-accent font-medium">
+                <Link href="/lifestyle" className="text-primary hover:underline font-medium">
                   Active adult lifestyle →
                 </Link>
               </p>
@@ -242,8 +240,8 @@ export default function CommunityPage() {
             </div>
           </div>
         </section>
+        <LocalVisitSection heading="Directions to Del Webb North Ranch, North Las Vegas" />
       </main>
-      <Footer />
     </>
   );
 }

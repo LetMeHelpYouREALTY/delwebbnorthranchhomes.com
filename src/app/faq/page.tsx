@@ -1,7 +1,5 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
-import Navbar from '@/../components/navbar';
-import Footer from '@/../components/footer';
 import Breadcrumbs from '@/../components/Breadcrumbs';
 import FAQAccordion from '@/../components/FAQAccordion';
 import { getAllQuestions } from '@/lib/faqData';
@@ -73,14 +71,13 @@ const faqSchema = {
 export default function FAQPage() {
   return (
     <>
-      <Navbar />
       <Breadcrumbs
         items={[
           { label: "Del Webb North Ranch", href: "/" },
           { label: "FAQ", href: "/faq" },
         ]}
       />
-      <main className="min-h-screen bg-white pt-16 md:pt-20">
+      <main className="min-h-screen bg-white">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema).replace(/</g, '\\u003c') }}
@@ -275,7 +272,6 @@ export default function FAQPage() {
           </div>
         </section>
       </main>
-      <Footer />
     </>
   );
 }

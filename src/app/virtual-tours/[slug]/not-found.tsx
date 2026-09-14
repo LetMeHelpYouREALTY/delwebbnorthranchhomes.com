@@ -1,12 +1,9 @@
 import Link from "next/link";
-import Navbar from "@/../components/navbar";
-import Footer from "@/../components/footer";
 
 export default function VirtualTourNotFound() {
   return (
     <>
-      <Navbar />
-      <main className="pt-16 md:pt-20 min-h-[60vh] flex items-center justify-center px-4">
+      <main className="min-h-[60vh] flex items-center justify-center px-4">
         <div className="text-center max-w-md">
           <h1 className="text-2xl md:text-3xl font-bold text-primary mb-4 font-playfair">
             Virtual tour not found
@@ -22,7 +19,6 @@ export default function VirtualTourNotFound() {
           </Link>
         </div>
       </main>
-      <Footer />
     </>
   );
 }

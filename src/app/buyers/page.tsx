@@ -1,6 +1,4 @@
 import type { Metadata } from "next";
-import Navbar from "@/../components/navbar";
-import Footer from "@/../components/footer";
 import Breadcrumbs from "@/../components/Breadcrumbs";
 import Link from "next/link";
 import { Button } from "@/../components/ui/button";
@@ -50,8 +48,7 @@ export default function BuyersPage() {
 
   return (
     <>
-      <Navbar />
-      <main className="pt-16 md:pt-20">
+      <main>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(buyerFaqSchema) }}
@@ -194,7 +191,7 @@ export default function BuyersPage() {
                   href="/homes-for-sale"
                   className="flex flex-col items-center text-center p-6 bg-bg-light rounded-lg hover:bg-primary/5 transition-colors group"
                 >
-                  <Search className="w-10 h-10 text-primary mb-3 group-hover:text-accent transition-colors" />
+                  <Search className="w-10 h-10 text-primary mb-3 group-hover:underline transition-colors" />
                   <h3 className="font-semibold text-primary mb-2">View Listings</h3>
                   <p className="text-text-dark text-sm">Browse current homes for sale in Del Webb North Ranch</p>
                 </Link>
@@ -202,7 +199,7 @@ export default function BuyersPage() {
                   href="/floor-plans"
                   className="flex flex-col items-center text-center p-6 bg-bg-light rounded-lg hover:bg-primary/5 transition-colors group"
                 >
-                  <FileText className="w-10 h-10 text-primary mb-3 group-hover:text-accent transition-colors" />
+                  <FileText className="w-10 h-10 text-primary mb-3 group-hover:underline transition-colors" />
                   <h3 className="font-semibold text-primary mb-2">Floor Plans</h3>
                   <p className="text-text-dark text-sm">Explore 9 single-story floor plans (Cottage, Classic, Retreat)</p>
                 </Link>
@@ -210,7 +207,7 @@ export default function BuyersPage() {
                   href="/schedule"
                   className="flex flex-col items-center text-center p-6 bg-bg-light rounded-lg hover:bg-primary/5 transition-colors group"
                 >
-                  <Calendar className="w-10 h-10 text-primary mb-3 group-hover:text-accent transition-colors" />
+                  <Calendar className="w-10 h-10 text-primary mb-3 group-hover:underline transition-colors" />
                   <h3 className="font-semibold text-primary mb-2">Schedule a Tour</h3>
                   <p className="text-text-dark text-sm">Book a private tour of the community and available homes</p>
                 </Link>
@@ -218,7 +215,7 @@ export default function BuyersPage() {
                   href="/contact"
                   className="flex flex-col items-center text-center p-6 bg-bg-light rounded-lg hover:bg-primary/5 transition-colors group"
                 >
-                  <Home className="w-10 h-10 text-primary mb-3 group-hover:text-accent transition-colors" />
+                  <Home className="w-10 h-10 text-primary mb-3 group-hover:underline transition-colors" />
                   <h3 className="font-semibold text-primary mb-2">Contact Dr. Jan Duffy</h3>
                   <p className="text-text-dark text-sm">Questions? Get in touch for a personalized conversation</p>
                 </Link>
@@ -263,7 +260,6 @@ export default function BuyersPage() {
           </div>
         </section>
       </main>
-      <Footer />
     </>
   );
 }

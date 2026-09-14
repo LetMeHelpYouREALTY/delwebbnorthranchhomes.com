@@ -1,6 +1,4 @@
 import type { Metadata } from "next";
-import Navbar from "@/../components/navbar";
-import Footer from "@/../components/footer";
 import Breadcrumbs from "@/../components/Breadcrumbs";
 import Link from "next/link";
 import { FileText, Download } from "lucide-react";
@@ -33,14 +31,13 @@ export default function FlyersPage() {
   const flyers = getAllFlyers();
   return (
     <>
-      <Navbar />
       <Breadcrumbs
         items={[
           { label: "Del Webb North Ranch", href: "/" },
           { label: "Flyers & Brochures", href: "/flyers" },
         ]}
       />
-      <main className="pt-16 md:pt-20">
+      <main>
         {/* Hero Section */}
         <section className="bg-primary text-white py-12 md:py-16 lg:py-20">
           <div className="container mx-auto px-4">
@@ -179,15 +176,15 @@ export default function FlyersPage() {
                 Beyond flyers and brochures, explore the full Del Webb North Ranch experience: current listings, floor plans, amenities, and the active adult lifestyle at North Ranch in North Las Vegas.
               </p>
               <p className="text-text-dark text-center">
-                <Link href="/buyers" className="text-primary hover:text-accent font-medium">For Buyers</Link>
+                <Link href="/buyers" className="text-primary hover:underline font-medium">For Buyers</Link>
                 {" · "}
-                <Link href="/sellers" className="text-primary hover:text-accent font-medium">For Sellers</Link>
+                <Link href="/sellers" className="text-primary hover:underline font-medium">For Sellers</Link>
                 {" · "}
-                <Link href="/community" className="text-primary hover:text-accent font-medium">Community & Area</Link>
+                <Link href="/community" className="text-primary hover:underline font-medium">Community & Area</Link>
                 {" · "}
-                <Link href="/homes-for-sale" className="text-primary hover:text-accent font-medium">Homes for Sale</Link>
+                <Link href="/homes-for-sale" className="text-primary hover:underline font-medium">Homes for Sale</Link>
                 {" · "}
-                <Link href="/schedule" className="text-primary hover:text-accent font-medium">Schedule a Tour</Link>
+                <Link href="/schedule" className="text-primary hover:underline font-medium">Schedule a Tour</Link>
               </p>
             </div>
           </div>
@@ -221,7 +218,6 @@ export default function FlyersPage() {
           </div>
         </section>
       </main>
-      <Footer />
     </>
   );
 }

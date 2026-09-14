@@ -1,9 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Script from "next/script";
 import Link from "next/link";
-import Navbar from "@/../components/navbar";
-import Footer from "@/../components/footer";
 import Breadcrumbs from "@/../components/Breadcrumbs";
 import ScrollAnimation from "@/../components/scroll-animation";
 import { Phone, MapPin, Calendar, Youtube, FileText, ExternalLink, Star, MapPinned, MessageSquare, Clock } from "lucide-react";
@@ -11,6 +8,7 @@ import { oldSiteData } from "@/lib/fetchOldSiteData";
 import ScheduleTour from "@/../components/ScheduleTour";
 import CalendlyInline from "@/../components/CalendlyInline";
 import RealScoutListings from "@/../components/RealScoutListings";
+import LocalVisitSection from "@/../components/LocalVisitSection";
 import {
   SITE_ORIGIN,
   GOOGLE_REVIEW_LINK,
@@ -21,6 +19,9 @@ import {
   GBP_BUSINESS_NAME,
   GBP_ADDRESS,
   GBP_HOURS_DISPLAY,
+  SITE_PHONE_SCHEMA,
+  SITE_EMAIL,
+  gbpPostalAddressSchema,
 } from "@/lib/site";
 import { metaDescriptionBlock, TITLE_SUFFIX } from "@/lib/hyperlocal";
 
@@ -58,16 +59,35 @@ export const metadata: Metadata = {
 };
 
 export default function ContactPage() {
+  const contactSchema = {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    name: `Contact & Schedule a Tour | ${GBP_BUSINESS_NAME}`,
+    url: `${SITE_ORIGIN}/contact`,
+    mainEntity: {
+      "@type": "RealEstateAgent",
+      name: GBP_BUSINESS_NAME,
+      telephone: SITE_PHONE_SCHEMA,
+      email: SITE_EMAIL,
+      address: gbpPostalAddressSchema(),
+    },
+  };
+
   return (
     <>
-      <Navbar />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(contactSchema).replace(/</g, "\\u003c"),
+        }}
+      />
       <Breadcrumbs
         items={[
           { label: "Del Webb North Ranch", href: "/" },
           { label: "Contact", href: "/contact" },
         ]}
       />
-      <main className="pt-16 md:pt-20">
+      <main>
         {/* Hero - exactly one H1 */}
         <section className="bg-primary text-white py-12 md:py-16 lg:py-20">
           <div className="container mx-auto px-4">
@@ -327,8 +347,8 @@ export default function ContactPage() {
             </div>
           </div>
         </section>
+        <LocalVisitSection heading="Find Us at Del Webb North Ranch" />
       </main>
-      <Footer />
     </>
   );
 }
