@@ -1,27 +1,27 @@
-import Link from 'next/link';
-import { Button } from '@/../components/ui/button';
+import Link from "next/link";
+import { Button } from "@/../components/ui/button";
+import PageHero from "@/../components/PageHero";
+import LocalVisitSection from "@/../components/LocalVisitSection";
 
 export default function NotFound() {
   return (
-    <>
-      <main className="min-h-screen flex items-center justify-center">
-        <div className="container mx-auto px-4 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-primary mb-4 font-playfair">
-            Floor Plan Not Found
-          </h1>
-          <p className="text-lg text-text-dark mb-8">
-            The floor plan you're looking for doesn't exist.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button asChild variant="default">
-              <Link href="/floor-plans">View All Floor Plans</Link>
-            </Button>
-            <Button asChild variant="outline">
-              <Link href="/">Go Home</Link>
-            </Button>
-          </div>
+    <main>
+      <PageHero
+        mediaKey="homes.haven6584"
+        title="Floor plan not found | Del Webb North Ranch 55+"
+        subtitle="That floor plan page does not exist. View all Cottage, Classic, and Retreat series homes in North Las Vegas."
+      />
+      <div className="container mx-auto px-4 py-16 text-center">
+        <div className="flex flex-col justify-center gap-4 sm:flex-row">
+          <Button asChild variant="default" className="min-h-[48px]">
+            <Link href="/floor-plans">View All Floor Plans</Link>
+          </Button>
+          <Button asChild variant="outline" className="min-h-[48px]">
+            <Link href="/">Go Home</Link>
+          </Button>
         </div>
-      </main>
-    </>
+      </div>
+      <LocalVisitSection heading="See floor plans in person at Del Webb North Ranch" />
+    </main>
   );
 }

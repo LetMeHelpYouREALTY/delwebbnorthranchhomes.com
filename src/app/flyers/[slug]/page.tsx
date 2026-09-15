@@ -9,6 +9,7 @@ import { SITE_ORIGIN } from "@/lib/site";
 import { TITLE_SUFFIX } from "@/lib/hyperlocal";
 import { mediaOpenGraph, mediaTwitterImages } from "@/lib/media";
 import PageHero from "@/../components/PageHero";
+import LocalVisitSection from "@/../components/LocalVisitSection";
 
 export async function generateStaticParams() {
   const flyers = getAllFlyers();
@@ -235,6 +236,7 @@ export default async function FlyerPage({
             </div>
           </div>
         </section>
+        <LocalVisitSection heading="Ask about this brochure at Del Webb North Ranch" />
       </main>
     </>
   );

@@ -10,6 +10,7 @@ import { mediaOpenGraph, mediaTwitterImages } from "@/lib/media";
 import RealScoutListings from "@/../components/RealScoutListings";
 import PageHero from "@/../components/PageHero";
 import LocalVisitSection from "@/../components/LocalVisitSection";
+import SectionPhoto from "@/../components/SectionPhoto";
 
 export const metadata: Metadata = {
   title: `Blog | ${TITLE_SUFFIX}`,
@@ -178,13 +179,12 @@ export default function BlogPage() {
         {/* Intro content - Del Webb North Ranch keyword variations */}
         <section className="py-12 md:py-16 bg-bg-light">
           <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
-              <h2 className="text-2xl md:text-3xl font-bold text-primary mb-6 font-playfair">
-                News, Tips, and Insights for Del Webb North Ranch
-              </h2>
-              <p className="text-text-dark mb-4 leading-relaxed">
-                Our blog covers the North Ranch 55+ community, active adult living in North Las Vegas, and practical advice for buyers and sellers interested in Del Webb North Ranch. From single-story floor plans and resort-style amenities to clubs, events, and Nevada lifestyle benefits, you&apos;ll find stories and guides that help you explore this premier 55+ community.
-              </p>
+            <div className="mx-auto max-w-6xl">
+              <SectionPhoto mediaKey="community.fullAerial" heading="News, Tips, and Insights for Del Webb North Ranch">
+                <p>
+                  Our blog covers the North Ranch 55+ community, active adult living in North Las Vegas, and practical advice for buyers and sellers interested in Del Webb North Ranch. From single-story floor plans and resort-style amenities to clubs, events, and Nevada lifestyle benefits, you&apos;ll find stories and guides that help you explore this premier 55+ community.
+                </p>
+              </SectionPhoto>
               <h3 className="text-xl font-bold text-primary mb-3 font-playfair">Community life at North Ranch</h3>
               <p className="text-text-dark mb-4 leading-relaxed">
                 Del Webb North Ranch isn&apos;t just a place to live—it&apos;s a vibrant neighborhood with a 10,000 sq ft clubhouse, pickleball courts, pools, and dozens of clubs and activities. We write about what makes the Del Webb North Ranch community special and how residents make the most of the North Ranch amenities and lifestyle.

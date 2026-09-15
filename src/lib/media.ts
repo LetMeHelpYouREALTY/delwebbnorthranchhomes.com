@@ -16,6 +16,10 @@ export function isCloudflareImagesEnabled(): boolean {
 /** Git-backed local path, or Cloudflare Images when the account hash is set. */
 export function mediaSrc(key: MediaKey, variant = DEFAULT_VARIANT): string {
   const asset = MEDIA[key];
+  const fallback = MEDIA["place.primary"].localPath;
+  if (!asset?.localPath) {
+    return fallback;
+  }
   const hash = process.env.NEXT_PUBLIC_CF_IMAGES_ACCOUNT_HASH;
   if (hash) {
     return `https://imagedelivery.net/${hash}/${asset.cfId}/${variant}`;
@@ -32,7 +36,7 @@ export function absoluteMediaUrl(key: MediaKey): string {
 }
 
 export function mediaAlt(key: MediaKey): string {
-  return MEDIA[key].alt;
+  return MEDIA[key]?.alt ?? MEDIA["place.primary"].alt;
 }
 
 export function mediaOpenGraph(key: MediaKey) {

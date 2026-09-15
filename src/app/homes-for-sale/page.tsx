@@ -171,9 +171,11 @@ export default async function HomesForSalePage() {
         <section className="py-12 md:py-16 lg:py-20 bg-white">
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto">
-              <h2 className="text-2xl md:text-3xl font-bold text-primary mb-8 text-center font-playfair">
-                Why Work With Dr. Jan Duffy
-              </h2>
+              <SectionPhoto mediaKey="clubhouse.greatRoom" heading="Why Work With Dr. Jan Duffy">
+                <p>
+                  Deep knowledge of Del Webb North Ranch listings, floor plans, and the North Las Vegas 55+ market—plus tours that start at the clubhouse campus.
+                </p>
+              </SectionPhoto>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
                 <div className="bg-stone-50 p-6 rounded-lg">
                   <h3 className="text-xl font-bold text-primary mb-3 font-playfair">

@@ -1,24 +1,26 @@
 import Link from "next/link";
+import PageHero from "@/../components/PageHero";
+import LocalVisitSection from "@/../components/LocalVisitSection";
 
 export default function VirtualTourNotFound() {
   return (
-    <>
-      <main className="min-h-[60vh] flex items-center justify-center px-4">
-        <div className="text-center max-w-md">
-          <h1 className="text-2xl md:text-3xl font-bold text-primary mb-4 font-playfair">
-            Virtual tour not found
-          </h1>
-          <p className="text-text-dark mb-6">
-            This virtual tour page doesn&apos;t exist or the tour isn&apos;t available yet.
-          </p>
+    <main>
+      <PageHero
+        mediaKey="homes.haven6584"
+        title="Virtual tour not found | Del Webb North Ranch 55+"
+        subtitle="This virtual tour is not available. Browse all model home tours or schedule an in-person visit in North Las Vegas."
+      />
+      <div className="container mx-auto flex min-h-[40vh] items-center justify-center px-4 py-12">
+        <div className="max-w-md text-center">
           <Link
             href="/virtual-tours"
-            className="inline-flex items-center justify-center px-6 py-3 bg-primary text-white font-semibold rounded-lg hover:bg-primary/90 transition-colors"
+            className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-lg bg-primary px-6 py-3 font-semibold text-white hover:bg-primary/90"
           >
             View all virtual tours
           </Link>
         </div>
-      </main>
-    </>
+      </div>
+      <LocalVisitSection heading="Tour this community in person at Del Webb North Ranch" />
+    </main>
   );
 }

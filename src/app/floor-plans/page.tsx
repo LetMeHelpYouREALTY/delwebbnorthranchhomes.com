@@ -13,6 +13,7 @@ import ScheduleTour from "@/../components/ScheduleTour";
 import RealScoutListings from "@/../components/RealScoutListings";
 import PageHero from "@/../components/PageHero";
 import LocalVisitSection from "@/../components/LocalVisitSection";
+import SectionPhoto from "@/../components/SectionPhoto";
 import { SITE_ORIGIN } from "@/lib/site";
 import { metaDescriptionBlock, TITLE_SUFFIX } from "@/lib/hyperlocal";
 import { mediaOpenGraph, mediaTwitterImages } from "@/lib/media";
@@ -249,12 +250,11 @@ export default function FloorPlansPage() {
         <section className="py-12 md:py-16 lg:py-20 bg-white">
           <div className="container mx-auto px-4">
             <div className="mb-8 md:mb-12">
-              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-primary mb-3 text-center font-playfair">
-                Cottage Series
-              </h2>
-              <p className="text-center text-text-dark max-w-2xl mx-auto">
-                {getHomesitesByCollection().cottage.count} homes | {getHomesitesByCollection().cottage.sqftRange} sq ft | Efficient, comfortable, easy to maintain
-              </p>
+              <SectionPhoto mediaKey="homes.haven6584" heading="Cottage Series">
+                <p>
+                  {getHomesitesByCollection().cottage.count} homes | {getHomesitesByCollection().cottage.sqftRange} sq ft | Efficient, comfortable, easy to maintain single-story living at Del Webb North Ranch in North Las Vegas.
+                </p>
+              </SectionPhoto>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
               {cottagePlans.map((plan, index) => (
@@ -268,12 +268,11 @@ export default function FloorPlansPage() {
         <section className="py-12 md:py-16 lg:py-20 bg-bg-light">
           <div className="container mx-auto px-4">
             <div className="mb-8 md:mb-12">
-              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-primary mb-3 text-center font-playfair">
-                Classic Series
-              </h2>
-              <p className="text-center text-text-dark max-w-2xl mx-auto">
-                {getHomesitesByCollection().classic.count} homes | {getHomesitesByCollection().classic.sqftRange} sq ft | Room to spread out with optional dens
-              </p>
+              <SectionPhoto mediaKey="community.fullAerial" heading="Classic Series" reverse>
+                <p>
+                  {getHomesitesByCollection().classic.count} homes | {getHomesitesByCollection().classic.sqftRange} sq ft | Room to spread out with optional dens in this North Las Vegas 55+ community.
+                </p>
+              </SectionPhoto>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
               {classicPlans.map((plan, index) => (
@@ -291,12 +290,11 @@ export default function FloorPlansPage() {
         <section className="py-12 md:py-16 lg:py-20 bg-white">
           <div className="container mx-auto px-4">
             <div className="mb-8 md:mb-12">
-              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-primary mb-3 text-center font-playfair">
-                Retreat Series
-              </h2>
-              <p className="text-center text-text-dark max-w-2xl mx-auto">
-                {getHomesitesByCollection().retreat.count} homes | {getHomesitesByCollection().retreat.sqftRange} sq ft | Spacious living for entertaining
-              </p>
+              <SectionPhoto mediaKey="amenities.campusDusk" heading="Retreat Series">
+                <p>
+                  {getHomesitesByCollection().retreat.count} homes | {getHomesitesByCollection().retreat.sqftRange} sq ft | Spacious living for entertaining at Del Webb North Ranch.
+                </p>
+              </SectionPhoto>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
               {retreatPlans.map((plan, index) => (

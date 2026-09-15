@@ -4,6 +4,9 @@ import { Button } from "@/../components/ui/button";
 import { Home, Phone, Search, FileText } from "lucide-react";
 import { SITE_ORIGIN, SITE_PHONE_TEL, SITE_PHONE_DISPLAY } from "@/lib/site";
 import { TITLE_SUFFIX } from "@/lib/hyperlocal";
+import PageHero from "@/../components/PageHero";
+import LocalVisitSection from "@/../components/LocalVisitSection";
+import { mediaOpenGraph, mediaTwitterImages } from "@/lib/media";
 
 export const metadata: Metadata = {
   title: `Something Went Wrong | ${TITLE_SUFFIX}`,
@@ -11,16 +14,29 @@ export const metadata: Metadata = {
     "This Del Webb North Ranch page could not load. Call Dr. Jan Duffy or return home to browse 55+ homes in North Las Vegas.",
   robots: { index: false, follow: true },
   alternates: { canonical: `${SITE_ORIGIN}/error` },
+  openGraph: {
+    title: `Something Went Wrong | ${TITLE_SUFFIX}`,
+    description:
+      "This Del Webb North Ranch page could not load. Call Dr. Jan Duffy about 55+ homes in North Las Vegas.",
+    url: `${SITE_ORIGIN}/error`,
+    images: [mediaOpenGraph("place.primary")],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: mediaTwitterImages("place.primary"),
+  },
 };
 
 export default function ErrorPage() {
   return (
-    <main className="flex min-h-screen items-center justify-center bg-white">
+    <main>
+      <PageHero
+        mediaKey="place.primary"
+        title="Something went wrong | Del Webb North Ranch 55+ | North Las Vegas"
+        subtitle={`We couldn't load this page. Call Dr. Jan Duffy at ${SITE_PHONE_DISPLAY} or use the links below.`}
+      />
       <div className="container mx-auto px-4 py-16 text-center">
         <div className="mx-auto max-w-2xl">
-          <h1 className="mb-4 font-playfair text-3xl font-bold text-primary md:text-4xl">
-            Something went wrong
-          </h1>
           <p className="mb-8 text-lg text-gray-600">
             We couldn&apos;t load this page. Use the links below, or call Dr. Jan Duffy at{" "}
             {SITE_PHONE_DISPLAY} about Del Webb North Ranch 55+ homes in North Las Vegas.
@@ -66,6 +82,7 @@ export default function ErrorPage() {
           </div>
         </div>
       </div>
+      <LocalVisitSection heading="Call or visit Del Webb North Ranch" />
     </main>
   );
 }

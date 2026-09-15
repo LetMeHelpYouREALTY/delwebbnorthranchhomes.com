@@ -15,8 +15,10 @@ import { getVirtualTourByModel, getVirtualTourSlug } from '@/lib/old-site-data';
 import { Bed, Bath, Square, Car, ArrowLeft, Phone, Play } from 'lucide-react';
 import ScheduleTour from '@/../components/ScheduleTour';
 import PageHero from '@/../components/PageHero';
+import LocalVisitSection from '@/../components/LocalVisitSection';
 import { SITE_ORIGIN, SITE_PHONE_TEL, SITE_PHONE_DISPLAY } from '@/lib/site';
 import { TITLE_SUFFIX } from '@/lib/hyperlocal';
+import { mediaOpenGraph, mediaTwitterImages, absoluteMediaUrl } from '@/lib/media';
 
 export async function generateStaticParams() {
   return getAllFloorPlanSlugs().map((slug) => ({ slug }));
@@ -60,14 +62,7 @@ export async function generateMetadata({
               alt: `${plan.name} floor plan`,
             },
           ]
-        : [
-            {
-              url: `${SITE_ORIGIN}/images/homes/haven-exterior.jpg`,
-              width: 1200,
-              height: 630,
-              alt: 'Single-story home at Del Webb North Ranch, North Las Vegas',
-            },
-          ],
+        : [mediaOpenGraph('homes.haven6584')],
     },
     twitter: {
       card: 'summary_large_image',
@@ -75,7 +70,7 @@ export async function generateMetadata({
       description: `${plan.sqft} sq ft ${plan.series} Series home in North Las Vegas 55+ community.`,
       images: plan.imageUrl
         ? [`${SITE_ORIGIN}${plan.imageUrl}`]
-        : [`${SITE_ORIGIN}/images/homes/haven-exterior.jpg`],
+        : mediaTwitterImages('homes.haven6584'),
     },
   };
 }
@@ -97,7 +92,7 @@ function ProductSchema({ plan }: { plan: FloorPlan }) {
     category: 'Real Estate',
     image: plan.imageUrl
       ? `${SITE_ORIGIN}${plan.imageUrl}`
-      : undefined,
+      : absoluteMediaUrl('homes.haven6584'),
     brand: {
       '@type': 'Brand',
       name: 'Del Webb North Ranch',
@@ -177,7 +172,7 @@ function VideoObjectSchema({
     '@type': 'VideoObject',
     name: `${plan.name} Virtual Tour | Del Webb North Ranch Model Home`,
     description: `${plan.name} ${plan.series} Series ${plan.sqft} sq ft model home virtual tour at Del Webb North Ranch 55+ community in North Las Vegas.`,
-    thumbnailUrl: plan.imageUrl ? `${SITE_ORIGIN}${plan.imageUrl}` : `${SITE_ORIGIN}/images/homes/haven-exterior.jpg`,
+    thumbnailUrl: plan.imageUrl ? `${SITE_ORIGIN}${plan.imageUrl}` : absoluteMediaUrl('homes.haven6584'),
     uploadDate: '2024-01-01',
     contentUrl: virtualTour.embedUrl,
     embedUrl: virtualTour.embedUrl,
@@ -261,7 +256,7 @@ export default async function FloorPlanPage({
         <ProductSchema plan={plan} />
         <BreadcrumbSchema plan={plan} />
         <PageHero
-          imageSrc={plan.imageUrl || '/images/homes/haven-exterior.jpg'}
+          imageSrc={plan.imageUrl || '/images/homes/haven-6584.jpg'}
           imageAlt={`${plan.name} floor plan at Del Webb North Ranch, North Las Vegas 55+ community`}
           title={`${plan.name} Floor Plan | ${plan.series} Series | Del Webb North Ranch`}
           subtitle={plan.description}
@@ -436,6 +431,7 @@ export default async function FloorPlanPage({
             </div>
           </div>
         </section>
+        <LocalVisitSection heading="See this floor plan at Del Webb North Ranch" />
       </main>
     </>
   );

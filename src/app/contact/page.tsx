@@ -124,7 +124,7 @@ export default function ContactPage() {
                     {/* Image */}
                     <div className="relative aspect-square rounded-lg overflow-hidden shadow-three bg-bg-light mb-6">
                       <MediaImage
-                        mediaKey="contact.hero"
+                        mediaKey="clubhouse.patioSunset"
                         fill
                         className="object-cover"
                         sizes="(max-width: 768px) 100vw, 50vw"

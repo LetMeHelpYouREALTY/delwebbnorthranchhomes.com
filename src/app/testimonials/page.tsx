@@ -8,6 +8,7 @@ import { metaDescriptionBlock, TITLE_SUFFIX } from '@/lib/hyperlocal';
 import RealScoutListings from '@/../components/RealScoutListings';
 import PageHero from '@/../components/PageHero';
 import LocalVisitSection from '@/../components/LocalVisitSection';
+import SectionPhoto from '@/../components/SectionPhoto';
 import { mediaOpenGraph, mediaTwitterImages } from '@/lib/media';
 
 export const metadata: Metadata = {
@@ -82,13 +83,17 @@ export default function TestimonialsPage() {
         {/* Why client voices matter */}
         <section className="py-12 md:py-16 bg-white">
           <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
-              <h2 className="text-2xl md:text-3xl font-bold text-primary mb-6 font-playfair">
-                Why Client Voices Matter at Del Webb North Ranch
-              </h2>
-              <p className="text-text-dark mb-4 leading-relaxed">
-                When you&apos;re considering a move to the North Ranch 55+ community, hearing from people who&apos;ve already bought or sold here can make a real difference. Our clients have worked with Dr. Jan Duffy to find their dream homes in Del Webb North Ranch—and their stories reflect what it&apos;s like to navigate North Ranch real estate, from first tour to closing.
-              </p>
+            <div className="mx-auto max-w-6xl">
+              <SectionPhoto mediaKey="clubhouse.billiards" heading="Why Client Voices Matter at Del Webb North Ranch">
+                <p>
+                  When you&apos;re considering a move to the North Ranch 55+ community, hearing from people who&apos;ve already bought or sold here can make a real difference. Our clients have worked with Dr. Jan Duffy to find their dream homes in Del Webb North Ranch—and their stories reflect what it&apos;s like to navigate North Ranch real estate, from first tour to closing.
+                </p>
+              </SectionPhoto>
+              <SectionPhoto mediaKey="amenities.campusDusk" heading="Choosing the Right 55+ Community in North Las Vegas" reverse>
+                <p>
+                  Deciding where to retire or downsize is a big step. Del Webb North Ranch is one of North Las Vegas&apos;s premier 55+ communities—with single-story homes, a full clubhouse and resort-style amenities, and an active social calendar. The testimonials on this page reflect real experiences from people who chose the North Ranch 55+ community for its combination of location, lifestyle, and value.
+                </p>
+              </SectionPhoto>
               <h3 className="text-xl font-bold text-primary mb-3 font-playfair">Real experiences in the community</h3>
               <p className="text-text-dark mb-4 leading-relaxed">
                 The testimonials below come from buyers and sellers who chose Del Webb North Ranch in North Las Vegas for its single-story living, resort-style amenities, and active adult lifestyle. They share how the Del Webb North Ranch community and North Ranch amenities fit their goals—and how working with a specialist made the process smoother.
@@ -100,12 +105,6 @@ export default function TestimonialsPage() {
               <h3 className="text-xl font-bold text-primary mb-3 font-playfair">Your story could be next</h3>
               <p className="text-text-dark mb-8 leading-relaxed">
                 If you&apos;re ready to explore homes for sale in Del Webb North Ranch, schedule a tour or get in touch. We&apos;d love to help you find your place in this 55+ active adult community in North Las Vegas—and, if you choose to work with us, we&apos;d be grateful to hear about your experience too.
-              </p>
-              <h2 className="text-2xl md:text-3xl font-bold text-primary mb-6 font-playfair">
-                Choosing the Right 55+ Community in North Las Vegas
-              </h2>
-              <p className="text-text-dark mb-4 leading-relaxed">
-                Deciding where to retire or downsize is a big step. Del Webb North Ranch is one of North Las Vegas&apos;s premier 55+ communities—with single-story homes, a full clubhouse and resort-style amenities, and an active social calendar. The testimonials on this page reflect real experiences from people who chose the North Ranch 55+ community for its combination of location, lifestyle, and value. They worked with Dr. Jan Duffy to find their Del Webb North Ranch home and to navigate North Ranch real estate from first visit to closing.
               </p>
               <h3 className="text-xl font-bold text-primary mb-3 font-playfair">Why buyers choose Del Webb North Ranch</h3>
               <p className="text-text-dark mb-4 leading-relaxed">

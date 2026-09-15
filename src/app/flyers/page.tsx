@@ -9,6 +9,7 @@ import { metaDescriptionBlock, TITLE_SUFFIX } from "@/lib/hyperlocal";
 import RealScoutListings from "@/../components/RealScoutListings";
 import PageHero from "@/../components/PageHero";
 import LocalVisitSection from "@/../components/LocalVisitSection";
+import SectionPhoto from "@/../components/SectionPhoto";
 import { mediaOpenGraph, mediaTwitterImages } from "@/lib/media";
 
 export const metadata: Metadata = {
@@ -60,13 +61,12 @@ export default function FlyersPage() {
         {/* Why download flyers */}
         <section className="py-12 md:py-16 bg-bg-light">
           <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
-              <h2 className="text-2xl md:text-3xl font-bold text-primary mb-6 font-playfair">
-                Why Download Del Webb North Ranch Flyers &amp; Brochures
-              </h2>
-              <p className="text-text-dark mb-6 leading-relaxed">
-                Whether you&apos;re exploring North Ranch for the first time or sharing the community with family, our printable flyers and brochures put key information about the Del Webb North Ranch 55+ community at your fingertips. From floor plans and amenities to area highlights, you can review details offline and share with others who might be considering this premier 55+ community in North Las Vegas.
-              </p>
+            <div className="mx-auto max-w-6xl">
+              <SectionPhoto mediaKey="community.fullAerial" heading="Why Download Del Webb North Ranch Flyers &amp; Brochures">
+                <p>
+                  Whether you&apos;re exploring North Ranch for the first time or sharing the community with family, our printable flyers and brochures put key information about the Del Webb North Ranch 55+ community at your fingertips. From floor plans and amenities to area highlights, you can review details offline and share with others who might be considering this premier 55+ community in North Las Vegas.
+                </p>
+              </SectionPhoto>
               <h3 className="text-xl font-bold text-primary mb-3 font-playfair">Community overview</h3>
               <p className="text-text-dark mb-4 leading-relaxed">
                 Del Webb North Ranch in North Las Vegas offers single-story living, resort-style amenities, and an active adult lifestyle. Our flyers summarize what makes North Ranch real estate and the Del Webb North Ranch clubhouse so appealing—so you can compare options and plan your visit or move with confidence.

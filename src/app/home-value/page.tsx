@@ -9,6 +9,7 @@ import { sellerCtaCopy, sellerFaq, sellerValueProps } from "@/lib/hyperlocalSell
 import RealScoutListings from "@/../components/RealScoutListings";
 import PageHero from "@/../components/PageHero";
 import LocalVisitSection from "@/../components/LocalVisitSection";
+import SectionPhoto from "@/../components/SectionPhoto";
 
 const sellerFaqSchema = {
   "@context": "https://schema.org",
@@ -91,9 +92,11 @@ export default function HomeValuePage() {
         <section className="py-12 md:py-16 bg-bg-light">
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto">
-              <h2 className="text-2xl md:text-3xl font-bold text-primary mb-8 text-center font-playfair">
-                Why Get a Home Value Estimate?
-              </h2>
+              <SectionPhoto mediaKey="homes.haven6584" heading="Why Get a Home Value Estimate?">
+                <p>
+                  A current estimate for your Del Webb North Ranch or North Las Vegas home helps you plan listing price, timing, and next steps. Dr. Jan Duffy specializes in 55+ resale in zip code 89086.
+                </p>
+              </SectionPhoto>
               <ul className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 max-w-3xl mx-auto list-none">
                 {sellerValueProps.map((prop, i) => (
                   <li key={i} className="flex items-start gap-4 bg-white p-6 rounded-lg shadow-two">

@@ -163,5 +163,60 @@
     "localPath": "/images/clubhouse/great-room.jpg",
     "cfId": "dwnr/agent-office",
     "alt": "Clubhouse great room at Del Webb North Ranch in North Las Vegas, meeting place for tours with Dr. Jan Duffy"
+  },
+  "amenities.pickleballOverhead": {
+    "localPath": "/images/amenities/pickleball-overhead.jpg",
+    "cfId": "dwnr/amenities-pickleball-overhead",
+    "alt": "Overhead view of four lighted pickleball courts at Del Webb North Ranch in North Las Vegas"
+  },
+  "clubhouse.billiards": {
+    "localPath": "/images/clubhouse/billiards.jpg",
+    "cfId": "dwnr/clubhouse-billiards",
+    "alt": "Billiards room inside the Del Webb North Ranch clubhouse in North Las Vegas"
+  },
+  "place.signClose": {
+    "localPath": "/images/hero/monument-sign-close.jpg",
+    "cfId": "dwnr/place-sign-close",
+    "alt": "Del Webb North Ranch monument sign with palms at 2290 Beauty Vista Avenue, North Las Vegas, NV 89086"
+  },
+  "amenities.fencedLawn": {
+    "localPath": "/images/amenities/fenced-lawn.jpg",
+    "cfId": "dwnr/amenities-fenced-lawn",
+    "alt": "Fenced lawn, walking paths, and pickleball courts at Del Webb North Ranch 55+ community in North Las Vegas"
+  },
+  "amenities.campusDusk": {
+    "localPath": "/images/amenities/campus-dusk.jpg",
+    "cfId": "dwnr/amenities-campus-dusk",
+    "alt": "Clubhouse, event lawn, bocce, and pool at dusk at Del Webb North Ranch in North Las Vegas"
+  },
+  "homes.haven6584": {
+    "localPath": "/images/homes/haven-6584.jpg",
+    "cfId": "dwnr/homes-haven-6584",
+    "alt": "Single-story Haven home at 6584 in Del Webb North Ranch, North Las Vegas 55+ community"
+  },
+  "amenities.lapPoolPalms": {
+    "localPath": "/images/amenities/lap-pool-palms.jpg",
+    "cfId": "dwnr/amenities-lap-pool-palms",
+    "alt": "Heated lap pool and lounge chairs beside the Del Webb North Ranch clubhouse in North Las Vegas"
+  },
+  "community.fullAerial": {
+    "localPath": "/images/hero/campus-overhead.jpg",
+    "cfId": "dwnr/community-full-aerial",
+    "alt": "Overhead of Del Webb North Ranch clubhouse, pools, pickleball, bocce, and single-story homes in North Las Vegas"
+  },
+  "amenities.pickleballDusk": {
+    "localPath": "/images/amenities/pickleball-dusk.jpg",
+    "cfId": "dwnr/amenities-pickleball-dusk",
+    "alt": "Lighted pickleball courts at dusk beside the Del Webb North Ranch clubhouse in North Las Vegas"
+  },
+  "amenities.poolDeck": {
+    "localPath": "/images/amenities/pool-deck.jpg",
+    "cfId": "dwnr/amenities-pool-deck",
+    "alt": "Resort pool and spa deck at the Del Webb North Ranch clubhouse in North Las Vegas"
+  },
+  "clubhouse.patioSunset": {
+    "localPath": "/images/clubhouse/patio-sunset.jpg",
+    "cfId": "dwnr/clubhouse-patio-sunset",
+    "alt": "Clubhouse patio at sunset at Del Webb North Ranch, 2290 Beauty Vista Avenue, North Las Vegas"
   }
 }

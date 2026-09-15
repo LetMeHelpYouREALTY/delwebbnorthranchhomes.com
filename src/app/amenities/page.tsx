@@ -5,7 +5,7 @@ import { Button } from "@/../components/ui/button";
 import Link from "next/link";
 import ScrollAnimation from "@/../components/scroll-animation";
 import { oldSiteData } from "@/lib/old-site-data";
-import { getAmenities, getCommunityInfo } from "@/lib/communityData";
+import { getAmenities } from "@/lib/communityData";
 import RealScoutListings from "@/../components/RealScoutListings";
 import PageHero from "@/../components/PageHero";
 import LocalVisitSection from "@/../components/LocalVisitSection";
@@ -64,7 +64,7 @@ const amenities = [
       {
         name: "Heated Lap Pool",
         description: "Perfect for morning swims and year-round exercise",
-        image: "/images/amenities/lap-pool.jpeg",
+        image: "/images/amenities/lap-pool-palms.jpg",
       },
       {
         name: "Fitness Center",
@@ -74,7 +74,7 @@ const amenities = [
       {
         name: "Pickleball Courts",
         description: "Lighted courts for evening games and tournaments",
-        image: "/images/amenities/pickleball-courts.jpeg",
+        image: "/images/amenities/pickleball-overhead.jpg",
       },
       {
         name: "Bocce Courts",
@@ -129,9 +129,9 @@ const amenities = [
         image: "/images/amenities/event-lawn-club.jpeg",
       },
       {
-        name: "Walking Paths & Courts",
-        description: "Paved walking paths, pickleball courts, and turf lawns around the amenities campus",
-        image: "/images/lifestyle/pickleball-aerial.jpg",
+        name: "Dog Park",
+        description: "Fenced lawn and walking paths for pets, next to pickleball courts",
+        image: "/images/amenities/dog-park.jpeg",
       },
     ],
   },

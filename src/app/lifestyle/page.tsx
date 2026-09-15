@@ -226,15 +226,12 @@ export default function LifestylePage() {
         {/* Nearby Attractions & Distances */}
         <section className="py-12 md:py-16 bg-bg-light">
           <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
-              <div className="text-center mb-8">
-                <h2 className="text-2xl md:text-3xl font-bold text-primary mb-4 font-playfair">
-                  Conveniently Located
-                </h2>
-                <p className="text-lg text-text-dark">
-                  Del Webb North Ranch is perfectly positioned near everything you need and want.
+            <div className="max-w-6xl mx-auto">
+              <SectionPhoto mediaKey="place.signClose" heading="Conveniently Located">
+                <p>
+                  Del Webb North Ranch at 2290 Beauty Vista Avenue, North Las Vegas, NV 89086 sits near Aliante, Centennial Hills, Craig Ranch Regional Park, and VA Southern Nevada Hospital.
                 </p>
-              </div>
+              </SectionPhoto>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {Object.entries(getDistances()).map(([key, distance]) => (
                   <div key={key} className="bg-white p-6 rounded-lg shadow-two">

@@ -5,14 +5,14 @@ import Link from "next/link";
 import ScrollAnimation from "@/../components/scroll-animation";
 import { Phone, MapPin, Award, Users, Home, Calendar } from "lucide-react";
 import { getAllTestimonials } from "@/lib/old-site-data";
-import { getCommunityInfo } from "@/lib/communityData";
 import { Quote } from "lucide-react";
 import ScheduleTour from "@/../components/ScheduleTour";
 import RealScoutListings from "@/../components/RealScoutListings";
 import LocalVisitSection from "@/../components/LocalVisitSection";
 import PageHero from "@/../components/PageHero";
 import MediaImage from "@/../components/MediaImage";
-import { SITE_ORIGIN, SITE_PHONE_TEL, SITE_PHONE_DISPLAY, SITE_PHONE_SCHEMA } from "@/lib/site";
+import SectionPhoto from "@/../components/SectionPhoto";
+import { SITE_ORIGIN, SITE_PHONE_TEL, SITE_PHONE_DISPLAY, SITE_PHONE_SCHEMA, gbpFormattedAddress } from "@/lib/site";
 import { metaDescriptionBlock, TITLE_SUFFIX } from "@/lib/hyperlocal";
 import { mediaOpenGraph, mediaTwitterImages } from "@/lib/media";
 
@@ -197,11 +197,8 @@ export default function AboutPage() {
         {/* Community History Section */}
         <section className="py-12 md:py-16 lg:py-20 bg-white">
           <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
-              <h2 className="text-2xl md:text-3xl font-bold text-primary mb-6 text-center font-playfair">
-                About Del Webb North Ranch
-              </h2>
-              <div className="prose prose-lg max-w-none space-y-4 text-text-dark">
+            <div className="mx-auto max-w-6xl">
+              <SectionPhoto mediaKey="community.fullAerial" heading="About Del Webb North Ranch">
                 <p>
                   Del Webb North Ranch is a premier 55+ active adult gated community developed by Del Webb (Pulte Homes) in North Las Vegas, Nevada.
                 </p>
@@ -211,7 +208,7 @@ export default function AboutPage() {
                 <p>
                   The community features three collections: Cottage Series (132 homes, 1,285-1,509 sq ft), Classic Series (132 homes, 1,451-1,770 sq ft), and Retreat Series (130 homes, 1,716-2,015 sq ft). Explore all <Link href="/floor-plans" className="text-primary hover:underline underline">9 floor plans</Link> available. Homes are in a gated community with virtual concierge and roving security. Discover the <Link href="/amenities" className="text-primary hover:underline underline">resort-style amenities</Link> that make this community special.
                 </p>
-              </div>
+              </SectionPhoto>
             </div>
           </div>
         </section>
@@ -219,15 +216,11 @@ export default function AboutPage() {
         {/* Bio Section */}
         <section className="py-12 md:py-16 lg:py-20 bg-bg-light">
           <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
-              <h2 className="text-2xl md:text-3xl font-bold text-primary mb-6 text-center font-playfair">
-                A Passion for Helping You Find Home
-              </h2>
-              <div className="prose prose-lg max-w-none space-y-4 text-text-dark">
+            <div className="mx-auto max-w-6xl">
+              <SectionPhoto mediaKey="clubhouse.patioSunset" heading="A Passion for Helping You Find Home" reverse>
                 <p>
-                  Hi, I'm Dr. Jan Duffy 👋 A passionate REALTOR® specializing in
-                  helping clients find their dream homes in vibrant 55+
-                  communities. Let's connect! 🏡
+                  Hi, I&apos;m Dr. Jan Duffy. I specialize in helping clients find
+                  single-story homes in this 55+ community in North Las Vegas.
                 </p>
                 <p>
                   I understand that buying a home in a 55+ community is more
@@ -246,7 +239,7 @@ export default function AboutPage() {
                   to push you into a sale—I'm here to help you make an informed
                   decision about your next chapter.
                 </p>
-              </div>
+              </SectionPhoto>
             </div>
           </div>
         </section>
@@ -278,9 +271,7 @@ export default function AboutPage() {
                   <MapPin className="w-8 h-8 text-primary mx-auto mb-4" />
                   <h3 className="font-semibold text-primary mb-2">Location</h3>
                   <p className="text-text-dark text-sm">
-                    9406 Del Webb Boulevard
-                    <br />
-                    Las Vegas, NV 89134
+                    {gbpFormattedAddress()}
                   </p>
                 </div>
               </div>

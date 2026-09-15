@@ -63,7 +63,7 @@ export default function AmenitiesPreviewSection() {
     items: string[];
   }> = [
     {
-      mediaKey: "amenities.fitness",
+      mediaKey: "amenities.pickleballDusk",
       icon: <Activity className="w-8 h-8 text-success" />,
       title: "Stay Active",
       items: [
@@ -73,7 +73,7 @@ export default function AmenitiesPreviewSection() {
       ],
     },
     {
-      mediaKey: "clubhouse.eventHall",
+      mediaKey: "clubhouse.patioSunset",
       icon: <Users className="w-8 h-8 text-success" />,
       title: "Stay Connected",
       items: [
@@ -83,7 +83,7 @@ export default function AmenitiesPreviewSection() {
       ],
     },
     {
-      mediaKey: "amenities.poolPalms",
+      mediaKey: "amenities.poolDeck",
       icon: <Sparkles className="w-8 h-8 text-success" />,
       title: "Stay Relaxed",
       items: [

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import {
   Phone,
   MapPin,
@@ -357,6 +358,17 @@ export default function Footer() {
         <div className="mt-8 text-center text-sm text-gray-400">
           <p>© {new Date().getFullYear()} {GBP_BUSINESS_NAME}. All rights reserved.</p>
           <p className="mt-1">Berkshire Hathaway HomeServices Nevada Properties | S.0197614.LLC</p>
+          <p className="mx-auto mt-4 flex max-w-xl items-center justify-center gap-3 text-left">
+            <Image
+              src="/images/logo/equal-housing.svg"
+              alt="Equal Housing Opportunity"
+              width={40}
+              height={40}
+            />
+            <span>
+              Equal Housing Opportunity. We do business in accordance with the Fair Housing Act.
+            </span>
+          </p>
         </div>
       </div>
     </footer>

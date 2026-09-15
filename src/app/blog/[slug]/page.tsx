@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import Breadcrumbs from "@/../components/Breadcrumbs";
 import PageHero from "@/../components/PageHero";
+import LocalVisitSection from "@/../components/LocalVisitSection";
 import { Button } from "@/../components/ui/button";
 import { Calendar, ArrowLeft, ArrowRight } from "lucide-react";
 import { SITE_ORIGIN, GBP_BUSINESS_NAME } from "@/lib/site";
@@ -399,6 +400,7 @@ export default async function BlogPostPage({
             </div>
           </div>
         </section>
+        <LocalVisitSection heading="Visit Del Webb North Ranch in North Las Vegas" />
       </main>
     </>
   );
