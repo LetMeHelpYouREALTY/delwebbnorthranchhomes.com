@@ -1,7 +1,5 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
-import Navbar from '@/../components/navbar';
-import Footer from '@/../components/footer';
 import Breadcrumbs from '@/../components/Breadcrumbs';
 import FAQAccordion from '@/../components/FAQAccordion';
 import { getAllQuestions } from '@/lib/faqData';
@@ -10,6 +8,10 @@ import { SITE_ORIGIN, SITE_PHONE_TEL, SITE_PHONE_DISPLAY } from '@/lib/site';
 import { altPrefix, metaDescriptionBlock, TITLE_SUFFIX } from '@/lib/hyperlocal';
 import Link from 'next/link';
 import RealScoutListings from '@/../components/RealScoutListings';
+import PageHero from '@/../components/PageHero';
+import LocalVisitSection from '@/../components/LocalVisitSection';
+import SectionPhoto from '@/../components/SectionPhoto';
+import { mediaOpenGraph, mediaTwitterImages, mediaSrc, mediaAlt } from '@/lib/media';
 
 export const metadata: Metadata = {
   title: `Frequently Asked Questions | ${TITLE_SUFFIX}`,
@@ -27,20 +29,13 @@ export const metadata: Metadata = {
     siteName: TITLE_SUFFIX,
     locale: 'en_US',
     type: 'website',
-    images: [
-      {
-        url: `${SITE_ORIGIN}/images/amenities/resort-pool.jpeg`,
-        width: 1200,
-        height: 630,
-        alt: altPrefix('Resort-style pool'),
-      },
-    ],
+    images: [mediaOpenGraph('faq.hero')],
   },
   twitter: {
     card: 'summary_large_image',
     title: `Frequently Asked Questions | ${TITLE_SUFFIX}`,
     description: 'Find answers about Del Webb North Ranch 55+ community in North Las Vegas.',
-    images: [`${SITE_ORIGIN}/images/amenities/resort-pool.jpeg`],
+    images: mediaTwitterImages('faq.hero'),
   },
 };
 
@@ -73,51 +68,34 @@ const faqSchema = {
 export default function FAQPage() {
   return (
     <>
-      <Navbar />
       <Breadcrumbs
         items={[
           { label: "Del Webb North Ranch", href: "/" },
           { label: "FAQ", href: "/faq" },
         ]}
       />
-      <main className="min-h-screen bg-white pt-16 md:pt-20">
+      <main className="min-h-screen bg-white">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema).replace(/</g, '\\u003c') }}
         />
-        {/* Hero Section */}
-        <section className="relative bg-stone-100 py-16 md:py-24 overflow-hidden">
-          <div className="absolute inset-0 opacity-10">
-            <Image
-              src="/images/amenities/resort-pool.jpeg"
-              alt={altPrefix('Resort-style pool')}
-              fill
-              className="object-cover"
-              priority
-            />
-          </div>
-          <div className="relative max-w-4xl mx-auto px-4 text-center z-10">
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 font-playfair">
-              Frequently Asked Questions | Del Webb North Ranch 55+ Community
-            </h1>
-            <p className="text-xl text-gray-600">
-              Everything you need to know about Del Webb North Ranch
-            </p>
-          </div>
-        </section>
+        <PageHero
+          mediaKey="faq.hero"
+          title="Frequently Asked Questions | Del Webb North Ranch 55+ Community"
+          subtitle="Everything you need to know about Del Webb North Ranch"
+        />
 
         {/* Office RealScout widget - directly below hero */}
         <RealScoutListings h2Text="Homes for Sale at Del Webb North Ranch | North Las Vegas 55+ Listings" />
 
         {/* FAQ topics intro */}
         <section className="py-12 md:py-16 bg-white border-t border-stone-200">
-          <div className="max-w-4xl mx-auto px-4">
-            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6 font-playfair">
-              Common Topics About Del Webb North Ranch
-            </h2>
-            <p className="text-gray-600 mb-8 leading-relaxed">
-              Below you&apos;ll find answers about the North Ranch 55+ community, from age requirements and HOA fees to amenities and resale homes. We also cover North Las Vegas and what makes Del Webb North Ranch a premier 55+ active adult community.
-            </p>
+          <div className="max-w-6xl mx-auto px-4">
+            <SectionPhoto mediaKey="place.signClose" heading="Common Topics About Del Webb North Ranch">
+              <p>
+                Below you&apos;ll find answers about the North Ranch 55+ community, from age requirements and HOA fees to amenities and resale homes. We also cover North Las Vegas and what makes Del Webb North Ranch a premier 55+ active adult community.
+              </p>
+            </SectionPhoto>
             <h3 className="text-xl font-bold text-primary mb-3 font-playfair">Community and age requirements</h3>
             <p className="text-gray-600 mb-4 leading-relaxed">
               Del Webb North Ranch is an age-qualified 55+ community. Our FAQ covers who can buy and live in the community, guest policies, and how the Del Webb North Ranch community is managed.
@@ -130,14 +108,13 @@ export default function FAQPage() {
             <p className="text-gray-600 mb-8 leading-relaxed">
               North Ranch in North Las Vegas offers easy access to healthcare, shopping, and recreation. Our North Las Vegas 55+ questions section covers area benefits and what to expect when living in this premier 55+ community.
             </p>
-            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6 font-playfair">
-              More About Del Webb North Ranch
-            </h2>
+            <SectionPhoto mediaKey="community.fullAerial" heading="More About Del Webb North Ranch">
+              <p>
+                Del Webb North Ranch is a gated, age-qualified 55+ community developed by Del Webb (Pulte Homes) in North Las Vegas, Nevada. The community was built out between 2020 and 2024 and includes 394 single-story homes across three series: Cottage, Classic, and Retreat. The Del Webb North Ranch clubhouse—a 10,000 sq ft amenity center—opened in October 2021 and serves as the social and recreational heart of the North Ranch 55+ community. Residents enjoy a resort-style pool, heated lap pool, fitness center, pickleball courts, bocce courts, event lawn, and multiple indoor spaces for clubs and gatherings.
+              </p>
+            </SectionPhoto>
             <p className="text-gray-600 mb-4 leading-relaxed">
-              Del Webb North Ranch is a gated, age-qualified 55+ community developed by Del Webb (Pulte Homes) in North Las Vegas, Nevada. The community was built out between 2020 and 2024 and includes 394 single-story homes across three series: Cottage, Classic, and Retreat. The Del Webb North Ranch clubhouse—a 10,000 sq ft amenity center—opened in October 2021 and serves as the social and recreational heart of the North Ranch 55+ community. Residents enjoy a resort-style pool, heated lap pool, fitness center, pickleball courts, bocce courts, event lawn, and multiple indoor spaces for clubs and gatherings.
-            </p>
-            <p className="text-gray-600 mb-4 leading-relaxed">
-              North Ranch real estate ranges from approximately 1,285 to 2,015 square feet, with two or three bedrooms, two to two-and-a-half baths, and two-car garages. All homes at Del Webb North Ranch are single-story, with low-maintenance landscaping managed by the HOA. The North Ranch HOA fee is $215 per month (billed quarterly) and covers common area maintenance, the clubhouse and amenities, and security. The community is in North Las Vegas zip code 89086, with convenient access to shopping, healthcare, and major highways—while still offering a quiet, active adult environment that defines the Del Webb North Ranch lifestyle.
+              North Ranch real estate ranges from approximately 1,285 to 2,015 square feet, with two or three bedrooms, two to two-and-a-half baths, and two-car garages. All homes at Del Webb North Ranch are single-story, with low-maintenance landscaping managed by the HOA. The North Ranch HOA fee is $215 per month (billed quarterly) and covers common area maintenance, the clubhouse and amenities, and security. The community is in North Las Vegas zip code 89086, with convenient access to shopping, healthcare, and major highways—and a 55+ active adult lifestyle at Del Webb North Ranch.
             </p>
             <p className="text-gray-600 leading-relaxed">
               Whether you&apos;re comparing Del Webb North Ranch to other 55+ communities in North Las Vegas or you&apos;re ready to dive into resale listings and floor plans, the FAQ below and the North Las Vegas 55+ questions section will help you get clear answers. For the latest availability and personalized advice, browse the homes for sale in the listings above or contact Dr. Jan Duffy, your Del Webb North Ranch specialist.
@@ -207,8 +184,8 @@ export default function FAQPage() {
                 {/* Community Sign */}
                 <div className="relative aspect-[4/3] rounded-lg overflow-hidden shadow-lg">
                   <Image
-                    src="/images/hero/community-sign.jpg"
-                    alt={altPrefix('Gated community entrance')}
+                    src={mediaSrc('place.primary')}
+                    alt={mediaAlt('place.primary')}
                     fill
                     className="object-cover"
                     sizes="(max-width: 1024px) 100vw, 33vw"
@@ -274,8 +251,8 @@ export default function FAQPage() {
             </div>
           </div>
         </section>
+        <LocalVisitSection heading="Get answers in person at Del Webb North Ranch" />
       </main>
-      <Footer />
     </>
   );
 }

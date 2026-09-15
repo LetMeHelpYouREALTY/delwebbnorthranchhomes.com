@@ -1,15 +1,17 @@
 import type { Metadata } from "next";
-import Navbar from "@/../components/navbar";
-import Footer from "@/../components/footer";
 import Link from "next/link";
 import { FileText, Home, Search, Building, MapPin, Users, BookOpen, HelpCircle, Phone, Calendar, MessageSquare, Shield } from "lucide-react";
 import { SITE_ORIGIN } from "@/lib/site";
 import { TITLE_SUFFIX } from "@/lib/hyperlocal";
+import Breadcrumbs from "@/../components/Breadcrumbs";
+import PageHero from "@/../components/PageHero";
+import LocalVisitSection from "@/../components/LocalVisitSection";
+import { mediaOpenGraph, mediaTwitterImages } from "@/lib/media";
 
 export const metadata: Metadata = {
   title: `Sitemap | ${TITLE_SUFFIX}`,
   description:
-    "Complete sitemap of Del Webb North Ranch website. Find all pages including homes for sale, floor plans, amenities, lifestyle, and more.",
+    "Sitemap for Del Webb North Ranch, a 55+ community in North Las Vegas. Find homes for sale, floor plans, amenities, lifestyle, and tour pages.",
   alternates: {
     canonical: `${SITE_ORIGIN}/sitemap-page`,
   },
@@ -20,11 +22,13 @@ export const metadata: Metadata = {
     siteName: TITLE_SUFFIX,
     locale: "en_US",
     type: "website",
+    images: [mediaOpenGraph("legal.hero")],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "Sitemap | Del Webb North Ranch",
-    description: "Complete navigation guide to our website.",
+    description: "Complete navigation guide to Del Webb North Ranch 55+ pages in North Las Vegas.",
+    images: mediaTwitterImages("legal.hero"),
   },
   robots: {
     index: true,
@@ -84,21 +88,18 @@ const sitePages = [
 export default function SitemapPage() {
   return (
     <>
-      <Navbar />
-      <main className="pt-16 md:pt-20 min-h-screen bg-white">
-        {/* Hero Section */}
-        <section className="bg-stone-100 py-12 md:py-16 lg:py-20">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto text-center">
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 font-playfair">
-                Site Map
-              </h1>
-              <p className="text-lg md:text-xl text-gray-600">
-                Find all pages and resources on Del Webb North Ranch website
-              </p>
-            </div>
-          </div>
-        </section>
+      <Breadcrumbs
+        items={[
+          { label: "Del Webb North Ranch", href: "/" },
+          { label: "Sitemap", href: "/sitemap-page" },
+        ]}
+      />
+      <main className="min-h-screen bg-white">
+        <PageHero
+          mediaKey="legal.hero"
+          title="Sitemap | Del Webb North Ranch 55+ | North Las Vegas"
+          subtitle="Find every page on the Del Webb North Ranch website, from homes for sale to amenities and tours."
+        />
 
         {/* Sitemap Content */}
         <section className="py-12 md:py-16">
@@ -152,7 +153,7 @@ export default function SitemapPage() {
                       href="/sitemap.xml"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-primary hover:text-accent transition-colors font-medium"
+                      className="inline-flex items-center gap-2 text-primary hover:underline transition-colors font-medium"
                     >
                       <FileText className="w-4 h-4" />
                       {SITE_ORIGIN}/sitemap.xml
@@ -184,8 +185,8 @@ export default function SitemapPage() {
             </div>
           </div>
         </section>
+        <LocalVisitSection heading="Visit Del Webb North Ranch in North Las Vegas" />
       </main>
-      <Footer />
     </>
   );
 }

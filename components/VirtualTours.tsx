@@ -120,7 +120,7 @@ export default function VirtualTours() {
                 <p className="mt-4">
                   <Link
                     href={`/virtual-tours/${tourSlug(selectedModel.model)}`}
-                    className="text-primary hover:text-accent font-medium"
+                    className="text-primary hover:underline font-medium"
                   >
                     Watch on dedicated video page →
                   </Link>

@@ -1,6 +1,4 @@
 import type { Metadata } from "next";
-import Navbar from "@/../components/navbar";
-import Footer from "@/../components/footer";
 import Breadcrumbs from "@/../components/Breadcrumbs";
 import Link from "next/link";
 import { Button } from "@/../components/ui/button";
@@ -8,8 +6,12 @@ import ProblemSection from "@/../components/sections/problem-section";
 import SolutionSection from "@/../components/sections/solution-section";
 import ValuePropsSection from "@/../components/sections/value-props";
 import RealScoutListings from "@/../components/RealScoutListings";
+import PageHero from "@/../components/PageHero";
+import SectionPhoto from "@/../components/SectionPhoto";
+import LocalVisitSection from "@/../components/LocalVisitSection";
 import { SITE_ORIGIN } from "@/lib/site";
 import { metaDescriptionBlock, TITLE_SUFFIX } from "@/lib/hyperlocal";
+import { mediaOpenGraph, mediaTwitterImages } from "@/lib/media";
 
 export const metadata: Metadata = {
   title: `Why Choose Del Webb North Ranch | ${TITLE_SUFFIX}`,
@@ -24,38 +26,31 @@ export const metadata: Metadata = {
     siteName: TITLE_SUFFIX,
     locale: "en_US",
     type: "website",
+    images: [mediaOpenGraph("whyChooseUs.hero")],
   },
   twitter: {
     card: "summary_large_image",
     title: `Why Choose Del Webb North Ranch | ${TITLE_SUFFIX}`,
     description: "Why active adults choose Del Webb North Ranch in North Las Vegas.",
+    images: mediaTwitterImages("whyChooseUs.hero"),
   },
 };
 
 export default function WhyChooseUsPage() {
   return (
     <>
-      <Navbar />
-      <main className="pt-16 md:pt-20">
+      <main>
         <Breadcrumbs
           items={[
             { label: "Del Webb North Ranch", href: "/" },
             { label: "Why Choose Us", href: "/why-choose-us" },
           ]}
         />
-        {/* Hero - exactly one H1 */}
-        <section className="bg-primary text-white py-12 md:py-16 lg:py-20">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto text-center">
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 font-playfair">
-                Why Choose Del Webb North Ranch?
-              </h1>
-              <p className="text-lg md:text-xl text-gray-100 leading-relaxed">
-                A 55+ gated community in North Las Vegas built for people who want to live, not just exist.
-              </p>
-            </div>
-          </div>
-        </section>
+        <PageHero
+          mediaKey="whyChooseUs.hero"
+          title="Why Choose Del Webb North Ranch?"
+          subtitle="A 55+ gated community in North Las Vegas built for people who want to live, not just exist."
+        />
 
         {/* Office RealScout widget - below hero */}
         <RealScoutListings h2Text="Homes for Sale at Del Webb North Ranch | North Las Vegas 55+ Listings" />
@@ -63,25 +58,22 @@ export default function WhyChooseUsPage() {
         {/* Long-form: Del Webb North Ranch variations, H2/H3, 1500+ words */}
         <section className="py-12 md:py-16 bg-bg-light">
           <div className="container mx-auto px-4">
-            <div className="max-w-3xl mx-auto prose prose-lg max-w-none text-text-dark">
-              <h2 className="text-2xl md:text-3xl font-bold text-primary mb-6 font-playfair">
-                What Makes Del Webb North Ranch Different
-              </h2>
-              <p className="mb-6">
-                Del Webb North Ranch is a 55+ active adult gated community in North Las Vegas with 394 single-story homes on 80 acres. Unlike newer developments still waiting on amenities, North Ranch is fully built: the 10,000 sq ft clubhouse is open, the resort-style pool and pickleball courts are ready, and the fitness center and social clubs are in full swing. When you choose Del Webb North Ranch, you&apos;re choosing a community that&apos;s complete—so you can start living from day one. North Ranch real estate is in demand because this premier 55+ community in North Las Vegas offers single-story living, low maintenance, and neighbors who chose the same lifestyle.
-              </p>
-              <h3 className="text-xl font-bold text-primary mt-10 mb-4 font-playfair">
-                Single-Story Living at North Ranch
-              </h3>
-              <p className="mb-6">
-                Every home at Del Webb North Ranch is single-story. Floor plans span the Cottage, Classic, and Retreat series from about 1,285 to 2,015 square feet, with two or three bedrooms, open layouts, and attached two-car garages. No stairs means peace of mind now and later—and the North Ranch community is designed so you can age in place without worrying about steps or upkeep. The Del Webb North Ranch clubhouse and amenities are all built for active adults, so whether you&apos;re into pickleball, fitness, or social clubs, North Ranch has it. View current homes for sale at Del Webb North Ranch in the listings above.
-              </p>
-              <h2 className="text-2xl md:text-3xl font-bold text-primary mt-12 mb-6 font-playfair">
-                North Las Vegas and Del Webb North Ranch
-              </h2>
-              <p className="mb-6">
-                North Las Vegas offers no state income tax, strong healthcare (VA Southern Nevada Hospital, Centennial Hills Hospital), and outdoor recreation like Craig Ranch Regional Park and Lake Mead. Del Webb North Ranch sits in zip code 89086 with easy access to Aliante, Centennial Hills, and the Las Vegas Strip. The North Ranch community is gated with virtual concierge and roving security—so you get the benefits of North Las Vegas living with the peace of mind of a 55+ community. When you choose Del Webb North Ranch, you&apos;re choosing North Ranch amenities, North Las Vegas location, and a neighborhood built for the next chapter.
-              </p>
+            <div className="mx-auto max-w-6xl text-text-dark">
+              <SectionPhoto mediaKey="community.campusAerial" heading="What Makes Del Webb North Ranch Different">
+                <p>
+                  Del Webb North Ranch is a 55+ active adult gated community in North Las Vegas with 394 single-story homes on 80 acres. Unlike newer developments still waiting on amenities, North Ranch is fully built: the 10,000 sq ft clubhouse is open, the resort-style pool and pickleball courts are ready, and the fitness center and social clubs are in full swing. When you choose Del Webb North Ranch, you&apos;re choosing a community that&apos;s complete—so you can start living from day one. North Ranch real estate is in demand because this premier 55+ community in North Las Vegas offers single-story living, low maintenance, and neighbors who chose the same lifestyle.
+                </p>
+              </SectionPhoto>
+              <SectionPhoto mediaKey="homesForSale.hero" heading="Single-Story Living at North Ranch" headingLevel="h3" reverse>
+                <p>
+                  Every home at Del Webb North Ranch is single-story. Floor plans span the Cottage, Classic, and Retreat series from about 1,285 to 2,015 square feet, with two or three bedrooms, open layouts, and attached two-car garages. No stairs means easier daily living now and later—and the North Ranch community is designed so you can age in place without worrying about steps or upkeep. The Del Webb North Ranch clubhouse and amenities are all built for active adults, so whether you&apos;re into pickleball, fitness, or social clubs, North Ranch has it. View current homes for sale at Del Webb North Ranch in the listings above.
+                </p>
+              </SectionPhoto>
+              <SectionPhoto mediaKey="place.primary" heading="North Las Vegas and Del Webb North Ranch">
+                <p>
+                  North Las Vegas offers no state income tax, strong healthcare (VA Southern Nevada Hospital, Centennial Hills Hospital), and outdoor recreation like Craig Ranch Regional Park and Lake Mead. Del Webb North Ranch sits in zip code 89086 with easy access to Aliante, Centennial Hills, and the Las Vegas Strip. The North Ranch community is gated with virtual concierge and roving security—so you get North Las Vegas location plus a 55+ community with single-story homes and a fully built amenity campus. When you choose Del Webb North Ranch, you&apos;re choosing North Ranch amenities, North Las Vegas location, and a neighborhood built for the next chapter.
+                </p>
+              </SectionPhoto>
             </div>
           </div>
         </section>
@@ -109,8 +101,8 @@ export default function WhyChooseUsPage() {
             </div>
           </div>
         </section>
+        <LocalVisitSection heading="See why buyers choose Del Webb North Ranch" />
       </main>
-      <Footer />
     </>
   );
 }

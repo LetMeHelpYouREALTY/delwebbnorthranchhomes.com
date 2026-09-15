@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
-import Navbar from "@/../components/navbar";
-import Footer from "@/../components/footer";
 import Link from "next/link";
 import ScheduleTour from "@/../components/ScheduleTour";
+import Breadcrumbs from "@/../components/Breadcrumbs";
 import { FileText, Calendar } from "lucide-react";
 import { SITE_ORIGIN, SITE_PHONE_TEL, SITE_PHONE_DISPLAY } from "@/lib/site";
 import { TITLE_SUFFIX } from "@/lib/hyperlocal";
+import PageHero from "@/../components/PageHero";
+import LocalVisitSection from "@/../components/LocalVisitSection";
+import { mediaOpenGraph, mediaTwitterImages } from "@/lib/media";
 
 export const metadata: Metadata = {
   title: `Terms of Service | ${TITLE_SUFFIX}`,
@@ -21,11 +23,13 @@ export const metadata: Metadata = {
     siteName: TITLE_SUFFIX,
     locale: "en_US",
     type: "website",
+    images: [mediaOpenGraph("legal.hero")],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "Terms of Service | Del Webb North Ranch",
-    description: "Terms and conditions for using our website.",
+    description: "Terms and conditions for using the Del Webb North Ranch 55+ website in North Las Vegas.",
+    images: mediaTwitterImages("legal.hero"),
   },
   robots: {
     index: true,
@@ -36,23 +40,24 @@ export const metadata: Metadata = {
 export default function TermsPage() {
   return (
     <>
-      <Navbar />
-      <main className="pt-16 md:pt-20 min-h-screen bg-white">
-        {/* Hero Section */}
-        <section className="bg-stone-100 py-12 md:py-16 lg:py-20">
+      <Breadcrumbs
+        items={[
+          { label: "Del Webb North Ranch", href: "/" },
+          { label: "Terms of Service", href: "/terms" },
+        ]}
+      />
+      <main className="min-h-screen bg-white">
+        <PageHero
+          mediaKey="legal.hero"
+          title="Terms of Service | Del Webb North Ranch 55+ | North Las Vegas"
+          subtitle="Terms and conditions for using the Del Webb North Ranch website. Last updated January 19, 2026."
+        />
+        <section className="bg-white py-4">
           <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto text-center">
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 font-playfair">
-                Terms of Service
-              </h1>
-              <p className="text-lg md:text-xl text-gray-600">
-                Terms and conditions for using Del Webb North Ranch website
-              </p>
-              <div className="mt-4 flex items-center justify-center gap-2 text-sm text-gray-500">
-                <Calendar className="w-4 h-4" />
-                <span>Last updated: January 19, 2026</span>
-              </div>
-            </div>
+            <p className="mx-auto flex max-w-4xl items-center justify-center gap-2 text-sm text-gray-500">
+              <Calendar className="h-4 w-4" />
+              <span>Last updated: January 19, 2026</span>
+            </p>
           </div>
         </section>
 
@@ -215,7 +220,7 @@ export default function TermsPage() {
                   <p className="text-text-dark mb-2">2290 Beauty Vista Avenue</p>
                   <p className="text-text-dark mb-2">North Las Vegas, NV 89086</p>
                   <p className="text-text-dark mb-4">
-                    Phone: <a href={SITE_PHONE_TEL} className="text-primary hover:text-accent">{SITE_PHONE_DISPLAY}</a>
+                    Phone: <a href={SITE_PHONE_TEL} className="text-primary hover:underline">{SITE_PHONE_DISPLAY}</a>
                   </p>
                   <ScheduleTour variant="outline" size="default" />
                 </div>
@@ -255,14 +260,14 @@ export default function TermsPage() {
                 <div className="flex flex-col sm:flex-row gap-4">
                   <Link
                     href="/privacy"
-                    className="inline-flex items-center gap-2 text-primary hover:text-accent transition-colors"
+                    className="inline-flex items-center gap-2 text-primary hover:underline transition-colors"
                   >
                     <FileText className="w-4 h-4" />
                     Privacy Policy
                   </Link>
                   <Link
                     href="/accessibility"
-                    className="inline-flex items-center gap-2 text-primary hover:text-accent transition-colors"
+                    className="inline-flex items-center gap-2 text-primary hover:underline transition-colors"
                   >
                     <FileText className="w-4 h-4" />
                     Accessibility Statement
@@ -272,8 +277,8 @@ export default function TermsPage() {
             </div>
           </div>
         </section>
+        <LocalVisitSection heading="Visit Del Webb North Ranch in North Las Vegas" />
       </main>
-      <Footer />
     </>
   );
 }

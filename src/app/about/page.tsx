@@ -1,19 +1,20 @@
 import type { Metadata } from "next";
-import Image from "next/image";
-import Navbar from "@/../components/navbar";
-import Footer from "@/../components/footer";
 import Breadcrumbs from "@/../components/Breadcrumbs";
 import { Button } from "@/../components/ui/button";
 import Link from "next/link";
 import ScrollAnimation from "@/../components/scroll-animation";
 import { Phone, MapPin, Award, Users, Home, Calendar } from "lucide-react";
 import { getAllTestimonials } from "@/lib/old-site-data";
-import { getCommunityInfo } from "@/lib/communityData";
 import { Quote } from "lucide-react";
 import ScheduleTour from "@/../components/ScheduleTour";
 import RealScoutListings from "@/../components/RealScoutListings";
-import { SITE_ORIGIN, SITE_PHONE_TEL, SITE_PHONE_DISPLAY, SITE_PHONE_SCHEMA } from "@/lib/site";
+import LocalVisitSection from "@/../components/LocalVisitSection";
+import PageHero from "@/../components/PageHero";
+import MediaImage from "@/../components/MediaImage";
+import SectionPhoto from "@/../components/SectionPhoto";
+import { SITE_ORIGIN, SITE_PHONE_TEL, SITE_PHONE_DISPLAY, SITE_PHONE_SCHEMA, gbpFormattedAddress } from "@/lib/site";
 import { metaDescriptionBlock, TITLE_SUFFIX } from "@/lib/hyperlocal";
+import { mediaOpenGraph, mediaTwitterImages } from "@/lib/media";
 
 export const metadata: Metadata = {
   title: `About Dr. Jan Duffy REALTOR® | ${TITLE_SUFFIX}`,
@@ -31,25 +32,15 @@ export const metadata: Metadata = {
     siteName: TITLE_SUFFIX,
     locale: "en_US",
     type: "website",
-    images: [
-      {
-        url: `${SITE_ORIGIN}/images/about/dr-jan-duffy.jpg`,
-        width: 1200,
-        height: 630,
-        alt: "Dr. Jan Duffy, REALTOR®",
-      },
-    ],
+    images: [mediaOpenGraph("about.hero")],
   },
   twitter: {
     card: "summary_large_image",
     title: `About Dr. Jan Duffy REALTOR® | ${TITLE_SUFFIX}`,
     description: "Your trusted REALTOR® specializing in Del Webb North Ranch 55+ community.",
-    images: [`${SITE_ORIGIN}/images/about/dr-jan-duffy.jpg`],
+    images: mediaTwitterImages("about.hero"),
   },
 };
-
-const blurDataURL =
-  "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWEREiMxUf/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q==";
 
 const specialties = [
   {
@@ -66,7 +57,7 @@ const specialties = [
   },
   {
     icon: <Users className="w-6 h-6" />,
-    title: "Senior Living Specialist",
+    title: "55+ Community Specialist",
     description:
       "Understanding the unique needs of 55+ buyers, from downsizing to lifestyle transitions and retirement planning.",
   },
@@ -77,14 +68,13 @@ export default function AboutPage() {
 
   return (
     <>
-      <Navbar />
       <Breadcrumbs
         items={[
           { label: "Del Webb North Ranch", href: "/" },
           { label: "About", href: "/about" },
         ]}
       />
-      <main className="pt-16 md:pt-20">
+      <main>
         {/* E-E-A-T: ProfilePage + Person schema for About (Jan 2026 realtor SEO) */}
         <script
           type="application/ld+json"
@@ -104,7 +94,6 @@ export default function AboutPage() {
                   name: "Dr. Jan Duffy",
                   jobTitle: "REALTOR®",
                   description: "REALTOR® specializing in Del Webb North Ranch and North Las Vegas 55+ communities. Licensed with Berkshire Hathaway HomeServices Nevada Properties.",
-                  image: `${SITE_ORIGIN}/images/about/dr-jan-duffy.jpg`,
                   url: `${SITE_ORIGIN}/about`,
                   telephone: SITE_PHONE_SCHEMA,
                   worksFor: { "@type": "Organization", name: "Berkshire Hathaway HomeServices Nevada Properties" },
@@ -118,20 +107,11 @@ export default function AboutPage() {
             }).replace(/</g, "\\u003c"),
           }}
         />
-        {/* Hero Section */}
-        <section className="bg-primary text-white py-12 md:py-16 lg:py-20">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto text-center">
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 font-playfair">
-                About Dr. Jan Duffy REALTOR® | Del Webb North Ranch 55+ Real Estate
-              </h1>
-              <p className="text-lg md:text-xl text-gray-100 leading-relaxed">
-                Your trusted REALTOR® specializing in Del Webb North Ranch and
-                North Las Vegas 55+ communities
-              </p>
-            </div>
-          </div>
-        </section>
+        <PageHero
+          mediaKey="about.hero"
+          title="About Dr. Jan Duffy REALTOR® | Del Webb North Ranch 55+ Real Estate"
+          subtitle="Your trusted REALTOR® specializing in Del Webb North Ranch and North Las Vegas 55+ communities"
+        />
 
         {/* Office RealScout widget - directly below hero */}
         <RealScoutListings h2Text="View Available Homes in Del Webb North Ranch | Work With Dr. Jan Duffy" />
@@ -144,13 +124,10 @@ export default function AboutPage() {
                 {/* Image */}
                 <ScrollAnimation>
                   <div className="relative aspect-square max-w-md mx-auto lg:mx-0">
-                    <Image
-                      src="/images/about/dr-jan-duffy.jpg"
-                      alt="Dr. Jan Duffy, REALTOR® specializing in Del Webb North Ranch"
+                    <MediaImage
+                      mediaKey="agent.office"
                       fill
                       className="object-cover rounded-lg shadow-three"
-                      placeholder="blur"
-                      blurDataURL={blurDataURL}
                       sizes="(max-width: 768px) 100vw, 50vw"
                     />
                   </div>
@@ -172,8 +149,8 @@ export default function AboutPage() {
                       <p className="text-base md:text-lg text-text-dark leading-relaxed">
                         With years of experience helping clients find their dream
                         homes in vibrant 55+ communities, Dr. Duffy understands
-                        the unique needs of active adults. She knows which <Link href="/floor-plans" className="text-primary hover:text-accent underline">floor plans</Link> get the best morning light. Which homesites have
-                        the best mountain views. Which <Link href="/homes-for-sale" className="text-primary hover:text-accent underline">resale homes</Link> are worth
+                        the unique needs of active adults. She knows which <Link href="/floor-plans" className="text-primary hover:underline underline">floor plans</Link> get the best morning light. Which homesites have
+                        the best mountain views. Which <Link href="/homes-for-sale" className="text-primary hover:underline underline">resale homes</Link> are worth
                         considering and which to skip.
                       </p>
                       <p className="text-base md:text-lg text-text-dark leading-relaxed font-semibold">
@@ -220,11 +197,8 @@ export default function AboutPage() {
         {/* Community History Section */}
         <section className="py-12 md:py-16 lg:py-20 bg-white">
           <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
-              <h2 className="text-2xl md:text-3xl font-bold text-primary mb-6 text-center font-playfair">
-                About Del Webb North Ranch
-              </h2>
-              <div className="prose prose-lg max-w-none space-y-4 text-text-dark">
+            <div className="mx-auto max-w-6xl">
+              <SectionPhoto mediaKey="community.fullAerial" heading="About Del Webb North Ranch">
                 <p>
                   Del Webb North Ranch is a premier 55+ active adult gated community developed by Del Webb (Pulte Homes) in North Las Vegas, Nevada.
                 </p>
@@ -232,9 +206,9 @@ export default function AboutPage() {
                   Construction began in 2020, with the first homeowners moving in that same year. The community was completed in 2024, with all 394 single-story homes now built on approximately 80 acres. The 10,000 sq ft clubhouse amenity center opened on October 16, 2021, and has been serving residents ever since.
                 </p>
                 <p>
-                  The community features three collections: Cottage Series (132 homes, 1,285-1,509 sq ft), Classic Series (132 homes, 1,451-1,770 sq ft), and Retreat Series (130 homes, 1,716-2,015 sq ft). Explore all <Link href="/floor-plans" className="text-primary hover:text-accent underline">9 floor plans</Link> available. All homes are gated with virtual concierge and roving security, ensuring a safe and secure environment for residents. Discover the <Link href="/amenities" className="text-primary hover:text-accent underline">resort-style amenities</Link> that make this community special.
+                  The community features three collections: Cottage Series (132 homes, 1,285-1,509 sq ft), Classic Series (132 homes, 1,451-1,770 sq ft), and Retreat Series (130 homes, 1,716-2,015 sq ft). Explore all <Link href="/floor-plans" className="text-primary hover:underline underline">9 floor plans</Link> available. Homes are in a gated community with virtual concierge and roving security. Discover the <Link href="/amenities" className="text-primary hover:underline underline">resort-style amenities</Link> that make this community special.
                 </p>
-              </div>
+              </SectionPhoto>
             </div>
           </div>
         </section>
@@ -242,15 +216,11 @@ export default function AboutPage() {
         {/* Bio Section */}
         <section className="py-12 md:py-16 lg:py-20 bg-bg-light">
           <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
-              <h2 className="text-2xl md:text-3xl font-bold text-primary mb-6 text-center font-playfair">
-                A Passion for Helping You Find Home
-              </h2>
-              <div className="prose prose-lg max-w-none space-y-4 text-text-dark">
+            <div className="mx-auto max-w-6xl">
+              <SectionPhoto mediaKey="clubhouse.patioSunset" heading="A Passion for Helping You Find Home" reverse>
                 <p>
-                  Hi, I'm Dr. Jan Duffy 👋 A passionate REALTOR® specializing in
-                  helping clients find their dream homes in vibrant 55+
-                  communities. Let's connect! 🏡
+                  Hi, I&apos;m Dr. Jan Duffy. I specialize in helping clients find
+                  single-story homes in this 55+ community in North Las Vegas.
                 </p>
                 <p>
                   I understand that buying a home in a 55+ community is more
@@ -264,12 +234,12 @@ export default function AboutPage() {
                 <p>
                   My exclusive focus on Del Webb North Ranch means I know this
                   community inside and out. I can tell you which homesites have
-                  the best views, which <Link href="/floor-plans" className="text-primary hover:text-accent underline">floor plans</Link> work best for entertaining,
-                  and which <Link href="/homes-for-sale" className="text-primary hover:text-accent underline">resale homes</Link> represent the best value. Learn more about the <Link href="/lifestyle" className="text-primary hover:text-accent underline">active adult lifestyle</Link> at Del Webb North Ranch. I'm not here
+                  the best views, which <Link href="/floor-plans" className="text-primary hover:underline underline">floor plans</Link> work best for entertaining,
+                  and which <Link href="/homes-for-sale" className="text-primary hover:underline underline">resale homes</Link> represent the best value. Learn more about the <Link href="/lifestyle" className="text-primary hover:underline underline">active adult lifestyle</Link> at Del Webb North Ranch. I'm not here
                   to push you into a sale—I'm here to help you make an informed
                   decision about your next chapter.
                 </p>
-              </div>
+              </SectionPhoto>
             </div>
           </div>
         </section>
@@ -301,9 +271,7 @@ export default function AboutPage() {
                   <MapPin className="w-8 h-8 text-primary mx-auto mb-4" />
                   <h3 className="font-semibold text-primary mb-2">Location</h3>
                   <p className="text-text-dark text-sm">
-                    9406 Del Webb Boulevard
-                    <br />
-                    Las Vegas, NV 89134
+                    {gbpFormattedAddress()}
                   </p>
                 </div>
               </div>
@@ -338,7 +306,7 @@ export default function AboutPage() {
               <div className="text-center mt-8">
                 <Link
                   href="/testimonials"
-                  className="text-primary hover:text-accent font-semibold transition-colors"
+                  className="text-primary hover:underline font-semibold transition-colors"
                 >
                   Read All Testimonials →
                 </Link>
@@ -397,6 +365,7 @@ export default function AboutPage() {
           </div>
         </section>
 
+        <LocalVisitSection heading="Visit Del Webb North Ranch with Dr. Jan Duffy" />
         {/* CTA Section */}
         <section className="py-12 md:py-16 bg-primary text-white">
           <div className="container mx-auto px-4">
@@ -413,7 +382,6 @@ export default function AboutPage() {
           </div>
         </section>
       </main>
-      <Footer />
     </>
   );
 }

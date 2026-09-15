@@ -1,13 +1,15 @@
 import type { Metadata } from 'next';
-import Navbar from '@/../components/navbar';
-import Footer from '@/../components/footer';
 import Breadcrumbs from '@/../components/Breadcrumbs';
 import ScrollAnimation from '@/../components/scroll-animation';
 import { getAllTestimonials } from '@/lib/old-site-data';
 import { Quote, Star } from 'lucide-react';
-import { SITE_ORIGIN, GOOGLE_REVIEW_LINK, SITE_PHONE_TEL, SITE_PHONE_DISPLAY } from '@/lib/site';
+import { SITE_ORIGIN, GOOGLE_REVIEW_LINK, SITE_PHONE_TEL, SITE_PHONE_DISPLAY, GBP_AGGREGATE_RATING, GBP_BUSINESS_NAME } from '@/lib/site';
 import { metaDescriptionBlock, TITLE_SUFFIX } from '@/lib/hyperlocal';
 import RealScoutListings from '@/../components/RealScoutListings';
+import PageHero from '@/../components/PageHero';
+import LocalVisitSection from '@/../components/LocalVisitSection';
+import SectionPhoto from '@/../components/SectionPhoto';
+import { mediaOpenGraph, mediaTwitterImages } from '@/lib/media';
 
 export const metadata: Metadata = {
   title: `Client Testimonials | ${TITLE_SUFFIX}`,
@@ -25,50 +27,55 @@ export const metadata: Metadata = {
     siteName: TITLE_SUFFIX,
     locale: 'en_US',
     type: 'website',
-    images: [
-      {
-        url: `${SITE_ORIGIN}/images/about/dr-jan-duffy.jpg`,
-        width: 1200,
-        height: 630,
-        alt: 'Dr. Jan Duffy, REALTOR®',
-      },
-    ],
+    images: [mediaOpenGraph('testimonials.hero')],
   },
   twitter: {
     card: 'summary_large_image',
     title: `Client Testimonials | ${TITLE_SUFFIX}`,
     description: 'Client reviews about Del Webb North Ranch homes.',
-    images: [`${SITE_ORIGIN}/images/about/dr-jan-duffy.jpg`],
+    images: mediaTwitterImages('testimonials.hero'),
   },
 };
 
 export default function TestimonialsPage() {
   const testimonials = getAllTestimonials();
+  const reviewSchema = {
+    "@context": "https://schema.org",
+    "@type": "RealEstateAgent",
+    name: GBP_BUSINESS_NAME,
+    url: `${SITE_ORIGIN}/testimonials`,
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: GBP_AGGREGATE_RATING.ratingValue,
+      reviewCount: GBP_AGGREGATE_RATING.reviewCount,
+    },
+    review: testimonials.map((t) => ({
+      "@type": "Review" as const,
+      author: { "@type": "Person" as const, name: t.name },
+      reviewBody: t.text,
+    })),
+  };
 
   return (
     <>
-      <Navbar />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(reviewSchema).replace(/</g, "\\u003c"),
+        }}
+      />
       <Breadcrumbs
         items={[
           { label: "Del Webb North Ranch", href: "/" },
           { label: "Testimonials", href: "/testimonials" },
         ]}
       />
-      <main className="pt-16 md:pt-20">
-        {/* Hero Section */}
-        <section className="bg-primary text-white py-12 md:py-16 lg:py-20">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto text-center">
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 font-playfair">
-                Client Testimonials | Del Webb North Ranch 55+ Real Estate
-              </h1>
-              <p className="text-lg md:text-xl text-gray-100 leading-relaxed">
-                Read real testimonials from clients who found their dream home in
-                Del Webb North Ranch with Dr. Jan Duffy.
-              </p>
-            </div>
-          </div>
-        </section>
+      <main>
+        <PageHero
+          mediaKey="testimonials.hero"
+          title="Client Testimonials | Del Webb North Ranch 55+ Real Estate"
+          subtitle="Read real testimonials from clients who found their dream home in Del Webb North Ranch with Dr. Jan Duffy."
+        />
 
         {/* Office RealScout widget - directly below hero */}
         <RealScoutListings h2Text="Homes for Sale at Del Webb North Ranch | North Las Vegas 55+ Listings" />
@@ -76,13 +83,17 @@ export default function TestimonialsPage() {
         {/* Why client voices matter */}
         <section className="py-12 md:py-16 bg-white">
           <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
-              <h2 className="text-2xl md:text-3xl font-bold text-primary mb-6 font-playfair">
-                Why Client Voices Matter at Del Webb North Ranch
-              </h2>
-              <p className="text-text-dark mb-4 leading-relaxed">
-                When you&apos;re considering a move to the North Ranch 55+ community, hearing from people who&apos;ve already bought or sold here can make a real difference. Our clients have worked with Dr. Jan Duffy to find their dream homes in Del Webb North Ranch—and their stories reflect what it&apos;s like to navigate North Ranch real estate, from first tour to closing.
-              </p>
+            <div className="mx-auto max-w-6xl">
+              <SectionPhoto mediaKey="clubhouse.billiards" heading="Why Client Voices Matter at Del Webb North Ranch">
+                <p>
+                  When you&apos;re considering a move to the North Ranch 55+ community, hearing from people who&apos;ve already bought or sold here can make a real difference. Our clients have worked with Dr. Jan Duffy to find their dream homes in Del Webb North Ranch—and their stories reflect what it&apos;s like to navigate North Ranch real estate, from first tour to closing.
+                </p>
+              </SectionPhoto>
+              <SectionPhoto mediaKey="amenities.campusDusk" heading="Choosing the Right 55+ Community in North Las Vegas" reverse>
+                <p>
+                  Deciding where to retire or downsize is a big step. Del Webb North Ranch is one of North Las Vegas&apos;s premier 55+ communities—with single-story homes, a full clubhouse and resort-style amenities, and an active social calendar. The testimonials on this page reflect real experiences from people who chose the North Ranch 55+ community for its combination of location, lifestyle, and value.
+                </p>
+              </SectionPhoto>
               <h3 className="text-xl font-bold text-primary mb-3 font-playfair">Real experiences in the community</h3>
               <p className="text-text-dark mb-4 leading-relaxed">
                 The testimonials below come from buyers and sellers who chose Del Webb North Ranch in North Las Vegas for its single-story living, resort-style amenities, and active adult lifestyle. They share how the Del Webb North Ranch community and North Ranch amenities fit their goals—and how working with a specialist made the process smoother.
@@ -94,12 +105,6 @@ export default function TestimonialsPage() {
               <h3 className="text-xl font-bold text-primary mb-3 font-playfair">Your story could be next</h3>
               <p className="text-text-dark mb-8 leading-relaxed">
                 If you&apos;re ready to explore homes for sale in Del Webb North Ranch, schedule a tour or get in touch. We&apos;d love to help you find your place in this 55+ active adult community in North Las Vegas—and, if you choose to work with us, we&apos;d be grateful to hear about your experience too.
-              </p>
-              <h2 className="text-2xl md:text-3xl font-bold text-primary mb-6 font-playfair">
-                Choosing the Right 55+ Community in North Las Vegas
-              </h2>
-              <p className="text-text-dark mb-4 leading-relaxed">
-                Deciding where to retire or downsize is a big step. Del Webb North Ranch is one of North Las Vegas&apos;s premier 55+ communities—with single-story homes, a full clubhouse and resort-style amenities, and an active social calendar. The testimonials on this page reflect real experiences from people who chose the North Ranch 55+ community for its combination of location, lifestyle, and value. They worked with Dr. Jan Duffy to find their Del Webb North Ranch home and to navigate North Ranch real estate from first visit to closing.
               </p>
               <h3 className="text-xl font-bold text-primary mb-3 font-playfair">Why buyers choose Del Webb North Ranch</h3>
               <p className="text-text-dark mb-4 leading-relaxed">
@@ -194,7 +199,7 @@ export default function TestimonialsPage() {
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a
                   href="/contact"
-                  className="inline-flex items-center justify-center px-8 py-4 bg-primary hover:bg-primary/90 text-white rounded-md font-semibold transition-colors"
+                  className="inline-flex items-center justify-center min-h-[48px] px-8 py-4 bg-white text-primary rounded-md font-semibold hover:bg-gray-100 transition-colors"
                 >
                   Schedule a Tour
                 </a>
@@ -208,8 +213,8 @@ export default function TestimonialsPage() {
             </div>
           </div>
         </section>
+        <LocalVisitSection heading="Leave a Google review after your Del Webb North Ranch visit" />
       </main>
-      <Footer />
     </>
   );
 }

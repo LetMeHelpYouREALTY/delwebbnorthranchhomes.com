@@ -1,10 +1,7 @@
 import { Button } from "../ui/button";
 import Link from "next/link";
-import Image from "next/image";
+import MediaImage from "../MediaImage";
 import ScrollAnimation from "../scroll-animation";
-
-const blurDataURL =
-  "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWEREiMxUf/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q==";
 
 export default function AboutAgentSection() {
   return (
@@ -15,13 +12,10 @@ export default function AboutAgentSection() {
             {/* Image */}
             <ScrollAnimation>
               <div className="relative aspect-square max-w-md mx-auto lg:mx-0">
-                <Image
-                  src="/images/about/dr-jan-duffy.jpg"
-                  alt="Dr. Jan Duffy, REALTOR® specializing in Del Webb North Ranch"
+                <MediaImage
+                  mediaKey="agent.office"
                   fill
                   className="object-cover rounded-lg shadow-three"
-                  placeholder="blur"
-                  blurDataURL={blurDataURL}
                   sizes="(max-width: 768px) 100vw, 50vw"
                   quality={70}
                 />

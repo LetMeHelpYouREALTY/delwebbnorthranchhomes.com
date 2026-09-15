@@ -1,14 +1,15 @@
 import type { Metadata } from "next";
-import Navbar from "@/../components/navbar";
-import Footer from "@/../components/footer";
 import Breadcrumbs from "@/../components/Breadcrumbs";
 import Link from "next/link";
-import { TrendingUp } from "lucide-react";
 import { Button } from "@/../components/ui/button";
 import { SITE_ORIGIN, SITE_PHONE_TEL, SITE_PHONE_DISPLAY } from "@/lib/site";
-import { altPrefix, metaDescriptionBlock, TITLE_SUFFIX } from "@/lib/hyperlocal";
+import { metaDescriptionBlock, TITLE_SUFFIX } from "@/lib/hyperlocal";
+import { mediaOpenGraph, mediaTwitterImages } from "@/lib/media";
 import { sellerCtaCopy, sellerFaq, sellerValueProps } from "@/lib/hyperlocalSeller";
 import RealScoutListings from "@/../components/RealScoutListings";
+import PageHero from "@/../components/PageHero";
+import LocalVisitSection from "@/../components/LocalVisitSection";
+import SectionPhoto from "@/../components/SectionPhoto";
 
 const sellerFaqSchema = {
   "@context": "https://schema.org",
@@ -36,20 +37,13 @@ export const metadata: Metadata = {
     siteName: TITLE_SUFFIX,
     locale: "en_US",
     type: "website",
-    images: [
-      {
-        url: `${SITE_ORIGIN}/images/amenities/resort-pool.jpeg`,
-        width: 1200,
-        height: 630,
-        alt: altPrefix("Home value estimate"),
-      },
-    ],
+    images: [mediaOpenGraph("homeValue.hero")],
   },
   twitter: {
     card: "summary_large_image",
     title: `Free Home Value Estimate | ${TITLE_SUFFIX}`,
     description: "Get a free, instant home value estimate for your property.",
-    images: [`${SITE_ORIGIN}/images/amenities/resort-pool.jpeg`],
+    images: mediaTwitterImages("homeValue.hero"),
   },
 };
 
@@ -59,34 +53,22 @@ export default function HomeValuePage() {
 
   return (
     <>
-      <Navbar />
       <Breadcrumbs
         items={[
           { label: "Del Webb North Ranch", href: "/" },
           { label: "Home Value", href: "/home-value" },
         ]}
       />
-      <main className="pt-16 md:pt-20">
+      <main>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(sellerFaqSchema) }}
         />
-        {/* Hero - exactly one H1 */}
-        <section className="bg-primary text-white py-12 md:py-16 lg:py-20">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto text-center">
-              <div className="flex items-center justify-center w-20 h-20 bg-white/10 rounded-full mb-6 mx-auto">
-                <TrendingUp className="w-10 h-10 text-white" aria-hidden />
-              </div>
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 font-playfair">
-                {sellerCtaCopy.primary}
-              </h1>
-              <p className="text-lg md:text-xl text-gray-100 leading-relaxed">
-                {sellerCtaCopy.metaHighlight} Get an instant estimate for Del Webb North Ranch or North Las Vegas area homes.
-              </p>
-            </div>
-          </div>
-        </section>
+        <PageHero
+          mediaKey="homeValue.hero"
+          title={sellerCtaCopy.primary}
+          subtitle={`${sellerCtaCopy.metaHighlight} Get an instant estimate for Del Webb North Ranch or North Las Vegas area homes.`}
+        />
 
         {/* Office RealScout widget - below hero */}
         <RealScoutListings h2Text="Homes for Sale at Del Webb North Ranch | North Las Vegas 55+ Listings" />
@@ -110,9 +92,11 @@ export default function HomeValuePage() {
         <section className="py-12 md:py-16 bg-bg-light">
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto">
-              <h2 className="text-2xl md:text-3xl font-bold text-primary mb-8 text-center font-playfair">
-                Why Get a Home Value Estimate?
-              </h2>
+              <SectionPhoto mediaKey="homes.haven6584" heading="Why Get a Home Value Estimate?">
+                <p>
+                  A current estimate for your Del Webb North Ranch or North Las Vegas home helps you plan listing price, timing, and next steps. Dr. Jan Duffy specializes in 55+ resale in zip code 89086.
+                </p>
+              </SectionPhoto>
               <ul className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 max-w-3xl mx-auto list-none">
                 {sellerValueProps.map((prop, i) => (
                   <li key={i} className="flex items-start gap-4 bg-white p-6 rounded-lg shadow-two">
@@ -170,7 +154,7 @@ export default function HomeValuePage() {
                       Connect with Dr. Jan Duffy
                     </h3>
                     <p className="text-text-dark">
-                      Schedule a consultation to discuss your home value, explore <Link href="/homes-for-sale" className="text-primary hover:text-accent underline">homes for sale</Link> in Del Webb North Ranch, or learn more about the <Link href="/floor-plans" className="text-primary hover:text-accent underline">floor plans</Link> available.
+                      Schedule a consultation to discuss your home value, explore <Link href="/homes-for-sale" className="text-primary hover:underline underline">homes for sale</Link> in Del Webb North Ranch, or learn more about the <Link href="/floor-plans" className="text-primary hover:underline underline">floor plans</Link> available.
                     </p>
                   </div>
                 </div>
@@ -273,8 +257,8 @@ export default function HomeValuePage() {
             </div>
           </div>
         </section>
+        <LocalVisitSection heading="Get a walkthrough valuation at Del Webb North Ranch" />
       </main>
-      <Footer />
     </>
   );
 }

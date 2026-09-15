@@ -2,8 +2,6 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import Navbar from '@/../components/navbar';
-import Footer from '@/../components/footer';
 import Breadcrumbs from '@/../components/Breadcrumbs';
 import { Button } from '@/../components/ui/button';
 import ScrollAnimation from '@/../components/scroll-animation';
@@ -16,8 +14,11 @@ import { getHomesitesByCollection } from '@/lib/communityData';
 import { getVirtualTourByModel, getVirtualTourSlug } from '@/lib/old-site-data';
 import { Bed, Bath, Square, Car, ArrowLeft, Phone, Play } from 'lucide-react';
 import ScheduleTour from '@/../components/ScheduleTour';
+import PageHero from '@/../components/PageHero';
+import LocalVisitSection from '@/../components/LocalVisitSection';
 import { SITE_ORIGIN, SITE_PHONE_TEL, SITE_PHONE_DISPLAY } from '@/lib/site';
 import { TITLE_SUFFIX } from '@/lib/hyperlocal';
+import { mediaOpenGraph, mediaTwitterImages, absoluteMediaUrl } from '@/lib/media';
 
 export async function generateStaticParams() {
   return getAllFloorPlanSlugs().map((slug) => ({ slug }));
@@ -61,14 +62,7 @@ export async function generateMetadata({
               alt: `${plan.name} floor plan`,
             },
           ]
-        : [
-            {
-              url: `${SITE_ORIGIN}/images/hero/hero-bg.jpg`,
-              width: 1200,
-              height: 630,
-              alt: 'Del Webb North Ranch',
-            },
-          ],
+        : [mediaOpenGraph('homes.haven6584')],
     },
     twitter: {
       card: 'summary_large_image',
@@ -76,7 +70,7 @@ export async function generateMetadata({
       description: `${plan.sqft} sq ft ${plan.series} Series home in North Las Vegas 55+ community.`,
       images: plan.imageUrl
         ? [`${SITE_ORIGIN}${plan.imageUrl}`]
-        : [`${SITE_ORIGIN}/images/hero/hero-bg.jpg`],
+        : mediaTwitterImages('homes.haven6584'),
     },
   };
 }
@@ -98,7 +92,7 @@ function ProductSchema({ plan }: { plan: FloorPlan }) {
     category: 'Real Estate',
     image: plan.imageUrl
       ? `${SITE_ORIGIN}${plan.imageUrl}`
-      : undefined,
+      : absoluteMediaUrl('homes.haven6584'),
     brand: {
       '@type': 'Brand',
       name: 'Del Webb North Ranch',
@@ -178,7 +172,7 @@ function VideoObjectSchema({
     '@type': 'VideoObject',
     name: `${plan.name} Virtual Tour | Del Webb North Ranch Model Home`,
     description: `${plan.name} ${plan.series} Series ${plan.sqft} sq ft model home virtual tour at Del Webb North Ranch 55+ community in North Las Vegas.`,
-    thumbnailUrl: plan.imageUrl ? `${SITE_ORIGIN}${plan.imageUrl}` : `${SITE_ORIGIN}/images/hero/hero-bg.jpg`,
+    thumbnailUrl: plan.imageUrl ? `${SITE_ORIGIN}${plan.imageUrl}` : absoluteMediaUrl('homes.haven6584'),
     uploadDate: '2024-01-01',
     contentUrl: virtualTour.embedUrl,
     embedUrl: virtualTour.embedUrl,
@@ -251,7 +245,6 @@ export default async function FloorPlanPage({
       {hasVideo && virtualTour && (
         <VideoObjectSchema plan={plan} virtualTour={virtualTour as typeof virtualTour & { embedUrl: string }} />
       )}
-      <Navbar />
       <Breadcrumbs
         items={[
           { label: "Del Webb North Ranch", href: "/" },
@@ -259,32 +252,26 @@ export default async function FloorPlanPage({
           { label: `${plan.name} - ${plan.series} Series`, href: `/floor-plans/${slug}` },
         ]}
       />
-      <main className="pt-16 md:pt-20">
+      <main>
         <ProductSchema plan={plan} />
         <BreadcrumbSchema plan={plan} />
-        {/* Hero Section */}
-        <section className="bg-primary text-white py-12 md:py-16 lg:py-20">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
-              <Link
-                href="/floor-plans"
-                className="inline-flex items-center gap-2 text-gray-100 hover:text-accent transition-colors mb-6"
-              >
-                <ArrowLeft className="w-5 h-5" />
-                Back to All Floor Plans
-              </Link>
-              <div className="inline-block bg-white/20 px-4 py-2 rounded-full mb-4">
-                <span className="text-sm font-semibold">{plan.series} Series</span>
-              </div>
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 font-playfair">
-                {plan.name} Floor Plan | {plan.series} Series | Del Webb North Ranch
-              </h1>
-              <p className="text-lg md:text-xl text-gray-100 leading-relaxed mb-6">
-                {plan.description}
-              </p>
-            </div>
+        <PageHero
+          imageSrc={plan.imageUrl || '/images/homes/haven-6584.jpg'}
+          imageAlt={`${plan.name} floor plan at Del Webb North Ranch, North Las Vegas 55+ community`}
+          title={`${plan.name} Floor Plan | ${plan.series} Series | Del Webb North Ranch`}
+          subtitle={plan.description}
+        >
+          <div className="flex flex-col items-center gap-4">
+            <Link
+              href="/floor-plans"
+              className="inline-flex min-h-[44px] items-center gap-2 text-gray-100 underline-offset-4 hover:underline"
+            >
+              <ArrowLeft className="w-5 h-5" />
+              Back to All Floor Plans
+            </Link>
+            <span className="inline-block rounded-full bg-white/20 px-4 py-2 text-sm font-semibold">{plan.series} Series</span>
           </div>
-        </section>
+        </PageHero>
 
         {/* Key Details */}
         <section className="py-12 md:py-16 bg-white">
@@ -381,7 +368,7 @@ export default async function FloorPlanPage({
                 <p className="text-center mt-4 text-text-dark">
                   <Link
                     href={`/virtual-tours/${getVirtualTourSlug(virtualTour)}`}
-                    className="text-primary hover:text-accent font-medium"
+                    className="text-primary hover:underline font-medium"
                   >
                     Watch on dedicated video page →
                   </Link>
@@ -444,8 +431,8 @@ export default async function FloorPlanPage({
             </div>
           </div>
         </section>
+        <LocalVisitSection heading="See this floor plan at Del Webb North Ranch" />
       </main>
-      <Footer />
     </>
   );
 }

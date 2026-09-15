@@ -1,19 +1,19 @@
 import type { Metadata } from "next";
-import Image from "next/image";
-import Navbar from "@/../components/navbar";
-import Footer from "@/../components/footer";
 import Breadcrumbs from "@/../components/Breadcrumbs";
-import { Button } from "@/../components/ui/button";
 import Link from "next/link";
 import ScrollAnimation from "@/../components/scroll-animation";
 import ScheduleTour from "@/../components/ScheduleTour";
 import RealScoutListings from "@/../components/RealScoutListings";
 import { getDistances } from "@/lib/communityData";
 import { SITE_ORIGIN } from "@/lib/site";
-import { altPrefix, metaDescriptionBlock, TITLE_SUFFIX } from "@/lib/hyperlocal";
+import { metaDescriptionBlock, TITLE_SUFFIX } from "@/lib/hyperlocal";
+import { mediaOpenGraph, mediaTwitterImages } from "@/lib/media";
+import PageHero from "@/../components/PageHero";
+import SectionPhoto from "@/../components/SectionPhoto";
+import LocalVisitSection from "@/../components/LocalVisitSection";
+import MediaImage from "@/../components/MediaImage";
 import {
   Users,
-  Calendar,
   Heart,
   Music,
   BookOpen,
@@ -38,20 +38,13 @@ export const metadata: Metadata = {
     siteName: TITLE_SUFFIX,
     locale: "en_US",
     type: "website",
-    images: [
-      {
-        url: `${SITE_ORIGIN}/images/amenities/event-lawn-club.jpeg`,
-        width: 1200,
-        height: 630,
-        alt: altPrefix("Community lifestyle and events"),
-      },
-    ],
+    images: [mediaOpenGraph("lifestyle.hero")],
   },
   twitter: {
     card: "summary_large_image",
     title: `Active Adult Lifestyle | ${TITLE_SUFFIX}`,
     description: "Vibrant community life in North Las Vegas's premier 55+ community.",
-    images: [`${SITE_ORIGIN}/images/amenities/event-lawn-club.jpeg`],
+    images: mediaTwitterImages("lifestyle.hero"),
   },
 };
 
@@ -111,35 +104,21 @@ const events = [
   },
 ];
 
-const blurDataURL =
-  "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWEREiMxUf/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q==";
-
 export default function LifestylePage() {
   return (
     <>
-      <Navbar />
       <Breadcrumbs
         items={[
           { label: "Del Webb North Ranch", href: "/" },
           { label: "Lifestyle", href: "/lifestyle" },
         ]}
       />
-      <main className="pt-16 md:pt-20">
-        {/* Hero Section */}
-        <section className="bg-primary text-white py-12 md:py-16 lg:py-20">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto text-center">
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 font-playfair">
-                Active Adult Lifestyle | Del Webb North Ranch 55+ Community
-              </h1>
-              <p className="text-lg md:text-xl text-gray-100 leading-relaxed">
-                Del Webb North Ranch isn't just a place to live—it's a vibrant
-                community where neighbors become friends and every day offers new
-                opportunities to connect, learn, and enjoy life.
-              </p>
-            </div>
-          </div>
-        </section>
+      <main>
+        <PageHero
+          mediaKey="lifestyle.hero"
+          title="Active Adult Lifestyle | Del Webb North Ranch 55+ Community"
+          subtitle="Del Webb North Ranch isn't just a place to live—it's a vibrant community where neighbors become friends and every day offers new opportunities to connect, learn, and enjoy life."
+        />
 
         {/* Office RealScout widget - directly below hero */}
         <RealScoutListings h2Text="View Available Homes in Del Webb North Ranch to Experience This Lifestyle" />
@@ -151,13 +130,10 @@ export default function LifestylePage() {
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
                 <ScrollAnimation>
                   <div className="relative aspect-square rounded-lg overflow-hidden shadow-three bg-bg-light">
-                    <Image
-                      src="/images/amenities/event-lawn-club.jpeg"
-                      alt={altPrefix("Community events and gatherings at clubhouse")}
+                    <MediaImage
+                      mediaKey="lifestyle.events"
                       fill
                       className="object-cover"
-                      placeholder="blur"
-                      blurDataURL={blurDataURL}
                       sizes="(max-width: 768px) 100vw, 50vw"
                     />
                   </div>
@@ -174,7 +150,7 @@ export default function LifestylePage() {
                         here to live fully, not just exist.
                       </p>
                       <p className="text-base md:text-lg text-text-dark leading-relaxed">
-                        Whether you're joining a morning pickleball game at the <Link href="/amenities" className="text-primary hover:text-accent underline">community amenities</Link>, attending
+                        Whether you're joining a morning pickleball game at the <Link href="/amenities" className="text-primary hover:underline underline">community amenities</Link>, attending
                         a club meeting, or simply chatting with neighbors on a
                         walk, you'll discover that making friends comes naturally
                         here.
@@ -196,15 +172,11 @@ export default function LifestylePage() {
         <section className="py-12 md:py-16 lg:py-20 bg-bg-light">
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto">
-              <div className="text-center mb-8 md:mb-12">
-                <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-primary mb-4 font-playfair">
-                  Join a Club, Start a Group
-                </h2>
-                <p className="text-lg text-text-dark max-w-2xl mx-auto">
-                  With dozens of active clubs and groups, there's something for
-                  everyone. Don't see what you're looking for? Start your own!
+              <SectionPhoto mediaKey="lifestyle.pickleballAerial" heading="Join a Club, Start a Group">
+                <p>
+                  With dozens of active clubs and groups, there&apos;s something for everyone at Del Webb North Ranch. Pickleball, walking groups, cards, cooking, and book clubs all meet around the 10,000 sq ft clubhouse in this North Las Vegas 55+ community. Don&apos;t see what you&apos;re looking for? Start your own.
                 </p>
-              </div>
+              </SectionPhoto>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {clubs.map((club, index) => (
                   <ScrollAnimation key={club.name} delay={index * 50}>
@@ -228,18 +200,11 @@ export default function LifestylePage() {
         <section className="py-12 md:py-16 lg:py-20 bg-white">
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto">
-              <div className="text-center mb-8 md:mb-12">
-                <div className="flex items-center justify-center gap-4 mb-4">
-                  <Calendar className="w-10 h-10 text-primary" />
-                  <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-primary font-playfair">
-                    Community Events
-                  </h2>
-                </div>
-                <p className="text-lg text-text-dark max-w-2xl mx-auto">
-                  Regular events and activities bring the community together
-                  throughout the year.
+              <SectionPhoto mediaKey="clubhouse.eventHall" heading="Community Events" reverse>
+                <p>
+                  Regular events and activities bring the Del Webb North Ranch community together throughout the year—clubhouse socials, holiday celebrations, fitness challenges, and educational seminars in North Las Vegas.
                 </p>
-              </div>
+              </SectionPhoto>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {events.map((event, index) => (
                   <ScrollAnimation key={event.title} delay={index * 50}>
@@ -261,15 +226,12 @@ export default function LifestylePage() {
         {/* Nearby Attractions & Distances */}
         <section className="py-12 md:py-16 bg-bg-light">
           <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
-              <div className="text-center mb-8">
-                <h2 className="text-2xl md:text-3xl font-bold text-primary mb-4 font-playfair">
-                  Conveniently Located
-                </h2>
-                <p className="text-lg text-text-dark">
-                  Del Webb North Ranch is perfectly positioned near everything you need and want.
+            <div className="max-w-6xl mx-auto">
+              <SectionPhoto mediaKey="place.signClose" heading="Conveniently Located">
+                <p>
+                  Del Webb North Ranch at 2290 Beauty Vista Avenue, North Las Vegas, NV 89086 sits near Aliante, Centennial Hills, Craig Ranch Regional Park, and VA Southern Nevada Hospital.
                 </p>
-              </div>
+              </SectionPhoto>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {Object.entries(getDistances()).map(([key, distance]) => (
                   <div key={key} className="bg-white p-6 rounded-lg shadow-two">
@@ -355,8 +317,8 @@ export default function LifestylePage() {
             </div>
           </div>
         </section>
+        <LocalVisitSection heading="Experience the Del Webb North Ranch lifestyle in person" />
       </main>
-      <Footer />
     </>
   );
 }

@@ -1,8 +1,6 @@
 import type { Metadata } from 'next';
 import { oldSiteData } from '@/lib/fetchOldSiteData';
 import Link from 'next/link';
-import Navbar from '@/../components/navbar';
-import Footer from '@/../components/footer';
 import { Button } from '@/../components/ui/button';
 import { CheckCircle2 } from 'lucide-react';
 import ScheduleTour from '@/../components/ScheduleTour';
@@ -100,7 +98,7 @@ function SeriesSection({
         </h2>
         <p className="text-text-dark text-lg">{description}</p>
         {priceHint && (
-          <p className="text-sm md:text-base text-accent mt-2 font-semibold">
+          <p className="text-sm md:text-base text-primary mt-2 font-semibold">
             {priceHint}
           </p>
         )}
@@ -119,8 +117,7 @@ export default function FloorPlansSimplePage() {
 
   return (
     <>
-      <Navbar />
-      <main className="pt-16 md:pt-20">
+      <main>
         {/* Header */}
         <section className="bg-primary text-white py-12 md:py-16 lg:py-20">
           <div className="container mx-auto px-4">
@@ -188,7 +185,6 @@ export default function FloorPlansSimplePage() {
           </div>
         </section>
       </main>
-      <Footer />
     </>
   );
 }

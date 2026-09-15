@@ -1,19 +1,21 @@
 import type { MetadataRoute } from 'next';
-import { headers } from 'next/headers';
+import { SITE_ORIGIN } from '@/lib/site';
 
-export default async function robots(): Promise<MetadataRoute.Robots> {
-  const headersList = await headers();
-  const host = headersList.get('x-forwarded-host') || headersList.get('host') || 'localhost';
-  const baseUrl = `https://${host.split(':')[0]}`;
-
+export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
-      // Default: allow all crawlers
       {
         userAgent: '*',
         allow: '/',
+        disallow: [
+          '/signin',
+          '/signup',
+          '/blog-details',
+          '/blog-sidebar',
+          '/floor-plans-simple',
+          '/error',
+        ],
       },
-      // ── AI Retrieval Bots (power AI search results) ──
       {
         userAgent: 'GPTBot',
         allow: '/',
@@ -46,7 +48,6 @@ export default async function robots(): Promise<MetadataRoute.Robots> {
         userAgent: 'Bytespider',
         allow: '/',
       },
-      // ── AI Training Bots (maximizes visibility in AI models) ──
       {
         userAgent: 'Google-Extended',
         allow: '/',
@@ -64,6 +65,7 @@ export default async function robots(): Promise<MetadataRoute.Robots> {
         allow: '/',
       },
     ],
-    sitemap: `${baseUrl}/sitemap.xml`,
+    sitemap: `${SITE_ORIGIN}/sitemap.xml`,
+    host: SITE_ORIGIN,
   };
 }

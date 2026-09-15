@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="ehoTitle ehoDesc">
+  <title id="ehoTitle">Equal Housing Opportunity</title>
+  <desc id="ehoDesc">House with equal sign used with Fair Housing Act disclosures for Del Webb North Ranch real estate</desc>
+  <rect width="64" height="64" rx="6" fill="#1e3a5f"/>
+  <path fill="#ffffff" d="M32 11 9 30.5h6.5V52h33V30.5H55L32 11z"/>
+  <rect x="24" y="34" width="16" height="3.2" rx="0.5" fill="#1e3a5f"/>
+  <rect x="24" y="41" width="16" height="3.2" rx="0.5" fill="#1e3a5f"/>
+</svg>

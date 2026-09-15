@@ -1,14 +1,16 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import Navbar from "@/../components/navbar";
-import Footer from "@/../components/footer";
 import Breadcrumbs from "@/../components/Breadcrumbs";
 import ScrollAnimation from "@/../components/scroll-animation";
 import { Calendar, ArrowRight } from "lucide-react";
 import { SITE_ORIGIN } from "@/lib/site";
-import { altPrefix, metaDescriptionBlock, TITLE_SUFFIX } from "@/lib/hyperlocal";
+import { metaDescriptionBlock, TITLE_SUFFIX } from "@/lib/hyperlocal";
+import { mediaOpenGraph, mediaTwitterImages } from "@/lib/media";
 import RealScoutListings from "@/../components/RealScoutListings";
+import PageHero from "@/../components/PageHero";
+import LocalVisitSection from "@/../components/LocalVisitSection";
+import SectionPhoto from "@/../components/SectionPhoto";
 
 export const metadata: Metadata = {
   title: `Blog | ${TITLE_SUFFIX}`,
@@ -26,20 +28,13 @@ export const metadata: Metadata = {
     siteName: TITLE_SUFFIX,
     locale: "en_US",
     type: "website",
-    images: [
-      {
-        url: `${SITE_ORIGIN}/images/blog/blog-01.jpg`,
-        width: 1200,
-        height: 630,
-        alt: altPrefix("Blog"),
-      },
-    ],
+    images: [mediaOpenGraph("blog.hero")],
   },
   twitter: {
     card: "summary_large_image",
     title: `Blog | ${TITLE_SUFFIX}`,
     description: "Community news and insights about North Las Vegas premier 55+ community.",
-    images: [`${SITE_ORIGIN}/images/blog/blog-01.jpg`],
+    images: mediaTwitterImages("blog.hero"),
   },
 };
 
@@ -142,7 +137,7 @@ function BlogCard({
             </time>
           </div>
           <Link href={`/blog/${post.slug}`}>
-            <h3 className="text-xl font-bold text-primary mb-3 font-playfair hover:text-accent transition-colors">
+            <h3 className="text-xl font-bold text-primary mb-3 font-playfair hover:underline transition-colors">
               {post.title}
             </h3>
           </Link>
@@ -151,7 +146,7 @@ function BlogCard({
           </p>
           <Link
             href={`/blog/${post.slug}`}
-            className="inline-flex items-center gap-2 text-primary font-semibold hover:text-accent transition-colors"
+            className="inline-flex items-center gap-2 text-primary font-semibold hover:underline transition-colors"
           >
             Read More
             <ArrowRight className="w-4 h-4" />
@@ -165,28 +160,18 @@ function BlogCard({
 export default function BlogPage() {
   return (
     <>
-      <Navbar />
       <Breadcrumbs
         items={[
           { label: "Del Webb North Ranch", href: "/" },
           { label: "Blog", href: "/blog" },
         ]}
       />
-      <main className="pt-16 md:pt-20">
-        {/* Hero Section */}
-        <section className="bg-primary text-white py-12 md:py-16 lg:py-20">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto text-center">
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 font-playfair">
-                Blog | Del Webb North Ranch 55+ Real Estate
-              </h1>
-              <p className="text-lg md:text-xl text-gray-100 leading-relaxed">
-                Stay informed about Del Webb North Ranch, 55+ living tips, and
-                life in North Las Vegas.
-              </p>
-            </div>
-          </div>
-        </section>
+      <main>
+        <PageHero
+          mediaKey="blog.hero"
+          title="Blog | Del Webb North Ranch 55+ Real Estate"
+          subtitle="Stay informed about Del Webb North Ranch, 55+ living tips, and life in North Las Vegas."
+        />
 
         {/* Office RealScout widget - directly below hero */}
         <RealScoutListings h2Text="Homes for Sale at Del Webb North Ranch | North Las Vegas 55+ Listings" />
@@ -194,13 +179,12 @@ export default function BlogPage() {
         {/* Intro content - Del Webb North Ranch keyword variations */}
         <section className="py-12 md:py-16 bg-bg-light">
           <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
-              <h2 className="text-2xl md:text-3xl font-bold text-primary mb-6 font-playfair">
-                News, Tips, and Insights for Del Webb North Ranch
-              </h2>
-              <p className="text-text-dark mb-4 leading-relaxed">
-                Our blog covers the North Ranch 55+ community, active adult living in North Las Vegas, and practical advice for buyers and sellers interested in Del Webb North Ranch. From single-story floor plans and resort-style amenities to clubs, events, and Nevada lifestyle benefits, you&apos;ll find stories and guides that help you explore this premier 55+ community.
-              </p>
+            <div className="mx-auto max-w-6xl">
+              <SectionPhoto mediaKey="community.fullAerial" heading="News, Tips, and Insights for Del Webb North Ranch">
+                <p>
+                  Our blog covers the North Ranch 55+ community, active adult living in North Las Vegas, and practical advice for buyers and sellers interested in Del Webb North Ranch. From single-story floor plans and resort-style amenities to clubs, events, and Nevada lifestyle benefits, you&apos;ll find stories and guides that help you explore this premier 55+ community.
+                </p>
+              </SectionPhoto>
               <h3 className="text-xl font-bold text-primary mb-3 font-playfair">Community life at North Ranch</h3>
               <p className="text-text-dark mb-4 leading-relaxed">
                 Del Webb North Ranch isn&apos;t just a place to live—it&apos;s a vibrant neighborhood with a 10,000 sq ft clubhouse, pickleball courts, pools, and dozens of clubs and activities. We write about what makes the Del Webb North Ranch community special and how residents make the most of the North Ranch amenities and lifestyle.
@@ -268,15 +252,15 @@ export default function BlogPage() {
                 Explore Del Webb North Ranch
               </h2>
               <p className="text-text-dark mb-6">
-                <Link href="/buyers" className="text-primary hover:text-accent font-medium">For Buyers</Link>
+                <Link href="/buyers" className="text-primary hover:underline font-medium">For Buyers</Link>
                 {" · "}
-                <Link href="/sellers" className="text-primary hover:text-accent font-medium">For Sellers</Link>
+                <Link href="/sellers" className="text-primary hover:underline font-medium">For Sellers</Link>
                 {" · "}
-                <Link href="/community" className="text-primary hover:text-accent font-medium">Community & Area</Link>
+                <Link href="/community" className="text-primary hover:underline font-medium">Community & Area</Link>
                 {" · "}
-                <Link href="/homes-for-sale" className="text-primary hover:text-accent font-medium">Homes for Sale</Link>
+                <Link href="/homes-for-sale" className="text-primary hover:underline font-medium">Homes for Sale</Link>
                 {" · "}
-                <Link href="/schedule" className="text-primary hover:text-accent font-medium">Schedule a Tour</Link>
+                <Link href="/schedule" className="text-primary hover:underline font-medium">Schedule a Tour</Link>
               </p>
             </div>
           </div>
@@ -302,8 +286,8 @@ export default function BlogPage() {
             </div>
           </div>
         </section>
+        <LocalVisitSection heading="Visit Del Webb North Ranch in North Las Vegas" />
       </main>
-      <Footer />
     </>
   );
 }

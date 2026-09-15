@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Navbar from "@/../components/navbar";
-import Footer from "@/../components/footer";
 import Breadcrumbs from "@/../components/Breadcrumbs";
 import { Button } from "@/../components/ui/button";
 import Link from "next/link";
@@ -13,8 +11,12 @@ import VirtualTours from "@/../components/VirtualTours";
 import MortgageCalculator from "@/../components/MortgageCalculator";
 import ScheduleTour from "@/../components/ScheduleTour";
 import RealScoutListings from "@/../components/RealScoutListings";
+import PageHero from "@/../components/PageHero";
+import LocalVisitSection from "@/../components/LocalVisitSection";
+import SectionPhoto from "@/../components/SectionPhoto";
 import { SITE_ORIGIN } from "@/lib/site";
-import { altPrefix, metaDescriptionBlock, TITLE_SUFFIX } from "@/lib/hyperlocal";
+import { metaDescriptionBlock, TITLE_SUFFIX } from "@/lib/hyperlocal";
+import { mediaOpenGraph, mediaTwitterImages } from "@/lib/media";
 
 export const metadata: Metadata = {
   title: `Floor Plans 1,285-2,015 Sq Ft | ${TITLE_SUFFIX}`,
@@ -32,20 +34,13 @@ export const metadata: Metadata = {
     siteName: TITLE_SUFFIX,
     locale: "en_US",
     type: "website",
-    images: [
-      {
-        url: `${SITE_ORIGIN}/images/floor-plans/haven.avif`,
-        width: 1200,
-        height: 630,
-        alt: altPrefix("Floor plans"),
-      },
-    ],
+    images: [mediaOpenGraph("floorPlans.hero")],
   },
   twitter: {
     card: "summary_large_image",
     title: `Floor Plans 1,285-2,015 Sq Ft | ${TITLE_SUFFIX}`,
     description: "Explore 9 single-story floor plans in North Las Vegas's premier 55+ community.",
-    images: [`${SITE_ORIGIN}/images/floor-plans/haven.avif`],
+    images: mediaTwitterImages("floorPlans.hero"),
   },
 };
 
@@ -225,33 +220,28 @@ export default function FloorPlansPage() {
 
   return (
     <>
-      <Navbar />
       <Breadcrumbs
         items={[
           { label: "Del Webb North Ranch", href: "/" },
           { label: "Floor Plans", href: "/floor-plans" },
         ]}
       />
-      <main className="pt-16 md:pt-20">
+      <main>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
         />
-        {/* Hero Section */}
-        <section className="bg-primary text-white py-12 md:py-16 lg:py-20">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto text-center">
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 font-playfair">
-                Floor Plans 1,285-2,015 Sq Ft | Del Webb North Ranch 55+ Community
-              </h1>
-              <p className="text-lg md:text-xl text-gray-100 leading-relaxed">
+        <PageHero
+          mediaKey="floorPlans.hero"
+          title="Floor Plans 1,285-2,015 Sq Ft | Del Webb North Ranch 55+ Community"
+          subtitle={
+            <>
                 Nine thoughtfully designed single-story floor plans ranging from
                 1,285 to 2,015 square feet. Every home features 2-3 bedrooms,
                 2-2.5 baths, and a 2-car garage. View <Link href="/homes-for-sale" className="text-white hover:text-gray-200 underline">homes for sale</Link> with these floor plans or explore the <Link href="/amenities" className="text-white hover:text-gray-200 underline">resort-style amenities</Link> included with every home.
-              </p>
-            </div>
-          </div>
-        </section>
+            </>
+          }
+        />
 
         {/* Office RealScout widget - directly below hero */}
         <RealScoutListings h2Text="View Available Homes with These Floor Plans in Del Webb North Ranch" />
@@ -260,12 +250,11 @@ export default function FloorPlansPage() {
         <section className="py-12 md:py-16 lg:py-20 bg-white">
           <div className="container mx-auto px-4">
             <div className="mb-8 md:mb-12">
-              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-primary mb-3 text-center font-playfair">
-                Cottage Series
-              </h2>
-              <p className="text-center text-text-dark max-w-2xl mx-auto">
-                {getHomesitesByCollection().cottage.count} homes | {getHomesitesByCollection().cottage.sqftRange} sq ft | Efficient, comfortable, easy to maintain
-              </p>
+              <SectionPhoto mediaKey="homes.haven6584" heading="Cottage Series">
+                <p>
+                  {getHomesitesByCollection().cottage.count} homes | {getHomesitesByCollection().cottage.sqftRange} sq ft | Efficient, comfortable, easy to maintain single-story living at Del Webb North Ranch in North Las Vegas.
+                </p>
+              </SectionPhoto>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
               {cottagePlans.map((plan, index) => (
@@ -279,12 +268,11 @@ export default function FloorPlansPage() {
         <section className="py-12 md:py-16 lg:py-20 bg-bg-light">
           <div className="container mx-auto px-4">
             <div className="mb-8 md:mb-12">
-              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-primary mb-3 text-center font-playfair">
-                Classic Series
-              </h2>
-              <p className="text-center text-text-dark max-w-2xl mx-auto">
-                {getHomesitesByCollection().classic.count} homes | {getHomesitesByCollection().classic.sqftRange} sq ft | Room to spread out with optional dens
-              </p>
+              <SectionPhoto mediaKey="community.fullAerial" heading="Classic Series" reverse>
+                <p>
+                  {getHomesitesByCollection().classic.count} homes | {getHomesitesByCollection().classic.sqftRange} sq ft | Room to spread out with optional dens in this North Las Vegas 55+ community.
+                </p>
+              </SectionPhoto>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
               {classicPlans.map((plan, index) => (
@@ -302,12 +290,11 @@ export default function FloorPlansPage() {
         <section className="py-12 md:py-16 lg:py-20 bg-white">
           <div className="container mx-auto px-4">
             <div className="mb-8 md:mb-12">
-              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-primary mb-3 text-center font-playfair">
-                Retreat Series
-              </h2>
-              <p className="text-center text-text-dark max-w-2xl mx-auto">
-                {getHomesitesByCollection().retreat.count} homes | {getHomesitesByCollection().retreat.sqftRange} sq ft | Spacious living for entertaining
-              </p>
+              <SectionPhoto mediaKey="amenities.campusDusk" heading="Retreat Series">
+                <p>
+                  {getHomesitesByCollection().retreat.count} homes | {getHomesitesByCollection().retreat.sqftRange} sq ft | Spacious living for entertaining at Del Webb North Ranch.
+                </p>
+              </SectionPhoto>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
               {retreatPlans.map((plan, index) => (
@@ -342,8 +329,8 @@ export default function FloorPlansPage() {
             </div>
           </div>
         </section>
+        <LocalVisitSection heading="Walk the floor plans at Del Webb North Ranch" />
       </main>
-      <Footer />
     </>
   );
 }

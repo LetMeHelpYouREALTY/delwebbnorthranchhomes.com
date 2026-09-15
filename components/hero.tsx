@@ -1,31 +1,25 @@
 import Link from "next/link";
-import Image from "next/image";
+import MediaImage from "./MediaImage";
 import { Button } from "./ui/button";
-import { ArrowRight } from "lucide-react";
+import { Phone } from "lucide-react";
 import ScheduleTour from "./ScheduleTour";
-
-// Placeholder blur data URL (1x1 transparent PNG)
-const blurDataURL =
-  "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWEREiMxUf/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q==";
+import { SITE_PHONE_DISPLAY, SITE_PHONE_TEL } from "@/lib/site";
 
 export default function Hero() {
   return (
     <section className="relative min-h-[500px] md:min-h-[600px] lg:min-h-[700px] flex items-center justify-center bg-gray-900 text-white overflow-hidden">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
-        <Image
-          src="/images/amenities/resort-pool.jpeg"
-          alt="Del Webb North Ranch resort-style pool area with beautiful landscaping and mountain views"
+        <MediaImage
+          mediaKey="home.hero"
           fill
           priority
           fetchPriority="high"
           className="object-cover"
-          placeholder="blur"
-          blurDataURL={blurDataURL}
           sizes="100vw"
           quality={72}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/20" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/40 to-black/65" />
       </div>
 
       {/* Content */}
@@ -56,6 +50,7 @@ export default function Hero() {
                 variant="accent"
                 size="lg"
                 className="w-full sm:w-auto text-base md:text-lg py-4 md:py-5 min-h-[48px]"
+                text="Schedule a Tour"
               />
             </div>
             <Button
@@ -67,6 +62,16 @@ export default function Hero() {
               <Link href="/homes-for-sale">View Available Homes</Link>
             </Button>
           </div>
+          <p className="mt-5 text-base md:text-lg text-white/95 drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
+            <a
+              href={SITE_PHONE_TEL}
+              className="inline-flex min-h-[44px] items-center gap-2 font-semibold text-white underline-offset-4 hover:underline"
+              aria-label={`Call Dr. Jan Duffy at ${SITE_PHONE_DISPLAY}`}
+            >
+              <Phone className="h-5 w-5" aria-hidden />
+              Call {SITE_PHONE_DISPLAY}
+            </a>
+          </p>
         </div>
       </div>
     </section>

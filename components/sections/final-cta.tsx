@@ -26,13 +26,13 @@ export default function FinalCTASection() {
                   your next chapter.
                 </p>
                 <p className="text-sm md:text-base text-text-dark mb-4">
-                  <Link href="/buyers" className="text-primary hover:text-accent font-medium">For Buyers</Link>
+                  <Link href="/buyers" className="text-primary hover:underline font-medium">For Buyers</Link>
                   {" · "}
-                  <Link href="/sellers" className="text-primary hover:text-accent font-medium">For Sellers</Link>
+                  <Link href="/sellers" className="text-primary hover:underline font-medium">For Sellers</Link>
                   {" · "}
-                  <Link href="/home-value" className="text-primary hover:text-accent font-medium">Home Value</Link>
+                  <Link href="/home-value" className="text-primary hover:underline font-medium">Home Value</Link>
                   {" · "}
-                  <Link href="/schedule" className="text-primary hover:text-accent font-medium">Schedule a Tour</Link>
+                  <Link href="/schedule" className="text-primary hover:underline font-medium">Schedule a Tour</Link>
                 </p>
                 <div className="mb-6">
                   <a

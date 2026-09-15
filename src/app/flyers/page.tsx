@@ -1,6 +1,4 @@
 import type { Metadata } from "next";
-import Navbar from "@/../components/navbar";
-import Footer from "@/../components/footer";
 import Breadcrumbs from "@/../components/Breadcrumbs";
 import Link from "next/link";
 import { FileText, Download } from "lucide-react";
@@ -9,6 +7,10 @@ import { getAllFlyers } from "@/lib/flyers";
 import { SITE_ORIGIN, SITE_PHONE_TEL, SITE_PHONE_DISPLAY } from "@/lib/site";
 import { metaDescriptionBlock, TITLE_SUFFIX } from "@/lib/hyperlocal";
 import RealScoutListings from "@/../components/RealScoutListings";
+import PageHero from "@/../components/PageHero";
+import LocalVisitSection from "@/../components/LocalVisitSection";
+import SectionPhoto from "@/../components/SectionPhoto";
+import { mediaOpenGraph, mediaTwitterImages } from "@/lib/media";
 
 export const metadata: Metadata = {
   title: `Community Flyers & Brochures | ${TITLE_SUFFIX}`,
@@ -26,6 +28,13 @@ export const metadata: Metadata = {
     siteName: TITLE_SUFFIX,
     locale: "en_US",
     type: "website",
+    images: [mediaOpenGraph("flyers.hero")],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `Community Flyers & Brochures | ${TITLE_SUFFIX}`,
+    description: "Download printable flyers and brochures about Del Webb North Ranch 55+ community.",
+    images: mediaTwitterImages("flyers.hero"),
   },
 };
 
@@ -33,27 +42,18 @@ export default function FlyersPage() {
   const flyers = getAllFlyers();
   return (
     <>
-      <Navbar />
       <Breadcrumbs
         items={[
           { label: "Del Webb North Ranch", href: "/" },
           { label: "Flyers & Brochures", href: "/flyers" },
         ]}
       />
-      <main className="pt-16 md:pt-20">
-        {/* Hero Section */}
-        <section className="bg-primary text-white py-12 md:py-16 lg:py-20">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto text-center">
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 font-playfair">
-                Community Flyers & Brochures
-              </h1>
-              <p className="text-lg md:text-xl text-gray-100 leading-relaxed">
-                Download printable flyers and brochures about Del Webb North Ranch. Share with friends and family or keep for your records.
-              </p>
-            </div>
-          </div>
-        </section>
+      <main>
+        <PageHero
+          mediaKey="flyers.hero"
+          title="Community Flyers & Brochures"
+          subtitle="Download printable flyers and brochures about Del Webb North Ranch. Share with friends and family or keep for your records."
+        />
 
         {/* Office RealScout widget - directly below hero */}
         <RealScoutListings h2Text="Homes for Sale at Del Webb North Ranch | North Las Vegas 55+ Listings" />
@@ -61,13 +61,12 @@ export default function FlyersPage() {
         {/* Why download flyers */}
         <section className="py-12 md:py-16 bg-bg-light">
           <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
-              <h2 className="text-2xl md:text-3xl font-bold text-primary mb-6 font-playfair">
-                Why Download Del Webb North Ranch Flyers &amp; Brochures
-              </h2>
-              <p className="text-text-dark mb-6 leading-relaxed">
-                Whether you&apos;re exploring North Ranch for the first time or sharing the community with family, our printable flyers and brochures put key information about the Del Webb North Ranch 55+ community at your fingertips. From floor plans and amenities to area highlights, you can review details offline and share with others who might be considering this premier 55+ community in North Las Vegas.
-              </p>
+            <div className="mx-auto max-w-6xl">
+              <SectionPhoto mediaKey="community.fullAerial" heading="Why Download Del Webb North Ranch Flyers &amp; Brochures">
+                <p>
+                  Whether you&apos;re exploring North Ranch for the first time or sharing the community with family, our printable flyers and brochures put key information about the Del Webb North Ranch 55+ community at your fingertips. From floor plans and amenities to area highlights, you can review details offline and share with others who might be considering this premier 55+ community in North Las Vegas.
+                </p>
+              </SectionPhoto>
               <h3 className="text-xl font-bold text-primary mb-3 font-playfair">Community overview</h3>
               <p className="text-text-dark mb-4 leading-relaxed">
                 Del Webb North Ranch in North Las Vegas offers single-story living, resort-style amenities, and an active adult lifestyle. Our flyers summarize what makes North Ranch real estate and the Del Webb North Ranch clubhouse so appealing—so you can compare options and plan your visit or move with confidence.
@@ -179,15 +178,15 @@ export default function FlyersPage() {
                 Beyond flyers and brochures, explore the full Del Webb North Ranch experience: current listings, floor plans, amenities, and the active adult lifestyle at North Ranch in North Las Vegas.
               </p>
               <p className="text-text-dark text-center">
-                <Link href="/buyers" className="text-primary hover:text-accent font-medium">For Buyers</Link>
+                <Link href="/buyers" className="text-primary hover:underline font-medium">For Buyers</Link>
                 {" · "}
-                <Link href="/sellers" className="text-primary hover:text-accent font-medium">For Sellers</Link>
+                <Link href="/sellers" className="text-primary hover:underline font-medium">For Sellers</Link>
                 {" · "}
-                <Link href="/community" className="text-primary hover:text-accent font-medium">Community & Area</Link>
+                <Link href="/community" className="text-primary hover:underline font-medium">Community & Area</Link>
                 {" · "}
-                <Link href="/homes-for-sale" className="text-primary hover:text-accent font-medium">Homes for Sale</Link>
+                <Link href="/homes-for-sale" className="text-primary hover:underline font-medium">Homes for Sale</Link>
                 {" · "}
-                <Link href="/schedule" className="text-primary hover:text-accent font-medium">Schedule a Tour</Link>
+                <Link href="/schedule" className="text-primary hover:underline font-medium">Schedule a Tour</Link>
               </p>
             </div>
           </div>
@@ -220,8 +219,8 @@ export default function FlyersPage() {
             </div>
           </div>
         </section>
+        <LocalVisitSection heading="Pick up community details at Del Webb North Ranch" />
       </main>
-      <Footer />
     </>
   );
 }

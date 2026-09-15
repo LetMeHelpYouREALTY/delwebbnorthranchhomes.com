@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
-import Navbar from "@/../components/navbar";
-import Footer from "@/../components/footer";
 import Link from "next/link";
 import { CheckCircle2, AlertCircle, FileText, Calendar } from "lucide-react";
 import ScheduleTour from "@/../components/ScheduleTour";
+import Breadcrumbs from "@/../components/Breadcrumbs";
 import { SITE_ORIGIN, SITE_PHONE_TEL, SITE_PHONE_DISPLAY } from "@/lib/site";
 import { TITLE_SUFFIX } from "@/lib/hyperlocal";
+import PageHero from "@/../components/PageHero";
+import LocalVisitSection from "@/../components/LocalVisitSection";
+import { mediaOpenGraph, mediaTwitterImages } from "@/lib/media";
 
 export const metadata: Metadata = {
   title: `Accessibility Statement | ${TITLE_SUFFIX}`,
@@ -22,11 +24,13 @@ export const metadata: Metadata = {
     siteName: TITLE_SUFFIX,
     locale: "en_US",
     type: "website",
+    images: [mediaOpenGraph("legal.hero")],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "Accessibility Statement | Del Webb North Ranch",
-    description: "Our commitment to website accessibility for all visitors.",
+    description: "WCAG AA accessibility for the Del Webb North Ranch 55+ website in North Las Vegas.",
+    images: mediaTwitterImages("legal.hero"),
   },
   robots: {
     index: true,
@@ -37,21 +41,18 @@ export const metadata: Metadata = {
 export default function AccessibilityPage() {
   return (
     <>
-      <Navbar />
-      <main className="pt-16 md:pt-20 min-h-screen bg-white">
-        {/* Hero Section */}
-        <section className="bg-stone-100 py-12 md:py-16 lg:py-20">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto text-center">
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 font-playfair">
-                Accessibility Statement
-              </h1>
-              <p className="text-lg md:text-xl text-gray-600">
-                Our commitment to making Del Webb North Ranch website accessible to everyone
-              </p>
-            </div>
-          </div>
-        </section>
+      <Breadcrumbs
+        items={[
+          { label: "Del Webb North Ranch", href: "/" },
+          { label: "Accessibility", href: "/accessibility" },
+        ]}
+      />
+      <main className="min-h-screen bg-white">
+        <PageHero
+          mediaKey="legal.hero"
+          title="Accessibility Statement | Del Webb North Ranch 55+ | North Las Vegas"
+          subtitle="Our commitment to making the Del Webb North Ranch website accessible to every visitor."
+        />
 
         {/* Content Section */}
         <section className="py-12 md:py-16">
@@ -233,8 +234,8 @@ export default function AccessibilityPage() {
             </div>
           </div>
         </section>
+        <LocalVisitSection heading="Visit Del Webb North Ranch" />
       </main>
-      <Footer />
     </>
   );
 }

@@ -9,7 +9,7 @@ const exploreCards = [
     description: '55+ home buying in North Las Vegas—listings, floor plans, tours',
     href: '/buyers',
     icon: Home,
-    image: '/images/amenities/resort-pool.jpeg',
+    image: '/images/homes/haven-6584.jpg',
     primary: true,
   },
   {
@@ -17,56 +17,56 @@ const exploreCards = [
     description: 'Sell your North Las Vegas or Del Webb North Ranch home—home value, consultation',
     href: '/sellers',
     icon: TrendingUp,
-    image: '/images/amenities/clubhouse.jpeg',
+    image: '/images/homes/haven-exterior-alt.jpg',
   },
   {
     title: 'Community & Area',
     description: 'North Las Vegas area, nearby neighborhoods, and 55+ living',
     href: '/community',
     icon: MapPin,
-    image: '/images/lifestyle/community-life.jpeg',
+    image: '/images/hero/clubhouse-aerial.jpg',
   },
   {
     title: 'Homes for Sale',
     description: 'Browse available single-story homes from $400K-$600K',
     href: '/homes-for-sale',
     icon: Home,
-    image: '/images/amenities/resort-pool.jpeg',
+    image: '/images/homes/haven-6584.jpg',
   },
   {
     title: 'Floor Plans',
     description: 'Explore 1,285-2,015 sq ft designs across 3 collections',
     href: '/floor-plans',
     icon: Layout,
-    image: '/images/floor-plans/haven.avif',
+    image: '/images/hero/campus-overhead.jpg',
   },
   {
     title: 'Amenities',
     description: '10,000 sq ft clubhouse, pools, pickleball & more',
     href: '/amenities',
     icon: Sparkles,
-    image: '/images/amenities/clubhouse.jpeg',
+    image: '/images/amenities/pool-deck.jpg',
   },
   {
     title: 'Lifestyle',
     description: 'Discover active adult living in North Las Vegas',
     href: '/lifestyle',
     icon: Users,
-    image: '/images/lifestyle/community-life.jpeg',
+    image: '/images/amenities/pickleball-dusk.jpg',
   },
   {
     title: 'About Dr. Jan Duffy',
     description: 'Meet your trusted REALTOR® and community expert',
     href: '/about',
     icon: Users,
-    image: '/images/about/dr-jan-duffy.jpg',
+    image: '/images/clubhouse/patio-sunset.jpg',
   },
   {
     title: 'FAQ',
     description: 'Get answers to common questions about the community',
     href: '/faq',
     icon: HelpCircle,
-    image: '/images/amenities/resort-pool.jpeg',
+    image: '/images/hero/monument-sign-close.jpg',
   },
 ];
 
@@ -96,7 +96,7 @@ export default function ExploreCommunitySection() {
                   <div className="relative aspect-[4/3] overflow-hidden">
                     <Image
                       src={card.image}
-                      alt={card.title}
+                      alt={`${card.title} at Del Webb North Ranch, North Las Vegas 55+ community`}
                       fill
                       className="object-cover group-hover:scale-105 transition-transform duration-300"
                       sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"

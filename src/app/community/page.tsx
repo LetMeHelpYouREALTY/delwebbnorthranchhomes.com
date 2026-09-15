@@ -1,15 +1,17 @@
 import type { Metadata } from "next";
-import Navbar from "@/../components/navbar";
-import Footer from "@/../components/footer";
 import Breadcrumbs from "@/../components/Breadcrumbs";
 import Link from "next/link";
 import { MapPin, TreePine, Heart, Mountain } from "lucide-react";
 import { SITE_ORIGIN } from "@/lib/site";
-import { altPrefix, metaDescriptionBlock, TITLE_SUFFIX } from "@/lib/hyperlocal";
+import { metaDescriptionBlock, TITLE_SUFFIX } from "@/lib/hyperlocal";
 import { nearbyAreas, hyperlocalFaq } from "@/lib/hyperlocalData";
 import { HYPERLOCAL } from "@/lib/hyperlocal";
 import { getCommunityInfo } from "@/lib/communityData";
 import RealScoutListings from "@/../components/RealScoutListings";
+import LocalVisitSection from "@/../components/LocalVisitSection";
+import PageHero from "@/../components/PageHero";
+import SectionPhoto from "@/../components/SectionPhoto";
+import { mediaOpenGraph, mediaTwitterImages } from "@/lib/media";
 
 const communityFaqSchema = {
   "@context": "https://schema.org",
@@ -34,14 +36,13 @@ export const metadata: Metadata = {
     siteName: TITLE_SUFFIX,
     locale: "en_US",
     type: "website",
-    images: [
-      { url: `${SITE_ORIGIN}/images/amenities/resort-pool.jpeg`, width: 1200, height: 630, alt: altPrefix("Resort pool") },
-    ],
+    images: [mediaOpenGraph("community.hero")],
   },
   twitter: {
     card: "summary_large_image",
     title: `Community & Area | North Las Vegas 55+ | ${TITLE_SUFFIX}`,
     description: "Explore North Las Vegas and the area around Del Webb North Ranch.",
+    images: mediaTwitterImages("community.hero"),
   },
 };
 
@@ -50,8 +51,7 @@ export default function CommunityPage() {
 
   return (
     <>
-      <Navbar />
-      <main className="pt-16 md:pt-20">
+      <main>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(communityFaqSchema).replace(/</g, '\\u003c') }}
@@ -62,19 +62,11 @@ export default function CommunityPage() {
             { label: "Community & Area", href: "/community" },
           ]}
         />
-        {/* Hero - exactly one H1 */}
-        <section className="bg-primary text-white py-12 md:py-16 lg:py-20">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto text-center">
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 font-playfair">
-                Community & Area: Del Webb North Ranch | North Las Vegas 55+
-              </h1>
-              <p className="text-lg md:text-xl text-gray-100 leading-relaxed">
-                Del Webb North Ranch sits in North Las Vegas, NV 89086—with easy access to Aliante, Centennial Hills, Craig Ranch Regional Park, healthcare, and outdoor recreation. No state income tax and a 55+ active adult lifestyle.
-              </p>
-            </div>
-          </div>
-        </section>
+        <PageHero
+          mediaKey="community.hero"
+          title="Community & Area: Del Webb North Ranch | North Las Vegas 55+"
+          subtitle="Del Webb North Ranch sits in North Las Vegas, NV 89086—with easy access to Aliante, Centennial Hills, Craig Ranch Regional Park, healthcare, and outdoor recreation. No state income tax and a 55+ active adult lifestyle."
+        />
 
         {/* Office RealScout widget - below hero */}
         <RealScoutListings h2Text="Homes for Sale at Del Webb North Ranch | North Las Vegas 55+ Community Listings" />
@@ -82,31 +74,27 @@ export default function CommunityPage() {
         {/* Long-form: Del Webb North Ranch keyword variations, H2/H3, 1500+ words */}
         <section className="py-12 md:py-16 bg-white">
           <div className="container mx-auto px-4">
-            <div className="max-w-3xl mx-auto prose prose-lg max-w-none text-text-dark">
-              <h2 className="text-2xl md:text-3xl font-bold text-primary mb-6 font-playfair">
-                About Del Webb North Ranch and the North Las Vegas Area
-              </h2>
-              <p className="mb-6">
-                Del Webb North Ranch is a 55+ active adult gated community in North Las Vegas, NV 89086. The community is built on 80 acres with 394 single-story homes in three collections: Cottage, Classic, and Retreat. North Ranch opened its 10,000 sq ft clubhouse in October 2021 and has been fully built out since—so when you visit Del Webb North Ranch, you see a complete neighborhood with resort-style pool, fitness center, pickleball courts, and over twenty social clubs. This premier 55+ community in North Las Vegas is designed for people who want to live, not just exist: single-story living, low maintenance, and neighbors who chose the same lifestyle.
-              </p>
-              <h3 className="text-xl font-bold text-primary mt-10 mb-4 font-playfair">
-                Where Is Del Webb North Ranch?
-              </h3>
-              <p className="mb-6">
-                Del Webb North Ranch is located at 2290 Beauty Vista Avenue in North Las Vegas, zip code 89086. The North Ranch community is in the northern part of the Las Vegas Valley, with easy access to Aliante, Centennial Hills, Craig Ranch Regional Park, and VA Southern Nevada Hospital. McCarran International Airport and the Las Vegas Strip are within a short drive. North Las Vegas offers no state income tax, strong healthcare, and outdoor recreation—and Del Webb North Ranch sits right in the middle of it. The community is gated with virtual concierge and roving security, so residents enjoy both convenience and peace of mind.
-              </p>
-              <h2 className="text-2xl md:text-3xl font-bold text-primary mt-12 mb-6 font-playfair">
-                Why North Las Vegas for Del Webb North Ranch Buyers
-              </h2>
-              <p className="mb-6">
-                North Las Vegas is one of the fastest-growing areas in Nevada, and Del Webb North Ranch is one of its premier 55+ communities. Buyers choose North Ranch for single-story homes, built-out amenities, and a neighborhood of active adults. They also choose North Las Vegas for no state income tax, which means more of your retirement income stays in your pocket. The area has strong healthcare (VA Southern Nevada Hospital, Centennial Hills Hospital), outdoor recreation (Craig Ranch Regional Park, Lake Mead), and shopping and dining in Aliante and nearby. Del Webb North Ranch real estate is in demand because the community is complete—unlike newer developments still waiting on amenities, North Ranch is ready to enjoy today.
-              </p>
-              <h3 className="text-xl font-bold text-primary mt-10 mb-4 font-playfair">
-                Del Webb North Ranch Amenities and Lifestyle
-              </h3>
-              <p className="mb-6">
-                The Del Webb North Ranch clubhouse is the heart of the community. At 10,000 square feet, it includes fitness facilities, social spaces, and room for clubs and events. Outside, North Ranch residents use the resort-style pool, pickleball courts, and landscaped grounds. The North Ranch lifestyle is active and social: fitness classes, card games, book clubs, travel groups, and more. Because everyone at Del Webb North Ranch is 55+, your neighbors are in the same stage of life and many have relocated from out of state or downsized locally. The community is built for connection—so whether you&apos;re looking for quiet single-story living or an active social scene, North Ranch has both. View current homes for sale at Del Webb North Ranch in the listings above, or schedule a tour to see the community and amenities in person.
-              </p>
+            <div className="mx-auto max-w-6xl text-text-dark">
+              <SectionPhoto mediaKey="community.campusAerial" heading="About Del Webb North Ranch and the North Las Vegas Area">
+                <p>
+                  Del Webb North Ranch is a 55+ active adult gated community in North Las Vegas, NV 89086. The community is built on 80 acres with 394 single-story homes in three collections: Cottage, Classic, and Retreat. North Ranch opened its 10,000 sq ft clubhouse in October 2021 and has been fully built out since—so when you visit Del Webb North Ranch, you see a complete neighborhood with resort-style pool, fitness center, pickleball courts, and over twenty social clubs. This premier 55+ community in North Las Vegas is designed for people who want to live, not just exist: single-story living, low maintenance, and neighbors who chose the same lifestyle.
+                </p>
+              </SectionPhoto>
+              <SectionPhoto mediaKey="place.primary" heading="Where Is Del Webb North Ranch?" headingLevel="h3" reverse>
+                <p>
+                  Del Webb North Ranch is located at 2290 Beauty Vista Avenue in North Las Vegas, zip code 89086. The North Ranch community is in the northern part of the Las Vegas Valley, with easy access to Aliante, Centennial Hills, Craig Ranch Regional Park, and VA Southern Nevada Hospital. McCarran International Airport and the Las Vegas Strip are within a short drive. North Las Vegas offers no state income tax, strong healthcare, and outdoor recreation—and Del Webb North Ranch sits right in the middle of it. The community is gated with virtual concierge and roving security.
+                </p>
+              </SectionPhoto>
+              <SectionPhoto mediaKey="amenities.poolPalms" heading="Why North Las Vegas for Del Webb North Ranch Buyers">
+                <p>
+                  North Las Vegas is one of the fastest-growing areas in Nevada, and Del Webb North Ranch is one of its premier 55+ communities. Buyers choose North Ranch for single-story homes, built-out amenities, and a neighborhood of active adults. They also choose North Las Vegas for no state income tax, which means more of your retirement income stays in your pocket. The area has strong healthcare (VA Southern Nevada Hospital, Centennial Hills Hospital), outdoor recreation (Craig Ranch Regional Park, Lake Mead), and shopping and dining in Aliante and nearby. Del Webb North Ranch real estate is in demand because the community is complete—unlike newer developments still waiting on amenities, North Ranch is ready to enjoy today.
+                </p>
+              </SectionPhoto>
+              <SectionPhoto mediaKey="clubhouse.eventHall" heading="Del Webb North Ranch Amenities and Lifestyle" headingLevel="h3" reverse>
+                <p>
+                  The Del Webb North Ranch clubhouse is the heart of the community. At 10,000 square feet, it includes fitness facilities, social spaces, and room for clubs and events. Outside, North Ranch residents use the resort-style pool, pickleball courts, and landscaped grounds. The North Ranch lifestyle is active and social: fitness classes, card games, book clubs, travel groups, and more. Because everyone at Del Webb North Ranch is 55+, your neighbors are in the same stage of life and many have relocated from out of state or downsized locally. The community is built for connection—so whether you want single-story living, clubs and events, or both, North Ranch has room for that mix. View current homes for sale at Del Webb North Ranch in the listings above, or schedule a tour to see the community and amenities in person.
+                </p>
+              </SectionPhoto>
             </div>
           </div>
         </section>
@@ -128,7 +116,7 @@ export default function CommunityPage() {
                       <h3 className="font-semibold text-primary mb-1 font-playfair">{area.name}</h3>
                       <p className="text-text-dark text-sm mb-2">{area.description}</p>
                       {area.relatedPath && (
-                        <Link href={area.relatedPath} className="text-primary hover:text-accent text-sm font-medium">
+                        <Link href={area.relatedPath} className="text-primary hover:underline text-sm font-medium">
                           Learn more →
                         </Link>
                       )}
@@ -184,11 +172,11 @@ export default function CommunityPage() {
                 <li><strong>Clubhouse:</strong> {communityInfo.clubhouseSize} clubhouse</li>
               </ul>
               <p className="mt-6 text-center">
-                <Link href="/amenities" className="text-primary hover:text-accent font-medium">
+                <Link href="/amenities" className="text-primary hover:underline font-medium">
                   Explore resort-style amenities →
                 </Link>
                 {" · "}
-                <Link href="/lifestyle" className="text-primary hover:text-accent font-medium">
+                <Link href="/lifestyle" className="text-primary hover:underline font-medium">
                   Active adult lifestyle →
                 </Link>
               </p>
@@ -242,8 +230,8 @@ export default function CommunityPage() {
             </div>
           </div>
         </section>
+        <LocalVisitSection heading="Directions to Del Webb North Ranch, North Las Vegas" />
       </main>
-      <Footer />
     </>
   );
 }

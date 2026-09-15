@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import Navbar from "@/../components/navbar";
-import Footer from "@/../components/footer";
 import Breadcrumbs from "@/../components/Breadcrumbs";
+import LocalVisitSection from "@/../components/LocalVisitSection";
 import { getVirtualTourBySlug, getVirtualToursWithEmbed } from "@/lib/old-site-data";
 import { SITE_ORIGIN } from "@/lib/site";
 import { TITLE_SUFFIX } from "@/lib/hyperlocal";
+import { mediaOpenGraph, mediaTwitterImages, absoluteMediaUrl } from "@/lib/media";
 
 export async function generateStaticParams() {
   return getVirtualToursWithEmbed().map((t) => ({ slug: t.slug }));
@@ -36,11 +36,13 @@ export async function generateMetadata({
       siteName: TITLE_SUFFIX,
       locale: "en_US",
       type: "video.other",
+      images: [mediaOpenGraph("homes.haven6584")],
     },
     twitter: {
       card: "player",
       title,
       description,
+      images: mediaTwitterImages("homes.haven6584"),
     },
   };
 }
@@ -58,7 +60,7 @@ function VideoObjectSchema({
     "@type": "VideoObject",
     name: `${tour.model} Virtual Tour | Del Webb North Ranch Model Home`,
     description: `${tour.model} ${tour.series} Series ${tour.sqft} sq ft model home virtual tour at Del Webb North Ranch 55+ community in North Las Vegas.`,
-    thumbnailUrl: `${SITE_ORIGIN}/images/hero/hero-bg.jpg`,
+    thumbnailUrl: absoluteMediaUrl("homes.haven6584"),
     uploadDate: "2024-01-01",
     contentUrl: tour.embedUrl,
     embedUrl: tour.embedUrl,
@@ -68,7 +70,7 @@ function VideoObjectSchema({
       name: "Dr. Jan Duffy, Berkshire Hathaway HomeServices Nevada Properties",
       logo: {
         "@type": "ImageObject",
-        url: `${SITE_ORIGIN}/images/about/dr-jan-duffy.jpg`,
+        url: `${SITE_ORIGIN}/images/logo/logo.svg`,
       },
     },
   };
@@ -94,7 +96,6 @@ export default async function VirtualTourWatchPage({
   return (
     <>
       <VideoObjectSchema tour={tour} slug={slug} />
-      <Navbar />
       <Breadcrumbs
         items={[
           { label: "Del Webb North Ranch", href: "/" },
@@ -102,7 +103,7 @@ export default async function VirtualTourWatchPage({
           { label: `${tour.model} Tour`, href: `/virtual-tours/${slug}` },
         ]}
       />
-      <main className="pt-16 md:pt-20">
+      <main>
         {/* Watch page: video is primary content */}
         <section className="bg-white py-8 md:py-12">
           <div className="container mx-auto px-4">
@@ -146,8 +147,8 @@ export default async function VirtualTourWatchPage({
             </div>
           </div>
         </section>
+        <LocalVisitSection heading="Tour this model in person at Del Webb North Ranch" />
       </main>
-      <Footer />
     </>
   );
 }

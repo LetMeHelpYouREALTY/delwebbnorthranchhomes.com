@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
-import Navbar from "@/../components/navbar";
-import Footer from "@/../components/footer";
 import ScheduleTour from "@/../components/ScheduleTour";
+import Breadcrumbs from "@/../components/Breadcrumbs";
+import PageHero from "@/../components/PageHero";
+import LocalVisitSection from "@/../components/LocalVisitSection";
 import { SITE_ORIGIN, SITE_PHONE_TEL, SITE_PHONE_DISPLAY } from "@/lib/site";
 import { TITLE_SUFFIX } from "@/lib/hyperlocal";
+import { mediaOpenGraph, mediaTwitterImages } from "@/lib/media";
 
 export const metadata: Metadata = {
   title: `Privacy Policy | ${TITLE_SUFFIX}`,
@@ -20,25 +22,34 @@ export const metadata: Metadata = {
     siteName: TITLE_SUFFIX,
     locale: "en_US",
     type: "website",
+    images: [mediaOpenGraph("legal.hero")],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "Privacy Policy | Del Webb North Ranch",
-    description: "Privacy policy for the Del Webb North Ranch real estate website.",
+    description: "Privacy policy for the Del Webb North Ranch 55+ real estate website in North Las Vegas.",
+    images: mediaTwitterImages("legal.hero"),
   },
 };
 
 export default function PrivacyPage() {
   return (
     <>
-      <Navbar />
-      <main className="pt-16 md:pt-20">
+      <Breadcrumbs
+        items={[
+          { label: "Del Webb North Ranch", href: "/" },
+          { label: "Privacy Policy", href: "/privacy" },
+        ]}
+      />
+      <main>
+        <PageHero
+          mediaKey="legal.hero"
+          title="Privacy Policy | Del Webb North Ranch 55+ | North Las Vegas"
+          subtitle="How we collect, use, and protect your information when you contact Dr. Jan Duffy about 55+ homes at Del Webb North Ranch."
+        />
         <section className="py-12 md:py-16 lg:py-20 bg-white">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
-              <h1 className="text-3xl md:text-4xl font-bold text-primary mb-6 font-playfair">
-                Privacy Policy
-              </h1>
               <div className="prose prose-lg max-w-none space-y-6 text-text-dark">
                 <p className="text-sm text-gray-500">
                   Last updated: {new Date().toLocaleDateString()}
@@ -142,8 +153,8 @@ export default function PrivacyPage() {
             </div>
           </div>
         </section>
+        <LocalVisitSection heading="Contact Dr. Jan Duffy at Del Webb North Ranch" />
       </main>
-      <Footer />
     </>
   );
 }

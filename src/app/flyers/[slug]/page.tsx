@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import Navbar from "@/../components/navbar";
-import Footer from "@/../components/footer";
 import Breadcrumbs from "@/../components/Breadcrumbs";
 import Link from "next/link";
 import { FileText, Download, ArrowLeft } from "lucide-react";
@@ -9,6 +7,9 @@ import { Button } from "@/../components/ui/button";
 import { getAllFlyers, getFlyerBySlug } from "@/lib/flyers";
 import { SITE_ORIGIN } from "@/lib/site";
 import { TITLE_SUFFIX } from "@/lib/hyperlocal";
+import { mediaOpenGraph, mediaTwitterImages } from "@/lib/media";
+import PageHero from "@/../components/PageHero";
+import LocalVisitSection from "@/../components/LocalVisitSection";
 
 export async function generateStaticParams() {
   const flyers = getAllFlyers();
@@ -44,6 +45,13 @@ export async function generateMetadata({
       siteName: TITLE_SUFFIX,
       locale: "en_US",
       type: "website",
+      images: [mediaOpenGraph("flyers.hero")],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${flyer.title} | ${TITLE_SUFFIX}`,
+      description: flyer.description,
+      images: mediaTwitterImages("flyers.hero"),
     },
   };
 }
@@ -62,7 +70,6 @@ export default async function FlyerPage({
 
   return (
     <>
-      <Navbar />
       <Breadcrumbs
         items={[
           { label: "Del Webb North Ranch", href: "/" },
@@ -70,28 +77,14 @@ export default async function FlyerPage({
           { label: flyer.title, href: `/flyers/${slug}` },
         ]}
       />
-      <main className="pt-16 md:pt-20">
-        {/* Hero Section */}
-        <section className="bg-primary text-white py-12 md:py-16 lg:py-20">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto text-center">
-              <div className="flex items-center justify-center w-20 h-20 bg-white/10 rounded-full mb-6 mx-auto">
-                <FileText className="w-10 h-10 text-white" />
-              </div>
-              <div className="mb-4">
-                <span className="inline-block px-4 py-2 bg-white/20 text-white text-sm font-semibold rounded-full">
-                  {flyer.category}
-                </span>
-              </div>
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 font-playfair">
-                {flyer.title}
-              </h1>
-              <p className="text-lg md:text-xl text-gray-100 leading-relaxed">
-                {flyer.description}
-              </p>
-            </div>
-          </div>
-        </section>
+      <main>
+        <PageHero
+          mediaKey="flyers.hero"
+          title={flyer.title}
+          subtitle={flyer.description}
+        >
+          <span className="inline-block rounded-full bg-white/20 px-4 py-2 text-sm font-semibold">{flyer.category}</span>
+        </PageHero>
 
         {/* Content Section */}
         <section className="py-12 md:py-16 lg:py-20 bg-white">
@@ -243,8 +236,8 @@ export default async function FlyerPage({
             </div>
           </div>
         </section>
+        <LocalVisitSection heading="Ask about this brochure at Del Webb North Ranch" />
       </main>
-      <Footer />
     </>
   );
 }

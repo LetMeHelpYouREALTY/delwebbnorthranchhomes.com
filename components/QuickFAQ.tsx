@@ -64,7 +64,7 @@ export default function QuickFAQ() {
                 >
                   <button
                     onClick={() => toggleQuestion(index)}
-                    className="w-full px-6 py-4 flex items-center justify-between text-left hover:bg-stone-50 transition-colors"
+                    className="w-full px-6 py-4 min-h-[44px] flex items-center justify-between text-left hover:bg-stone-50 transition-colors"
                     aria-expanded={ariaExpanded}
                   >
                     <span className="font-semibold text-text-dark pr-4 flex-1">
@@ -96,7 +96,7 @@ export default function QuickFAQ() {
           <div className="text-center">
             <Link
               href="/faq"
-              className="inline-flex items-center gap-2 px-6 py-3 min-h-[44px] min-w-[44px] bg-amber-700 hover:bg-amber-800 text-white font-semibold rounded-md transition-colors"
+              className="inline-flex items-center gap-2 px-6 py-3 min-h-[44px] min-w-[44px] bg-primary hover:bg-primary/90 text-white font-semibold rounded-md transition-colors"
             >
               View All FAQs
               <ArrowRight className="w-5 h-5" />

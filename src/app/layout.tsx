@@ -1,11 +1,15 @@
 import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
-import { CANONICAL_HOMEPAGE, SITE_ORIGIN, GOOGLE_MAPS_DIRECTIONS_URL, SITE_PHONE_SCHEMA, GBP_AGGREGATE_RATING, GBP_BUSINESS_NAME, GBP_DESCRIPTION, GBP_SHORT_DESCRIPTION, GBP_FOUNDING_DATE, GBP_SERVICE_AREA, GBP_SOCIAL_PROFILES, SITE_EMAIL, gbpPostalAddressSchema, gbpOpeningHoursSpecification } from "@/lib/site";
+import { CANONICAL_HOMEPAGE, SITE_ORIGIN, GOOGLE_MAPS_PLACE_URL, SITE_PHONE_SCHEMA, GBP_AGGREGATE_RATING, GBP_BUSINESS_NAME, GBP_DESCRIPTION, GBP_SHORT_DESCRIPTION, GBP_FOUNDING_DATE, GBP_SERVICE_AREA, GBP_SOCIAL_PROFILES, SITE_EMAIL, gbpPostalAddressSchema, gbpOpeningHoursSpecification } from "@/lib/site";
+import { absoluteMediaUrl, mediaOpenGraph, mediaTwitterImages } from "@/lib/media";
 import "./globals.css";
 import CalendlyButton from "@/../components/CalendlyButton";
 import CalendlyScript from "@/../components/CalendlyScript";
 import CalendlyStyles from "@/../components/CalendlyStyles";
 import SchemaMarkup from "@/../components/SchemaMarkup";
+import Navbar from "@/../components/navbar";
+import Footer from "@/../components/footer";
+import GbpActionBar from "@/../components/GbpActionBar";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -39,7 +43,7 @@ export const metadata: Metadata = {
     "55+ community",
     "North Las Vegas",
     "active adult community",
-    "senior living",
+    "55+ active adult living",
     "single-story homes",
     "Dr. Jan Duffy",
     "REALTOR",
@@ -65,21 +69,13 @@ export const metadata: Metadata = {
     title: GBP_BUSINESS_NAME,
     description:
       "Single-story homes from $400K-$600K in a gated 55+ community. Resort pool, pickleball, fitness center—all fully built.",
-    images: [
-      {
-        url: "/images/hero/hero-bg.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Del Webb North Ranch community entrance",
-        type: "image/jpeg",
-      },
-    ],
+    images: [mediaOpenGraph("place.primary")],
   },
   twitter: {
     card: "summary_large_image",
     title: GBP_BUSINESS_NAME,
     description: GBP_SHORT_DESCRIPTION,
-    images: ["/images/hero/hero-bg.jpg"],
+    images: mediaTwitterImages("place.primary"),
     creator: "@DrDuffy",
   },
   robots: {
@@ -117,7 +113,17 @@ export default function RootLayout({
     name: GBP_BUSINESS_NAME,
     alternateName: "Dr. Jan Duffy Real Estate",
     description: GBP_DESCRIPTION,
-    image: `${SITE_ORIGIN}/images/about/dr-jan-duffy.jpg`,
+    image: [
+      absoluteMediaUrl("place.primary"),
+      absoluteMediaUrl("place.signClose"),
+      absoluteMediaUrl("community.fullAerial"),
+      absoluteMediaUrl("amenities.poolPalms"),
+      absoluteMediaUrl("amenities.campusDusk"),
+      absoluteMediaUrl("homes.haven6584"),
+      absoluteMediaUrl("clubhouse.greatRoom"),
+      absoluteMediaUrl("amenities.pickleballDusk"),
+      absoluteMediaUrl("clubhouse.patioSunset"),
+    ],
     url: SITE_ORIGIN,
     telephone: SITE_PHONE_SCHEMA,
     email: SITE_EMAIL,
@@ -140,7 +146,7 @@ export default function RootLayout({
     paymentAccepted: "Cash, Check, Credit Card, Financing",
     currenciesAccepted: "USD",
     sameAs: [...GBP_SOCIAL_PROFILES],
-    hasMap: GOOGLE_MAPS_DIRECTIONS_URL.replace("/dir//", "/search/?api=1&query=").replace(/\+/g, "+"),
+    hasMap: GOOGLE_MAPS_PLACE_URL,
     aggregateRating: {
       "@type": "AggregateRating",
       ratingValue: GBP_AGGREGATE_RATING.ratingValue,
@@ -189,8 +195,8 @@ export default function RootLayout({
       "Del Webb North Ranch",
       "55+ Active Adult Communities",
       "North Las Vegas Real Estate",
-      "Senior Living",
-      "Retirement Homes",
+      "55+ Active Adult Housing",
+      "Single-Story Homes",
     ],
     memberOf: {
       "@type": "Organization",
@@ -220,7 +226,16 @@ export default function RootLayout({
       longitude: "-115.0939",
     },
     url: SITE_ORIGIN,
-    image: `${SITE_ORIGIN}/images/hero/hero-bg.jpg`,
+    image: [
+      absoluteMediaUrl("place.primary"),
+      absoluteMediaUrl("place.signClose"),
+      absoluteMediaUrl("community.fullAerial"),
+      absoluteMediaUrl("amenities.poolPalms"),
+      absoluteMediaUrl("amenities.campusDusk"),
+      absoluteMediaUrl("homes.haven6584"),
+      absoluteMediaUrl("clubhouse.patioSunset"),
+      absoluteMediaUrl("amenities.pickleballDusk"),
+    ],
   };
 
   return (
@@ -230,6 +245,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <link rel="preconnect" href="https://em.realscout.com" />
+        <link rel="dns-prefetch" href="https://imagedelivery.net" />
         <link rel="preconnect" href="https://static.matterport.com" />
         <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
         <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
@@ -282,7 +298,12 @@ export default function RootLayout({
         <a href="#main-content" className="skip-to-main">
           Skip to main content
         </a>
-        {children}
+        <Navbar />
+        <div id="main-content" className="pt-16 md:pt-20">
+          <GbpActionBar />
+          {children}
+        </div>
+        <Footer />
       </body>
     </html>
   );

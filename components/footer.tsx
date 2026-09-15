@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import {
   Phone,
   MapPin,
@@ -169,7 +170,7 @@ export default function Footer() {
                 <li key={href}>
                   <Link
                     href={href}
-                    className="text-gray-300 hover:text-white transition-colors"
+                    className="text-gray-300 hover:text-white transition-colors min-h-[44px] inline-flex items-center"
                   >
                     {label}
                   </Link>
@@ -195,7 +196,7 @@ export default function Footer() {
                 <li key={href}>
                   <Link
                     href={href}
-                    className="text-gray-300 hover:text-white transition-colors"
+                    className="text-gray-300 hover:text-white transition-colors min-h-[44px] inline-flex items-center"
                   >
                     {label}
                   </Link>
@@ -213,7 +214,7 @@ export default function Footer() {
                   href={oldSiteData.integrations.calendly}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-gray-300 hover:text-white transition-colors"
+                  className="flex items-center gap-2 text-gray-300 hover:text-white transition-colors min-h-[44px]"
                 >
                   <Calendar className="h-4 w-4" aria-hidden />
                   Schedule Appointment
@@ -224,7 +225,7 @@ export default function Footer() {
                   href={oldSiteData.integrations.realscout}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-gray-300 hover:text-white transition-colors"
+                  className="flex items-center gap-2 text-gray-300 hover:text-white transition-colors min-h-[44px]"
                 >
                   <span className="w-4 h-4" aria-hidden>🏠</span>
                   Browse Homes
@@ -235,7 +236,7 @@ export default function Footer() {
                   href={oldSiteData.integrations.youtube}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-gray-300 hover:text-white transition-colors"
+                  className="flex items-center gap-2 text-gray-300 hover:text-white transition-colors min-h-[44px]"
                 >
                   <Youtube className="h-4 w-4" aria-hidden />
                   YouTube
@@ -246,14 +247,14 @@ export default function Footer() {
                   href={oldSiteData.integrations.brochurePdf}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-gray-300 hover:text-white transition-colors"
+                  className="flex items-center gap-2 text-gray-300 hover:text-white transition-colors min-h-[44px]"
                 >
                   <FileText className="h-4 w-4" aria-hidden />
                   Download Brochure
                 </a>
               </li>
               <li>
-                <Link href="/testimonials" className="text-gray-300 hover:text-white transition-colors">
+                <Link href="/testimonials" className="text-gray-300 hover:text-white transition-colors min-h-[44px] inline-flex items-center">
                   Testimonials
                 </Link>
               </li>
@@ -262,7 +263,7 @@ export default function Footer() {
                   href={GOOGLE_REVIEW_LINK}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-gray-300 hover:text-white transition-colors"
+                  className="flex items-center gap-2 text-gray-300 hover:text-white transition-colors min-h-[44px]"
                   aria-label="Leave a review on Google"
                 >
                   <Star className="h-4 w-4" aria-hidden />
@@ -302,7 +303,7 @@ export default function Footer() {
                   href={oldSiteData.integrations.youtube}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-gray-300 hover:text-white transition-colors"
+                  className="flex items-center gap-2 text-gray-300 hover:text-white transition-colors min-h-[44px]"
                   aria-label="YouTube"
                 >
                   <Youtube className="h-4 w-4" aria-hidden />
@@ -342,14 +343,14 @@ export default function Footer() {
             <p><strong className="text-gray-300">Brokerage:</strong> Berkshire Hathaway HomeServices Nevada Properties</p>
           </div>
           <nav className="flex flex-wrap gap-6 text-sm" aria-label="Legal and site information">
-            <Link href="/about" className="text-gray-400 hover:text-white transition-colors">About</Link>
-            <Link href="/blog" className="text-gray-400 hover:text-white transition-colors">Blog</Link>
-            <Link href="/faq" className="text-gray-400 hover:text-white transition-colors">FAQ</Link>
-            <Link href="/contact" className="text-gray-400 hover:text-white transition-colors">Contact</Link>
-            <Link href="/privacy" className="text-gray-400 hover:text-white transition-colors">Privacy</Link>
-            <Link href="/terms" className="text-gray-400 hover:text-white transition-colors">Terms</Link>
-            <Link href="/accessibility" className="text-gray-400 hover:text-white transition-colors">Accessibility</Link>
-            <Link href="/sitemap-page" className="text-gray-400 hover:text-white transition-colors">Sitemap</Link>
+            <Link href="/about" className="text-gray-400 hover:text-white transition-colors min-h-[44px] inline-flex items-center">About</Link>
+            <Link href="/blog" className="text-gray-400 hover:text-white transition-colors min-h-[44px] inline-flex items-center">Blog</Link>
+            <Link href="/faq" className="text-gray-400 hover:text-white transition-colors min-h-[44px] inline-flex items-center">FAQ</Link>
+            <Link href="/contact" className="text-gray-400 hover:text-white transition-colors min-h-[44px] inline-flex items-center">Contact</Link>
+            <Link href="/privacy" className="text-gray-400 hover:text-white transition-colors min-h-[44px] inline-flex items-center">Privacy</Link>
+            <Link href="/terms" className="text-gray-400 hover:text-white transition-colors min-h-[44px] inline-flex items-center">Terms</Link>
+            <Link href="/accessibility" className="text-gray-400 hover:text-white transition-colors min-h-[44px] inline-flex items-center">Accessibility</Link>
+            <Link href="/sitemap-page" className="text-gray-400 hover:text-white transition-colors min-h-[44px] inline-flex items-center">Sitemap</Link>
           </nav>
         </div>
 
@@ -357,6 +358,17 @@ export default function Footer() {
         <div className="mt-8 text-center text-sm text-gray-400">
           <p>© {new Date().getFullYear()} {GBP_BUSINESS_NAME}. All rights reserved.</p>
           <p className="mt-1">Berkshire Hathaway HomeServices Nevada Properties | S.0197614.LLC</p>
+          <p className="mx-auto mt-4 flex max-w-xl items-center justify-center gap-3 text-left">
+            <Image
+              src="/images/logo/equal-housing.svg"
+              alt="Equal Housing Opportunity"
+              width={40}
+              height={40}
+            />
+            <span>
+              Equal Housing Opportunity. We do business in accordance with the Fair Housing Act.
+            </span>
+          </p>
         </div>
       </div>
     </footer>
