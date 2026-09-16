@@ -1,0 +1,25 @@
+name: Cloudflare hosted Images
+
+on:
+  workflow_dispatch:
+
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Upload catalog to Cloudflare Images
+        env:
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          NEXT_PUBLIC_CF_IMAGES_ACCOUNT_HASH: byE6BTe9lNqo21V57n4aPQ
+        run: npm run images:upload
+      - name: Verify imagedelivery.net URLs
+        env:
+          NEXT_PUBLIC_CF_IMAGES_ACCOUNT_HASH: byE6BTe9lNqo21V57n4aPQ
+        run: npm run images:verify
