@@ -106,7 +106,9 @@ const nextConfig = {
         headers: [
           {
             key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
+            // Do not use `immutable` here: next.config headers also apply to 404 HTML
+            // for missing files, and Vercel would freeze those 404s for a year.
+            value: 'public, max-age=3600, s-maxage=86400, stale-while-revalidate=604800',
           },
         ],
       },

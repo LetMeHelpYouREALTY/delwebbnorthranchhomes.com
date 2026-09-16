@@ -7,20 +7,44 @@ export type MediaKey = keyof typeof MEDIA;
 
 export type MediaAsset = (typeof MEDIA)[MediaKey];
 
+/** Named variant created by default on Cloudflare hosted Images. */
 const DEFAULT_VARIANT = "public";
 
-export function isCloudflareImagesEnabled(): boolean {
-  return Boolean(process.env.NEXT_PUBLIC_CF_IMAGES_ACCOUNT_HASH);
+/**
+ * Public Images account hash from the Cloudflare dashboard (Developer Resources).
+ * Safe to embed in URLs. Never enable delivery until `npm run images:verify` is green —
+ * missing hosted IDs return HTTP 404 with `cf-images: err=9404` and would break
+ * MediaImage, Open Graph, and JSON-LD image URLs.
+ *
+ * Keep the Vercel www hostname DNS-only (gray cloud). Serve hosted Images from
+ * imagedelivery.net instead of proxying www through Cloudflare.
+ */
+export const CF_IMAGES_ACCOUNT_HASH = "byE6BTe9lNqo21V57n4aPQ";
+
+function deliveryHash(): string | undefined {
+  const raw = process.env.NEXT_PUBLIC_CF_IMAGES_ACCOUNT_HASH;
+  if (!raw) return undefined;
+  if (raw === "1" || raw === "true") return CF_IMAGES_ACCOUNT_HASH;
+  return raw;
 }
 
-/** Git-backed local path, or Cloudflare Images when the account hash is set. */
+export function isCloudflareImagesEnabled(): boolean {
+  return Boolean(deliveryHash());
+}
+
+/**
+ * Git-backed `/images/*` path, or Cloudflare hosted Images when
+ * NEXT_PUBLIC_CF_IMAGES_ACCOUNT_HASH is set in the environment.
+ *
+ * @see https://developers.cloudflare.com/images/optimization/hosted-images/serve-uploaded-images/
+ */
 export function mediaSrc(key: MediaKey, variant = DEFAULT_VARIANT): string {
   const asset = MEDIA[key];
   const fallback = MEDIA["place.primary"].localPath;
   if (!asset?.localPath) {
     return fallback;
   }
-  const hash = process.env.NEXT_PUBLIC_CF_IMAGES_ACCOUNT_HASH;
+  const hash = deliveryHash();
   if (hash) {
     return `https://imagedelivery.net/${hash}/${asset.cfId}/${variant}`;
   }
