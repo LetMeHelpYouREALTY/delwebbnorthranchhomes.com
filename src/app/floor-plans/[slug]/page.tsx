@@ -383,13 +383,13 @@ export default async function FloorPlanPage({
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
               <h2 className="text-2xl md:text-3xl font-bold text-primary mb-6 text-center font-playfair">
-                Floor Plan Layout
+                Home Exterior
               </h2>
               <div className="bg-bg-light rounded-lg p-8 min-h-[400px] flex items-center justify-center">
                 {plan.imageUrl ? (
                   <Image
                     src={plan.imageUrl}
-                    alt={`${plan.name} floor plan layout`}
+                    alt={`${plan.name} ${plan.series} Series single-story home exterior at Del Webb North Ranch in North Las Vegas`}
                     width={800}
                     height={600}
                     className="rounded-lg"

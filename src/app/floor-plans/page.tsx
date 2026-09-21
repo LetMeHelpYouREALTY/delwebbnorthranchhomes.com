@@ -59,12 +59,11 @@ function FloorPlanCard({
   return (
     <ScrollAnimation delay={index * 50}>
       <div className="bg-white rounded-lg shadow-two hover:shadow-three transition-shadow overflow-hidden">
-        {/* Image Placeholder */}
         <div className="relative h-64 bg-bg-light">
           {plan.imageUrl ? (
             <Image
               src={plan.imageUrl}
-              alt={`${plan.name} floor plan - ${plan.sqft} sq ft`}
+              alt={`${plan.name} ${plan.series} Series single-story home, ${plan.sqft} sq ft at Del Webb North Ranch in North Las Vegas`}
               fill
               className="object-cover"
               placeholder="blur"

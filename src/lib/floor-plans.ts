@@ -33,7 +33,7 @@ export const floorPlans: FloorPlan[] = [
       'Covered patio',
       'Energy-efficient design',
     ],
-    imageUrl: '/images/floor-plans/haven-1.avif',
+    imageUrl: '/images/homes/sanctuary-cottage.jpg',
   },
   {
     slug: 'haven',
@@ -53,7 +53,7 @@ export const floorPlans: FloorPlan[] = [
       'Great room design',
       'Optional den',
     ],
-    imageUrl: '/images/floor-plans/haven.avif',
+    imageUrl: '/images/homes/haven-6584.jpg',
   },
   // Classic Series
   {
@@ -74,7 +74,7 @@ export const floorPlans: FloorPlan[] = [
       'Modern kitchen design',
       'Extended covered patio',
     ],
-    imageUrl: '/images/floor-plans/classic-getaway.jpg',
+    imageUrl: '/images/homes/explore-classic.jpg',
   },
   {
     slug: 'journey',
@@ -94,7 +94,7 @@ export const floorPlans: FloorPlan[] = [
       'Spacious great room',
       'Premium finishes available',
     ],
-    imageUrl: '/images/floor-plans/1684714983259.jpeg',
+    imageUrl: '/images/homes/journey-classic.jpg',
   },
   {
     slug: 'pursuit',
@@ -114,7 +114,7 @@ export const floorPlans: FloorPlan[] = [
       'Gourmet kitchen options',
       'Extended outdoor living',
     ],
-    imageUrl: '/images/floor-plans/1738799751114.jpeg',
+    imageUrl: '/images/homes/pursuit-classic.jpg',
   },
   // Retreat Series
   {
@@ -135,7 +135,7 @@ export const floorPlans: FloorPlan[] = [
       'Large covered patio',
       'Gourmet kitchen',
     ],
-    imageUrl: '/images/floor-plans/14280680_web1_copy_CH-05-1-1-1.webp',
+    imageUrl: '/images/homes/stellar-retreat.jpg',
   },
   {
     slug: 'mystique',
@@ -155,7 +155,7 @@ export const floorPlans: FloorPlan[] = [
       'Luxury master suite',
       'Designer finishes',
     ],
-    imageUrl: '/images/floor-plans/retreat-haven.jpg',
+    imageUrl: '/images/homes/mystique-retreat.jpg',
   },
   {
     slug: 'reverence',
@@ -175,7 +175,7 @@ export const floorPlans: FloorPlan[] = [
       'Multiple living areas',
       'Premium outdoor spaces',
     ],
-    imageUrl: '/images/floor-plans/haven-2.avif',
+    imageUrl: '/images/homes/reverence-retreat.jpg',
   },
 ];
 

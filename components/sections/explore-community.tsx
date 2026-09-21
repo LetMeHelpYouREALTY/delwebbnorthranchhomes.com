@@ -38,7 +38,7 @@ const exploreCards = [
     description: 'Explore 1,285-2,015 sq ft designs across 3 collections',
     href: '/floor-plans',
     icon: Layout,
-    image: '/images/hero/campus-overhead.jpg',
+    image: '/images/blog/floor-plans.jpg',
   },
   {
     title: 'Amenities',
