@@ -1,4 +1,3 @@
-import Script from 'next/script';
 import {
   SITE_ORIGIN,
   SITE_PHONE_SCHEMA,
@@ -143,28 +142,28 @@ export default function SchemaMarkup() {
 
   return (
     <>
-      <Script
+      <script
         id="organization-schema"
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(organizationSchema).replace(/</g, '\\u003c'),
         }}
       />
-      <Script
+      <script
         id="website-schema"
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(websiteSchema).replace(/</g, '\\u003c'),
         }}
       />
-      <Script
+      <script
         id="person-schema"
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(personSchema).replace(/</g, '\\u003c'),
         }}
       />
-      <Script
+      <script
         id="realestateagent-schema"
         type="application/ld+json"
         dangerouslySetInnerHTML={{

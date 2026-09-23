@@ -143,78 +143,18 @@ export default function FloorPlansPage() {
   const cottagePlans = floorPlans.filter((p) => p.series === "Cottage");
   const classicPlans = floorPlans.filter((p) => p.series === "Classic");
   const retreatPlans = floorPlans.filter((p) => p.series === "Retreat");
-  const homesites = getHomesitesByCollection();
-
-  // Product schema for all floor plans (offerCount satisfies GSC Product snippets)
+  // Summary-page ItemList: full Product markup lives on each /floor-plans/[slug] page.
   const productSchema = {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
-    itemListElement: floorPlans.map((plan, index) => {
-      const offerCount =
-        plan.series === "Cottage"
-          ? homesites.cottage.count
-          : plan.series === "Classic"
-            ? homesites.classic.count
-            : homesites.retreat.count;
-      return {
+    name: 'Del Webb North Ranch floor plans',
+    numberOfItems: floorPlans.length,
+    itemListElement: floorPlans.map((plan, index) => ({
       '@type': 'ListItem',
       position: index + 1,
-        item: {
-          '@type': 'Product',
-          name: `${plan.name} Floor Plan - Del Webb North Ranch`,
-          description: `${plan.description} ${plan.series} Series home with ${plan.sqft} sq ft, ${plan.beds} bedrooms, ${plan.baths} baths.`,
-          category: 'Real Estate',
-          image: plan.imageUrl
-            ? `${SITE_ORIGIN}${plan.imageUrl}`
-            : undefined,
-          brand: {
-            '@type': 'Brand',
-            name: 'Del Webb North Ranch',
-          },
-        offers: {
-          '@type': 'AggregateOffer',
-          priceCurrency: 'USD',
-          lowPrice: plan.series === 'Cottage' ? '400000' : plan.series === 'Classic' ? '475000' : '550000',
-          highPrice: plan.series === 'Cottage' ? '500000' : plan.series === 'Classic' ? '575000' : '600000',
-          availability: 'https://schema.org/InStock',
-          offerCount,
-        },
-        aggregateRating: {
-          '@type': 'AggregateRating',
-          ratingValue: '5',
-          reviewCount: '50',
-        },
-        additionalProperty: [
-          {
-            '@type': 'PropertyValue',
-            name: 'Square Feet',
-            value: plan.sqft,
-          },
-          {
-            '@type': 'PropertyValue',
-            name: 'Bedrooms',
-            value: plan.beds.toString(),
-          },
-          {
-            '@type': 'PropertyValue',
-            name: 'Bathrooms',
-            value: plan.baths.toString(),
-          },
-          {
-            '@type': 'PropertyValue',
-            name: 'Garage',
-            value: `${plan.garage} car`,
-          },
-          {
-            '@type': 'PropertyValue',
-            name: 'Series',
-            value: plan.series,
-          },
-        ],
-        url: `${SITE_ORIGIN}/floor-plans/${plan.slug}`,
-      },
-    };
-    }),
+      name: `${plan.name} (${plan.series} Series, ${plan.sqft} sq ft)`,
+      url: `${SITE_ORIGIN}/floor-plans/${plan.slug}`,
+    })),
   };
 
   return (
@@ -228,7 +168,7 @@ export default function FloorPlansPage() {
       <main>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema).replace(/</g, '\\u003c') }}
         />
         <PageHero
           mediaKey="floorPlans.hero"

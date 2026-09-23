@@ -82,7 +82,7 @@ export default function CommunityPage() {
               </SectionPhoto>
               <SectionPhoto mediaKey="place.primary" heading="Where Is Del Webb North Ranch?" headingLevel="h3" reverse>
                 <p>
-                  Del Webb North Ranch is located at 2290 Beauty Vista Avenue in North Las Vegas, zip code 89086. The North Ranch community is in the northern part of the Las Vegas Valley, with easy access to Aliante, Centennial Hills, Craig Ranch Regional Park, and VA Southern Nevada Hospital. McCarran International Airport and the Las Vegas Strip are within a short drive. North Las Vegas offers no state income tax, strong healthcare, and outdoor recreation—and Del Webb North Ranch sits right in the middle of it. The community is gated with virtual concierge and roving security.
+                  Del Webb North Ranch is located at 2290 Beauty Vista Avenue in North Las Vegas, zip code 89086. The North Ranch community is in the northern part of the Las Vegas Valley, with easy access to Aliante, Centennial Hills, Craig Ranch Regional Park, and VA Southern Nevada Hospital. Harry Reid International Airport (formerly McCarran) and the Las Vegas Strip are within a short drive. North Las Vegas offers no state income tax, strong healthcare, and outdoor recreation—and Del Webb North Ranch sits right in the middle of it. The community is gated with virtual concierge and roving security.
                 </p>
               </SectionPhoto>
               <SectionPhoto mediaKey="amenities.poolPalms" heading="Why North Las Vegas for Del Webb North Ranch Buyers">

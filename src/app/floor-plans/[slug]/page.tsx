@@ -8,9 +8,11 @@ import ScrollAnimation from '@/../components/scroll-animation';
 import {
   getFloorPlanBySlug,
   getAllFloorPlanSlugs,
+  planAnswer,
+  planFaq,
+  planPriceBounds,
   type FloorPlan,
 } from '@/lib/floor-plans';
-import { getHomesitesByCollection } from '@/lib/communityData';
 import { getVirtualTourByModel, getVirtualTourSlug } from '@/lib/old-site-data';
 import { Bed, Bath, Square, Car, ArrowLeft, Phone, Play } from 'lucide-react';
 import ScheduleTour from '@/../components/ScheduleTour';
@@ -76,19 +78,13 @@ export async function generateMetadata({
 }
 
 function ProductSchema({ plan }: { plan: FloorPlan }) {
-  const homesites = getHomesitesByCollection();
-  const offerCount =
-    plan.series === 'Cottage'
-      ? homesites.cottage.count
-      : plan.series === 'Classic'
-        ? homesites.classic.count
-        : homesites.retreat.count;
+  const price = planPriceBounds(plan);
 
   const productSchema = {
     '@context': 'https://schema.org',
     '@type': 'Product',
     name: `${plan.name} Floor Plan - Del Webb North Ranch`,
-    description: `${plan.description} ${plan.series} Series home with ${plan.sqft} sq ft, ${plan.beds} bedrooms, ${plan.baths} baths.`,
+    description: planAnswer(plan),
     category: 'Real Estate',
     image: plan.imageUrl
       ? `${SITE_ORIGIN}${plan.imageUrl}`
@@ -100,25 +96,8 @@ function ProductSchema({ plan }: { plan: FloorPlan }) {
     offers: {
       '@type': 'AggregateOffer',
       priceCurrency: 'USD',
-      lowPrice:
-        plan.series === 'Cottage'
-          ? '400000'
-          : plan.series === 'Classic'
-            ? '475000'
-            : '550000',
-      highPrice:
-        plan.series === 'Cottage'
-          ? '500000'
-          : plan.series === 'Classic'
-            ? '575000'
-            : '600000',
-      availability: 'https://schema.org/InStock',
-      offerCount,
-    },
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: '5',
-      reviewCount: '50',
+      lowPrice: String(price.low),
+      ...(price.high ? { highPrice: String(price.high) } : {}),
     },
     additionalProperty: [
       {
@@ -190,36 +169,20 @@ function VideoObjectSchema({
   );
 }
 
-function BreadcrumbSchema({ plan }: { plan: FloorPlan }) {
-  const breadcrumbSchema = {
+function PlanFaqSchema({ plan }: { plan: FloorPlan }) {
+  const faqSchema = {
     '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      {
-        '@type': 'ListItem',
-        position: 1,
-        name: 'Home',
-        item: SITE_ORIGIN,
-      },
-      {
-        '@type': 'ListItem',
-        position: 2,
-        name: 'Floor Plans',
-        item: `${SITE_ORIGIN}/floor-plans`,
-      },
-      {
-        '@type': 'ListItem',
-        position: 3,
-        name: plan.name,
-        item: `${SITE_ORIGIN}/floor-plans/${plan.slug}`,
-      },
-    ],
+    '@type': 'FAQPage',
+    mainEntity: planFaq(plan).map((q) => ({
+      '@type': 'Question',
+      name: q.question,
+      acceptedAnswer: { '@type': 'Answer', text: q.answer },
+    })),
   };
-
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema).replace(/</g, "\\u003c") }}
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema).replace(/</g, '\\u003c') }}
     />
   );
 }
@@ -254,7 +217,7 @@ export default async function FloorPlanPage({
       />
       <main>
         <ProductSchema plan={plan} />
-        <BreadcrumbSchema plan={plan} />
+        <PlanFaqSchema plan={plan} />
         <PageHero
           imageSrc={plan.imageUrl || '/images/homes/haven-6584.jpg'}
           imageAlt={`${plan.name} floor plan at Del Webb North Ranch, North Las Vegas 55+ community`}
@@ -277,6 +240,9 @@ export default async function FloorPlanPage({
         <section className="py-12 md:py-16 bg-white">
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto">
+              <p className="mx-auto mb-8 max-w-4xl text-base md:text-lg text-text-dark leading-relaxed">
+                {planAnswer(plan)}
+              </p>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
                 <div className="bg-bg-light p-6 rounded-lg text-center">
                   <Square className="w-8 h-8 text-primary mx-auto mb-2" />
@@ -387,13 +353,20 @@ export default async function FloorPlanPage({
               </h2>
               <div className="bg-bg-light rounded-lg p-8 min-h-[400px] flex items-center justify-center">
                 {plan.imageUrl ? (
-                  <Image
-                    src={plan.imageUrl}
-                    alt={`${plan.name} ${plan.series} Series single-story home exterior at Del Webb North Ranch in North Las Vegas`}
-                    width={800}
-                    height={600}
-                    className="rounded-lg"
-                  />
+                  <figure>
+                    <Image
+                      src={plan.imageUrl}
+                      alt={`${plan.name} ${plan.series} Series single-story home exterior at Del Webb North Ranch in North Las Vegas`}
+                      width={800}
+                      height={600}
+                      className="rounded-lg"
+                    />
+                    {plan.imageIsRendering && (
+                      <figcaption className="mt-3 text-center text-sm text-text-dark">
+                        Illustrative exterior in the North Ranch architectural style. Actual {plan.name} elevations and finishes vary by homesite.
+                      </figcaption>
+                    )}
+                  </figure>
                 ) : (
                   <div className="text-center text-gray-400">
                     <p className="text-lg mb-2">Floor Plan Image</p>
@@ -403,6 +376,24 @@ export default async function FloorPlanPage({
                   </div>
                 )}
               </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="py-12 md:py-16 bg-bg-light" aria-labelledby="plan-faq-heading">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto">
+              <h2 id="plan-faq-heading" className="text-2xl md:text-3xl font-bold text-primary mb-6 text-center font-playfair">
+                {plan.name} Floor Plan FAQ
+              </h2>
+              <dl className="space-y-6">
+                {planFaq(plan).map((q) => (
+                  <div key={q.question} className="rounded-lg bg-white p-6 shadow-two">
+                    <dt className="mb-2 text-lg font-bold text-primary font-playfair">{q.question}</dt>
+                    <dd className="text-text-dark leading-relaxed">{q.answer}</dd>
+                  </div>
+                ))}
+              </dl>
             </div>
           </div>
         </section>

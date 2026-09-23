@@ -11,6 +11,8 @@ export type FloorPlan = {
   priceRange: string;
   features: string[];
   imageUrl?: string;
+  /** True when imageUrl is an illustrative rendering rather than a photo of this exact plan. */
+  imageIsRendering?: boolean;
 };
 
 export const floorPlans: FloorPlan[] = [
@@ -34,6 +36,7 @@ export const floorPlans: FloorPlan[] = [
       'Energy-efficient design',
     ],
     imageUrl: '/images/homes/sanctuary-cottage.jpg',
+    imageIsRendering: true,
   },
   {
     slug: 'haven',
@@ -75,6 +78,7 @@ export const floorPlans: FloorPlan[] = [
       'Extended covered patio',
     ],
     imageUrl: '/images/homes/explore-classic.jpg',
+    imageIsRendering: true,
   },
   {
     slug: 'journey',
@@ -95,6 +99,7 @@ export const floorPlans: FloorPlan[] = [
       'Premium finishes available',
     ],
     imageUrl: '/images/homes/journey-classic.jpg',
+    imageIsRendering: true,
   },
   {
     slug: 'pursuit',
@@ -115,6 +120,7 @@ export const floorPlans: FloorPlan[] = [
       'Extended outdoor living',
     ],
     imageUrl: '/images/homes/pursuit-classic.jpg',
+    imageIsRendering: true,
   },
   // Retreat Series
   {
@@ -136,6 +142,7 @@ export const floorPlans: FloorPlan[] = [
       'Gourmet kitchen',
     ],
     imageUrl: '/images/homes/stellar-retreat.jpg',
+    imageIsRendering: true,
   },
   {
     slug: 'mystique',
@@ -156,6 +163,7 @@ export const floorPlans: FloorPlan[] = [
       'Designer finishes',
     ],
     imageUrl: '/images/homes/mystique-retreat.jpg',
+    imageIsRendering: true,
   },
   {
     slug: 'reverence',
@@ -176,8 +184,49 @@ export const floorPlans: FloorPlan[] = [
       'Premium outdoor spaces',
     ],
     imageUrl: '/images/homes/reverence-retreat.jpg',
+    imageIsRendering: true,
   },
 ];
+
+/** Parses "$400,000 - $450,000" or "$600,000+" into numeric bounds for schema offers. */
+export function planPriceBounds(plan: FloorPlan): { low: number; high?: number } {
+  const [low, high] = (plan.priceRange.match(/[\d,]+/g) ?? []).map((n) =>
+    Number(n.replace(/,/g, ''))
+  );
+  return { low, high };
+}
+
+/** One-sentence, answer-first description of a plan for AI answers and featured snippets. */
+export function planAnswer(plan: FloorPlan): string {
+  return `The ${plan.name} is a ${plan.sqft} sq ft single-story ${plan.series} Series floor plan at Del Webb North Ranch in North Las Vegas, NV 89086, with ${plan.beds} bedrooms, ${plan.baths} bathrooms, and a ${plan.garage}-car garage. Estimated price range: ${plan.priceRange}, depending on homesite, upgrades, and market conditions.`;
+}
+
+/** Plan-specific questions answered from site data only; rendered visibly and as FAQPage schema. */
+export function planFaq(plan: FloorPlan): Array<{ question: string; answer: string }> {
+  const siblings = floorPlans
+    .filter((p) => p.series === plan.series && p.slug !== plan.slug)
+    .map((p) => `${p.name} (${p.sqft} sq ft)`);
+  return [
+    {
+      question: `How big is the ${plan.name} floor plan at Del Webb North Ranch?`,
+      answer: `The ${plan.name} is ${plan.sqft} sq ft, single-story, with ${plan.beds} bedrooms, ${plan.baths} bathrooms, and a ${plan.garage}-car garage.`,
+    },
+    {
+      question: `How much does a ${plan.name} home cost at Del Webb North Ranch?`,
+      answer: `The estimated range is ${plan.priceRange}. Final price depends on the homesite, upgrades, and current market conditions. Call Dr. Jan Duffy at (702) 500-1064 for current ${plan.name} resale listings.`,
+    },
+    {
+      question: `Which series is the ${plan.name} in?`,
+      answer: siblings.length
+        ? `The ${plan.name} is in the ${plan.series} Series, alongside the ${siblings.join(' and ')}.`
+        : `The ${plan.name} is in the ${plan.series} Series.`,
+    },
+    {
+      question: `Who can buy a ${plan.name} home at Del Webb North Ranch?`,
+      answer: `Del Webb North Ranch is a 55+ community: at least one resident in each home must be 55 or older under the Housing for Older Persons Act (HOPA). HOA dues are about $215 per month, billed quarterly, with no SID or LID.`,
+    },
+  ];
+}
 
 export function getFloorPlanBySlug(slug: string): FloorPlan | undefined {
   return floorPlans.find((plan) => plan.slug === slug);

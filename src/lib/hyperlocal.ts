@@ -44,7 +44,7 @@ export const HYPERLOCAL = {
     "Centennial Hills",
     "Craig Ranch Regional Park",
     "VA Southern Nevada Hospital",
-    "McCarran International Airport",
+    "Harry Reid International Airport",
   ],
 } as const;
 
