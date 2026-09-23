@@ -46,7 +46,7 @@ const blogPosts = [
     excerpt:
       "Discover what makes Del Webb North Ranch the premier 55+ community in North Las Vegas. From resort-style amenities to a vibrant social scene, learn why so many active adults choose to call this place home.",
     date: "2024-01-15",
-    image: "/images/blog/blog-01.jpg",
+    image: "/images/blog/welcome.jpg",
     category: "Community",
   },
   {
@@ -55,7 +55,7 @@ const blogPosts = [
     excerpt:
       "All homes at Del Webb North Ranch are single-story, and there's a good reason. Learn why this design choice matters for active adults and how it enhances your quality of life now and in the future.",
     date: "2024-01-10",
-    image: "/images/blog/blog-02.jpg",
+    image: "/images/blog/single-story.jpg",
     category: "Homes",
   },
   {
@@ -64,7 +64,7 @@ const blogPosts = [
     excerpt:
       "Nevada's lack of state income tax is a major draw for retirees. Discover how moving to Nevada can help your retirement dollars stretch further.",
     date: "2024-01-05",
-    image: "/images/blog/blog-03.jpg",
+    image: "/images/blog/taxes.jpg",
     category: "Lifestyle",
   },
   {
@@ -73,7 +73,7 @@ const blogPosts = [
     excerpt:
       "From pickleball to book clubs, discover the wide variety of clubs and activities available at Del Webb North Ranch. There's something for everyone.",
     date: "2023-12-20",
-    image: "/images/blog/post-01.jpg",
+    image: "/images/blog/clubs.jpg",
     category: "Lifestyle",
   },
   {
@@ -82,7 +82,7 @@ const blogPosts = [
     excerpt:
       "With 9 floor plans across three series, how do you choose? This guide helps you understand the differences and find the perfect fit for your lifestyle.",
     date: "2023-12-15",
-    image: "/images/blog/post-02.jpg",
+    image: "/images/blog/floor-plans.jpg",
     category: "Homes",
   },
   {
@@ -91,7 +91,7 @@ const blogPosts = [
     excerpt:
       "Hear from residents about their first year at Del Webb North Ranch. Learn what surprised them, what they love, and what advice they have for newcomers.",
     date: "2023-12-10",
-    image: "/images/blog/post-03.jpg",
+    image: "/images/blog/first-year.jpg",
     category: "Community",
   },
 ];

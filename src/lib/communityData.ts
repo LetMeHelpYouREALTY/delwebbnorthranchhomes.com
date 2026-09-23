@@ -71,7 +71,7 @@ export const homesitesByCollection: HomesitesByCollection = {
 export const distances: Record<string, Distance> = {
   mcCarranAirport: {
     miles: 17,
-    description: 'McCarran International Airport',
+    description: 'Harry Reid International Airport (formerly McCarran)',
   },
   lasVegasStrip: {
     miles: 15,

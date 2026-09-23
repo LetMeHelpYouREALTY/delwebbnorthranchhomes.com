@@ -7,156 +7,9 @@ import PageHero from "@/../components/PageHero";
 import LocalVisitSection from "@/../components/LocalVisitSection";
 import { Button } from "@/../components/ui/button";
 import { Calendar, ArrowLeft, ArrowRight } from "lucide-react";
-import { SITE_ORIGIN, GBP_BUSINESS_NAME } from "@/lib/site";
+import { SITE_ORIGIN, GBP_BUSINESS_NAME, gbpPostalAddressSchema } from "@/lib/site";
 import { TITLE_SUFFIX } from "@/lib/hyperlocal";
-
-const blogPosts: Record<
-  string,
-  {
-    title: string;
-    excerpt: string;
-    date: string;
-    image: string;
-    category: string;
-    content: string;
-  }
-> = {
-  "welcome-to-del-webb-north-ranch": {
-    title: "Welcome to Del Webb North Ranch",
-    excerpt:
-      "Discover what makes Del Webb North Ranch the premier 55+ community in North Las Vegas.",
-    date: "2024-01-15",
-    image: "/images/blog/welcome.jpg",
-    category: "Community",
-    content: `
-      <p>Del Webb North Ranch represents a new chapter in active adult living. Located in North Las Vegas, this gated 55+ community offers everything you've been looking for in your retirement years.</p>
-      
-      <h2>What Makes It Special</h2>
-      <p>With 394 single-family residences, all single-story homes, Del Webb North Ranch is designed specifically for active adults. Every detail, from the floor plans to the amenities, is crafted with your lifestyle in mind.</p>
-      
-      <p>The community is fully built and operational, meaning you don't have to wait for amenities to be completed. The resort-style pool is open. The fitness center is ready. The pickleball courts are waiting for your next game.</p>
-      
-      <h2>A Community That Gets It</h2>
-      <p>What sets Del Webb North Ranch apart isn't just the homes or amenities—it's the people. Everyone here chose this life on purpose. They're active, social, and ready to make the most of their retirement years.</p>
-      
-      <p>Whether you're joining a morning fitness class, attending a club meeting, or simply chatting with neighbors on a walk, you'll find that making connections comes naturally here.</p>
-    `,
-  },
-  "why-single-story-living-matters": {
-    title: "Why Single-Story Living Matters",
-    excerpt:
-      "All homes at Del Webb North Ranch are single-story, and there's a good reason.",
-    date: "2024-01-10",
-    image: "/images/blog/single-story.jpg",
-    category: "Homes",
-    content: `
-      <p>When you're looking for your retirement home, single-story living isn't just a preference—it's a smart choice for your future.</p>
-      
-      <h2>Accessibility Now and Later</h2>
-      <p>Single-story homes eliminate the need to navigate stairs daily. This becomes increasingly important as we age, but it's also convenient right now. No more carrying groceries up stairs or worrying about mobility issues down the road.</p>
-      
-      <h2>Easier Maintenance</h2>
-      <p>Without stairs to clean or second-story windows to maintain, single-story homes are simply easier to take care of. You can spend less time on housework and more time enjoying your retirement.</p>
-      
-      <h2>Better Flow</h2>
-      <p>Single-story designs often feature more open floor plans, creating a sense of spaciousness and better flow between living areas. This makes entertaining easier and daily living more comfortable.</p>
-      
-      <p>At Del Webb North Ranch, every single home is single-story. It's not an option—it's a standard, because we believe it's the right choice for active adult living.</p>
-    `,
-  },
-  "nevada-tax-benefits-for-retirees": {
-    title: "Nevada Tax Benefits for Retirees",
-    excerpt:
-      "Nevada's lack of state income tax is a major draw for retirees.",
-    date: "2024-01-05",
-    image: "/images/blog/taxes.jpg",
-    category: "Lifestyle",
-    content: `
-      <p>One of the biggest advantages of moving to Nevada? No state income tax. For retirees, this can mean significant savings.</p>
-      
-      <h2>The Financial Impact</h2>
-      <p>If you're coming from a state like California, which has one of the highest state income tax rates in the country, moving to Nevada can put thousands of dollars back in your pocket each year.</p>
-      
-      <p>That's money you can use for travel, hobbies, or simply enjoying your retirement more. It's not just about the savings—it's about having more freedom to do what you want.</p>
-      
-      <h2>Other Tax Benefits</h2>
-      <p>Nevada also has relatively low property taxes, and there's no inheritance tax or estate tax. For retirees planning to pass wealth to their heirs, this is another significant advantage.</p>
-      
-      <h2>More of Your Money Stays Yours</h2>
-      <p>At Del Webb North Ranch, with HOA fees of just $215 per month and no special improvement districts, your housing costs are predictable and reasonable. Combined with Nevada's tax benefits, your retirement dollars go further here.</p>
-    `,
-  },
-  "community-clubs-and-activities": {
-    title: "Community Clubs and Activities",
-    excerpt:
-      "Discover the wide variety of clubs and activities available at Del Webb North Ranch.",
-    date: "2023-12-20",
-    image: "/images/blog/clubs.jpg",
-    category: "Lifestyle",
-    content: `
-      <p>One of the best parts of living in a 55+ community is the built-in social network. At Del Webb North Ranch, there are dozens of clubs and activities to choose from.</p>
-      
-      <h2>Something for Everyone</h2>
-      <p>Whether you're interested in fitness, arts, games, or learning, there's likely a club for you. Popular options include pickleball leagues, book clubs, photography groups, cooking classes, and more.</p>
-      
-      <h2>Starting Your Own</h2>
-      <p>Don't see what you're looking for? Many residents start their own clubs. The community is supportive of new groups and activities, making it easy to find others who share your interests.</p>
-      
-      <h2>Regular Events</h2>
-      <p>Beyond clubs, the community hosts regular events like socials, holiday celebrations, and educational seminars. These events are great opportunities to meet neighbors and get involved.</p>
-      
-      <p>The key is that you're never forced to participate—but the opportunities are always there when you want them.</p>
-    `,
-  },
-  "choosing-the-right-floor-plan": {
-    title: "Choosing the Right Floor Plan",
-    excerpt:
-      "With 9 floor plans across three series, how do you choose?",
-    date: "2023-12-15",
-    image: "/images/blog/floor-plans.jpg",
-    category: "Homes",
-    content: `
-      <p>Del Webb North Ranch offers 9 floor plans across three series. Here's how to think about choosing the right one for you.</p>
-      
-      <h2>Cottage Series (1,285-1,509 sq ft)</h2>
-      <p>Perfect if you're downsizing and want efficient, easy-to-maintain living. These plans are cozy without feeling cramped, ideal for those who want to simplify.</p>
-      
-      <h2>Classic Series (1,451-1,770 sq ft)</h2>
-      <p>Room to spread out with optional dens for hobbies or home offices. Great if you want space but don't need the largest option.</p>
-      
-      <h2>Retreat Series (1,716-2,015 sq ft)</h2>
-      <p>Spacious living for those who love to entertain or want extra room for visiting family. If you want space and luxury, this is the series for you.</p>
-      
-      <h2>Consider Your Lifestyle</h2>
-      <p>Think about how you'll use the space. Do you entertain often? Need a home office? Want room for guests? These questions will help guide your choice.</p>
-      
-      <p>Dr. Jan Duffy can help you understand the nuances of each floor plan and find the one that best fits your lifestyle.</p>
-    `,
-  },
-  "first-year-living-experience": {
-    title: "A First-Year Living Experience",
-    excerpt:
-      "Hear from residents about their first year at Del Webb North Ranch.",
-    date: "2023-12-10",
-    image: "/images/blog/first-year.jpg",
-    category: "Community",
-    content: `
-      <p>We spoke with several residents about their first year at Del Webb North Ranch. Here's what they had to say.</p>
-      
-      <h2>Making Friends</h2>
-      <p>"I made more friends in my first month here than I did in my last decade in my old neighborhood," one resident shared. "Everyone is so welcoming and open to meeting new people."</p>
-      
-      <h2>The Amenities</h2>
-      <p>"The amenities are amazing, and they're actually being used," another resident noted. "The pool, fitness center, pickleball courts—everything is well-maintained and accessible."</p>
-      
-      <h2>The Lifestyle</h2>
-      <p>"I love that I don't have to worry about yard work or maintenance," said a third resident. "I can focus on enjoying my retirement instead of maintaining a house."</p>
-      
-      <h2>No Regrets</h2>
-      <p>When asked if they'd make the same choice again, every resident we spoke with said yes—and many wished they'd made the move sooner.</p>
-    `,
-  },
-};
+import { blogPosts } from "@/lib/blog-posts";
 
 const blurDataURL =
   "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWEREiMxUf/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q==";
@@ -185,7 +38,7 @@ export async function generateMetadata({
 
   return {
     title: `${post.title} | ${TITLE_SUFFIX}`,
-    description: `${post.excerpt} Read more about Del Webb North Ranch, a premier 55+ community in North Las Vegas.`,
+    description: `${post.excerpt} Dr. Jan Duffy on Del Webb North Ranch, a 55+ community in North Las Vegas.`,
     alternates: {
       canonical: url,
     },
@@ -197,6 +50,7 @@ export async function generateMetadata({
       locale: "en_US",
       type: "article",
       publishedTime: post.date,
+      modifiedTime: post.dateModified,
       authors: ["Dr. Jan Duffy"],
       images: [
         {
@@ -254,14 +108,29 @@ export default async function BlogPostPage({
               "@context": "https://schema.org",
               "@type": "BlogPosting",
               headline: post.title,
-              description: post.excerpt,
+              description: post.summary,
+              abstract: post.summary,
+              articleSection: post.category,
+              inLanguage: "en-US",
               datePublished: post.date,
-              dateModified: post.date,
+              dateModified: post.dateModified,
               image: `${SITE_ORIGIN}${post.image.startsWith("/") ? post.image : `/${post.image}`}`,
+              about: {
+                "@type": "Place",
+                name: "Del Webb North Ranch",
+                address: gbpPostalAddressSchema(),
+              },
+              isPartOf: { "@id": `${SITE_ORIGIN}/#website` },
+              speakable: {
+                "@type": "SpeakableSpecification",
+                cssSelector: ["#article-summary"],
+              },
               author: {
                 "@type": "Person",
                 "@id": `${SITE_ORIGIN}/#person`,
                 name: "Dr. Jan Duffy",
+                url: `${SITE_ORIGIN}/about`,
+                jobTitle: "REALTOR®",
               },
               publisher: {
                 "@type": "Organization",
@@ -330,6 +199,35 @@ export default async function BlogPostPage({
         <article className="py-12 md:py-16 bg-white">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
+              <aside
+                aria-labelledby="article-summary-heading"
+                className="mb-8 rounded-lg border-l-4 border-primary bg-bg-light p-6"
+              >
+                <h2
+                  id="article-summary-heading"
+                  className="mb-2 text-lg font-bold text-primary font-playfair"
+                >
+                  Quick answer
+                </h2>
+                <p id="article-summary" className="text-base md:text-lg text-text-dark leading-relaxed">
+                  {post.summary}
+                </p>
+              </aside>
+              <p className="mb-8 text-sm text-text-dark">
+                By{" "}
+                <Link href="/about" className="font-semibold text-primary underline-offset-4 hover:underline">
+                  Dr. Jan Duffy, REALTOR®
+                </Link>
+                , Berkshire Hathaway HomeServices Nevada Properties (S.0197614.LLC). Updated{" "}
+                <time dateTime={post.dateModified}>
+                  {new Date(`${post.dateModified}T12:00:00`).toLocaleDateString("en-US", {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                  })}
+                </time>
+                .
+              </p>
               <div
                 className="prose prose-lg max-w-none text-text-dark"
                 dangerouslySetInnerHTML={{ __html: post.content }}

@@ -1,18 +1,40 @@
 import { MetadataRoute } from "next";
 import { CANONICAL_HOMEPAGE, SITE_ORIGIN } from "@/lib/site";
 import { getVirtualToursWithEmbed } from "@/lib/old-site-data";
-import { getAllFloorPlanSlugs } from "@/lib/floor-plans";
+import { floorPlans } from "@/lib/floor-plans";
 import { getAllFlyers } from "@/lib/flyers";
+import { blogPosts } from "@/lib/blog-posts";
+import { absoluteMediaUrl, type MediaKey } from "@/lib/media";
 
-/** Blog slugs – must match keys in src/app/blog/[slug]/page.tsx */
-const BLOG_SLUGS = [
-  "welcome-to-del-webb-north-ranch",
-  "why-single-story-living-matters",
-  "nevada-tax-benefits-for-retirees",
-  "community-clubs-and-activities",
-  "choosing-the-right-floor-plan",
-  "first-year-living-experience",
-];
+/** Hero/primary images per path for Google image sitemap extensions. */
+const PAGE_IMAGES: Record<string, MediaKey[]> = {
+  "/": ["home.hero", "community.fullAerial", "homes.haven6584"],
+  "/homes-for-sale": ["homesForSale.hero"],
+  "/buyers": ["buyers.hero"],
+  "/sellers": ["sellers.hero"],
+  "/home-value": ["homeValue.hero"],
+  "/schedule": ["schedule.hero"],
+  "/community": ["community.hero", "community.campusAerial"],
+  "/floor-plans": ["floorPlans.hero", "homes.classicSeries", "homes.stellar"],
+  "/amenities": ["amenities.hero", "amenities.pickleball", "amenities.fitness", "amenities.clubhouse"],
+  "/about": ["about.hero"],
+  "/contact": ["contact.hero"],
+  "/lifestyle": ["lifestyle.hero", "lifestyle.events"],
+  "/faq": ["faq.hero"],
+  "/blog": ["blog.hero"],
+  "/testimonials": ["testimonials.hero"],
+  "/virtual-tours": ["virtualTours.hero"],
+  "/mortgage-calculator": ["mortgage.hero"],
+  "/why-choose-us": ["whyChooseUs.hero"],
+  "/flyers": ["flyers.hero"],
+};
+
+function withImages(entry: MetadataRoute.Sitemap[number]): MetadataRoute.Sitemap[number] {
+  const path = entry.url === CANONICAL_HOMEPAGE ? "/" : entry.url.replace(SITE_ORIGIN, "");
+  const keys = PAGE_IMAGES[path];
+  if (!keys || entry.images) return entry;
+  return { ...entry, images: keys.map((k) => absoluteMediaUrl(k)) };
+}
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const virtualTourWatchPages = getVirtualToursWithEmbed().map((t) => ({
@@ -22,8 +44,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  const floorPlanPages = getAllFloorPlanSlugs().map((slug) => ({
-    url: `${SITE_ORIGIN}/floor-plans/${slug}`,
+  const floorPlanPages = floorPlans.map((plan) => ({
+    url: `${SITE_ORIGIN}/floor-plans/${plan.slug}`,
+    images: plan.imageUrl ? [`${SITE_ORIGIN}${plan.imageUrl}`] : undefined,
     lastModified: new Date(),
     changeFrequency: "monthly" as const,
     priority: 0.75,
@@ -36,14 +59,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.5,
   }));
 
-  const blogPostPages = BLOG_SLUGS.map((slug) => ({
+  const blogPostPages = Object.entries(blogPosts).map(([slug, post]) => ({
     url: `${SITE_ORIGIN}/blog/${slug}`,
-    lastModified: new Date(),
+    lastModified: new Date(post.dateModified),
+    images: [`${SITE_ORIGIN}${post.image}`],
     changeFrequency: "monthly" as const,
     priority: 0.65,
   }));
 
-  return [
+  const entries: MetadataRoute.Sitemap = [
     // Homepage - Priority 1.0, Daily (trailing slash matches canonical)
     {
       url: CANONICAL_HOMEPAGE,
@@ -192,4 +216,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.4,
     },
   ];
+
+  return entries.map(withImages);
 }

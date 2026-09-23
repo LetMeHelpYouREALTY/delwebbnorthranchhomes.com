@@ -48,7 +48,7 @@ export default function ValuePropsSection() {
     text: string;
   }> = [
     {
-      mediaKey: "buyers.hero",
+      mediaKey: "blog.singleStory",
       icon: <Home className="w-8 h-8 text-primary" />,
       title: "Single-Story Living, Zero Compromise",
       text: "All nine floor plans are single-level with 2-3 bedrooms, open layouts, and attached 2-car garages. Homes range from 1,285 to 2,015 square feet.",
@@ -60,7 +60,7 @@ export default function ValuePropsSection() {
       text: "Unlike newer developments still waiting on amenities, Del Webb North Ranch is fully built. The resort pool is open. The fitness center is ready. The pickleball courts are waiting.",
     },
     {
-      mediaKey: "homeValue.hero",
+      mediaKey: "blog.taxes",
       icon: <DollarSign className="w-8 h-8 text-primary" />,
       title: "Keep More of Your Money",
       text: "Nevada has no state income tax. HOA fees are $215/month with no special improvement districts. Your retirement dollars stretch further here.",

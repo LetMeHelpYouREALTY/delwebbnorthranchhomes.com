@@ -104,7 +104,7 @@ export const faqData = [
       },
       {
         question: "How far is the airport?",
-        answer: "McCarran International Airport is approximately 17 miles away.",
+        answer: "Harry Reid International Airport (LAS, formerly McCarran) is approximately 17 miles away.",
       },
       {
         question: "What medical facilities are nearby?",

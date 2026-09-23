@@ -11,7 +11,7 @@ export default function SolutionSection() {
             <ScrollAnimation>
               <div className="relative aspect-square rounded-lg overflow-hidden shadow-three bg-bg-light">
                 <MediaImage
-                  mediaKey="place.primary"
+                  mediaKey="community.fullAerial"
                   fill
                   className="object-cover"
                   sizes="(max-width: 768px) 100vw, 50vw"
