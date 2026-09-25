@@ -6,7 +6,6 @@ import {
   SITE_EMAIL,
   gbpPostalAddressSchema,
 } from '@/lib/site';
-import { absoluteMediaUrl } from '@/lib/media';
 
 export default function SchemaMarkup() {
   const baseUrl = SITE_ORIGIN;
@@ -28,10 +27,8 @@ export default function SchemaMarkup() {
       '@type': 'Organization',
       name: 'Berkshire Hathaway HomeServices Nevada Properties',
     },
-    employee: {
-      '@type': 'Person',
-      '@id': `${baseUrl}/#person`,
-    },
+    employee: { '@id': `${baseUrl}/#person` },
+    subOrganization: { '@id': `${baseUrl}/#localbusiness` },
   };
 
   // WebSite Schema with SearchAction (enables sitelinks search box)
@@ -70,10 +67,10 @@ export default function SchemaMarkup() {
     url: `${baseUrl}/about`,
     telephone: SITE_PHONE_SCHEMA,
     email: SITE_EMAIL,
-    worksFor: {
-      '@type': 'Organization',
-      name: 'Berkshire Hathaway HomeServices Nevada Properties',
-    },
+    worksFor: [
+      { '@id': `${baseUrl}/#localbusiness` },
+      { '@type': 'Organization', name: 'Berkshire Hathaway HomeServices Nevada Properties' },
+    ],
     hasCredential: {
       '@type': 'EducationalOccupationalCredential',
       credentialCategory: 'Real Estate License',
@@ -94,50 +91,6 @@ export default function SchemaMarkup() {
       '55+ housing in North Las Vegas',
       'Single-story homes',
     ],
-  };
-
-  // RealEstateAgent Schema (2026: knowsAbout for AI/voice and rich results)
-  const realEstateAgentSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'RealEstateAgent',
-    '@id': `${baseUrl}/#realestateagent`,
-    name: 'Dr. Jan Duffy',
-    alternateName: 'Dr. Jan Duffy Real Estate',
-    url: baseUrl,
-    image: absoluteMediaUrl('place.primary'),
-    telephone: SITE_PHONE_SCHEMA,
-    email: SITE_EMAIL,
-    address: gbpPostalAddressSchema(),
-    areaServed: [
-      { '@type': 'City', name: 'North Las Vegas', addressRegion: 'NV' },
-    ],
-    priceRange: '$400,000-$600,000',
-    knowsAbout: [
-      'Del Webb North Ranch',
-      '55+ active adult communities',
-      'North Las Vegas real estate',
-      '55+ housing in North Las Vegas',
-      'Single-story homes',
-      'Resort-style amenities',
-      'Gated 55+ community',
-    ],
-    worksFor: {
-      '@type': 'Organization',
-      name: GBP_BUSINESS_NAME,
-    },
-    memberOf: {
-      '@type': 'Organization',
-      name: 'Berkshire Hathaway HomeServices Nevada Properties',
-    },
-    hasCredential: {
-      '@type': 'EducationalOccupationalCredential',
-      credentialCategory: 'Real Estate License',
-      credentialNumber: 'S.0197614.LLC',
-      recognizedBy: {
-        '@type': 'Organization',
-        name: 'Nevada Real Estate Division',
-      },
-    },
   };
 
   return (
@@ -161,13 +114,6 @@ export default function SchemaMarkup() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(personSchema).replace(/</g, '\\u003c'),
-        }}
-      />
-      <script
-        id="realestateagent-schema"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(realEstateAgentSchema).replace(/</g, '\\u003c'),
         }}
       />
     </>

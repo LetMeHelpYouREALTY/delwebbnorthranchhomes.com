@@ -22,6 +22,37 @@ const nextConfig = {
   },
   async redirects() {
     return [
+      // Earlier incorrect plan names → brochure plan with the same series and size
+      {
+        source: '/floor-plans/explore',
+        destination: '/floor-plans/getaway',
+        permanent: true,
+      },
+      {
+        source: '/floor-plans/journey',
+        destination: '/floor-plans/solitude',
+        permanent: true,
+      },
+      {
+        source: '/floor-plans/pursuit',
+        destination: '/floor-plans/expedition',
+        permanent: true,
+      },
+      {
+        source: '/floor-plans/stellar',
+        destination: '/floor-plans/sanctuary',
+        permanent: true,
+      },
+      {
+        source: '/floor-plans/mystique',
+        destination: '/floor-plans/haven',
+        permanent: true,
+      },
+      {
+        source: '/floor-plans/reverence',
+        destination: '/floor-plans/preserve',
+        permanent: true,
+      },
       // Old /units/* → floor plans (GSC "Page with redirect": these 4 URLs 301 to canonical; expected)
       {
         source: '/units/overlook-model',

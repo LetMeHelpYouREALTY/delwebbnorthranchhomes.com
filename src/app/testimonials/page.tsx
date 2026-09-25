@@ -3,7 +3,7 @@ import Breadcrumbs from '@/../components/Breadcrumbs';
 import ScrollAnimation from '@/../components/scroll-animation';
 import { getAllTestimonials } from '@/lib/old-site-data';
 import { Quote, Star } from 'lucide-react';
-import { SITE_ORIGIN, GOOGLE_REVIEW_LINK, SITE_PHONE_TEL, SITE_PHONE_DISPLAY, GBP_AGGREGATE_RATING, GBP_BUSINESS_NAME } from '@/lib/site';
+import { SITE_ORIGIN, GOOGLE_REVIEW_LINK, SITE_PHONE_TEL, SITE_PHONE_DISPLAY, GBP_BUSINESS_NAME } from '@/lib/site';
 import { metaDescriptionBlock, TITLE_SUFFIX } from '@/lib/hyperlocal';
 import RealScoutListings from '@/../components/RealScoutListings';
 import PageHero from '@/../components/PageHero';
@@ -42,13 +42,8 @@ export default function TestimonialsPage() {
   const reviewSchema = {
     "@context": "https://schema.org",
     "@type": "RealEstateAgent",
+    "@id": `${SITE_ORIGIN}/#localbusiness`,
     name: GBP_BUSINESS_NAME,
-    url: `${SITE_ORIGIN}/testimonials`,
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: GBP_AGGREGATE_RATING.ratingValue,
-      reviewCount: GBP_AGGREGATE_RATING.reviewCount,
-    },
     review: testimonials.map((t) => ({
       "@type": "Review" as const,
       author: { "@type": "Person" as const, name: t.name },

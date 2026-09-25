@@ -1,14 +1,22 @@
+import { communityInfo } from './communityData';
+
+/**
+ * Plan names, square footage, series, and options come from the Del Webb North Ranch builder brochure
+ * (public/images/floor-plans/North Ranch Digital Brochure.pdf). Bed/bath ranges match the prior
+ * community site. Per-plan pricing is not published, so pages use the community price range.
+ */
 export type FloorPlan = {
   slug: string;
   name: string;
   series: 'Cottage' | 'Classic' | 'Retreat';
+  /** Builder plan number from the brochure. */
+  planNumber: string;
   sqft: string;
   sqftNumber: number;
-  beds: number;
-  baths: number;
+  beds: string;
+  baths: string;
   garage: number;
   description: string;
-  priceRange: string;
   features: string[];
   imageUrl?: string;
   /** True when imageUrl is an illustrative rendering rather than a photo of this exact plan. */
@@ -18,190 +26,229 @@ export type FloorPlan = {
 export const floorPlans: FloorPlan[] = [
   // Cottage Series
   {
-    slug: 'sanctuary',
-    name: 'Sanctuary',
+    slug: 'canyon',
+    name: 'Canyon',
     series: 'Cottage',
+    planNumber: '3012',
     sqft: '1,285',
     sqftNumber: 1285,
-    beds: 2,
-    baths: 2,
+    beds: '2',
+    baths: '2',
     garage: 2,
     description:
-      'Efficient and comfortable, perfect for those seeking cozy living without compromise.',
-    priceRange: '$400,000 - $450,000',
+      'The most efficient plan at North Ranch: two bedrooms, an open café and gathering area, and easy upkeep.',
     features: [
-      'Open-concept living area',
-      'Master suite with walk-in closet',
-      'Covered patio',
-      'Energy-efficient design',
+      'Owner’s suite with optional tray ceiling',
+      'Optional flex room or den',
+      'Optional low-threshold owner’s shower with seat',
+      'Optional extension at rear of house',
     ],
-    imageUrl: '/images/homes/sanctuary-cottage.jpg',
+    imageUrl: '/images/homes/canyon.jpg',
+    imageIsRendering: true,
+  },
+  {
+    slug: 'overlook',
+    name: 'Overlook',
+    series: 'Cottage',
+    planNumber: '3013',
+    sqft: '1,390',
+    sqftNumber: 1390,
+    beds: '2',
+    baths: '2',
+    garage: 2,
+    description:
+      'A two-bedroom Cottage plan with a flex room that can stay open living space or become storage.',
+    features: [
+      'Flex room (optional storage configuration)',
+      'Café dining open to the gathering room',
+      'Owner’s suite with optional tray ceiling',
+      'Optional low-threshold owner’s shower with seat',
+    ],
+    imageUrl: '/images/homes/overlook.jpg',
+    imageIsRendering: true,
+  },
+  {
+    slug: 'peak',
+    name: 'Peak',
+    series: 'Cottage',
+    planNumber: '3015',
+    sqft: '1,509',
+    sqftNumber: 1509,
+    beds: '2–3',
+    baths: '2',
+    garage: 2,
+    description:
+      'The largest Cottage plan, with a flex room that can convert to a third bedroom.',
+    features: [
+      'Optional Bedroom 3 in place of the flex room',
+      'Optional second covered patio',
+      'Owner’s suite with optional tray ceiling',
+      'Optional extension at rear of house',
+    ],
+    imageUrl: '/images/homes/peak.jpg',
+    imageIsRendering: true,
+  },
+  // Classic Series
+  {
+    slug: 'getaway',
+    name: 'Getaway',
+    series: 'Classic',
+    planNumber: '3514',
+    sqft: '1,451',
+    sqftNumber: 1451,
+    beds: '2',
+    baths: '2',
+    garage: 2,
+    description:
+      'The entry Classic plan, built around an open gathering room and a covered patio.',
+    features: [
+      'Gathering room with optional tray ceiling',
+      'Optional second covered patio',
+      'Owner’s bath options: walk-in shower or separate shower and tub',
+      'Optional center sliding glass door to the patio',
+    ],
+    imageUrl: '/images/homes/getaway.jpg',
+    imageIsRendering: true,
+  },
+  {
+    slug: 'solitude',
+    name: 'Solitude',
+    series: 'Classic',
+    planNumber: '3516',
+    sqft: '1,657',
+    sqftNumber: 1657,
+    beds: '2',
+    baths: '2',
+    garage: 2,
+    description:
+      'A two-bedroom Classic plan with a den for a home office, hobby room, or guest space.',
+    features: [
+      'Den',
+      'Gathering room and café dining',
+      'Optional second covered patio',
+      'Owner’s bath options: walk-in shower or separate shower and tub',
+    ],
+    imageUrl: '/images/homes/solitude.jpg',
+    imageIsRendering: true,
+  },
+  {
+    slug: 'expedition',
+    name: 'Expedition',
+    series: 'Classic',
+    planNumber: '3517',
+    sqft: '1,770',
+    sqftNumber: 1770,
+    beds: '2–3',
+    baths: '2',
+    garage: 2,
+    description:
+      'The largest Classic plan, with a den and an option for a third bedroom.',
+    features: [
+      'Den or optional Bedroom 3',
+      'Owner’s bath options: walk-in shower or separate shower and tub',
+      'Optional tray ceilings',
+      'Optional extension at rear of house',
+    ],
+    imageUrl: '/images/homes/expedition.jpg',
+    imageIsRendering: true,
+  },
+  // Retreat Series
+  {
+    slug: 'sanctuary',
+    name: 'Sanctuary',
+    series: 'Retreat',
+    planNumber: '4217',
+    sqft: '1,716',
+    sqftNumber: 1716,
+    beds: '2',
+    baths: '2–2.5',
+    garage: 2,
+    description:
+      'The entry Retreat plan, with a den and entertaining options like a wet bar.',
+    features: [
+      'Den',
+      'Optional wet bar or A/V built-in storage',
+      'Optional corner or center sliding glass door',
+      'Owner’s bath options: walk-in shower or separate shower and tub',
+    ],
+    imageUrl: '/images/homes/sanctuary.jpg',
     imageIsRendering: true,
   },
   {
     slug: 'haven',
     name: 'Haven',
-    series: 'Cottage',
-    sqft: '1,509',
-    sqftNumber: 1509,
-    beds: 2,
-    baths: 2.5,
+    series: 'Retreat',
+    planNumber: '4218',
+    sqft: '1,859',
+    sqftNumber: 1859,
+    beds: '2–3',
+    baths: '2–2.5',
     garage: 2,
     description:
-      'Largest in the Cottage series with 2.5 baths and expanded living space.',
-    priceRange: '$450,000 - $500,000',
+      'A Retreat plan with a den or optional third bedroom and an optional second laundry.',
     features: [
-      '2.5 bathrooms',
-      'Expanded master suite',
-      'Great room design',
-      'Optional den',
+      'Den or optional Bedroom 3',
+      'Optional second laundry',
+      'Gathering room and café with optional tray ceiling',
+      'Owner’s bath options: walk-in shower or separate shower and tub',
     ],
     imageUrl: '/images/homes/haven-6584.jpg',
   },
-  // Classic Series
   {
-    slug: 'explore',
-    name: 'Explore',
-    series: 'Classic',
-    sqft: '1,451',
-    sqftNumber: 1451,
-    beds: 2,
-    baths: 2,
-    garage: 2,
-    description:
-      'Room to spread out with optional den for hobbies or home office.',
-    priceRange: '$475,000 - $525,000',
-    features: [
-      'Optional den/study',
-      'Flexible living spaces',
-      'Modern kitchen design',
-      'Extended covered patio',
-    ],
-    imageUrl: '/images/homes/explore-classic.jpg',
-    imageIsRendering: true,
-  },
-  {
-    slug: 'journey',
-    name: 'Journey',
-    series: 'Classic',
-    sqft: '1,620',
-    sqftNumber: 1620,
-    beds: 3,
-    baths: 2,
-    garage: 2,
-    description:
-      'Three-bedroom design with flexible space for guests or family.',
-    priceRange: '$500,000 - $550,000',
-    features: [
-      'Three bedrooms',
-      'Guest-friendly layout',
-      'Spacious great room',
-      'Premium finishes available',
-    ],
-    imageUrl: '/images/homes/journey-classic.jpg',
-    imageIsRendering: true,
-  },
-  {
-    slug: 'pursuit',
-    name: 'Pursuit',
-    series: 'Classic',
-    sqft: '1,770',
-    sqftNumber: 1770,
-    beds: 3,
-    baths: 2.5,
-    garage: 2,
-    description:
-      'Spacious three-bedroom with 2.5 baths and generous living areas.',
-    priceRange: '$525,000 - $575,000',
-    features: [
-      '2.5 bathrooms',
-      'Large great room',
-      'Gourmet kitchen options',
-      'Extended outdoor living',
-    ],
-    imageUrl: '/images/homes/pursuit-classic.jpg',
-    imageIsRendering: true,
-  },
-  // Retreat Series
-  {
-    slug: 'stellar',
-    name: 'Stellar',
+    slug: 'preserve',
+    name: 'Preserve',
     series: 'Retreat',
-    sqft: '1,716',
-    sqftNumber: 1716,
-    beds: 3,
-    baths: 2,
-    garage: 2,
-    description:
-      'Perfect for entertaining with open concept and premium finishes.',
-    priceRange: '$550,000 - $600,000',
-    features: [
-      'Entertainment-focused design',
-      'Premium finishes standard',
-      'Large covered patio',
-      'Gourmet kitchen',
-    ],
-    imageUrl: '/images/homes/stellar-retreat.jpg',
-    imageIsRendering: true,
-  },
-  {
-    slug: 'mystique',
-    name: 'Mystique',
-    series: 'Retreat',
-    sqft: '1,850',
-    sqftNumber: 1850,
-    beds: 3,
-    baths: 2.5,
-    garage: 2,
-    description:
-      'Spacious living for those who love to host or want extra room.',
-    priceRange: '$575,000 - $600,000',
-    features: [
-      '2.5 bathrooms',
-      'Expansive great room',
-      'Luxury master suite',
-      'Designer finishes',
-    ],
-    imageUrl: '/images/homes/mystique-retreat.jpg',
-    imageIsRendering: true,
-  },
-  {
-    slug: 'reverence',
-    name: 'Reverence',
-    series: 'Retreat',
+    planNumber: '4219',
     sqft: '2,015',
     sqftNumber: 2015,
-    beds: 3,
-    baths: 2.5,
+    beds: '2–3',
+    baths: '2–2.5',
     garage: 2,
     description:
-      'Largest floor plan with ample space for visiting family and entertaining.',
-    priceRange: '$600,000+',
+      'The largest plan at North Ranch, with a den, optional third bedroom, and room to host.',
     features: [
-      'Largest floor plan',
-      'Luxury finishes throughout',
-      'Multiple living areas',
-      'Premium outdoor spaces',
+      'Largest floor plan at Del Webb North Ranch',
+      'Den or optional Bedroom 3',
+      'Optional wet bar and second laundry',
+      'Owner’s bath options: walk-in shower or separate shower and tub',
     ],
-    imageUrl: '/images/homes/reverence-retreat.jpg',
+    imageUrl: '/images/homes/preserve.jpg',
     imageIsRendering: true,
   },
 ];
 
-/** Parses "$400,000 - $450,000" or "$600,000+" into numeric bounds for schema offers. */
-export function planPriceBounds(plan: FloorPlan): { low: number; high?: number } {
-  const [low, high] = (plan.priceRange.match(/[\d,]+/g) ?? []).map((n) =>
-    Number(n.replace(/,/g, ''))
-  );
-  return { low, high };
+/** Old URLs from an earlier, incorrect plan list → the brochure plan with the same series and size. */
+export const LEGACY_FLOOR_PLAN_REDIRECTS: Record<string, string> = {
+  explore: 'getaway',
+  journey: 'solitude',
+  pursuit: 'expedition',
+  stellar: 'sanctuary',
+  mystique: 'haven',
+  reverence: 'preserve',
+};
+
+export const COMMUNITY_PRICE_RANGE = communityInfo.priceRange;
+
+function bedsPhrase(plan: FloorPlan): string {
+  return `${plan.beds} bedroom${plan.beds === '1' ? '' : 's'}`;
+}
+
+function bathsPhrase(plan: FloorPlan): string {
+  return `${plan.baths} bathroom${plan.baths === '1' ? '' : 's'}`;
+}
+
+/** Min/max from labels like "2" or "2–3" for schema QuantitativeValue. */
+export function rangeBounds(label: string): { min: number; max: number } {
+  const [min, max] = label.split(/[–-]/).map(Number);
+  return { min, max: max ?? min };
 }
 
 /** One-sentence, answer-first description of a plan for AI answers and featured snippets. */
 export function planAnswer(plan: FloorPlan): string {
-  return `The ${plan.name} is a ${plan.sqft} sq ft single-story ${plan.series} Series floor plan at Del Webb North Ranch in North Las Vegas, NV 89086, with ${plan.beds} bedrooms, ${plan.baths} bathrooms, and a ${plan.garage}-car garage. Estimated price range: ${plan.priceRange}, depending on homesite, upgrades, and market conditions.`;
+  return `The ${plan.name} (plan ${plan.planNumber}) is a ${plan.sqft} sq ft single-story ${plan.series} Series floor plan at Del Webb North Ranch in North Las Vegas, NV 89086, with ${bedsPhrase(plan)}, ${bathsPhrase(plan)}, and a ${plan.garage}-car garage.`;
 }
 
-/** Plan-specific questions answered from site data only; rendered visibly and as FAQPage schema. */
+/** Plan-specific questions answered from brochure and site data; rendered visibly and as FAQPage schema. */
 export function planFaq(plan: FloorPlan): Array<{ question: string; answer: string }> {
   const siblings = floorPlans
     .filter((p) => p.series === plan.series && p.slug !== plan.slug)
@@ -209,11 +256,11 @@ export function planFaq(plan: FloorPlan): Array<{ question: string; answer: stri
   return [
     {
       question: `How big is the ${plan.name} floor plan at Del Webb North Ranch?`,
-      answer: `The ${plan.name} is ${plan.sqft} sq ft, single-story, with ${plan.beds} bedrooms, ${plan.baths} bathrooms, and a ${plan.garage}-car garage.`,
+      answer: `The ${plan.name} is ${plan.sqft} sq ft, single-story, with ${bedsPhrase(plan)}, ${bathsPhrase(plan)}, and a ${plan.garage}-car garage.`,
     },
     {
       question: `How much does a ${plan.name} home cost at Del Webb North Ranch?`,
-      answer: `The estimated range is ${plan.priceRange}. Final price depends on the homesite, upgrades, and current market conditions. Call Dr. Jan Duffy at (702) 500-1064 for current ${plan.name} resale listings.`,
+      answer: `Del Webb North Ranch homes generally trade in the ${COMMUNITY_PRICE_RANGE} range. A ${plan.name} resale price depends on the homesite, options, and current market conditions. Call Dr. Jan Duffy at (702) 500-1064 for current ${plan.name} listings and recent sales.`,
     },
     {
       question: `Which series is the ${plan.name} in?`,

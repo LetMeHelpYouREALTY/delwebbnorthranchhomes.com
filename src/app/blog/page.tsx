@@ -11,6 +11,7 @@ import RealScoutListings from "@/../components/RealScoutListings";
 import PageHero from "@/../components/PageHero";
 import LocalVisitSection from "@/../components/LocalVisitSection";
 import SectionPhoto from "@/../components/SectionPhoto";
+import { blogPosts } from "@/lib/blog-posts";
 
 export const metadata: Metadata = {
   title: `Blog | ${TITLE_SUFFIX}`,
@@ -38,63 +39,27 @@ export const metadata: Metadata = {
   },
 };
 
-// Sample blog posts - replace with actual content from CMS or API
-const blogPosts = [
-  {
-    slug: "welcome-to-del-webb-north-ranch",
-    title: "Welcome to Del Webb North Ranch",
-    excerpt:
-      "Discover what makes Del Webb North Ranch the premier 55+ community in North Las Vegas. From resort-style amenities to a vibrant social scene, learn why so many active adults choose to call this place home.",
-    date: "2024-01-15",
-    image: "/images/blog/welcome.jpg",
-    category: "Community",
-  },
-  {
-    slug: "why-single-story-living-matters",
-    title: "Why Single-Story Living Matters",
-    excerpt:
-      "All homes at Del Webb North Ranch are single-story, and there's a good reason. Learn why this design choice matters for active adults and how it enhances your quality of life now and in the future.",
-    date: "2024-01-10",
-    image: "/images/blog/single-story.jpg",
-    category: "Homes",
-  },
-  {
-    slug: "nevada-tax-benefits-for-retirees",
-    title: "Nevada Tax Benefits for Retirees",
-    excerpt:
-      "Nevada's lack of state income tax is a major draw for retirees. Discover how moving to Nevada can help your retirement dollars stretch further.",
-    date: "2024-01-05",
-    image: "/images/blog/taxes.jpg",
-    category: "Lifestyle",
-  },
-  {
-    slug: "community-clubs-and-activities",
-    title: "Community Clubs and Activities",
-    excerpt:
-      "From pickleball to book clubs, discover the wide variety of clubs and activities available at Del Webb North Ranch. There's something for everyone.",
-    date: "2023-12-20",
-    image: "/images/blog/clubs.jpg",
-    category: "Lifestyle",
-  },
-  {
-    slug: "choosing-the-right-floor-plan",
-    title: "Choosing the Right Floor Plan",
-    excerpt:
-      "With 9 floor plans across three series, how do you choose? This guide helps you understand the differences and find the perfect fit for your lifestyle.",
-    date: "2023-12-15",
-    image: "/images/blog/floor-plans.jpg",
-    category: "Homes",
-  },
-  {
-    slug: "first-year-living-experience",
-    title: "A First-Year Living Experience",
-    excerpt:
-      "Hear from residents about their first year at Del Webb North Ranch. Learn what surprised them, what they love, and what advice they have for newcomers.",
-    date: "2023-12-10",
-    image: "/images/blog/first-year.jpg",
-    category: "Community",
-  },
-];
+const posts = Object.entries(blogPosts).map(([slug, post]) => ({ slug, ...post }));
+
+const blogSchema = {
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "@id": `${SITE_ORIGIN}/blog#blog`,
+  name: "Del Webb North Ranch Blog",
+  url: `${SITE_ORIGIN}/blog`,
+  inLanguage: "en-US",
+  author: { "@id": `${SITE_ORIGIN}/#person` },
+  publisher: { "@id": `${SITE_ORIGIN}/#organization` },
+  blogPost: posts.map((post) => ({
+    "@type": "BlogPosting",
+    headline: post.title,
+    url: `${SITE_ORIGIN}/blog/${post.slug}`,
+    datePublished: post.date,
+    dateModified: post.dateModified,
+    image: `${SITE_ORIGIN}${post.image}`,
+    author: { "@id": `${SITE_ORIGIN}/#person` },
+  })),
+};
 
 const blurDataURL =
   "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWEREiMxUf/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q==";
@@ -103,7 +68,7 @@ function BlogCard({
   post,
   index,
 }: {
-  post: (typeof blogPosts)[0];
+  post: (typeof posts)[number];
   index: number;
 }) {
   return (
@@ -142,7 +107,7 @@ function BlogCard({
             </h3>
           </Link>
           <p className="text-text-dark leading-relaxed mb-4 flex-grow">
-            {post.excerpt}
+            {post.summary}
           </p>
           <Link
             href={`/blog/${post.slug}`}
@@ -167,6 +132,10 @@ export default function BlogPage() {
         ]}
       />
       <main>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(blogSchema).replace(/</g, "\\u003c") }}
+        />
         <PageHero
           mediaKey="blog.hero"
           title="Blog | Del Webb North Ranch 55+ Real Estate"
@@ -237,7 +206,7 @@ export default function BlogPage() {
         <section className="py-12 md:py-16 lg:py-20 bg-white">
           <div className="container mx-auto px-4">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-              {blogPosts.map((post, index) => (
+              {posts.map((post, index) => (
                 <BlogCard key={post.slug} post={post} index={index} />
               ))}
             </div>

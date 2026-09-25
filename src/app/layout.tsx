@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
-import { CANONICAL_HOMEPAGE, SITE_ORIGIN, GOOGLE_MAPS_PLACE_URL, SITE_PHONE_SCHEMA, GBP_AGGREGATE_RATING, GBP_BUSINESS_NAME, GBP_DESCRIPTION, GBP_SHORT_DESCRIPTION, GBP_FOUNDING_DATE, GBP_SERVICE_AREA, GBP_SOCIAL_PROFILES, SITE_EMAIL, gbpPostalAddressSchema, gbpOpeningHoursSpecification } from "@/lib/site";
+import { CANONICAL_HOMEPAGE, SITE_ORIGIN, GOOGLE_MAPS_PLACE_URL, SITE_PHONE_SCHEMA, GBP_BUSINESS_NAME, GBP_DESCRIPTION, GBP_SHORT_DESCRIPTION, GBP_FOUNDING_DATE, GBP_SERVICE_AREA, GBP_SOCIAL_PROFILES, SITE_EMAIL, gbpPostalAddressSchema, gbpOpeningHoursSpecification } from "@/lib/site";
 import { absoluteMediaUrl, mediaOpenGraph, mediaTwitterImages } from "@/lib/media";
 import "./globals.css";
 import CalendlyButton from "@/../components/CalendlyButton";
@@ -147,11 +147,6 @@ export default function RootLayout({
     currenciesAccepted: "USD",
     sameAs: [...GBP_SOCIAL_PROFILES],
     hasMap: GOOGLE_MAPS_PLACE_URL,
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: GBP_AGGREGATE_RATING.ratingValue,
-      reviewCount: GBP_AGGREGATE_RATING.reviewCount,
-    },
     hasOfferCatalog: {
       "@type": "OfferCatalog",
       name: "Real Estate Services",
@@ -197,7 +192,13 @@ export default function RootLayout({
       "North Las Vegas Real Estate",
       "55+ Active Adult Housing",
       "Single-Story Homes",
+      "Resort-Style Amenities",
+      "Gated 55+ Communities",
+      "Housing for Older Persons Act (HOPA)",
     ],
+    founder: { "@id": `${SITE_ORIGIN}/#person` },
+    employee: { "@id": `${SITE_ORIGIN}/#person` },
+    parentOrganization: { "@id": `${SITE_ORIGIN}/#organization` },
     memberOf: {
       "@type": "Organization",
       name: "Berkshire Hathaway HomeServices Nevada Properties",

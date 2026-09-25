@@ -95,15 +95,6 @@ export const GOOGLE_MAPS_EMBED_URL =
 /** Public Google reviews listing for the GBP. */
 export const GOOGLE_REVIEWS_URL = "https://g.page/r/CTX_3qPVOeEqEBI";
 
-/**
- * Aggregate rating for LocalBusiness schema. Update to match your Google Business Profile
- * so star ratings in search stay accurate. Check GBP periodically and update here.
- */
-export const GBP_AGGREGATE_RATING = {
-  ratingValue: "5",
-  reviewCount: "50",
-} as const;
-
 /** schema.org PostalAddress object from GBP address. */
 export function gbpPostalAddressSchema() {
   return {
