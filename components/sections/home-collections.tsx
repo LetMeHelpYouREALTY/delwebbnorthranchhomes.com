@@ -60,21 +60,21 @@ export default function HomeCollectionsSection() {
       specs: "1,285-1,509 sq ft",
       description:
         "Efficient, comfortable, easy to maintain. Perfect if you want cozy without cramped.",
-      imagePath: "/images/homes/haven-6584.jpg",
+      imagePath: "/images/homes/canyon.jpg",
     },
     {
       title: "Classic Series",
       specs: "1,451-1,770 sq ft",
       description:
         "Room to spread out. Optional dens for hobbies or home offices.",
-      imagePath: "/images/homes/classic-series.jpg",
+      imagePath: "/images/homes/getaway.jpg",
     },
     {
       title: "Retreat Series",
       specs: "1,716-2,015 sq ft",
       description:
         "Spacious living for those who love to entertain or want extra room for visiting family.",
-      imagePath: "/images/homes/stellar-retreat.jpg",
+      imagePath: "/images/homes/haven-6584.jpg",
     },
   ];
 

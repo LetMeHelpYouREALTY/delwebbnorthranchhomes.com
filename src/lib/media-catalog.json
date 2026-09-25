@@ -219,46 +219,6 @@
     "cfId": "dwnr/clubhouse-patio-sunset",
     "alt": "Clubhouse patio at sunset at Del Webb North Ranch, 2290 Beauty Vista Avenue, North Las Vegas"
   },
-  "homes.sanctuary": {
-    "localPath": "/images/homes/sanctuary-cottage.jpg",
-    "cfId": "dwnr/homes-sanctuary",
-    "alt": "Sanctuary Cottage Series single-story home at Del Webb North Ranch, a 55+ community in North Las Vegas"
-  },
-  "homes.classicSeries": {
-    "localPath": "/images/homes/classic-series.jpg",
-    "cfId": "dwnr/homes-classic-series",
-    "alt": "Classic Series single-story home at Del Webb North Ranch in North Las Vegas, NV 89086"
-  },
-  "homes.explore": {
-    "localPath": "/images/homes/explore-classic.jpg",
-    "cfId": "dwnr/homes-explore",
-    "alt": "Explore Classic Series single-story home at Del Webb North Ranch, North Las Vegas 55+ community"
-  },
-  "homes.journey": {
-    "localPath": "/images/homes/journey-classic.jpg",
-    "cfId": "dwnr/homes-journey",
-    "alt": "Journey Classic Series three-bedroom single-story home at Del Webb North Ranch in North Las Vegas"
-  },
-  "homes.pursuit": {
-    "localPath": "/images/homes/pursuit-classic.jpg",
-    "cfId": "dwnr/homes-pursuit",
-    "alt": "Pursuit Classic Series single-story home at Del Webb North Ranch, North Las Vegas 55+ community"
-  },
-  "homes.stellar": {
-    "localPath": "/images/homes/stellar-retreat.jpg",
-    "cfId": "dwnr/homes-stellar",
-    "alt": "Stellar Retreat Series single-story home at Del Webb North Ranch in North Las Vegas, NV 89086"
-  },
-  "homes.mystique": {
-    "localPath": "/images/homes/mystique-retreat.jpg",
-    "cfId": "dwnr/homes-mystique",
-    "alt": "Mystique Retreat Series single-story home at Del Webb North Ranch, North Las Vegas 55+ community"
-  },
-  "homes.reverence": {
-    "localPath": "/images/homes/reverence-retreat.jpg",
-    "cfId": "dwnr/homes-reverence",
-    "alt": "Reverence Retreat Series single-story home at Del Webb North Ranch in North Las Vegas, NV 89086"
-  },
   "blog.welcome": {
     "localPath": "/images/blog/welcome.jpg",
     "cfId": "dwnr/blog-welcome",
@@ -288,5 +248,45 @@
     "localPath": "/images/blog/first-year.jpg",
     "cfId": "dwnr/blog-first-year",
     "alt": "Resort pool and clubhouse at Del Webb North Ranch 55+ community in North Las Vegas"
+  },
+  "homes.canyon": {
+    "localPath": "/images/homes/canyon.jpg",
+    "cfId": "dwnr/homes-canyon",
+    "alt": "Illustrative Canyon Cottage Series single-story home exterior at Del Webb North Ranch, a 55+ community in North Las Vegas, NV 89086"
+  },
+  "homes.overlook": {
+    "localPath": "/images/homes/overlook.jpg",
+    "cfId": "dwnr/homes-overlook",
+    "alt": "Illustrative Overlook Cottage Series single-story home exterior at Del Webb North Ranch, a 55+ community in North Las Vegas, NV 89086"
+  },
+  "homes.peak": {
+    "localPath": "/images/homes/peak.jpg",
+    "cfId": "dwnr/homes-peak",
+    "alt": "Illustrative Peak Cottage Series single-story home exterior at Del Webb North Ranch, a 55+ community in North Las Vegas, NV 89086"
+  },
+  "homes.getaway": {
+    "localPath": "/images/homes/getaway.jpg",
+    "cfId": "dwnr/homes-getaway",
+    "alt": "Illustrative Getaway Classic Series single-story home exterior at Del Webb North Ranch, a 55+ community in North Las Vegas, NV 89086"
+  },
+  "homes.solitude": {
+    "localPath": "/images/homes/solitude.jpg",
+    "cfId": "dwnr/homes-solitude",
+    "alt": "Illustrative Solitude Classic Series single-story home exterior at Del Webb North Ranch, a 55+ community in North Las Vegas, NV 89086"
+  },
+  "homes.expedition": {
+    "localPath": "/images/homes/expedition.jpg",
+    "cfId": "dwnr/homes-expedition",
+    "alt": "Illustrative Expedition Classic Series single-story home exterior at Del Webb North Ranch, a 55+ community in North Las Vegas, NV 89086"
+  },
+  "homes.sanctuary": {
+    "localPath": "/images/homes/sanctuary.jpg",
+    "cfId": "dwnr/homes-sanctuary",
+    "alt": "Illustrative Sanctuary Retreat Series single-story home exterior at Del Webb North Ranch, a 55+ community in North Las Vegas, NV 89086"
+  },
+  "homes.preserve": {
+    "localPath": "/images/homes/preserve.jpg",
+    "cfId": "dwnr/homes-preserve",
+    "alt": "Illustrative Preserve Retreat Series single-story home exterior at Del Webb North Ranch, a 55+ community in North Las Vegas, NV 89086"
   }
 }

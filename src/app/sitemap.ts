@@ -15,7 +15,7 @@ const PAGE_IMAGES: Record<string, MediaKey[]> = {
   "/home-value": ["homeValue.hero"],
   "/schedule": ["schedule.hero"],
   "/community": ["community.hero", "community.campusAerial"],
-  "/floor-plans": ["floorPlans.hero", "homes.classicSeries", "homes.stellar"],
+  "/floor-plans": ["floorPlans.hero", "homes.canyon", "homes.getaway", "homes.haven6584"],
   "/amenities": ["amenities.hero", "amenities.pickleball", "amenities.fitness", "amenities.clubhouse"],
   "/about": ["about.hero"],
   "/contact": ["contact.hero"],

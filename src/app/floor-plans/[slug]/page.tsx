@@ -10,7 +10,8 @@ import {
   getAllFloorPlanSlugs,
   planAnswer,
   planFaq,
-  planPriceBounds,
+  rangeBounds,
+  COMMUNITY_PRICE_RANGE,
   type FloorPlan,
 } from '@/lib/floor-plans';
 import { getVirtualTourByModel, getVirtualTourSlug } from '@/lib/old-site-data';
@@ -18,7 +19,7 @@ import { Bed, Bath, Square, Car, ArrowLeft, Phone, Play } from 'lucide-react';
 import ScheduleTour from '@/../components/ScheduleTour';
 import PageHero from '@/../components/PageHero';
 import LocalVisitSection from '@/../components/LocalVisitSection';
-import { SITE_ORIGIN, SITE_PHONE_TEL, SITE_PHONE_DISPLAY } from '@/lib/site';
+import { SITE_ORIGIN, SITE_PHONE_TEL, SITE_PHONE_DISPLAY, gbpPostalAddressSchema } from '@/lib/site';
 import { TITLE_SUFFIX } from '@/lib/hyperlocal';
 import { mediaOpenGraph, mediaTwitterImages, absoluteMediaUrl } from '@/lib/media';
 
@@ -44,13 +45,13 @@ export async function generateMetadata({
 
   return {
     title: `${plan.name} Floor Plan | ${plan.series} Series | ${TITLE_SUFFIX}`,
-    description: `${plan.name} floor plan: ${plan.sqft} sq ft, ${plan.beds} bed, ${plan.baths} bath ${plan.series} Series home in Del Webb North Ranch, a premier 55+ community in North Las Vegas. ${plan.description}`,
+    description: `${plan.name} floor plan: ${plan.sqft} sq ft, ${plan.beds} bed, ${plan.baths} bath single-story ${plan.series} Series home at Del Webb North Ranch, a 55+ community in North Las Vegas. ${plan.description}`,
     alternates: {
       canonical: url,
     },
     openGraph: {
       title: `${plan.name} Floor Plan | ${plan.series} Series | ${TITLE_SUFFIX}`,
-      description: `${plan.sqft} sq ft, ${plan.beds} bed, ${plan.baths} bath ${plan.series} Series home. ${plan.priceRange}.`,
+      description: planAnswer(plan),
       url: url,
       siteName: TITLE_SUFFIX,
       locale: 'en_US',
@@ -77,62 +78,41 @@ export async function generateMetadata({
   };
 }
 
-function ProductSchema({ plan }: { plan: FloorPlan }) {
-  const price = planPriceBounds(plan);
-
-  const productSchema = {
+function FloorPlanSchema({ plan }: { plan: FloorPlan }) {
+  const beds = rangeBounds(plan.beds);
+  const baths = rangeBounds(plan.baths);
+  const floorPlanSchema = {
     '@context': 'https://schema.org',
-    '@type': 'Product',
-    name: `${plan.name} Floor Plan - Del Webb North Ranch`,
+    '@type': 'FloorPlan',
+    '@id': `${SITE_ORIGIN}/floor-plans/${plan.slug}#floorplan`,
+    name: `${plan.name} Floor Plan (${plan.series} Series) - Del Webb North Ranch`,
     description: planAnswer(plan),
-    category: 'Real Estate',
-    image: plan.imageUrl
-      ? `${SITE_ORIGIN}${plan.imageUrl}`
-      : absoluteMediaUrl('homes.haven6584'),
-    brand: {
-      '@type': 'Brand',
-      name: 'Del Webb North Ranch',
-    },
-    offers: {
-      '@type': 'AggregateOffer',
-      priceCurrency: 'USD',
-      lowPrice: String(price.low),
-      ...(price.high ? { highPrice: String(price.high) } : {}),
-    },
-    additionalProperty: [
-      {
-        '@type': 'PropertyValue',
-        name: 'Square Feet',
-        value: plan.sqft,
-      },
-      {
-        '@type': 'PropertyValue',
-        name: 'Bedrooms',
-        value: plan.beds.toString(),
-      },
-      {
-        '@type': 'PropertyValue',
-        name: 'Bathrooms',
-        value: plan.baths.toString(),
-      },
-      {
-        '@type': 'PropertyValue',
-        name: 'Garage',
-        value: `${plan.garage} car`,
-      },
-      {
-        '@type': 'PropertyValue',
-        name: 'Series',
-        value: plan.series,
-      },
-    ],
     url: `${SITE_ORIGIN}/floor-plans/${plan.slug}`,
+    image: plan.imageUrl ? `${SITE_ORIGIN}${plan.imageUrl}` : absoluteMediaUrl('homes.haven6584'),
+    floorSize: { '@type': 'QuantitativeValue', value: plan.sqftNumber, unitCode: 'FTK' },
+    numberOfBedrooms: { '@type': 'QuantitativeValue', minValue: beds.min, maxValue: beds.max },
+    numberOfBathroomsTotal: { '@type': 'QuantitativeValue', minValue: baths.min, maxValue: baths.max },
+    amenityFeature: [
+      ...plan.features.map((name) => ({ '@type': 'LocationFeatureSpecification', name, value: true })),
+      { '@type': 'LocationFeatureSpecification', name: `${plan.garage}-car attached garage`, value: true },
+      { '@type': 'LocationFeatureSpecification', name: 'Single-story', value: true },
+    ],
+    isPlanForApartment: {
+      '@type': 'SingleFamilyResidence',
+      name: `${plan.name} single-story home at Del Webb North Ranch`,
+      address: gbpPostalAddressSchema(),
+      containedInPlace: {
+        '@type': 'Place',
+        name: 'Del Webb North Ranch',
+        address: gbpPostalAddressSchema(),
+      },
+    },
   };
 
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema).replace(/</g, "\\u003c") }}
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(floorPlanSchema).replace(/</g, "\\u003c") }}
     />
   );
 }
@@ -216,7 +196,7 @@ export default async function FloorPlanPage({
         ]}
       />
       <main>
-        <ProductSchema plan={plan} />
+        <FloorPlanSchema plan={plan} />
         <PlanFaqSchema plan={plan} />
         <PageHero
           imageSrc={plan.imageUrl || '/images/homes/haven-6584.jpg'}
@@ -277,13 +257,17 @@ export default async function FloorPlanPage({
               {/* Price Range */}
               <div className="bg-primary/10 border-2 border-primary rounded-lg p-6 text-center mb-8">
                 <p className="text-sm font-semibold text-primary mb-2">
-                  Estimated Price Range
+                  Del Webb North Ranch Price Range
                 </p>
                 <p className="text-3xl font-bold text-primary font-playfair">
-                  {plan.priceRange}
+                  {COMMUNITY_PRICE_RANGE}
                 </p>
                 <p className="text-sm text-text-dark mt-2">
-                  Price varies by location, upgrades, and market conditions
+                  {plan.name} pricing depends on homesite, options, and market conditions.{" "}
+                  <a href={SITE_PHONE_TEL} className="font-semibold text-primary underline-offset-4 hover:underline">
+                    Call {SITE_PHONE_DISPLAY}
+                  </a>{" "}
+                  for current {plan.name} listings.
                 </p>
               </div>
             </div>

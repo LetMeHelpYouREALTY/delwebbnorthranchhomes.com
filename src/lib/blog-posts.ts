@@ -117,20 +117,20 @@ export const blogPosts: Record<string, BlogPost> = {
     date: "2023-12-15",
     dateModified: "2026-09-23",
     summary:
-      "Del Webb North Ranch floor plans come in three single-story series: Cottage (1,285–1,509 sq ft), Classic (1,451–1,770 sq ft), and Retreat (1,716–2,015 sq ft). Choose by how you will use the space: guests, a home office, or entertaining.",
+      "Del Webb North Ranch has nine single-story floor plans in three series: Cottage (Canyon, Overlook, Peak; 1,285–1,509 sq ft), Classic (Getaway, Solitude, Expedition; 1,451–1,770 sq ft), and Retreat (Sanctuary, Haven, Preserve; 1,716–2,015 sq ft). Choose by how you will use the space: guests, a home office, or entertaining.",
     image: "/images/blog/floor-plans.jpg",
     category: "Homes",
     content: `
       <p>Del Webb North Ranch offers 9 floor plans across three series. Here's how to think about choosing the right one for you.</p>
       
       <h2>Cottage Series (1,285-1,509 sq ft)</h2>
-      <p>Perfect if you're downsizing and want efficient, easy-to-maintain living. These plans are cozy without feeling cramped, ideal for those who want to simplify.</p>
+      <p>Plans: Canyon (1,285 sq ft), Overlook (1,390 sq ft), and Peak (1,509 sq ft, with an optional third bedroom). Perfect if you're downsizing and want efficient, easy-to-maintain living. These plans are cozy without feeling cramped, ideal for those who want to simplify.</p>
       
       <h2>Classic Series (1,451-1,770 sq ft)</h2>
-      <p>Room to spread out with optional dens for hobbies or home offices. Great if you want space but don't need the largest option.</p>
+      <p>Plans: Getaway (1,451 sq ft), Solitude (1,657 sq ft, with a den), and Expedition (1,770 sq ft, with a den or optional third bedroom). Room to spread out with optional dens for hobbies or home offices. Great if you want space but don't need the largest option.</p>
       
       <h2>Retreat Series (1,716-2,015 sq ft)</h2>
-      <p>Spacious living for those who love to entertain or want extra room for visiting family. If you want space and luxury, this is the series for you.</p>
+      <p>Plans: Sanctuary (1,716 sq ft), Haven (1,859 sq ft), and Preserve (2,015 sq ft), each with a den and options like a wet bar or third bedroom. Spacious living for those who love to entertain or want extra room for visiting family. If you want space and luxury, this is the series for you.</p>
       
       <h2>Consider Your Lifestyle</h2>
       <p>Think about how you'll use the space. Do you entertain often? Need a home office? Want room for guests? These questions will help guide your choice.</p>
