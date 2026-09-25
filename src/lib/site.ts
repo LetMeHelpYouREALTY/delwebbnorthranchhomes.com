@@ -53,7 +53,7 @@ export const GBP_SOCIAL_PROFILES = [
   "https://www.facebook.com/DellWebbNorthRanch",
 ] as const;
 
-/** GBP standard hours – Sun–Sat 6:00 AM–9:00 PM. */
+/** GBP standard hours – Sun–Sat 8:00 AM–8:00 PM. */
 export const GBP_STANDARD_HOURS = {
   dayOfWeek: [
     "Sunday",
@@ -64,8 +64,8 @@ export const GBP_STANDARD_HOURS = {
     "Friday",
     "Saturday",
   ] as const,
-  opens: "06:00",
-  closes: "21:00",
+  opens: "08:00",
+  closes: "20:00",
 } as const;
 
 /** GBP special closures – closed on listed dates. */
@@ -75,7 +75,7 @@ export const GBP_SPECIAL_CLOSURES = [
 ] as const;
 
 /** Visible business hours label for contact/footer. */
-export const GBP_HOURS_DISPLAY = "Sunday–Saturday, 6:00 AM–9:00 PM";
+export const GBP_HOURS_DISPLAY = "Sunday–Saturday, 8:00 AM–8:00 PM";
 
 /** Google Business Profile review link – use for “Leave a review on Google” CTAs. */
 export const GOOGLE_REVIEW_LINK = "https://g.page/r/CTX_3qPVOeEqEBI/review";
