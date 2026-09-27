@@ -26,6 +26,7 @@ const dropdownMenus = [
     label: "More",
     items: [
       { href: "/community", label: "Community & Area" },
+      { href: "/nearby-amenities", label: "Nearby Amenities" },
       { href: "/why-choose-us", label: "Why Choose Us" },
       { href: "/virtual-tours", label: "Virtual Tours" },
       { href: "/mortgage-calculator", label: "Mortgage Calculator" },
@@ -48,6 +49,7 @@ const allNavLinks = [
   { href: "/floor-plans", label: "Floor Plans" },
   { href: "/amenities", label: "Amenities" },
   { href: "/community", label: "Community & Area" },
+  { href: "/nearby-amenities", label: "Nearby Amenities" },
   { href: "/why-choose-us", label: "Why Choose Us" },
   { href: "/virtual-tours", label: "Virtual Tours" },
   { href: "/mortgage-calculator", label: "Mortgage Calculator" },

@@ -162,6 +162,7 @@ export default function Footer() {
               {[
                 { href: "/floor-plans", label: "Floor Plans" },
                 { href: "/amenities", label: "Amenities" },
+                { href: "/nearby-amenities", label: "Nearby Amenities" },
                 { href: "/community", label: "Community & Area" },
                 { href: "/lifestyle", label: "Lifestyle" },
                 { href: "/virtual-tours", label: "Virtual Tours" },

@@ -191,7 +191,7 @@ export default function AmenitiesPage() {
             <>
                 Del Webb North Ranch offers resort-style amenities designed to
                 help you live your best life. Every amenity is fully built and
-                ready to enjoy. Explore <Link href="/floor-plans" className="text-white hover:text-gray-200 underline">homes with these amenities</Link> or view <Link href="/homes-for-sale" className="text-white hover:text-gray-200 underline">available homes for sale</Link>.
+                ready to enjoy. Explore <Link href="/floor-plans" className="text-white hover:text-gray-200 underline">homes with these amenities</Link>, view <Link href="/homes-for-sale" className="text-white hover:text-gray-200 underline">available homes for sale</Link>, or see <Link href="/nearby-amenities" className="text-white hover:text-gray-200 underline">shops, parks, and services nearby</Link>.
             </>
           }
         />

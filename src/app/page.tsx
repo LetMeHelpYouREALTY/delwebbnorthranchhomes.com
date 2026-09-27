@@ -17,6 +17,7 @@ import Link from "next/link";
 import { Button } from "../../components/ui/button";
 import QuickFAQ from "../../components/QuickFAQ";
 import LocalVisitSection from "../../components/LocalVisitSection";
+import NearbyMapSection from "../../components/sections/nearby-map-section";
 import { faqData } from "@/lib/faqData";
 
 const HOMEPAGE_METADATA: Metadata = {
@@ -133,6 +134,7 @@ export default function Home() {
         </section>
         <TestimonialSection />
         <AmenitiesPreviewSection />
+        <NearbyMapSection />
         <HomeCollectionsSection />
         {/* CTAs to full pages (content lives on dedicated pages) */}
         <section className="py-8 bg-bg-light">

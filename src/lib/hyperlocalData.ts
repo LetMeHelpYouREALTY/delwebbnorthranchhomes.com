@@ -24,19 +24,19 @@ export const nearbyAreas: NearbyArea[] = [
     name: "Aliante",
     slug: "aliante",
     description: "Aliante area; near Aliante Golf Club and shopping.",
-    relatedPath: "/amenities",
+    relatedPath: "/nearby-amenities",
   },
   {
     name: "Centennial Hills",
     slug: "centennial-hills",
     description: "Centennial Hills; Centennial Hills Hospital and library nearby.",
-    relatedPath: "/lifestyle",
+    relatedPath: "/nearby-amenities",
   },
   {
     name: "Craig Ranch",
     slug: "craig-ranch",
     description: "Craig Ranch Regional Park (170 acres) nearby.",
-    relatedPath: "/amenities",
+    relatedPath: "/nearby-amenities",
   },
 ];
 

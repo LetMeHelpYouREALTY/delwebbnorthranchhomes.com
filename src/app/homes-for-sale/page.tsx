@@ -13,6 +13,7 @@ import { metaDescriptionBlock, TITLE_SUFFIX } from "@/lib/hyperlocal";
 import { mediaImageObject, mediaOpenGraph, mediaTwitterImages } from "@/lib/media";
 import PageHero from "@/../components/PageHero";
 import LocalVisitSection from "@/../components/LocalVisitSection";
+import NearbyMapSection from "@/../components/sections/nearby-map-section";
 import SectionPhoto from "@/../components/SectionPhoto";
 import { buyerCtaCopy, buyerFaq, buyerValueProps } from "@/lib/hyperlocalBuyer";
 // import HomesForSaleWidget from "@/../components/HomesForSaleWidget";
@@ -251,6 +252,12 @@ export default async function HomesForSalePage() {
             </div>
           </div>
         </section>
+
+        <NearbyMapSection
+          id="listings-nearby-map"
+          heading="What's Near Your New Home at Del Webb North Ranch"
+          compact
+        />
 
         {/* Mortgage Calculator Section */}
         <MortgageCalculator />

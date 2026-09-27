@@ -9,6 +9,7 @@ import { HYPERLOCAL } from "@/lib/hyperlocal";
 import { getCommunityInfo } from "@/lib/communityData";
 import RealScoutListings from "@/../components/RealScoutListings";
 import LocalVisitSection from "@/../components/LocalVisitSection";
+import NearbyMapSection from "@/../components/sections/nearby-map-section";
 import PageHero from "@/../components/PageHero";
 import SectionPhoto from "@/../components/SectionPhoto";
 import { mediaOpenGraph, mediaTwitterImages } from "@/lib/media";
@@ -98,6 +99,12 @@ export default function CommunityPage() {
             </div>
           </div>
         </section>
+
+        <NearbyMapSection
+          id="community-nearby-map"
+          heading="What's Nearby Del Webb North Ranch"
+          compact
+        />
 
         {/* Nearby areas */}
         <section className="py-12 md:py-16 bg-white">

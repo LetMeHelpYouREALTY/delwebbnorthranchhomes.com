@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
 import { CANONICAL_HOMEPAGE, SITE_ORIGIN, GOOGLE_MAPS_PLACE_URL, SITE_PHONE_SCHEMA, GBP_BUSINESS_NAME, GBP_DESCRIPTION, GBP_SHORT_DESCRIPTION, GBP_FOUNDING_DATE, GBP_SERVICE_AREA, GBP_SOCIAL_PROFILES, SITE_EMAIL, gbpPostalAddressSchema, gbpOpeningHoursSpecification } from "@/lib/site";
+import { communityGeoSchema, communityPlaceSchemaExtras } from "@/lib/communityMapConfig";
 import { absoluteMediaUrl, mediaOpenGraph, mediaTwitterImages } from "@/lib/media";
 import "./globals.css";
 import CalendlyButton from "@/../components/CalendlyButton";
@@ -130,8 +131,10 @@ export default function RootLayout({
     address: gbpPostalAddressSchema(),
     areaServed: {
       "@type": "Place",
-      name: GBP_SERVICE_AREA,
+      name: "Del Webb North Ranch",
+      alternateName: GBP_SERVICE_AREA,
       address: gbpPostalAddressSchema(),
+      geo: communityGeoSchema(),
     },
     openingHoursSpecification: gbpOpeningHoursSpecification(),
     foundingDate: GBP_FOUNDING_DATE,
@@ -218,14 +221,8 @@ export default function RootLayout({
   const placeSchema = {
     "@context": "https://schema.org",
     "@type": "Place",
-    name: "Del Webb North Ranch",
     description: "55+ Active Adult Gated Community in North Las Vegas",
-    address: gbpPostalAddressSchema(),
-    geo: {
-      "@type": "GeoCoordinates",
-      latitude: "36.2856",
-      longitude: "-115.0939",
-    },
+    ...communityPlaceSchemaExtras(),
     url: SITE_ORIGIN,
     image: [
       absoluteMediaUrl("place.primary"),

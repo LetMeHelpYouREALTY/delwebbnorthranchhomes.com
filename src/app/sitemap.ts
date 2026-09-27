@@ -17,6 +17,7 @@ const PAGE_IMAGES: Record<string, MediaKey[]> = {
   "/community": ["community.hero", "community.campusAerial"],
   "/floor-plans": ["floorPlans.hero", "homes.canyon", "homes.getaway", "homes.haven6584"],
   "/amenities": ["amenities.hero", "amenities.pickleball", "amenities.fitness", "amenities.clubhouse"],
+  "/nearby-amenities": ["community.campusAerial", "place.signClose"],
   "/about": ["about.hero"],
   "/contact": ["contact.hero"],
   "/lifestyle": ["lifestyle.hero", "lifestyle.events"],
@@ -125,6 +126,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 0.8,
+    },
+    {
+      url: `${SITE_ORIGIN}/nearby-amenities`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.85,
     },
     {
       url: `${SITE_ORIGIN}/about`,
