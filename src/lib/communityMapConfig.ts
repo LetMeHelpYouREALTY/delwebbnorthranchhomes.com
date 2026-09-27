@@ -35,10 +35,8 @@ export type AmenityCategoryId =
 export type AmenityCategory = {
   id: AmenityCategoryId;
   label: string;
-  /** Google Places (New) includedPrimaryTypes — first type used for search. */
+  /** Google Places (New) includedPrimaryTypes for a single searchNearby call. */
   placeTypes: string[];
-  /** Legacy PlacesService type (fallback). */
-  legacyType?: string;
   deemphasized?: boolean;
 };
 
@@ -48,73 +46,61 @@ export const AMENITY_CATEGORIES: AmenityCategory[] = [
     id: "healthcare",
     label: "Healthcare",
     placeTypes: ["hospital", "doctor"],
-    legacyType: "hospital",
   },
   {
     id: "golf",
     label: "Golf",
     placeTypes: ["golf_course"],
-    legacyType: "golf_course",
   },
   {
     id: "parks",
     label: "Parks",
     placeTypes: ["park"],
-    legacyType: "park",
   },
   {
     id: "community",
     label: "Recreation",
     placeTypes: ["community_center", "sports_complex"],
-    legacyType: "gym",
   },
   {
     id: "grocery",
     label: "Grocery",
     placeTypes: ["grocery_store", "supermarket"],
-    legacyType: "grocery_or_supermarket",
   },
   {
     id: "restaurants",
     label: "Restaurants",
     placeTypes: ["restaurant"],
-    legacyType: "restaurant",
   },
   {
     id: "cafes",
     label: "Cafes",
     placeTypes: ["cafe", "coffee_shop"],
-    legacyType: "cafe",
   },
   {
     id: "pharmacies",
     label: "Pharmacies",
     placeTypes: ["pharmacy", "drugstore"],
-    legacyType: "pharmacy",
   },
   {
     id: "shopping",
     label: "Shopping",
     placeTypes: ["shopping_mall", "department_store"],
-    legacyType: "shopping_mall",
   },
   {
     id: "parking",
     label: "Parking",
     placeTypes: ["parking"],
-    legacyType: "parking",
   },
   {
     id: "fitness",
     label: "Fitness",
     placeTypes: ["gym", "fitness_center"],
-    legacyType: "gym",
   },
   {
     id: "schools",
     label: "Schools",
     placeTypes: ["school", "primary_school", "secondary_school"],
-    legacyType: "school",
     deemphasized: true,
   },
 ];

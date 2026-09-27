@@ -8,7 +8,6 @@ import {
   COMMUNITY_MAP_EMBED_URL,
   COMMUNITY_MAP_LABEL,
   DEFAULT_AMENITY_CATEGORY,
-  MAP_SEARCH_RADIUS_METERS,
   getGoogleMapsApiKey,
   getGoogleMapsMapId,
   type AmenityCategoryId,
@@ -17,16 +16,15 @@ import {
   curatedNearbyPlaces,
   type NearbyPlaceRecord,
 } from "@/lib/nearbyPlacesData";
-
-type MapPlaceResult = {
-  id: string;
-  name: string;
-  address: string;
-  lat: number;
-  lng: number;
-  rating?: number;
-  directionsUrl: string;
-};
+import {
+  loadGoogleMaps,
+  mapsAuthFailed,
+} from "@/lib/google-maps-loader";
+import {
+  mapPlacesToResults,
+  searchCategory,
+  type AmenityPlaceResult,
+} from "@/lib/amenityPlacesSearch";
 
 type AmenityMapProps = {
   className?: string;
@@ -43,6 +41,30 @@ function buildDirectionsUrl(lat: number, lng: number, name?: string): string {
     ? encodeURIComponent(`${name}@${lat},${lng}`)
     : `${lat},${lng}`;
   return `https://www.google.com/maps/dir/?api=1&destination=${destination}`;
+}
+
+function buildInfoWindowElement(
+  name: string,
+  address: string,
+  directionsUrl: string
+): HTMLElement {
+  const wrap = document.createElement("div");
+  wrap.style.maxWidth = "260px";
+  const title = document.createElement("strong");
+  title.textContent = name;
+  wrap.appendChild(title);
+  if (address) {
+    wrap.appendChild(document.createElement("br"));
+    wrap.appendChild(document.createTextNode(address));
+  }
+  wrap.appendChild(document.createElement("br"));
+  const link = document.createElement("a");
+  link.href = directionsUrl;
+  link.target = "_blank";
+  link.rel = "noopener noreferrer";
+  link.textContent = "Directions";
+  wrap.appendChild(link);
+  return wrap;
 }
 
 function StaticPlaceList({
@@ -101,18 +123,36 @@ export default function AmenityMap({
   const markersRef = useRef<google.maps.Marker[]>([]);
   const communityMarkerRef = useRef<google.maps.Marker | null>(null);
   const infoWindowRef = useRef<google.maps.InfoWindow | null>(null);
-  const scriptLoadedRef = useRef(false);
 
   const [activeCategory, setActiveCategory] =
     useState<AmenityCategoryId>(initialCategory);
   const [isInView, setIsInView] = useState(false);
   const [mapReady, setMapReady] = useState(false);
   const [loadError, setLoadError] = useState(false);
-  const [livePlaces, setLivePlaces] = useState<MapPlaceResult[]>([]);
+  const [livePlaces, setLivePlaces] = useState<AmenityPlaceResult[]>([]);
   const [isSearching, setIsSearching] = useState(false);
 
   const tabsId = useId();
   const statusId = useId();
+
+  const enterFallback = useCallback(() => {
+    markersRef.current.forEach((m) => m.setMap(null));
+    markersRef.current = [];
+    if (communityMarkerRef.current) {
+      communityMarkerRef.current.setMap(null);
+      communityMarkerRef.current = null;
+    }
+    mapRef.current = null;
+    setMapReady(false);
+    setLivePlaces([]);
+    setLoadError(true);
+  }, []);
+
+  useEffect(() => {
+    const onAuthFailure = () => enterFallback();
+    window.addEventListener("gmaps:auth-failure", onAuthFailure);
+    return () => window.removeEventListener("gmaps:auth-failure", onAuthFailure);
+  }, [enterFallback]);
 
   useEffect(() => {
     const node = rootRef.current;
@@ -131,7 +171,7 @@ export default function AmenityMap({
     return () => observer.disconnect();
   }, []);
 
-  const clearMarkers = useCallback(() => {
+  const clearPlaceMarkers = useCallback(() => {
     markersRef.current.forEach((m) => m.setMap(null));
     markersRef.current = [];
   }, []);
@@ -154,16 +194,25 @@ export default function AmenityMap({
       infoWindowRef.current = new google.maps.InfoWindow();
     }
     communityMarkerRef.current.addListener("click", () => {
+      const directionsUrl = buildDirectionsUrl(
+        position.lat,
+        position.lng,
+        COMMUNITY_MAP_LABEL
+      );
       infoWindowRef.current?.setContent(
-        `<div style="max-width:240px"><strong>${COMMUNITY_MAP_LABEL}</strong><br/>2290 Beauty Vista Avenue<br/>North Las Vegas, NV 89086<br/><a href="${buildDirectionsUrl(position.lat, position.lng, COMMUNITY_MAP_LABEL)}" target="_blank" rel="noopener noreferrer">Directions</a></div>`
+        buildInfoWindowElement(
+          COMMUNITY_MAP_LABEL,
+          "2290 Beauty Vista Avenue, North Las Vegas, NV 89086",
+          directionsUrl
+        )
       );
       infoWindowRef.current?.open({ map, anchor: communityMarkerRef.current! });
     });
   }, []);
 
   const renderPlaceMarkers = useCallback(
-    (map: google.maps.Map, places: MapPlaceResult[]) => {
-      clearMarkers();
+    (map: google.maps.Map, places: AmenityPlaceResult[]) => {
+      clearPlaceMarkers();
       if (!infoWindowRef.current) {
         infoWindowRef.current = new google.maps.InfoWindow();
       }
@@ -174,19 +223,19 @@ export default function AmenityMap({
           title: place.name,
         });
         marker.addListener("click", () => {
-          const ratingLine =
-            place.rating != null
-              ? `<br/>Rating: ${place.rating.toFixed(1)}`
-              : "";
           infoWindowRef.current?.setContent(
-            `<div style="max-width:260px"><strong>${place.name}</strong>${ratingLine}<br/>${place.address}<br/><a href="${place.directionsUrl}" target="_blank" rel="noopener noreferrer">Directions</a></div>`
+            buildInfoWindowElement(
+              place.name,
+              place.address,
+              place.directionsUrl
+            )
           );
           infoWindowRef.current?.open({ map, anchor: marker });
         });
         markersRef.current.push(marker);
       });
     },
-    [clearMarkers]
+    [clearPlaceMarkers]
   );
 
   const searchNearby = useCallback(
@@ -196,124 +245,31 @@ export default function AmenityMap({
 
       setIsSearching(true);
       setLivePlaces([]);
-
-      const center = new google.maps.LatLng(
-        COMMUNITY_MAP_CENTER.lat,
-        COMMUNITY_MAP_CENTER.lng
-      );
+      clearPlaceMarkers();
 
       try {
-        const placesLib = (await google.maps.importLibrary(
-          "places"
-        )) as google.maps.PlacesLibrary;
-        const { Place } = placesLib;
-        const primaryType = category.placeTypes[0];
-
-        const request = {
-          fields: [
-            "displayName",
-            "location",
-            "formattedAddress",
-            "rating",
-            "googleMapsURI",
-          ],
-          locationRestriction: {
-            center,
-            radius: MAP_SEARCH_RADIUS_METERS,
-          },
-          includedPrimaryTypes: [primaryType],
-          maxResultCount: 15,
-        };
-
-        const { places } = await Place.searchNearby(request);
-        const mapped: MapPlaceResult[] = places
-          .map((place, index) => {
-            const loc = place.location;
-            if (!loc) return null;
-            const lat = loc.lat();
-            const lng = loc.lng();
-            const displayName = place.displayName;
-            let name = "Nearby place";
-            if (displayName != null) {
-              if (typeof displayName === "object") {
-                const withText = displayName as { text?: string };
-                if (typeof withText.text === "string") {
-                  name = withText.text;
-                }
-              } else {
-                name = String(displayName);
-              }
-            }
-            const address = place.formattedAddress ?? "";
-            return {
-              id: `${categoryId}-${index}-${lat}`,
-              name,
-              address,
-              lat,
-              lng,
-              rating: place.rating ?? undefined,
-              directionsUrl:
-                place.googleMapsURI ??
-                buildDirectionsUrl(lat, lng, name),
-            };
-          })
-          .filter((p): p is NonNullable<typeof p> => p != null) as MapPlaceResult[];
-
+        const places = await searchCategory(
+          COMMUNITY_MAP_CENTER,
+          categoryId,
+          category.placeTypes
+        );
+        const mapped = mapPlacesToResults(
+          places,
+          categoryId,
+          buildDirectionsUrl
+        );
         if (mapped.length > 0) {
           setLivePlaces(mapped);
           renderPlaceMarkers(map, mapped);
-          setIsSearching(false);
-          return;
         }
       } catch {
-        // Fall through to legacy nearbySearch
-      }
-
-      try {
-        const service = new google.maps.places.PlacesService(map);
-        const legacyType = category.legacyType ?? "establishment";
-        await new Promise<void>((resolve) => {
-          service.nearbySearch(
-            {
-              location: center,
-              radius: MAP_SEARCH_RADIUS_METERS,
-              type: legacyType,
-            },
-            (results, status) => {
-              if (
-                status !== google.maps.places.PlacesServiceStatus.OK ||
-                !results?.length
-              ) {
-                resolve();
-                return;
-              }
-              const mapped: MapPlaceResult[] = results.slice(0, 15).map((r, i) => {
-                const lat = r.geometry?.location?.lat() ?? COMMUNITY_MAP_CENTER.lat;
-                const lng = r.geometry?.location?.lng() ?? COMMUNITY_MAP_CENTER.lng;
-                const name = r.name ?? "Nearby place";
-                return {
-                  id: r.place_id ?? `legacy-${i}`,
-                  name,
-                  address: r.vicinity ?? "",
-                  lat,
-                  lng,
-                  rating: r.rating,
-                  directionsUrl: buildDirectionsUrl(lat, lng, name),
-                };
-              });
-              setLivePlaces(mapped);
-              renderPlaceMarkers(map, mapped);
-              resolve();
-            }
-          );
-        });
-      } catch {
-        setLoadError(true);
+        setLivePlaces([]);
+        clearPlaceMarkers();
       } finally {
         setIsSearching(false);
       }
     },
-    [renderPlaceMarkers]
+    [clearPlaceMarkers, renderPlaceMarkers]
   );
 
   const initMap = useCallback(async () => {
@@ -337,53 +293,42 @@ export default function AmenityMap({
   }, [activeCategory, mapId, searchNearby, showCommunityMarker]);
 
   useEffect(() => {
-    if (!isInView || !apiKey || loadError) return undefined;
-    if (scriptLoadedRef.current) {
-      if (mapRef.current) return undefined;
-      initMap().catch(() => setLoadError(true));
-      return undefined;
-    }
+    if (!isInView || !apiKey || loadError || mapsAuthFailed) return undefined;
 
     let cancelled = false;
-    const existing = document.querySelector(
-      'script[data-amenity-map-loader="true"]'
-    );
-    if (existing) {
-      scriptLoadedRef.current = true;
-      initMap().catch(() => setLoadError(true));
-      return undefined;
-    }
-
-    const script = document.createElement("script");
-    script.src = `https://maps.googleapis.com/maps/api/js?key=${encodeURIComponent(apiKey)}&libraries=places,marker&loading=async`;
-    script.async = true;
-    script.defer = true;
-    script.dataset.amenityMapLoader = "true";
-    script.onload = () => {
-      if (cancelled) return;
-      scriptLoadedRef.current = true;
-      initMap().catch(() => setLoadError(true));
-    };
-    script.onerror = () => {
-      if (!cancelled) setLoadError(true);
-    };
-    document.head.appendChild(script);
+    loadGoogleMaps(apiKey)
+      .then(() => {
+        if (!cancelled) {
+          initMap().catch(() => enterFallback());
+        }
+      })
+      .catch(() => {
+        if (!cancelled) enterFallback();
+      });
 
     return () => {
       cancelled = true;
     };
-  }, [apiKey, initMap, isInView, loadError]);
+  }, [apiKey, enterFallback, initMap, isInView, loadError]);
 
   useEffect(() => {
-    if (!mapReady || !mapRef.current || !apiKey || loadError) return;
-    searchNearby(mapRef.current, activeCategory).catch(() => setLoadError(true));
-  }, [activeCategory, apiKey, loadError, mapReady, searchNearby]);
+    if (!mapReady || !mapRef.current || !apiKey || loadError || mapsAuthFailed) {
+      return;
+    }
+    searchNearby(mapRef.current, activeCategory).catch(() => {
+      setLivePlaces([]);
+      clearPlaceMarkers();
+    });
+  }, [
+    activeCategory,
+    apiKey,
+    clearPlaceMarkers,
+    loadError,
+    mapReady,
+    searchNearby,
+  ]);
 
-  const useFallback = !apiKey || loadError;
-  const ariaExpanded = useCallback(
-    (id: AmenityCategoryId) => (activeCategory === id ? "true" : "false"),
-    [activeCategory]
-  );
+  const useFallback = !apiKey || loadError || mapsAuthFailed;
 
   return (
     <div ref={rootRef} className={cn("w-full", className)}>
@@ -399,7 +344,7 @@ export default function AmenityMap({
             type="button"
             role="tab"
             id={`${tabsId}-${cat.id}`}
-            aria-selected={ariaExpanded(cat.id)}
+            aria-selected={activeCategory === cat.id ? "true" : "false"}
             aria-controls={`${tabsId}-panel`}
             onClick={() => setActiveCategory(cat.id)}
             className={cn(
@@ -464,6 +409,7 @@ export default function AmenityMap({
                   name: p.name,
                   category: activeCategory,
                   address: p.address,
+                  sourceUrl: "",
                   schemaType: "Place" as const,
                 }))
               : curatedNearbyPlaces.filter((p) => p.category === activeCategory)

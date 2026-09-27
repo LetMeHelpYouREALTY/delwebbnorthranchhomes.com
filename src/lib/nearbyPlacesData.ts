@@ -1,6 +1,6 @@
 /**
  * Curated, verifiable nearby places for static content, fallback map list, and ItemList schema.
- * Addresses from public listings (hospitals, parks, golf) and site community copy.
+ * Each entry includes sourceUrl from the business or agency's official site.
  */
 
 import type { AmenityCategoryId } from "./communityMapConfig";
@@ -11,6 +11,7 @@ export type NearbyPlaceRecord = {
   name: string;
   category: AmenityCategoryId;
   address: string;
+  sourceUrl: string;
   schemaType:
     | "Hospital"
     | "GolfCourse"
@@ -25,80 +26,91 @@ export type NearbyPlaceRecord = {
 
 export const curatedNearbyPlaces: NearbyPlaceRecord[] = [
   {
-    name: "VA Southern Nevada Healthcare System",
+    name: "North Las Vegas VA Medical Center (VA Southern Nevada Healthcare System)",
     category: "healthcare",
     address: "6900 North Pecos Road, North Las Vegas, NV 89086",
+    sourceUrl:
+      "https://www.va.gov/southern-nevada-health-care/locations/north-las-vegas-va-medical-center/",
     schemaType: "Hospital",
-    note: "Full-service VA hospital north of the Las Vegas Valley.",
+    note: "Primary VA hospital campus serving North Las Vegas and the valley.",
   },
   {
     name: "Centennial Hills Hospital Medical Center",
     category: "healthcare",
-    address: "6850 North Durango Drive, Las Vegas, NV 89149",
+    address: "6900 North Durango Drive, Las Vegas, NV 89149",
+    sourceUrl: "https://www.centennialhillshospital.com/about/contact-us",
     schemaType: "Hospital",
   },
   {
     name: "Aliante Golf Club",
     category: "golf",
-    address: "2400 West Aliante Parkway, North Las Vegas, NV 89084",
+    address: "3100 West Elkhorn, North Las Vegas, NV 89084",
+    sourceUrl: "https://www.aliantegolf.com/book-tee-times/",
     schemaType: "GolfCourse",
   },
   {
     name: "Craig Ranch Regional Park",
     category: "parks",
-    address: "505 C Avenue, North Las Vegas, NV 89030",
+    address: "628 West Craig Road, North Las Vegas, NV 89032",
+    sourceUrl:
+      "https://www.cityofnorthlasvegas.com/things-to-do/parks-and-recreation/parks/craig-ranch-regional-park",
     schemaType: "Park",
     note: "170-acre regional park with trails, sports fields, and amphitheater.",
   },
   {
     name: "Aliante Nature Discovery Park",
     category: "parks",
-    address: "2627 West Deer Springs Way, North Las Vegas, NV 89084",
+    address: "2627 Nature Park Drive, North Las Vegas, NV 89084",
+    sourceUrl:
+      "https://www.cityofnorthlasvegas.com/Home/Components/FacilityDirectory/FacilityDirectory/73/777",
     schemaType: "Park",
+    note: "20-acre city park with lake, splash pad, and walking paths.",
   },
   {
-    name: "Aliante Casino + Hotel",
+    name: "Aliante Casino + Hotel + Spa",
     category: "community",
-    address: "7300 Aliante Parkway, North Las Vegas, NV 89084",
+    address: "7300 North Aliante Parkway, North Las Vegas, NV 89084",
+    sourceUrl: "https://aliante.boydgaming.com/",
     schemaType: "Place",
     note: "Dining, entertainment, and meeting space in the Aliante master-planned area.",
   },
   {
-    name: "Smith's Food and Drug (Aliante)",
+    name: "Smith's Food and Drug (Aliante Parkway)",
     category: "grocery",
-    address: "6850 North Aliante Parkway, North Las Vegas, NV 89084",
+    address: "6855 North Aliante Parkway, North Las Vegas, NV 89084",
+    sourceUrl:
+      "https://www.smithsfoodanddrug.com/stores/grocery/nv/north-las-vegas/6855-aliante-pkwy-no-las-vegas-nv/706/00338",
     schemaType: "GroceryStore",
   },
   {
-    name: "Albertsons (Aliante)",
+    name: "Albertsons (Ann Road)",
     category: "grocery",
-    address: "6850 Aliante Parkway, North Las Vegas, NV 89084",
+    address: "3010 West Ann Road, North Las Vegas, NV 89031",
+    sourceUrl: "https://local.albertsons.com/nv/north-las-vegas/3010-w-ann-rd.html",
     schemaType: "GroceryStore",
   },
   {
-    name: "Sprouts Farmers Market (Aliante)",
+    name: "Sprouts Farmers Market (Losee Road)",
     category: "grocery",
-    address: "6850 Aliante Parkway, North Las Vegas, NV 89084",
+    address: "6506 North Losee Road, North Las Vegas, NV 89086",
+    sourceUrl: "https://www.sprouts.com/store/nv/north-las-vegas/losee-rd/",
     schemaType: "GroceryStore",
   },
   {
-    name: "CVS Pharmacy (Aliante)",
+    name: "CVS Pharmacy (Aliante Parkway)",
     category: "pharmacies",
-    address: "6850 Aliante Parkway, North Las Vegas, NV 89084",
+    address: "7285 Aliante Parkway, North Las Vegas, NV 89084",
+    sourceUrl:
+      "https://www.cvs.com/store-locator/north-las-vegas-nv-pharmacies/7285-aliante-pkwy-north-las-vegas-nv-89084/storeid=7251",
     schemaType: "Pharmacy",
   },
   {
     name: "Walgreens (Aliante Parkway)",
     category: "pharmacies",
-    address: "2590 West Craig Road, North Las Vegas, NV 89031",
+    address: "6435 Aliante Parkway, North Las Vegas, NV 89084",
+    sourceUrl:
+      "https://www.walgreens.com/locator/walgreens-6435+aliante+pkwy-north+las+vegas-nv-89084/id=2590",
     schemaType: "Pharmacy",
-  },
-  {
-    name: "Aliante Plaza",
-    category: "shopping",
-    address: "6850 Aliante Parkway, North Las Vegas, NV 89084",
-    schemaType: "ShoppingCenter",
-    note: "Retail, services, and restaurants along Aliante Parkway.",
   },
 ];
 
@@ -117,7 +129,7 @@ export const nearbyAmenitiesFaq: NearbyAmenitiesFaqItem[] = [
   {
     question: `What grocery stores are near ${HYPERLOCAL.communityName}?`,
     answer:
-      "Smith's Food and Drug, Albertsons, and Sprouts Farmers Market in the Aliante Parkway shopping area are the closest full-service grocery options to Del Webb North Ranch in North Las Vegas.",
+      "Smith's Food and Drug on North Aliante Parkway, Albertsons on West Ann Road, and Sprouts Farmers Market on North Losee Road are among the closest full-service grocery options to Del Webb North Ranch in North Las Vegas.",
   },
   {
     question: `How far is ${HYPERLOCAL.communityName} from the Las Vegas Strip?`,
@@ -126,7 +138,7 @@ export const nearbyAmenitiesFaq: NearbyAmenitiesFaqItem[] = [
   {
     question: `Are there hospitals near ${HYPERLOCAL.communityName}?`,
     answer:
-      "Yes. VA Southern Nevada Healthcare System on North Pecos Road is the nearest major hospital campus; Centennial Hills Hospital Medical Center in northwest Las Vegas is also within a reasonable drive for specialty care.",
+      "Yes. The North Las Vegas VA Medical Center on North Pecos Road is the nearest major hospital campus; Centennial Hills Hospital Medical Center on North Durango Drive in northwest Las Vegas is also within a reasonable drive for specialty care.",
   },
   {
     question: `What parks are near ${HYPERLOCAL.communityName}?`,
@@ -136,7 +148,7 @@ export const nearbyAmenitiesFaq: NearbyAmenitiesFaqItem[] = [
   {
     question: `Is there golf near ${HYPERLOCAL.communityName}?`,
     answer:
-      "Aliante Golf Club, an 18-hole championship course on Aliante Parkway, is the closest public golf option—about five miles from the community per local area guides on this site.",
+      "Aliante Golf Club on West Elkhorn in North Las Vegas is the closest public 18-hole course serving the area—a short drive from the community.",
   },
   {
     question: `How far is ${HYPERLOCAL.communityName} from Harry Reid International Airport?`,
@@ -145,12 +157,12 @@ export const nearbyAmenitiesFaq: NearbyAmenitiesFaqItem[] = [
   {
     question: `Where can I shop and dine near ${HYPERLOCAL.communityName}?`,
     answer:
-      "The Aliante Parkway corridor includes Aliante Plaza, the Aliante Casino + Hotel, and multiple restaurants and services; Centennial Hills and northwest Las Vegas add additional retail a short drive away.",
+      "The Aliante Parkway corridor includes Aliante Casino + Hotel + Spa, Smith's and other retailers, and multiple restaurants; Centennial Hills and northwest Las Vegas add additional retail a short drive away.",
   },
   {
     question: `Are pharmacies close to ${HYPERLOCAL.communityName}?`,
     answer:
-      "CVS and Walgreens locations along Aliante Parkway and Craig Road serve the North Las Vegas 89086 area, a few miles from the Del Webb North Ranch entrance.",
+      "CVS on Aliante Parkway and Walgreens on Aliante Parkway serve the North Las Vegas 89084–89086 area, a few miles from the Del Webb North Ranch entrance.",
   },
 ];
 
@@ -165,7 +177,7 @@ export const nearbyCategoryCopy: NearbyCategoryCopy[] = [
     id: "healthcare",
     heading: "Healthcare near Del Webb North Ranch",
     paragraphs: [
-      "Del Webb North Ranch sits in North Las Vegas zip code 89086 with VA Southern Nevada Healthcare System on North Pecos Road—the closest major hospital campus. Centennial Hills Hospital Medical Center on Durango Drive in northwest Las Vegas provides additional emergency and specialty services.",
+      "Del Webb North Ranch sits in North Las Vegas zip code 89086 with the North Las Vegas VA Medical Center on North Pecos Road—the closest major hospital campus. Centennial Hills Hospital Medical Center on North Durango Drive in northwest Las Vegas provides additional emergency and specialty services.",
       "Many 55+ buyers choose North Ranch for single-story living while staying within a short drive of primary care, pharmacies, and hospital care across North Las Vegas and Centennial Hills.",
     ],
   },
@@ -173,7 +185,7 @@ export const nearbyCategoryCopy: NearbyCategoryCopy[] = [
     id: "golf",
     heading: "Golf near Del Webb North Ranch",
     paragraphs: [
-      "Aliante Golf Club on West Aliante Parkway is the primary public 18-hole course serving the North Las Vegas area. The community’s own resort-style amenities include pickleball and bocce; golf is a short drive away in Aliante.",
+      "Aliante Golf Club on West Elkhorn is the primary public 18-hole course serving the North Las Vegas area. The community’s own resort-style amenities include pickleball and bocce; golf is a short drive away in Aliante.",
     ],
   },
   {
@@ -188,24 +200,29 @@ export const nearbyCategoryCopy: NearbyCategoryCopy[] = [
     id: "grocery",
     heading: "Grocery and everyday errands",
     paragraphs: [
-      "The Aliante Parkway retail corridor includes Smith's, Albertsons, and Sprouts Farmers Market—full-service options for weekly shopping. Pharmacies including CVS and Walgreens sit in the same general area along Aliante Parkway and Craig Road.",
+      "Smith's on North Aliante Parkway, Albertsons on West Ann Road, and Sprouts on North Losee Road are full-service options for weekly shopping. Pharmacies including CVS and Walgreens sit along Aliante Parkway.",
     ],
   },
   {
     id: "restaurants",
     heading: "Dining near North Ranch",
     paragraphs: [
-      "Restaurants cluster along Aliante Parkway and inside Aliante Casino + Hotel, from casual chains to sit-down options. Many North Ranch residents combine a community clubhouse event with dinner in Aliante or Centennial Hills.",
+      "Restaurants cluster along Aliante Parkway and inside Aliante Casino + Hotel + Spa, from casual chains to sit-down options. Many North Ranch residents combine a community clubhouse event with dinner in Aliante or Centennial Hills.",
     ],
   },
   {
     id: "shopping",
     heading: "Shopping and services",
     paragraphs: [
-      "Aliante Plaza and surrounding strip centers on Aliante Parkway offer retail, banking, salons, and medical offices. Centennial Hills adds big-box and specialty retail northwest of the community.",
+      "Retail and services line Aliante Parkway near Smith's, CVS, and the casino resort. Centennial Hills adds big-box and specialty retail northwest of the community.",
     ],
   },
 ];
+
+function parsePostalCode(address: string): string | undefined {
+  const match = address.match(/\bNV\s+(\d{5})(?:-\d{4})?\b/i);
+  return match?.[1];
+}
 
 export function buildNearbyPlacesItemListSchema(origin: string) {
   return {
@@ -218,13 +235,17 @@ export function buildNearbyPlacesItemListSchema(origin: string) {
       item: {
         "@type": place.schemaType,
         name: place.name,
+        url: place.sourceUrl,
         address: {
           "@type": "PostalAddress",
           streetAddress: place.address.split(",")[0]?.trim(),
-          addressLocality: place.address.includes("Las Vegas")
-            ? place.address.match(/Las Vegas|North Las Vegas/)?.[0] ?? "North Las Vegas"
-            : "North Las Vegas",
+          addressLocality: place.address.includes("North Las Vegas")
+            ? "North Las Vegas"
+            : place.address.includes("Las Vegas")
+              ? "Las Vegas"
+              : "North Las Vegas",
           addressRegion: "NV",
+          postalCode: parsePostalCode(place.address),
           addressCountry: "US",
         },
       },

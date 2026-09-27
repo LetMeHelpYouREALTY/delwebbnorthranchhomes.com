@@ -31,7 +31,11 @@ export function proxy(request: NextRequest) {
     normalizedHost !== targetHost || // Non-www or different host
     protocol !== "https"; // HTTP instead of HTTPS
 
-  if (needsRedirect && !hostname.includes("localhost")) {
+  if (
+    needsRedirect &&
+    !hostname.includes("localhost") &&
+    !normalizedHost.endsWith(".vercel.app")
+  ) {
     return NextResponse.redirect(targetUrl, 308);
   }
 
