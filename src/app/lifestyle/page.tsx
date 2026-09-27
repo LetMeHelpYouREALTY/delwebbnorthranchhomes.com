@@ -11,6 +11,7 @@ import { mediaOpenGraph, mediaTwitterImages } from "@/lib/media";
 import PageHero from "@/../components/PageHero";
 import SectionPhoto from "@/../components/SectionPhoto";
 import LocalVisitSection from "@/../components/LocalVisitSection";
+import NearbyMapSection from "@/../components/sections/nearby-map-section";
 import MediaImage from "@/../components/MediaImage";
 import {
   Users,
@@ -222,6 +223,13 @@ export default function LifestylePage() {
             </div>
           </div>
         </section>
+
+        <NearbyMapSection
+          id="lifestyle-nearby-map"
+          heading="Explore North Las Vegas From Del Webb North Ranch"
+          description="Filter the map for golf, parks, healthcare, and errands—then read drive times and local answers on the full nearby amenities page."
+          compact
+        />
 
         {/* Nearby Attractions & Distances */}
         <section className="py-12 md:py-16 bg-bg-light">

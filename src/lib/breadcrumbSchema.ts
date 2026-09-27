@@ -43,6 +43,10 @@ export const breadcrumbPaths = {
     { name: "Home", url: "https://www.delwebbnorthranchhomes.com" },
     { name: "Amenities", url: "https://www.delwebbnorthranchhomes.com/amenities" },
   ],
+  nearbyAmenities: [
+    { name: "Home", url: "https://www.delwebbnorthranchhomes.com" },
+    { name: "Nearby Amenities", url: "https://www.delwebbnorthranchhomes.com/nearby-amenities" },
+  ],
   lifestyle: [
     { name: "Home", url: "https://www.delwebbnorthranchhomes.com" },
     { name: "Lifestyle", url: "https://www.delwebbnorthranchhomes.com/lifestyle" },
