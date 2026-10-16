@@ -10,6 +10,7 @@ import SchemaMarkup from "@/../components/SchemaMarkup";
 import Navbar from "@/../components/navbar";
 import Footer from "@/../components/footer";
 import GbpActionBar from "@/../components/GbpActionBar";
+import Script from 'next/script';
 
 const inter = Inter({
   subsets: ["latin"],
@@ -274,6 +275,23 @@ export default function RootLayout({
         />
       </head>
       <body className={`${inter.className} antialiased`}>
+        {/* Facebook Pixel */}
+        {process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID && (
+          <Script id="facebook-pixel" strategy="afterInteractive">
+            {`
+              !function(f,b,e,v,n,t,s)
+              {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+              n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+              if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+              n.queue=[];t=b.createElement(e);t.async=!0;
+              t.src=v;s=b.getElementsByTagName(e)[0];
+              s.parentNode.insertBefore(t,s)}(window, document,'script',
+              'https://connect.facebook.net/en_US/fbevents.js');
+              fbq('init', '${process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID}');
+              fbq('track', 'PageView');
+            `}
+          </Script>
+        )}
         {/* RealScout script is loaded by RealScoutListings when section is in viewport (keeps LCP/fonts off critical path) */}
         {/* RealScout Widget Styles - Global styles for all widgets */}
         <style dangerouslySetInnerHTML={{
