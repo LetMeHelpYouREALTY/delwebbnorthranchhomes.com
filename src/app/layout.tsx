@@ -341,6 +341,7 @@ export default function RootLayout({
           {children}
         </div>
         <Footer />
+        <Script src="/ads-conversions.js" strategy="afterInteractive" />
       </body>
     </html>
   );
