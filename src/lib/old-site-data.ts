@@ -268,7 +268,7 @@ export const oldSiteData = {
 
   // External links and integrations
   integrations: {
-    calendly: 'https://calendly.com/drjanduffy/in-person-real-estate-consultation',
+    calendly: 'https://calendly.com/drjanduffy/showing',
     realscout: 'https://drjanduffy.realscout.com/onboarding',
     youtube: 'https://www.youtube.com/@DrDuffy', // Channel handle (user-friendly)
     youtubeChannelId: 'UCIMieP7FSUSwN0vw8FVNprA', // Channel ID for API/embedding

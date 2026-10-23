@@ -210,15 +210,7 @@ export default function Footer() {
             <h4 className="text-lg font-semibold text-white mb-4">Resources</h4>
             <ul className="space-y-2">
               <li>
-                <a
-                  href={oldSiteData.integrations.calendly}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-gray-300 hover:text-white transition-colors min-h-[44px]"
-                >
-                  <Calendar className="h-4 w-4" aria-hidden />
-                  Schedule Appointment
-                </a>
+                <CalendlyNapLink label="Schedule Appointment" className="text-gray-300" />
               </li>
               <li>
                 <a
