@@ -31,7 +31,8 @@ export default function AboutAgentSection() {
                   <p className="text-base md:text-lg text-text-dark leading-relaxed">
                     Dr. Jan Duffy isn't a builder's sales rep. She's an
                     independent REALTOR®, in real estate since 1983, who
-                    specializes exclusively in Del Webb North Ranch.
+                    specializes exclusively in Del Webb North Ranch. She is a Top 1% Las
+                    Vegas REALTOR®.
                   </p>
                   <p className="text-base md:text-lg text-text-dark leading-relaxed">
                     She knows which floor plans get the best morning light. Which
