@@ -224,40 +224,8 @@ export default function ContactPage() {
                         </div>
                       </div>
 
-                      {/* Brokerage Office */}
-                      <div className="flex items-start gap-4">
-                        <div className="flex items-center justify-center w-12 h-12 bg-primary/10 rounded-full flex-shrink-0">
-                          <MapPin className="w-6 h-6 text-primary" />
-                        </div>
-                        <div>
-                          <h3 className="font-semibold text-primary mb-1">
-                            Brokerage Office
-                          </h3>
-                          <p className="text-text-dark">
-                            Berkshire Hathaway HomeServices
-                            <br />
-                            Nevada Properties
-                            <br />
-                            9406 Del Webb Boulevard
-                            <br />
-                            Las Vegas, NV 89134
-                          </p>
-                        </div>
-                      </div>
 
-                    </div>
 
-                    {/* License Info */}
-                    <div className="mt-8 p-6 bg-bg-light rounded-lg">
-                      <h3 className="font-semibold text-primary mb-2">
-                        License Information
-                      </h3>
-                      <p className="text-sm text-text-dark">
-                        <strong>License:</strong> S.0197614.LLC
-                        <br />
-                        <strong>Brokerage:</strong> Berkshire Hathaway
-                        HomeServices Nevada Properties
-                      </p>
                     </div>
                   </div>
                 </ScrollAnimation>

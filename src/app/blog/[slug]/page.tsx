@@ -218,7 +218,7 @@ export default async function BlogPostPage({
                 <Link href="/about" className="font-semibold text-primary underline-offset-4 hover:underline">
                   Dr. Jan Duffy, REALTOR®
                 </Link>
-                , Berkshire Hathaway HomeServices Nevada Properties (S.0197614.LLC). Updated{" "}
+                . Updated{" "}
                 <time dateTime={post.dateModified}>
                   {new Date(`${post.dateModified}T12:00:00`).toLocaleDateString("en-US", {
                     year: "numeric",

@@ -340,7 +340,7 @@ export default function Footer() {
         <div className="mt-10 flex flex-wrap items-center justify-between gap-6 border-t border-gray-700 pt-8">
           <div className="text-sm text-gray-400">
             <p><strong className="text-gray-300">License:</strong> S.0197614.LLC</p>
-            <p><strong className="text-gray-300">Brokerage:</strong> Berkshire Hathaway HomeServices Nevada Properties</p>
+            <p><strong className="text-gray-300">Brokerage:</strong> Berkshire Hathaway HomeServices Nevada Properties since September 2008</p>
           </div>
           <nav className="flex flex-wrap gap-6 text-sm" aria-label="Legal and site information">
             <Link href="/about" className="text-gray-400 hover:text-white transition-colors min-h-[44px] inline-flex items-center">About</Link>
@@ -357,7 +357,7 @@ export default function Footer() {
         {/* Copyright */}
         <div className="mt-8 text-center text-sm text-gray-400">
           <p>© {new Date().getFullYear()} {GBP_BUSINESS_NAME}. All rights reserved.</p>
-          <p className="mt-1">Berkshire Hathaway HomeServices Nevada Properties | S.0197614.LLC</p>
+          <p className="mt-1">Berkshire Hathaway HomeServices Nevada Properties since September 2008 · License S.0197614.LLC</p>
           <p className="mx-auto mt-4 flex max-w-xl items-center justify-center gap-3 text-left">
             <Image
               src="/images/logo/equal-housing.svg"

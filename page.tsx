@@ -27,7 +27,7 @@ const specialties = [
     icon: <Award className="w-6 h-6" />,
     title: "Licensed REALTOR®",
     description:
-      "Licensed professional (S.0197614.LLC) with Berkshire Hathaway HomeServices Nevada Properties, committed to ethical service.",
+      "Licensed REALTOR® in real estate since 1983, committed to ethical service.",
   },
   {
     icon: <Users className="w-6 h-6" />,

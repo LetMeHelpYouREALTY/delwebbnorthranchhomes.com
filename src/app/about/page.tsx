@@ -19,7 +19,7 @@ import { mediaOpenGraph, mediaTwitterImages } from "@/lib/media";
 export const metadata: Metadata = {
   title: `About Dr. Jan Duffy REALTOR® | ${TITLE_SUFFIX}`,
   description: metaDescriptionBlock(
-    "Meet Dr. Jan Duffy, REALTOR® specializing in this premier 55+ community; licensed with Berkshire Hathaway HomeServices"
+    "Meet Dr. Jan Duffy, REALTOR® specializing in this premier 55+ community, in real estate since 1983"
   ),
   alternates: {
     canonical: `${SITE_ORIGIN}/about`,
@@ -53,7 +53,7 @@ const specialties = [
     icon: <Award className="w-6 h-6" />,
     title: "Licensed REALTOR®",
     description:
-      "Licensed professional (S.0197614.LLC) with Berkshire Hathaway HomeServices Nevada Properties, committed to ethical service.",
+      "Licensed REALTOR® in real estate since 1983, committed to ethical service.",
   },
   {
     icon: <Users className="w-6 h-6" />,
@@ -142,9 +142,8 @@ export default function AboutPage() {
                     <div className="prose prose-lg max-w-none space-y-4">
                       <p className="text-base md:text-lg text-text-dark leading-relaxed">
                         Dr. Jan Duffy isn't a builder's sales rep. She's an
-                        independent REALTOR® with Berkshire Hathaway
-                        HomeServices who specializes exclusively in Del Webb
-                        North Ranch.
+                        independent REALTOR®, in real estate since 1983, who
+                        specializes exclusively in Del Webb North Ranch.
                       </p>
                       <p className="text-base md:text-lg text-text-dark leading-relaxed">
                         With years of experience helping clients find their dream
@@ -321,16 +320,9 @@ export default function AboutPage() {
             <div className="max-w-4xl mx-auto text-center">
               <div className="bg-bg-light p-6 md:p-8 rounded-lg">
                 <h3 className="text-xl font-bold text-primary mb-4 font-playfair">
-                  License & Brokerage Information
+                  Fair Housing
                 </h3>
                 <div className="space-y-2 text-text-dark">
-                  <p>
-                    <strong>License:</strong> S.0197614.LLC
-                  </p>
-                  <p>
-                    <strong>Brokerage:</strong> Berkshire Hathaway HomeServices
-                    Nevada Properties
-                  </p>
                   <p className="text-sm text-gray-600 mt-4">
                     Equal Housing Opportunity
                   </p>
