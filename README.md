@@ -95,7 +95,7 @@ npm start
 - **Brokerage:** Berkshire Hathaway HomeServices Nevada Properties
 
 **Community Address:**
-2290 Beauty Vista Avenue, North Las Vegas, NV 89086
+2290 Beauty Vista St, North Las Vegas, NV 89086
 
 ## 📄 License
 

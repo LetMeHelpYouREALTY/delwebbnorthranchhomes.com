@@ -229,7 +229,7 @@ export default function LifestylePage() {
             <div className="max-w-6xl mx-auto">
               <SectionPhoto mediaKey="place.signClose" heading="Conveniently Located">
                 <p>
-                  Del Webb North Ranch at 2290 Beauty Vista Avenue, North Las Vegas, NV 89086 sits near Aliante, Centennial Hills, Craig Ranch Regional Park, and VA Southern Nevada Hospital.
+                  Del Webb North Ranch at 2290 Beauty Vista St, North Las Vegas, NV 89086 sits near Aliante, Centennial Hills, Craig Ranch Regional Park, and VA Southern Nevada Hospital.
                 </p>
               </SectionPhoto>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

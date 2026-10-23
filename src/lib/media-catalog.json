@@ -67,7 +67,7 @@
   "contact.hero": {
     "localPath": "/images/clubhouse/entrance.jpg",
     "cfId": "dwnr/contact-hero",
-    "alt": "Clubhouse main entrance at Del Webb North Ranch, 2290 Beauty Vista Avenue, North Las Vegas, NV 89086"
+    "alt": "Clubhouse main entrance at Del Webb North Ranch, 2290 Beauty Vista St, North Las Vegas, NV 89086"
   },
   "schedule.hero": {
     "localPath": "/images/clubhouse/entrance.jpg",
@@ -82,7 +82,7 @@
   "legal.hero": {
     "localPath": "/images/hero/monument-sign-day.jpg",
     "cfId": "dwnr/legal-hero",
-    "alt": "Del Webb North Ranch monument sign at 2290 Beauty Vista Avenue, North Las Vegas, NV 89086"
+    "alt": "Del Webb North Ranch monument sign at 2290 Beauty Vista St, North Las Vegas, NV 89086"
   },
   "homeValue.hero": {
     "localPath": "/images/homes/haven-exterior-alt.jpg",
@@ -177,7 +177,7 @@
   "place.signClose": {
     "localPath": "/images/hero/monument-sign-close.jpg",
     "cfId": "dwnr/place-sign-close",
-    "alt": "Del Webb North Ranch monument sign with palms at 2290 Beauty Vista Avenue, North Las Vegas, NV 89086"
+    "alt": "Del Webb North Ranch monument sign with palms at 2290 Beauty Vista St, North Las Vegas, NV 89086"
   },
   "amenities.fencedLawn": {
     "localPath": "/images/amenities/fenced-lawn.jpg",
@@ -217,7 +217,7 @@
   "clubhouse.patioSunset": {
     "localPath": "/images/clubhouse/patio-sunset.jpg",
     "cfId": "dwnr/clubhouse-patio-sunset",
-    "alt": "Clubhouse patio at sunset at Del Webb North Ranch, 2290 Beauty Vista Avenue, North Las Vegas"
+    "alt": "Clubhouse patio at sunset at Del Webb North Ranch, 2290 Beauty Vista St, North Las Vegas"
   },
   "blog.welcome": {
     "localPath": "/images/blog/welcome.jpg",

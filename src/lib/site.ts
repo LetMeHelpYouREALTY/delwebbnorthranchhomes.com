@@ -33,7 +33,7 @@ export const SITE_PHONE_SCHEMA = "+1-702-500-1064";
 
 /** GBP business location – matches Google Business Profile (NAP). */
 export const GBP_ADDRESS = {
-  streetAddress: "2290 Beauty Vista Avenue",
+  streetAddress: "2290 Beauty Vista St",
   addressLocality: "North Las Vegas",
   addressRegion: "NV",
   postalCode: "89086",

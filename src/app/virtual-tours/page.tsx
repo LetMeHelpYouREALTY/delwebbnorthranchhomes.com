@@ -47,7 +47,7 @@ export default function VirtualToursPage() {
         <PageHero
           mediaKey="virtualTours.hero"
           title="Virtual Tours | Del Webb North Ranch Model Homes"
-          subtitle="Explore Del Webb North Ranch model homes with 3D virtual tours from anywhere. Then schedule an in-person visit at 2290 Beauty Vista Avenue, North Las Vegas, NV 89086."
+          subtitle="Explore Del Webb North Ranch model homes with 3D virtual tours from anywhere. Then schedule an in-person visit at 2290 Beauty Vista St, North Las Vegas, NV 89086."
         />
 
         {/* Office RealScout widget - below hero */}

@@ -97,7 +97,7 @@ export default function Footer() {
                 <div className="flex items-start gap-2 text-gray-300">
                   <MapPin className="w-4 h-4 mt-1 flex-shrink-0" />
                   <span>
-                    2290 Beauty Vista Avenue
+                    2290 Beauty Vista St
                     <br />
                     North Las Vegas, NV 89086
                   </span>

@@ -235,7 +235,7 @@ export const oldSiteData = {
     name: "Del Webb North Ranch",
     builder: "Pulte Homes",
     type: "55+ Active Adult Gated Community",
-    address: "2290 Beauty Vista Avenue",
+    address: "2290 Beauty Vista St",
     city: "North Las Vegas",
     state: "NV",
     zip: "89086",
