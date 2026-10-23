@@ -11,6 +11,7 @@ import VirtualTours from "@/../components/VirtualTours";
 import MortgageCalculator from "@/../components/MortgageCalculator";
 import ScheduleTour from "@/../components/ScheduleTour";
 import RealScoutListings from "@/../components/RealScoutListings";
+import CalendlyAfterListings from "@/../components/CalendlyAfterListings";
 import PageHero from "@/../components/PageHero";
 import LocalVisitSection from "@/../components/LocalVisitSection";
 import SectionPhoto from "@/../components/SectionPhoto";
@@ -184,6 +185,7 @@ export default function FloorPlansPage() {
 
         {/* Office RealScout widget - directly below hero */}
         <RealScoutListings h2Text="View Available Homes with These Floor Plans in Del Webb North Ranch" />
+        <CalendlyAfterListings />
 
         {/* Cottage Series */}
         <section className="py-12 md:py-16 lg:py-20 bg-white">

@@ -7,6 +7,7 @@ import { getDelWebbListings } from "@/lib/listings";
 import ListingsPageClient from "@/components/listings-page-client";
 import MortgageCalculator from "@/../components/MortgageCalculator";
 import RealScoutListings from "@/../components/RealScoutListings";
+import CalendlyAfterListings from "@/../components/CalendlyAfterListings";
 import { getCommunityInfo } from "@/lib/communityData";
 import { SITE_ORIGIN, SITE_PHONE_TEL, SITE_PHONE_DISPLAY } from "@/lib/site";
 import { metaDescriptionBlock, TITLE_SUFFIX } from "@/lib/hyperlocal";
@@ -124,6 +125,7 @@ export default async function HomesForSalePage() {
 
         {/* RealScout Listings - Main Lead Generator - Prominently placed after hero */}
         <RealScoutListings h2Text="View Current Homes for Sale in Del Webb North Ranch | North Las Vegas 55+ Community" />
+        <CalendlyAfterListings />
 
         {/* CTA Cards Section */}
         <section className="py-12 md:py-16 bg-stone-50">

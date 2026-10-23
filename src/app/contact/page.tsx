@@ -7,6 +7,7 @@ import { oldSiteData } from "@/lib/fetchOldSiteData";
 import ScheduleTour from "@/../components/ScheduleTour";
 import CalendlyInline from "@/../components/CalendlyInline";
 import RealScoutListings from "@/../components/RealScoutListings";
+import CalendlyAfterListings from "@/../components/CalendlyAfterListings";
 import LocalVisitSection from "@/../components/LocalVisitSection";
 import PageHero from "@/../components/PageHero";
 import MediaImage from "@/../components/MediaImage";
@@ -97,6 +98,7 @@ export default function ContactPage() {
 
         {/* Office RealScout widget - below hero */}
         <RealScoutListings h2Text="Homes for Sale at Del Webb North Ranch | North Las Vegas 55+ Listings" />
+        <CalendlyAfterListings />
 
         {/* Contact Section */}
         <section className="py-12 md:py-16 lg:py-20 bg-white">

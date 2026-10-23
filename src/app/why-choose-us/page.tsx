@@ -6,6 +6,7 @@ import ProblemSection from "@/../components/sections/problem-section";
 import SolutionSection from "@/../components/sections/solution-section";
 import ValuePropsSection from "@/../components/sections/value-props";
 import RealScoutListings from "@/../components/RealScoutListings";
+import CalendlyAfterListings from "@/../components/CalendlyAfterListings";
 import PageHero from "@/../components/PageHero";
 import SectionPhoto from "@/../components/SectionPhoto";
 import LocalVisitSection from "@/../components/LocalVisitSection";
@@ -54,6 +55,7 @@ export default function WhyChooseUsPage() {
 
         {/* Office RealScout widget - below hero */}
         <RealScoutListings h2Text="Homes for Sale at Del Webb North Ranch | North Las Vegas 55+ Listings" />
+        <CalendlyAfterListings />
 
         {/* Long-form: Del Webb North Ranch variations, H2/H3, 1500+ words */}
         <section className="py-12 md:py-16 bg-bg-light">

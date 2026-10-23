@@ -4,6 +4,7 @@ import Link from "next/link";
 import ScrollAnimation from "@/../components/scroll-animation";
 import ScheduleTour from "@/../components/ScheduleTour";
 import RealScoutListings from "@/../components/RealScoutListings";
+import CalendlyAfterListings from "@/../components/CalendlyAfterListings";
 import { getDistances } from "@/lib/communityData";
 import { SITE_ORIGIN } from "@/lib/site";
 import { metaDescriptionBlock, TITLE_SUFFIX } from "@/lib/hyperlocal";
@@ -122,6 +123,7 @@ export default function LifestylePage() {
 
         {/* Office RealScout widget - directly below hero */}
         <RealScoutListings h2Text="View Available Homes in Del Webb North Ranch to Experience This Lifestyle" />
+        <CalendlyAfterListings />
 
         {/* Community Life */}
         <section className="py-12 md:py-16 lg:py-20 bg-white">

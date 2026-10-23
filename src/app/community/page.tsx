@@ -8,6 +8,7 @@ import { nearbyAreas, hyperlocalFaq } from "@/lib/hyperlocalData";
 import { HYPERLOCAL } from "@/lib/hyperlocal";
 import { getCommunityInfo } from "@/lib/communityData";
 import RealScoutListings from "@/../components/RealScoutListings";
+import CalendlyAfterListings from "@/../components/CalendlyAfterListings";
 import LocalVisitSection from "@/../components/LocalVisitSection";
 import PageHero from "@/../components/PageHero";
 import SectionPhoto from "@/../components/SectionPhoto";
@@ -70,6 +71,7 @@ export default function CommunityPage() {
 
         {/* Office RealScout widget - below hero */}
         <RealScoutListings h2Text="Homes for Sale at Del Webb North Ranch | North Las Vegas 55+ Community Listings" />
+        <CalendlyAfterListings />
 
         {/* Long-form: Del Webb North Ranch keyword variations, H2/H3, 1500+ words */}
         <section className="py-12 md:py-16 bg-white">
