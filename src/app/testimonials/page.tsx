@@ -6,6 +6,7 @@ import { Quote, Star } from 'lucide-react';
 import { SITE_ORIGIN, GOOGLE_REVIEW_LINK, SITE_PHONE_TEL, SITE_PHONE_DISPLAY, GBP_BUSINESS_NAME } from '@/lib/site';
 import { metaDescriptionBlock, TITLE_SUFFIX } from '@/lib/hyperlocal';
 import RealScoutListings from '@/../components/RealScoutListings';
+import CalendlyAfterListings from "@/../components/CalendlyAfterListings";
 import PageHero from '@/../components/PageHero';
 import LocalVisitSection from '@/../components/LocalVisitSection';
 import SectionPhoto from '@/../components/SectionPhoto';
@@ -74,6 +75,7 @@ export default function TestimonialsPage() {
 
         {/* Office RealScout widget - directly below hero */}
         <RealScoutListings h2Text="Homes for Sale at Del Webb North Ranch | North Las Vegas 55+ Listings" />
+        <CalendlyAfterListings />
 
         {/* Why client voices matter */}
         <section className="py-12 md:py-16 bg-white">

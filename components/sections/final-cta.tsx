@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { Phone } from "lucide-react";
 import CalendlyInline from "../CalendlyInline";
-import { oldSiteData } from "@/lib/fetchOldSiteData";
 import { SITE_PHONE_TEL, SITE_PHONE_DISPLAY } from "@/lib/site";
 import ScrollAnimation from "../scroll-animation";
 
@@ -60,7 +59,6 @@ export default function FinalCTASection() {
                 </p>
                 <div className="bg-white rounded-lg shadow-three p-4 md:p-6">
                   <CalendlyInline
-                    url={oldSiteData.integrations.calendly}
                     height="700px"
                   />
                 </div>

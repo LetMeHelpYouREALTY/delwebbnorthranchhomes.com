@@ -12,6 +12,7 @@ import HomeCollectionsSection from "../../components/sections/home-collections";
 import AboutAgentSection from "../../components/sections/about-agent";
 import FinalCTASection from "../../components/sections/final-cta";
 import RealScoutListings from "../../components/RealScoutListings";
+import CalendlyAfterListings from "@/../components/CalendlyAfterListings";
 import ExploreCommunitySection from "../../components/sections/explore-community";
 import Link from "next/link";
 import { Button } from "../../components/ui/button";
@@ -118,6 +119,7 @@ export default function Home() {
         <Hero />
         {/* Office RealScout listings - directly below hero */}
         <RealScoutListings h2Text="Browse Available Homes for Sale in Del Webb North Ranch | North Las Vegas 55+ Community" />
+        <CalendlyAfterListings />
         {/* Explore Community Section - Prominent internal linking for sitelinks */}
         <ExploreCommunitySection />
         <ProblemSection />

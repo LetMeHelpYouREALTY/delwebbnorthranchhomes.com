@@ -3,6 +3,7 @@ import Breadcrumbs from "@/../components/Breadcrumbs";
 import Link from "next/link";
 import MortgageCalculator from "@/../components/MortgageCalculator";
 import RealScoutListings from "@/../components/RealScoutListings";
+import CalendlyAfterListings from "@/../components/CalendlyAfterListings";
 import PageHero from "@/../components/PageHero";
 import LocalVisitSection from "@/../components/LocalVisitSection";
 import SectionPhoto from "@/../components/SectionPhoto";
@@ -52,6 +53,7 @@ export default function MortgageCalculatorPage() {
 
         {/* Office RealScout widget - below hero */}
         <RealScoutListings h2Text="Homes for Sale at Del Webb North Ranch | North Las Vegas 55+ Listings" />
+        <CalendlyAfterListings />
 
         {/* Long-form: Del Webb North Ranch, H2/H3, 1500+ words */}
         <section className="py-12 md:py-16 bg-white">

@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Breadcrumbs from '@/../components/Breadcrumbs';
 import ScheduleTour from '@/../components/ScheduleTour';
 import RealScoutListings from '@/../components/RealScoutListings';
+import CalendlyAfterListings from "@/../components/CalendlyAfterListings";
 import LocalVisitSection from '@/../components/LocalVisitSection';
 import PageHero from '@/../components/PageHero';
 import SectionPhoto from '@/../components/SectionPhoto';
@@ -55,6 +56,7 @@ export default function SchedulePage() {
 
         {/* Office RealScout widget - below hero */}
         <RealScoutListings h2Text="Homes for Sale at Del Webb North Ranch | North Las Vegas 55+ Listings" />
+        <CalendlyAfterListings />
 
         {/* What to expect */}
         <section className="py-12 md:py-16 bg-bg-light">

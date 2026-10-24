@@ -8,6 +8,7 @@ import { metaDescriptionBlock, TITLE_SUFFIX } from "@/lib/hyperlocal";
 import { mediaOpenGraph, mediaTwitterImages } from "@/lib/media";
 import { sellerCtaCopy, sellerFaq, sellerValueProps } from "@/lib/hyperlocalSeller";
 import RealScoutListings from "@/../components/RealScoutListings";
+import CalendlyAfterListings from "@/../components/CalendlyAfterListings";
 import PageHero from "@/../components/PageHero";
 import SectionPhoto from "@/../components/SectionPhoto";
 import LocalVisitSection from "@/../components/LocalVisitSection";
@@ -80,6 +81,7 @@ export default function SellersPage() {
 
         {/* Office RealScout widget - below hero */}
         <RealScoutListings h2Text="Current Homes for Sale at Del Webb North Ranch | North Las Vegas Listings" />
+        <CalendlyAfterListings />
 
         {/* Long-form: Del Webb North Ranch keyword variations, H2/H3, 1500+ words */}
         <section className="py-12 md:py-16 bg-bg-light">

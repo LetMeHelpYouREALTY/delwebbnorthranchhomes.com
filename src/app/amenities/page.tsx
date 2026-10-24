@@ -7,6 +7,7 @@ import ScrollAnimation from "@/../components/scroll-animation";
 import { oldSiteData } from "@/lib/old-site-data";
 import { getAmenities } from "@/lib/communityData";
 import RealScoutListings from "@/../components/RealScoutListings";
+import CalendlyAfterListings from "@/../components/CalendlyAfterListings";
 import PageHero from "@/../components/PageHero";
 import LocalVisitSection from "@/../components/LocalVisitSection";
 import SectionPhoto from "@/../components/SectionPhoto";
@@ -198,6 +199,7 @@ export default function AmenitiesPage() {
 
         {/* Office RealScout widget - directly below hero */}
         <RealScoutListings h2Text="View Available Homes in Del Webb North Ranch with These Amazing Amenities" />
+        <CalendlyAfterListings />
 
         {/* Amenities by Category */}
         {amenities.map((category, categoryIndex) => (

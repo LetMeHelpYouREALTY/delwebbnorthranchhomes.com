@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import { CALENDLY_URL, whenCalendlyReady } from '@/lib/calendly';
+import { CALENDLY_URL, resolveCalendlyUrl, whenCalendlyReady } from '@/lib/calendly';
 
 type CalendlyInlineProps = {
   url?: string;
@@ -26,7 +26,7 @@ export default function CalendlyInline({
       }
 
       window.Calendly?.initInlineWidget({
-        url,
+        url: resolveCalendlyUrl(url, 'inline'),
         parentElement: widgetRef.current,
       });
     };

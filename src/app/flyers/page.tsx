@@ -7,6 +7,7 @@ import { getAllFlyers } from "@/lib/flyers";
 import { SITE_ORIGIN, SITE_PHONE_TEL, SITE_PHONE_DISPLAY } from "@/lib/site";
 import { metaDescriptionBlock, TITLE_SUFFIX } from "@/lib/hyperlocal";
 import RealScoutListings from "@/../components/RealScoutListings";
+import CalendlyAfterListings from "@/../components/CalendlyAfterListings";
 import PageHero from "@/../components/PageHero";
 import LocalVisitSection from "@/../components/LocalVisitSection";
 import SectionPhoto from "@/../components/SectionPhoto";
@@ -57,6 +58,7 @@ export default function FlyersPage() {
 
         {/* Office RealScout widget - directly below hero */}
         <RealScoutListings h2Text="Homes for Sale at Del Webb North Ranch | North Las Vegas 55+ Listings" />
+        <CalendlyAfterListings />
 
         {/* Why download flyers */}
         <section className="py-12 md:py-16 bg-bg-light">

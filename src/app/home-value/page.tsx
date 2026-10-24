@@ -7,6 +7,7 @@ import { metaDescriptionBlock, TITLE_SUFFIX } from "@/lib/hyperlocal";
 import { mediaOpenGraph, mediaTwitterImages } from "@/lib/media";
 import { sellerCtaCopy, sellerFaq, sellerValueProps } from "@/lib/hyperlocalSeller";
 import RealScoutListings from "@/../components/RealScoutListings";
+import CalendlyAfterListings from "@/../components/CalendlyAfterListings";
 import PageHero from "@/../components/PageHero";
 import LocalVisitSection from "@/../components/LocalVisitSection";
 import SectionPhoto from "@/../components/SectionPhoto";
@@ -72,6 +73,7 @@ export default function HomeValuePage() {
 
         {/* Office RealScout widget - below hero */}
         <RealScoutListings h2Text="Homes for Sale at Del Webb North Ranch | North Las Vegas 55+ Listings" />
+        <CalendlyAfterListings />
 
         {/* Home Value Widget Section */}
         <section className="py-12 md:py-16 lg:py-20 bg-white">

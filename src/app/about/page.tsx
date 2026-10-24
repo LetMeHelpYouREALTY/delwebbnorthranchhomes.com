@@ -8,6 +8,7 @@ import { getAllTestimonials } from "@/lib/old-site-data";
 import { Quote } from "lucide-react";
 import ScheduleTour from "@/../components/ScheduleTour";
 import RealScoutListings from "@/../components/RealScoutListings";
+import CalendlyAfterListings from "@/../components/CalendlyAfterListings";
 import LocalVisitSection from "@/../components/LocalVisitSection";
 import PageHero from "@/../components/PageHero";
 import MediaImage from "@/../components/MediaImage";
@@ -115,6 +116,7 @@ export default function AboutPage() {
 
         {/* Office RealScout widget - directly below hero */}
         <RealScoutListings h2Text="View Available Homes in Del Webb North Ranch | Work With Dr. Jan Duffy" />
+        <CalendlyAfterListings />
 
         {/* About Section */}
         <section className="py-12 md:py-16 lg:py-20 bg-white">
