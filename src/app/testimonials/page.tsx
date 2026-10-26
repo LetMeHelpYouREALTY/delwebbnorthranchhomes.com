@@ -40,16 +40,13 @@ export const metadata: Metadata = {
 
 export default function TestimonialsPage() {
   const testimonials = getAllTestimonials();
+  // No Review markup: reviews of this business on its own site are self-serving,
+  // so Google won't show them, and a list without aggregateRating is a critical error.
   const reviewSchema = {
     "@context": "https://schema.org",
     "@type": "RealEstateAgent",
     "@id": `${SITE_ORIGIN}/#localbusiness`,
     name: GBP_BUSINESS_NAME,
-    review: testimonials.map((t) => ({
-      "@type": "Review" as const,
-      author: { "@type": "Person" as const, name: t.name },
-      reviewBody: t.text,
-    })),
   };
 
   return (
