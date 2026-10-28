@@ -118,7 +118,7 @@ export default function SchedulePage() {
             <div className="mx-auto max-w-6xl">
               <SectionPhoto mediaKey="place.signClose" heading="Planning Your Visit to Del Webb North Ranch">
                 <p>
-                  Del Webb North Ranch is in North Las Vegas, zip code 89086, with easy access from the 215 and I-15. The community entrance is at 2290 Beauty Vista St. When you schedule your tour, Dr. Jan Duffy will confirm the meeting point and any details you need—whether you&apos;re driving in from the valley or flying into Las Vegas for a dedicated North Ranch visit. Many 55+ buyers combine a tour of the North Ranch 55+ community with a few days in the area to explore North Las Vegas dining, healthcare, and shopping.
+                  Del Webb North Ranch is in North Las Vegas, zip code 89086, with easy access from the 215 and I-15. The community entrance is at 2290 Beauty Vista Avenue. When you schedule your tour, Dr. Jan Duffy will confirm the meeting point and any details you need—whether you&apos;re driving in from the valley or flying into Las Vegas for a dedicated North Ranch visit. Many 55+ buyers combine a tour of the North Ranch 55+ community with a few days in the area to explore North Las Vegas dining, healthcare, and shopping.
                 </p>
               </SectionPhoto>
               <h3 className="text-xl font-bold text-primary mb-3 font-playfair">What to bring</h3>
@@ -148,7 +148,7 @@ export default function SchedulePage() {
                   <h3 className="font-semibold text-primary mb-2">Location</h3>
                   <p className="text-text-dark">Del Webb North Ranch</p>
                   <p className="text-sm text-gray-600 mt-1">
-                    2290 Beauty Vista St
+                    2290 Beauty Vista Avenue
                   </p>
                   <a
                     href={GOOGLE_MAPS_DIRECTIONS_URL}

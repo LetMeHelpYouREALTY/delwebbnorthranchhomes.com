@@ -24,7 +24,7 @@ export async function getDelWebbListings(): Promise<Listing[]> {
   return [
     {
       id: "1",
-      address: "2290 Beauty Vista St",
+      address: "2290 Beauty Vista Avenue",
       city: "North Las Vegas",
       state: "NV",
       zipCode: "89086",
