@@ -260,7 +260,7 @@ export default function AmenitiesPage() {
             <div className="mx-auto max-w-6xl">
               <SectionPhoto mediaKey="community.campusAerial" heading="Complete Community Features">
                 <p>
-                  Del Webb North Ranch amenities are fully built: resort pools, fitness, pickleball, bocce, walking trails, a dog park, and the 10,000 sq ft clubhouse at 2290 Beauty Vista St in North Las Vegas.
+                  Del Webb North Ranch amenities are fully built: resort pools, fitness, pickleball, bocce, walking trails, a dog park, and the 10,000 sq ft clubhouse at 2290 Beauty Vista Avenue in North Las Vegas.
                 </p>
               </SectionPhoto>
               <div className="bg-bg-light rounded-lg shadow-two p-6 md:p-8">
