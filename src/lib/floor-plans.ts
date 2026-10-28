@@ -260,7 +260,7 @@ export function planFaq(plan: FloorPlan): Array<{ question: string; answer: stri
     },
     {
       question: `How much does a ${plan.name} home cost at Del Webb North Ranch?`,
-      answer: `Del Webb North Ranch homes generally trade in the ${COMMUNITY_PRICE_RANGE} range. A ${plan.name} resale price depends on the homesite, options, and current market conditions. Call Dr. Jan Duffy at (702) 500-1064 for current ${plan.name} listings and recent sales.`,
+      answer: `Del Webb North Ranch homes generally trade in the ${COMMUNITY_PRICE_RANGE} range. A ${plan.name} resale price depends on the homesite, options, and current market conditions. Call Dr. Jan Duffy at (725) 720-2805 for current ${plan.name} listings and recent sales.`,
     },
     {
       question: `Which series is the ${plan.name} in?`,
