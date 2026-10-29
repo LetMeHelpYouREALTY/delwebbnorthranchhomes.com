@@ -217,7 +217,7 @@ export default function TermsPage() {
                   <p className="text-text-dark mb-2">
                     Berkshire Hathaway HomeServices Nevada Properties
                   </p>
-                  <p className="text-text-dark mb-2">2290 Beauty Vista St</p>
+                  <p className="text-text-dark mb-2">2290 Beauty Vista Avenue</p>
                   <p className="text-text-dark mb-2">North Las Vegas, NV 89086</p>
                   <p className="text-text-dark mb-4">
                     Phone: <a href={SITE_PHONE_TEL} className="text-primary hover:underline">{SITE_PHONE_DISPLAY}</a>

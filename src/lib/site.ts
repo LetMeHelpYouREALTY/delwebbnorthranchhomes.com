@@ -20,20 +20,20 @@ export const GBP_SHORT_DESCRIPTION =
 export const SITE_EMAIL = "sales@delwebbnorthranchhomes.com";
 
 /** Phone – E.164 for tel: links. Matches Google Business Profile (NAP). */
-export const SITE_PHONE_TEL = "tel:+17025001064";
+export const SITE_PHONE_TEL = "tel:+17257202805";
 
 /** SMS – matches GBP texting number. */
-export const SITE_PHONE_SMS = "sms:+17025001064";
+export const SITE_PHONE_SMS = "sms:+17257202805";
 
 /** Phone display – matches GBP exactly for visible NAP. */
-export const SITE_PHONE_DISPLAY = "(702) 500-1064";
+export const SITE_PHONE_DISPLAY = "(725) 720-2805";
 
 /** Phone for JSON-LD/schema.org (E.164 with dashes). */
-export const SITE_PHONE_SCHEMA = "+1-702-500-1064";
+export const SITE_PHONE_SCHEMA = "+1-725-720-2805";
 
 /** GBP business location – matches Google Business Profile (NAP). */
 export const GBP_ADDRESS = {
-  streetAddress: "2290 Beauty Vista St",
+  streetAddress: "2290 Beauty Vista Avenue",
   addressLocality: "North Las Vegas",
   addressRegion: "NV",
   postalCode: "89086",

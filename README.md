@@ -89,13 +89,13 @@ npm start
 ## 📧 Contact
 
 **Dr. Jan Duffy, REALTOR®**
-- **Phone:** (702) 500-1064 *(NAP: update `SITE_PHONE_TEL` / `SITE_PHONE_DISPLAY` in `src/lib/site.ts`)*
+- **Phone:** (725) 720-2805 *(NAP: update `SITE_PHONE_TEL` / `SITE_PHONE_DISPLAY` in `src/lib/site.ts`)*
 - **Email:** sales@delwebbnorthranchhomes.com
 - **License:** S.0197614.LLC
 - **Brokerage:** Berkshire Hathaway HomeServices Nevada Properties
 
 **Community Address:**
-2290 Beauty Vista St, North Las Vegas, NV 89086
+2290 Beauty Vista Avenue, North Las Vegas, NV 89086
 
 ## 📄 License
 
