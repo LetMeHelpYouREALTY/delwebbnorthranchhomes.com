@@ -146,7 +146,7 @@ export default function RootLayout({
     priceRange: "$$",
     paymentAccepted: "Cash, Check, Credit Card, Financing",
     currenciesAccepted: "USD",
-    sameAs: [...GBP_SOCIAL_PROFILES],
+    sameAs: [GOOGLE_MAPS_PLACE_URL, ...GBP_SOCIAL_PROFILES],
     hasMap: GOOGLE_MAPS_PLACE_URL,
     hasOfferCatalog: {
       "@type": "OfferCatalog",

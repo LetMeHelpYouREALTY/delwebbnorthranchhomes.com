@@ -84,13 +84,14 @@ export const GOOGLE_REVIEW_LINK = "https://g.page/r/CTX_3qPVOeEqEBI/review";
 export const GOOGLE_MAPS_DIRECTIONS_URL =
   "https://www.google.com/maps/dir//2290+Beauty+Vista+Avenue,+North+Las+Vegas,+NV+89086";
 
-/** Google Maps place URL for schema hasMap and “View on Google Maps”. */
-export const GOOGLE_MAPS_PLACE_URL =
-  "https://www.google.com/maps/search/?api=1&query=2290+Beauty+Vista+Avenue,+North+Las+Vegas,+NV+89086";
+/** GBP CID (same listing as GOOGLE_REVIEW_LINK; decoded from that g.page link). */
+export const GBP_CID = "3089814409092988725";
 
-/** Google Maps embed (no API key) – pin at the GBP business address. */
-export const GOOGLE_MAPS_EMBED_URL =
-  "https://maps.google.com/maps?q=2290%20Beauty%20Vista%20Avenue%2C%20North%20Las%20Vegas%2C%20NV%2089086&z=16&output=embed";
+/** Google Maps listing URL (CID form) for schema hasMap/sameAs and “View on Google Maps”. */
+export const GOOGLE_MAPS_PLACE_URL = `https://maps.google.com/?cid=${GBP_CID}`;
+
+/** Google Maps embed (no API key) – pins the GBP listing itself, not just the street address. */
+export const GOOGLE_MAPS_EMBED_URL = `https://maps.google.com/maps?cid=${GBP_CID}&output=embed`;
 
 /** Public Google reviews listing for the GBP. */
 export const GOOGLE_REVIEWS_URL = "https://g.page/r/CTX_3qPVOeEqEBI";
