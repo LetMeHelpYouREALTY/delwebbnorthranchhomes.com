@@ -27,7 +27,7 @@ const specialties = [
     icon: <Award className="w-6 h-6" />,
     title: "Licensed REALTOR®",
     description:
-      "Licensed REALTOR® in real estate since 1983, committed to ethical service.",
+      "Licensed REALTOR® licensed since 2008 · 35 years in Las Vegas, committed to ethical service.",
   },
   {
     icon: <Users className="w-6 h-6" />,
