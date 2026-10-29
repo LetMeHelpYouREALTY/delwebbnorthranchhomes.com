@@ -20,7 +20,7 @@ import { mediaOpenGraph, mediaTwitterImages } from "@/lib/media";
 export const metadata: Metadata = {
   title: `About Dr. Jan Duffy REALTOR® | ${TITLE_SUFFIX}`,
   description: metaDescriptionBlock(
-    "Meet Dr. Jan Duffy, REALTOR® specializing in this premier 55+ community, in real estate since 1983"
+    "Meet Dr. Jan Duffy, REALTOR® specializing in this premier 55+ community, licensed since 2008 · 35 years in Las Vegas"
   ),
   alternates: {
     canonical: `${SITE_ORIGIN}/about`,
@@ -54,7 +54,7 @@ const specialties = [
     icon: <Award className="w-6 h-6" />,
     title: "Licensed REALTOR®",
     description:
-      "Licensed REALTOR® in real estate since 1983, committed to ethical service.",
+      "Licensed REALTOR® licensed since 2008 · 35 years in Las Vegas, committed to ethical service.",
   },
   {
     icon: <Users className="w-6 h-6" />,
@@ -144,8 +144,8 @@ export default function AboutPage() {
                     <div className="prose prose-lg max-w-none space-y-4">
                       <p className="text-base md:text-lg text-text-dark leading-relaxed">
                         Dr. Jan Duffy isn't a builder's sales rep. She's an
-                        independent REALTOR®, in real estate since 1983, who
-                        specializes exclusively in Del Webb North Ranch. She is a Top 1% Las
+                        independent REALTOR®, licensed since 2008 · 35 years in Las Vegas, who
+                        specializes exclusively in Del Webb North Ranch. She is a Las
                     Vegas REALTOR®.
                       </p>
                       <p className="text-base md:text-lg text-text-dark leading-relaxed">
